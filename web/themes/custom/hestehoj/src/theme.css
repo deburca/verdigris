@@ -1,0 +1,126 @@
+/**
+ * @file theme.css
+ * shadcn/ui-compatible theme variables for Hestehoj.
+ *
+ * You can customize these values without rebuilding the compiled CSS.
+ * Tools like https://tweakcn.com can help generate these values. Copy this
+ * file to your web root, so it sits next to index.php, and clear Drupal's
+ * cache. Then, any changes you make in this file should be reflected right away.
+ */
+
+:root {
+  /* Base */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.137 0.036 258.3);
+
+  --card: oklch(0.984 0.004 248.2);
+  --card-foreground: oklch(0.137 0.036 258.3);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.137 0.036 258.3);
+
+  /* Icelandic blue as primary */
+  --primary: oklch(0.428 0.146 256.1);
+  --primary-foreground: oklch(0.984 0.004 248.2);
+
+  /* Soft stable-inspired secondary (warm neutral) */
+  --secondary: oklch(0.956 0.005 67.5);
+  --secondary-foreground: oklch(0.372 0.014 55.9);
+
+  /* Muted surfaces (for subtle panels) */
+  --muted: oklch(0.961 0.004 248.2);
+  --muted-foreground: oklch(0.556 0.04 256.8);
+
+  /* Accented surfaces (for subtle panels) */
+  --accent: oklch(0.932 0.032 255.585);
+  --accent-foreground: var(--foreground);
+
+  /* Icelandic red as destructive/strong accent */
+  --destructive: oklch(0.573 0.216 21.1);
+  --destructive-foreground: oklch(0.984 0.004 248.2);
+
+  /* Borders & inputs */
+  --border: oklch(0.926 0.013 255.1);
+  --input: oklch(0.926 0.013 255.1);
+  --ring: oklch(0.428 0.146 256.1);
+
+  --font-sans: "Outfit", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: "Fira Mono", "Menlo", "Consolas", "Liberation Mono", monospace;
+
+  --radius: 0.5rem;
+  --shadow-x: 0;
+  --shadow-y: 1px;
+  --shadow-blur: 3px;
+  --shadow-spread: 0px;
+  --shadow-opacity: 0.1;
+  --shadow-color: oklch(0 0 0);
+  --shadow-2xs: 0 1px 3px 1px oklch(0 0 0 / 0.05);
+  --shadow-xs: 0 1px 3px 1px oklch(0 0 0 / 0.05), 0 1px 2px -1px oklch(0 0 0 / 0.1);
+  --shadow-sm: 0 1px 3px 1px oklch(0 0 0 / 0.1), 0 2px 4px -1px oklch(0 0 0 / 0.1);
+  --shadow: 0 1px 3px 1px oklch(0 0 0 / 0.1), 0 2px 4px -1px oklch(0 0 0 / 0.1);
+  --shadow-md: 0 1px 3px 1px oklch(0 0 0 / 0.1), 0 4px 6px -2px oklch(0 0 0 / 0.1);
+  --shadow-lg: 0 1px 3px 1px oklch(0 0 0 / 0.1), 0 8px 10px -2px oklch(0 0 0 / 0.1);
+  --shadow-xl: 0 1px 3px 1px oklch(0 0 0 / 0.1), 0 12px 14px -3px oklch(0 0 0 / 0.1);
+  --shadow-2xl: 0 1px 3px 1px oklch(0 0 0 / 0.1), 0 16px 18px -3px oklch(0 0 0 / 0.1);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+
+  /* Set navbar height for hero billboard overlay */
+  --navbar-height: calc(var(--spacing) * 15);
+
+  @media (min-width: 768px) {
+    --navbar-height: calc(var(--spacing) * 18);
+  }
+}
+
+.dark {
+  --background: oklch(0.137 0.036 258.3);
+  --foreground: oklch(0.984 0.004 248.2);
+
+  --card: oklch(0.206 0.039 265.6);
+  --card-foreground: oklch(0.984 0.004 248.2);
+
+  --popover: oklch(0.206 0.039 265.6);
+  --popover-foreground: oklch(0.984 0.004 248.2);
+
+  /* Slightly lighter Icelandic blue */
+  --primary: oklch(0.559 0.196 256.8);
+  --primary-foreground: oklch(0.984 0.004 248.2);
+
+  --secondary: oklch(0.291 0.018 264.2);
+  --secondary-foreground: oklch(0.968 0.007 248.1);
+
+  --muted: oklch(0.291 0.018 264.2);
+  --muted-foreground: oklch(0.71 0.035 256.8);
+
+  --destructive: oklch(0.635 0.188 15.6);
+  --destructive-foreground: oklch(0.984 0.004 248.2);
+
+  --border: oklch(0.373 0.031 259.733);
+  --input: oklch(0.373 0.031 259.733);
+  --ring: oklch(0.634 0.196 254.9);
+
+  --accent: oklch(0.932 0.032 255.585);
+  --accent-foreground: oklch(0.13 0.043 265.132);
+
+  --font-sans: "Outfit", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: "Fira Mono", "Menlo", "Consolas", "Liberation Mono", monospace;
+
+  --radius: 0.5rem;
+  --shadow-x: 0;
+  --shadow-y: 1px;
+  --shadow-blur: 3px;
+  --shadow-spread: 0px;
+  --shadow-opacity: 0.1;
+  --shadow-color: oklch(0 0 0);
+  --shadow-2xs: 0 1px 3px 0px oklch(0 0 0 / 0.05);
+  --shadow-xs: 0 1px 3px 0px oklch(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 1px 2px -1px oklch(0 0 0 / 0.1);
+  --shadow: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 1px 2px -1px oklch(0 0 0 / 0.1);
+  --shadow-md: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 2px 4px -1px oklch(0 0 0 / 0.1);
+  --shadow-lg: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 4px 6px -1px oklch(0 0 0 / 0.1);
+  --shadow-xl: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 8px 10px -1px oklch(0 0 0 / 0.1);
+  --shadow-2xl: 0 1px 3px 0px oklch(0 0 0 / 0.1), 0 12px 14px -1px oklch(0 0 0 / 0.1);
+}

@@ -1,0 +1,19 @@
+diff --git a/src/main.css b/src/main.css
+index 3d1f637..0348651 100644
+--- a/src/main.css
++++ b/src/main.css
+@@ -176,6 +176,14 @@
+     scrollbar-width: none; /* Firefox */
+     -ms-overflow-style: none; /* IE and Edge */
+   }
++
++  /* Custom backgrounds on home page hero image */
++  .path-frontpage h1.text-primary {
++	background-color: var(--background-alpha);
++  }
++  .path-frontpage div.text-background {
++	background-color: var(--foreground-alpha);
++ }
+ }
+ 
+ @layer components {

@@ -1,0 +1,432 @@
+# Comprehensive Drupal 11 .gitignore file
+# This file excludes sensitive information, user uploads, and dependencies
+# while following Drupal 11 best practices for security and performance.
+
+# 🔐 Security & Secrets Protection
+# -  All settings files (settings*.php, services*.yml)
+# -  Environment variables (.env files)
+# -  SSL certificates and SSH keys
+# -  API keys and secret files
+# -  Database dumps
+# -  Hash salt files
+
+# 📦 Dependency Management
+# -  Composer: Excludes /vendor/ while keeping composer.json and composer.lock
+# -  Node.js: Excludes node_modules/ and build artifacts
+# -  Drupal Core: Excludes core when managed via Composer (Drupal 11 best practice)
+# -  Contrib modules/themes: Excludes contributed extensions managed via Composer
+
+# 📁 File System Protection
+# -  User uploads (sites/*/files/)
+# -  Private file systems (sites/*/private/)
+# -  Temporary directories
+# -  Backup directories
+# -  Cache and performance files (CSS/JS aggregation, image styles)
+
+# 🛠 Development Tools
+# -  IDE files (PhpStorm, VS Code, Sublime, Vim, Emacs)
+# -  Testing frameworks (PHPUnit, Behat)
+# -  Development tools (Drush, Drupal Console)
+# -  Build and deployment tools
+# -  Docker and Vagrant files
+
+# 💻 Operating System Compatibility
+# -  macOS files (.DS_Store, etc.)
+# -  Windows files (Thumbs.db, etc.)
+# -  Linux hidden files
+
+# 🎯 Drupal 11 Specific Features
+# -  Both traditional (sites/) and modern (web/sites/) directory structures
+# -  Configuration management exclusions
+# -  Performance optimization file exclusions
+# -  Search API index files
+
+# ✅ Best Practices Included
+# -  Clear section organization with headers
+# -  Comments explaining what to keep in version control
+# -  Flexible exceptions section for custom needs
+# -  Support for both single-site and multi-site configurations
+
+# =============================================================================
+# COMPOSER DEPENDENCIES
+# =============================================================================
+
+# Ignore Composer dependencies - these should be installed via composer install
+/vendor/
+bin/
+drush/contrib/
+
+# Composer files (keep composer.json and composer.lock in version control)
+# composer.json - KEEP IN VERSION CONTROL
+# composer.lock - KEEP IN VERSION CONTROL
+
+# =============================================================================
+# DRUPAL CORE AND CONTRIBUTED MODULES/THEMES
+# =============================================================================
+
+# Ignore Drupal core when managing with Composer (recommended for Drupal 11)
+core/
+web/core/
+docroot/core/
+
+# Ignore contributed modules, themes, and profiles (managed via Composer)
+web/modules/contrib/
+web/themes/contrib/
+web/profiles/contrib/
+modules/contrib/
+themes/contrib/
+profiles/contrib/
+docroot/modules/contrib/
+docroot/themes/contrib/
+docroot/profiles/contrib/
+docroot/profiles/varbase/
+
+# Ignore libraries directory (managed via Composer)
+web/libraries/
+libraries/
+docroot/libraries/
+
+# Recipes
+web/recipies/
+docroot/recipes/
+
+# Folders where names of files may not be valid
+modules/ui_icons_test/icons/name_special_chars/
+
+# =============================================================================
+# NODE.JS AND FRONTEND DEPENDENCIES
+# =============================================================================
+
+# Node modules and package manager files
+node_modules/
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+**/.yarn/*
+
+# Package manager lock files (keep package.json, decide on lock files based on your workflow)
+# package.json - KEEP IN VERSION CONTROL
+# package-lock.json - KEEP OR IGNORE based on team preference
+# yarn.lock - KEEP OR IGNORE based on team preference
+# pnpm-lock.yaml - KEEP OR IGNORE based on team preference
+
+# Build output directories
+dist/
+build/
+.next/
+.nuxt/
+.vuepress/dist/
+
+# =============================================================================
+# DRUPAL CONFIGURATION AND SENSITIVE FILES
+# =============================================================================
+
+# Settings files that may contain sensitive information
+sites/*/settings*.php
+web/sites/*/settings*.php
+docroot/sites/*/settings*.php
+sites/*/settings.local.php
+sites/*/settings.local.php
+web/sites/*/settings.local.php
+docroot/sites/*/settings.local.php
+
+# Services
+sites/*/services*.yml
+web/sites/*/services*.yml
+docroot/sites/*/services*.yml
+
+# Hash salt file
+sites/*/salt.txt
+web/sites/*/salt.txt
+
+# Local development configuration
+.env
+.env.local
+.env.*.local
+*.env
+
+# Database dumps
+*.sql
+*.sql.gz
+*.sql.bz2
+*.mysql
+*.dump
+
+# =============================================================================
+# FILES, PRIVATE FILES, UPLOADS
+# =============================================================================
+
+# Public files directory (user uploads)
+sites/*/files/*
+web/sites/*/files/*
+docroot/sites/*/files/*
+
+# Private files directory
+private/*
+sites/*/private/
+web/sites/*/private/
+docroot/sites/*/private/
+
+# Temporary files
+sites/*/tmp/
+web/sites/*/tmp/
+docroot/sites/*/tmp/
+tmp/
+
+# Backup directories
+backup/
+backups/
+sites/*/backup/
+web/sites/*/backup/
+docroot/sites/*/backup/
+
+# =============================================================================
+# DEVELOPMENT AND TESTING
+# =============================================================================
+
+# Multi-site test environment
+sites/simpletest/
+web/sites/simpletest/
+docroot/sites/simpletest/
+
+# PHPUnit and testing
+phpunit.xml
+.phpunit.result.cache
+web/phpunit.xml
+docroot/phpunit.xml
+
+# Behat testing
+behat.yml
+behat.local.yml
+
+################################################################################
+# DRUSH / DRUPAL CONSOLE
+################################################################################
+
+# Drush
+.drush/
+drushrc.php
+sites/*/drushrc.php
+web/sites/*/drushrc.php
+docroot/sites/*/drushrc.php
+
+# Drupal console
+.console/
+
+# =============================================================================
+# IDE AND EDITOR FILES
+# =============================================================================
+
+# PhpStorm
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Visual Studio Code
+.vscode/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+*.*~
+.vim
+\#*\#
+*.elc
+auto-save-list
+tramp
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Eclipse
+.project
+.pydevproject
+.settings/
+.buildpath
+
+# NetBeans
+nbproject/
+
+# =============================================================================
+# OPERATING SYSTEM FILES
+# =============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# =============================================================================
+# LOGS AND CACHE
+# =============================================================================
+
+# Log files
+*.log
+logs/
+sites/*/logs/
+web/sites/*/logs/
+docroot/sites/*/logs/
+
+# Cache directories
+cache/
+sites/*/cache/
+web/sites/*/cache/
+docroot/sites/*/cache/
+
+# Drupal specific cache and temporary files
+sites/default/files/css/
+sites/default/files/js/
+web/sites/default/files/css/
+web/sites/default/files/js/
+docroot/sites/default/files/css/
+docroot/sites/default/files/js/
+
+# =============================================================================
+# SECURITY AND SECRETS
+# =============================================================================
+
+# SSL certificates and keys
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+
+# SSH keys
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+*.pem
+
+# API keys and secrets
+secrets.json
+api_keys.txt
+*.secret
+
+# Configuration management secrets
+!files/sync
+!files/sync/*
+!sites/*/files/sync
+!sites/*/files/sync/*
+!web/sites/*/files/sync
+!web/sites/*/files/sync/*
+!docroot/sites/*/files/sync
+!docroot/sites/*/files/sync/*
+
+# =============================================================================
+# BUILD AND DEPLOYMENT
+# =============================================================================
+
+# Deployment scripts with sensitive information
+deploy.php
+capfile
+fabfile.py
+
+# CI/CD generated files
+.circleci/
+.github/workflows/
+.gitlab-ci.yml
+.travis.yml
+jenkinsfile
+
+# Docker
+.docker/
+docker-compose.override.yml
+.dockerignore
+
+# Vagrant
+.vagrant/
+Vagrantfile.local
+
+# =============================================================================
+# PERFORMANCE AND OPTIMIZATION
+# =============================================================================
+
+# Aggregated CSS and JS files
+sites/*/files/css/
+sites/*/files/js/
+web/sites/*/files/css/
+web/sites/*/files/js/
+docroot/sites/*/files/css/
+docroot/sites/*/files/js/
+
+# Image style derivatives
+sites/*/files/styles/
+web/sites/*/files/styles/
+docroot/sites/*/files/styles/
+
+# Search index files
+sites/*/files/search_api/
+web/sites/*/files/search_api/
+docroot/sites/*/files/search_api/
+
+# =============================================================================
+# RECIPIES
+# =============================================================================
+recipes
+recipes/
+recipes/*
+
+# =============================================================================
+# CUSTOM EXCEPTIONS (UNCOMMENT AS NEEDED)
+# =============================================================================
+
+# If you want to track specific contributed modules for custom patches
+# !web/modules/contrib/specific_module/
+
+# If you want to track custom libraries
+# !web/libraries/custom_library/
+
+# If you want to track specific configuration files
+# !sites/default/settings.php.example
+# !web/sites/default/settings.php.example
+# Allow specific patch files to be tracked
+!patches/*.patch
+
+.gitmodules
+web/modules/custom/*/.git
+docroot/modules/custom/*/.git
+

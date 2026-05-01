@@ -1,0 +1,145 @@
+{
+  "name": "drupal-cms2",
+  "description": "Drupal CMS puts the power of Drupal into the hands of marketers, designers and content creators.",
+  "license": "GPL-2.0-or-later",
+  "private": true,
+  "engines": {
+    "yarn": ">= 4.9.3",
+    "node": ">= 20.0"
+  },
+  "scripts": {
+    "phpcs": "phpcs --standard=./.phpcs.xml .",
+    "phpcbf": "phpcbf --standard=./.phpcs.xml .",
+    "lint:yaml": "node ./node_modules/eslint/bin/eslint.js --config=.eslintrc.json --ext .yml .",
+    "lint:js": "node ./node_modules/eslint/bin/eslint.js --config=.eslintrc.json --ext .js .",
+    "lint:css": "npx stylelint --config=.stylelintrc.json",
+    "prepare": "husky",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:legacy": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-media-embed": "^48.0.0",
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^12.0.6",
+    "@semantic-release/release-notes-generator": "^14.1.0",
+    "ace-builds": "^1.43.6",
+    "aos": "^2.3.4",
+    "blazy": "^1.8.2",
+    "dropzone": "^6.0.0-beta.2",
+    "jquery.fancytree": "^2.38.5",
+    "prettier": "^3.8.2",
+    "semantic-release": "^25.0.3",
+    "slick-carousel": "^1.8.1",
+    "swagger-ui-dist": "^5.32.3",
+    "test": "^3.3.0"
+  },
+  "drupal-libraries": {
+    "library-directory": "docroot/libraries",
+    "libraries": [
+      {
+        "name": "ckeditor5/plugins/media-embed",
+        "package": "@ckeditor/ckeditor5-media-embed"
+      },
+      {
+        "name": "ace",
+        "package": "ace-builds"
+      },
+      {
+        "name": "aos",
+        "package": "aos"
+      },
+      {
+        "name": "blazy",
+        "package": "blazy"
+      },
+      {
+        "name": "dropzone",
+        "package": "dropzone/dist"
+      },
+      {
+        "name": "jquery.fancytree",
+        "package": "jquery.fancytree"
+      },
+      {
+        "name": "slick/slick",
+        "package": "slick-carousel/slick"
+      },
+      {
+        "name": "swagger-ui/dist",
+        "package": "swagger-ui-dist"
+      }
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "eslint": "^10.2.0",
+    "eslint-plugin-storybook": "^10.3.5",
+    "fork-ts-checker-webpack-plugin": "^9.1.0",
+    "husky": "^9.1.7",
+    "jest": "^30.3.0",
+    "jquery": "^4.0.0",
+    "prettier": "^3.8.2",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "stylelint": "^17.7.0",
+    "stylelint-checkstyle-formatter": "^0.1.2",
+    "stylelint-order": "^8.1.1",
+    "typescript": "^6.0.2",
+    "webpack": "^5.106.1",
+    "webpack-cli": "^7.0.2"
+  },
+  "resolutions": {
+    "webpack": "^5"
+  },
+  "packageManager": "yarn@4.14.1",
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "echo ${nextRelease.version} > VERSION.txt"
+        }
+      ],
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
+      [
+        "@semantic-release/github",
+        {
+          "assets": [
+            {
+              "path": "dist.zip",
+              "label": "Distribution"
+            }
+          ]
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "VERSION.txt",
+            "package.json",
+            "CHANGELOG.md"
+          ],
+          "message": "ci(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  }
+}

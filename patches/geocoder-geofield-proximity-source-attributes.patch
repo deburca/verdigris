@@ -1,0 +1,81 @@
+diff --git a/src/Plugin/GeofieldProximitySource/GeocodeOrigin.php b/src/Plugin/GeofieldProximitySource/GeocodeOrigin.php
+index ada34e6..16d66fc 100644
+--- a/src/Plugin/GeofieldProximitySource/GeocodeOrigin.php
++++ b/src/Plugin/GeofieldProximitySource/GeocodeOrigin.php
+@@ -4,25 +4,26 @@ namespace Drupal\geocoder\Plugin\GeofieldProximitySource;
+ 
+ use Drupal\Core\Form\FormStateInterface;
+ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
++use Drupal\Core\StringTranslation\TranslatableMarkup;
+ use Drupal\geocoder\Entity\GeocoderProvider;
+ use Drupal\geocoder\FormatterPluginManager;
+ use Drupal\geocoder\Geocoder;
+ use Drupal\geocoder\ProviderPluginManager;
++use Drupal\geofield\Attribute\GeofieldProximitySource;
+ use Drupal\geofield\Plugin\GeofieldProximitySourceBase;
+ use Geocoder\Model\AddressCollection;
+ use Symfony\Component\DependencyInjection\ContainerInterface;
+ 
+ /**
+  * Defines 'Geocode Origin (with Autocomplete option)' proximity source plugin.
+- *
+- * @GeofieldProximitySource(
+- *   id = "geofield_geocode_origin",
+- *   label = @Translation("Geocode Origin (with Autocomplete option)"),
+- *   description = @Translation("Geocodes origin from free text input, with Autocomplete option."),
+- *   exposedDescription = @Translation("Geocode origin from free text input, with Autocomplete option."),
+- *   context = {},
+- * )
+  */
++#[GeofieldProximitySource(
++  id: "geofield_geocode_origin",
++  label: new TranslatableMarkup("Geocode Origin (with Autocomplete option)"),
++  description: new TranslatableMarkup("Geocodes origin from free text input, with Autocomplete option."),
++  exposedDescription: new TranslatableMarkup("Geocode origin from free text input, with Autocomplete option."),
++  context: [],
++)]
+ class GeocodeOrigin extends GeofieldProximitySourceBase implements ContainerFactoryPluginInterface {
+ 
+   /**
+diff --git a/src/Plugin/GeofieldProximitySource/deprecated/GeocodeOriginAutocomplete.php b/src/Plugin/GeofieldProximitySource/deprecated/GeocodeOriginAutocomplete.php
+index 20acde5..f3a65c4 100644
+--- a/src/Plugin/GeofieldProximitySource/deprecated/GeocodeOriginAutocomplete.php
++++ b/src/Plugin/GeofieldProximitySource/deprecated/GeocodeOriginAutocomplete.php
+@@ -2,25 +2,27 @@
+ 
+ namespace Drupal\geocoder\Plugin\GeofieldProximitySource\deprecated;
+ 
++use Drupal\Core\StringTranslation\TranslatableMarkup;
++
+ use Drupal\geocoder\FormatterPluginManager;
+ use Drupal\geocoder\Geocoder;
+ use Drupal\geocoder\Plugin\GeofieldProximitySource\GeocodeOrigin;
+ use Drupal\geocoder\ProviderPluginManager;
++use Drupal\geofield\Attribute\GeofieldProximitySource;
+ use Symfony\Component\DependencyInjection\ContainerInterface;
+ 
+ /**
+  * Defines 'Geocode Origin, with Autocomplete' proximity source plugin.
+- *
+- * @GeofieldProximitySource(
+- *   id = "geofield_geocode_origin_autocomplete",
+- *   label = @Translation("Geocode Origin, with Autocomplete"),
+- *   description = @Translation("Geocodes origin from free text input, with autocomplete."),
+- *   exposedDescription = @Translation("Geocode origin from free text input, with autocomplete."),
+- *   exposedOnly = true,
+- *   context = {},
+- *   no_ui = true
+- * )
+  */
++#[GeofieldProximitySource(
++  id: "geofield_geocode_origin_autocomplete",
++  label: new TranslatableMarkup("Geocode Origin, with Autocomplete"),
++  description: new TranslatableMarkup("Geocodes origin from free text input, with autocomplete."),
++  exposedDescription: new TranslatableMarkup("Geocode origin from free text input, with autocomplete."),
++  exposedOnly: TRUE,
++  context: [],
++  no_ui: TRUE,
++)]
+ class GeocodeOriginAutocomplete extends GeocodeOrigin {
+ 
+   /**

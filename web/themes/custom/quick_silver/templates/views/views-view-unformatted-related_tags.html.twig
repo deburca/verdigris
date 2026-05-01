@@ -1,0 +1,16 @@
+ {# templates/views/views-view-unformatted--related_tags.html.twig #}
+  {% set tag_items = [] %}
+  {% for row in rows %}
+    {% set tag_items = tag_items|merge([{
+      label: row.content['#row']._entity.label(),
+      href: path('entity.taxonomy_term.canonical', { taxonomy_term: row.content['#row']._entity.id() })
+    }]) %}
+  {% endfor %}
+
+  {{
+    include(
+      'quick_silver:related-tags',
+      { items: tag_items, variant: 'secondary', size: 'small' },
+      with_context: false
+    )
+  }}

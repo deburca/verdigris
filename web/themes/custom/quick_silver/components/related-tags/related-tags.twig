@@ -1,0 +1,29 @@
+{% set tag_label = label|default('Related Tags') %}
+{% set tag_variant = variant|default('secondary') %}
+{% set tag_size = size|default('small') %}
+
+{% if items %}
+  <div>
+    {% if tag_label %}
+      <p class="mb-2 text-sm font-semibold text-foreground">{{ tag_label }}</p>
+    {% endif %}
+    <ul class="flex flex-row flex-wrap gap-2">
+      {% for item in items %}
+        <li>
+          {{
+            include(
+              'quick_silver:button',
+              {
+                label: item.label,
+                href: item.href,
+                variant: tag_variant,
+                size: tag_size
+              },
+              with_context: false
+            )
+          }}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}

@@ -1,0 +1,3 @@
+[submodule "web/modules/hivelog"]
+	path = web/modules/hivelog
+	url = https://github.com/deburca/hivelog.git

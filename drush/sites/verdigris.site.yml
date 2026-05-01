@@ -1,0 +1,15 @@
+macos:
+  host: mac.home
+  user: paddy
+  root: /home/paddy/Development/cms2
+  uri: https://mysite.local
+  paths:
+    dump-dir: /tmp
+
+linux:
+  host: pc-b.local
+  user: paddy
+  root: /home/paddy/Development/cms2
+  uri: https://mysite.local
+  paths:
+    dump-dir: /tmp

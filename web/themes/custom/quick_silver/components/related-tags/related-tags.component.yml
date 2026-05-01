@@ -1,0 +1,58 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
+name: Related Tags
+group: Content
+status: stable
+props:
+  type: object
+  properties:
+    label:
+      type: string
+      title: Heading
+      default: "Related Tags"
+      examples:
+        - "Related Tags"
+    items:
+      type: array
+      title: Tag items
+      items:
+        type: object
+        properties:
+          label:
+            type: string
+            title: Label
+          href:
+            type: string
+            title: URL
+      examples:
+        - label: "Drupal"
+          href: "/tags/drupal"
+    variant:
+      type: string
+      title: Button style
+      enum:
+        - primary
+        - secondary
+        - primary-inverted
+        - secondary-inverted
+      meta:enum:
+        primary: Primary
+        secondary: Secondary
+        primary-inverted: Primary inverted
+        secondary-inverted: Secondary inverted
+      default: secondary
+      examples:
+        - secondary
+    size:
+      type: string
+      title: Button size
+      enum:
+        - small
+        - medium
+        - large
+      meta:enum:
+        small: Small
+        medium: Medium
+        large: Large
+      default: small
+      examples:
+        - small
