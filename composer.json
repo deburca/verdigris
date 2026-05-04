@@ -224,6 +224,7 @@
         "composer/composer": "^2.8",
         "composer/installers": "^2.3",
         "cweagans/composer-patches": "^2.0",
+        "drops/drops": "^1.2",
         "drupal/ai": "^1.2.6",
         "drupal/ai_agents": "^1.2",
         "drupal/ai_dashboard": "^1",
