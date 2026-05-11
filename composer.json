@@ -410,8 +410,7 @@
         },
         "patches": {
             "drupal/byte_theme": {
-                "Custom Byte Theme main.css": "patches/byte_theme_main.patch",
-                "Custom Byte Theme theme.css": "patches/byte_theme_theme.patch"
+                "Custom Byte Theme main.css": "patches/byte_theme_main.patch"
             },
             "drupal/geocoder": {
                 "Convert geocoder geofield proximity source plugins to attributes for Drupal 11": "patches/geocoder-geofield-proximity-source-attributes.patch"
