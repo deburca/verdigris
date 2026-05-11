@@ -1,0 +1,12 @@
+diff --git a/src/ComponentMetadataRequirementsChecker.php b/src/ComponentMetadataRequirementsChecker.php
+--- a/src/ComponentMetadataRequirementsChecker.php
++++ b/src/ComponentMetadataRequirementsChecker.php
+@@ -100,7 +100,7 @@
+         // Similarly, for `type: array, items: {type: object}`.
+         if ($prop['type'][0] === 'array' && $prop['items']['type'] === 'object' && \is_array($example)) {
+           $example = \array_map(
+-            fn (array|object $item) => (object) $item,
++            fn (mixed $item) => \is_array($item) ? (object) $item : $item,
+             $example,
+           );
+         }

@@ -412,6 +412,9 @@
             "drupal/byte_theme": {
                 "Custom Byte Theme main.css": "patches/byte_theme_main.patch"
             },
+            "drupal/canvas": {
+                "Fix TypeError in ComponentMetadataRequirementsChecker closure when example items are not arrays/objects": "patches/canvas-component-metadata-closure-type-fix.patch"
+            },
             "drupal/geocoder": {
                 "Convert geocoder geofield proximity source plugins to attributes for Drupal 11": "patches/geocoder-geofield-proximity-source-attributes.patch"
             },

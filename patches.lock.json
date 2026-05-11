@@ -13,6 +13,18 @@
                 }
             }
         ],
+        "drupal/canvas": [
+            {
+                "package": "drupal/canvas",
+                "description": "Fix TypeError in ComponentMetadataRequirementsChecker closure when example items are not arrays/objects",
+                "url": "patches/canvas-component-metadata-closure-type-fix.patch",
+                "sha256": "ac7e46005088e7323db79f5b4f4814b0b5bef39f3e69d65e18ef16c6003b4825",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
         "drupal/geocoder": [
             {
                 "package": "drupal/geocoder",
