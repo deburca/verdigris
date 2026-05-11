@@ -40,6 +40,47 @@ Drupal CMS has adopted a [code of conduct](https://www.drupal.org/dcoc) that we 
 
 To contribute to Drupal CMS development, see the [drupal_cms project](https://www.drupal.org/project/drupal_cms).
 
+## Project Customisations
+
+### Composer Patches (`cweagans/composer-patches` v2)
+
+Patches are defined in `composer.json` under `extra.patches` and tracked in
+`patches.lock.json`. After any change to the patch list, run:
+
+```shell
+ddev exec composer reinstall <vendor/package>
+```
+
+to apply changes to a specific package, or `ddev exec composer install` for a
+full dependency install.
+
+#### `drupal/byte_theme`
+
+| File | Purpose |
+|------|---------|
+| `patches/byte_theme_main.patch` | Adds custom background styles to the front-page hero image in `src/main.css` |
+
+**Fix history:** An earlier `patches/byte_theme_theme.patch` was a duplicate of
+`byte_theme_main.patch` and had a malformed diff header (plain `diff` format
+with absolute paths instead of `git diff` format with package-relative paths).
+This caused `composer install` to fail on the remote server with
+`No available patcher was able to apply patch`. The duplicate was removed in
+commit `707651f`; the stale entry was also purged from `patches.lock.json` in
+commit `b95ae5f`.
+
+**⚠️ Outstanding:** The patch references two CSS custom properties
+`--background-alpha` and `--foreground-alpha` that are not yet defined in
+`web/themes/contrib/byte_theme/src/theme.css` or any sub-theme. Until they are
+defined, the hero background styles will render as transparent. Add the
+variable definitions to your custom theme's CSS overrides, for example:
+
+```css
+:root {
+  --background-alpha: oklch(0.13 0.043 265.132 / 70%);
+  --foreground-alpha: oklch(1 0 89.876 / 70%);
+}
+```
+
 ## License
 
 Drupal CMS and all derivative works are licensed under the [GNU General Public License, version 2 or later](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
