@@ -11,16 +11,6 @@
                 "extra": {
                     "provenance": "root"
                 }
-            },
-            {
-                "package": "drupal/byte_theme",
-                "description": "Custom Byte Theme theme.css",
-                "url": "patches/byte_theme_theme.patch",
-                "sha256": "ebbb8c309f3c5642eda73a4ec16509d3143995251f61a8118c9868a8cfb3f585",
-                "depth": 1,
-                "extra": {
-                    "provenance": "root"
-                }
             }
         ],
         "drupal/geocoder": [
