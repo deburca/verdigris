@@ -342,6 +342,7 @@ id_ed25519
 *.pem
 
 # API keys and secrets
+auth.json
 secrets.json
 api_keys.txt
 *.secret
