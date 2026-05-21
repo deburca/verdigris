@@ -434,3 +434,6 @@ docroot/modules/custom/*/.git
 
 # HiveLog — independent repo, managed via Composer
 web/modules/hivelog/
+
+# QuickSilver — independent repo, managed via Composer
+web/themes/custom/quick_silver/
