@@ -431,3 +431,6 @@ recipes/*
 web/modules/custom/*/.git
 docroot/modules/custom/*/.git
 
+
+# HiveLog — independent repo, managed via Composer
+web/modules/hivelog/
