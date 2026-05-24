@@ -22,9 +22,13 @@ props:
       enum:
         - primary
         - secondary
+        - teal
+        - rust
       meta:enum:
         primary: Primary
         secondary: Secondary
+        teal: Teal
+        rust: Rust
       examples:
         - primary
     icon:

@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Scan SDC components in contrib and custom modules. */
+@source "../../../../modules/contrib/*/components";
+@source "../../../../modules/custom/*/components";
+@source "../../../../modules/hivelog/components";
+
 @import "../components/hero-blog/hero-blog.tailwind.css";
 @import "../components/navbar/navbar.tailwind.css";
 @import "../components/anchor/anchor.tailwind.css";
@@ -42,6 +47,38 @@
 }
 
 @theme {
+  /* Custom color scales */
+  --color-teal-50: oklch(0.97 0.02 200);
+  --color-teal-100: oklch(0.93 0.03 200);
+  --color-teal-200: oklch(0.87 0.05 200);
+  --color-teal-300: oklch(0.80 0.07 200);
+  --color-teal-400: oklch(0.70 0.09 205);
+  --color-teal-500: oklch(0.62 0.10 205);
+  --color-teal-600: oklch(0.55 0.11 210);
+  --color-teal-700: oklch(0.48 0.11 210);
+  --color-teal-800: oklch(0.38 0.09 210);
+  --color-teal-900: oklch(0.30 0.07 210);
+  --color-teal-950: oklch(0.22 0.05 210);
+
+  --color-rust-50: oklch(0.97 0.02 40);
+  --color-rust-100: oklch(0.93 0.04 38);
+  --color-rust-200: oklch(0.86 0.07 38);
+  --color-rust-300: oklch(0.78 0.10 38);
+  --color-rust-400: oklch(0.70 0.13 38);
+  --color-rust-500: oklch(0.62 0.16 38);
+  --color-rust-600: oklch(0.55 0.17 35);
+  --color-rust-700: oklch(0.48 0.16 32);
+  --color-rust-800: oklch(0.40 0.13 30);
+  --color-rust-900: oklch(0.32 0.10 28);
+  --color-rust-950: oklch(0.25 0.07 28);
+
+  /* Custom shadows */
+  --shadow-soft: 0 4px 20px -4px oklch(0.30 0.05 210 / 0.15);
+  --shadow-focus: 0 0 0 3px var(--ring);
+
+  /* Custom easing */
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+
   --text-9xl: 7.5rem; /* 120px */
   --text-9xl--line-height: 1; /* 120px */
 
@@ -282,12 +319,12 @@
   }
 
   .form-submit,
-  input.button {
+  .button {
     @apply cursor-pointer rounded-lg bg-primary px-5 py-2 text-base text-primary-foreground;
   }
 
   .form-submit:hover,
-  input.button:hover {
+  .button:hover {
     @apply bg-primary/85;
   }
 
