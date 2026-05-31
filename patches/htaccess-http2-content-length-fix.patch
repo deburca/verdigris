@@ -1,0 +1,10 @@
+diff --git a/assets/scaffold/files/htaccess b/assets/scaffold/files/htaccess
+--- a/assets/scaffold/files/htaccess
++++ b/assets/scaffold/files/htaccess
+@@ -180,4 +180,6 @@
+   Header always set X-Content-Type-Options nosniff
+   # Disable Proxy header, since it's an attack vector.
+   RequestHeader unset Proxy
++  # HTTP2 error fix
++  Header always unset Content-Length
+ </IfModule>
