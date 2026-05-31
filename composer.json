@@ -351,7 +351,10 @@
                 "web-root": "web/"
             },
             "file-mapping": {
-                "[web-root]/example.gitignore": false
+                "[web-root]/example.gitignore": false,
+                "[web-root]/.htaccess": {
+                    "append": "assets/scaffold/htaccess-http2-append.txt"
+                }
             },
             "allowed-packages": [
                 "drupal/drupal_cms_seo_tools"
@@ -414,9 +417,6 @@
             },
             "drupal/canvas": {
                 "Fix TypeError in ComponentMetadataRequirementsChecker closure when example items are not arrays/objects": "patches/canvas-component-metadata-closure-type-fix.patch"
-            },
-            "drupal/geocoder": {
-                "Convert geocoder geofield proximity source plugins to attributes for Drupal 11": "patches/geocoder-geofield-proximity-source-attributes.patch"
             },
             "drupal/geofield": {
                 "Convert geofield plugins to PHP attributes for Drupal 11": "patches/geofield-drupal11-attribute-discovery.patch",
