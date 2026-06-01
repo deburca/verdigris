@@ -436,4 +436,7 @@ docroot/modules/custom/*/.git
 web/modules/hivelog/
 
 # QuickSilver — independent repo, managed via Composer
-web/themes/custom/quick_silver/
+web/themes/custom/quick_silver/*
+web/themes/contrib/quick_silver/*
+web/themes/custom/zwarte_piet/*
+web/themes/contrib/zwarte_piet/*

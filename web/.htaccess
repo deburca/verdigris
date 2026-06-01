@@ -182,6 +182,10 @@ AddType image/webp .webp
   Header always set X-Content-Type-Options nosniff
   # Disable Proxy header, since it's an attack vector.
   RequestHeader unset Proxy
-  # HTTP2 error fix
+</IfModule>
+
+
+# HTTP2 error fix
+<IfModule mod_headers.c>
   Header always unset Content-Length
 </IfModule>

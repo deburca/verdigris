@@ -6,7 +6,7 @@ libraries:
 logo: logo-dark.svg
 description: "A modern and flexible component-based Drupal theme, for building scalable and efficient websites"
 core_version_requirement: ^11
-generator: "mercury:1.0.1"
+generator: "mercury:1.0.4"
 regions:
   content: Content
   header: Header

@@ -260,7 +260,6 @@
         "drupal/friendly_captcha_challenge": "^0.9",
         "drupal/friendlycaptcha": "^1.1",
         "drupal/geofield": "^10.3",
-        "drupal/geolocation": "^4.0@beta",
         "drupal/gin": "^5",
         "drupal/gin_login": "^2.1.4",
         "drupal/google_tag": "^2.0.7",
@@ -305,6 +304,7 @@
         "drupal/views_infinite_scroll": "^2",
         "drupal/webform": "^6.3-beta3",
         "drupal/yoast_seo": "^2.1",
+        "hivelog/hivelog": "^1.3",
         "jquery/inputmask": "*",
         "jquery/intl-tel-input": "*",
         "jquery/rateit": "*",
@@ -411,16 +411,13 @@
         "drupal-core-vendor-hardening": {
             "composer/composer": false
         },
+        "enable-patching-from-dependencies": true,
         "patches": {
             "drupal/byte_theme": {
                 "Custom Byte Theme main.css": "patches/byte_theme_main.patch"
             },
             "drupal/canvas": {
                 "Fix TypeError in ComponentMetadataRequirementsChecker closure when example items are not arrays/objects": "patches/canvas-component-metadata-closure-type-fix.patch"
-            },
-            "drupal/geofield": {
-                "Convert geofield plugins to PHP attributes for Drupal 11": "patches/geofield-drupal11-attribute-discovery.patch",
-                "Update geofield validation constraint metadata for Drupal 11": "patches/geofield-validator-compatibility.patch"
             }
         }
     },

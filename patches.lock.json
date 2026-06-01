@@ -1,5 +1,5 @@
 {
-    "_hash": "6df38aca394272f2e2802f6c550653fb9f07351278fc117daae9ac59c00b6e0d",
+    "_hash": "55f32686e8dc2e543d3ec71e54b2fe01ee6911623a7ac4f95facda87c54b2933",
     "patches": {
         "drupal/byte_theme": [
             {
@@ -25,37 +25,25 @@
                 }
             }
         ],
-        "drupal/geocoder": [
-            {
-                "package": "drupal/geocoder",
-                "description": "Convert geocoder geofield proximity source plugins to attributes for Drupal 11",
-                "url": "patches/geocoder-geofield-proximity-source-attributes.patch",
-                "sha256": "55fb18f50b64c8916d2d1a53d4f2a9b4874943136024bd3157beb63bf1955071",
-                "depth": 1,
-                "extra": {
-                    "provenance": "root"
-                }
-            }
-        ],
         "drupal/geofield": [
             {
                 "package": "drupal/geofield",
                 "description": "Convert geofield plugins to PHP attributes for Drupal 11",
-                "url": "patches/geofield-drupal11-attribute-discovery.patch",
-                "sha256": "37c4576a172e714c45baa3230f27cde25bcad270e476675c8e789a545da8080a",
+                "url": "web/modules/contrib/hivelog/patches/geofield-drupal11-attribute-discovery.patch",
+                "sha256": "e341a371775ddf3b207b8ddb46a3ac1af07f3e1e6eddc5fdc52d6d8c4fb19a99",
                 "depth": 1,
                 "extra": {
-                    "provenance": "root"
+                    "provenance": "dependency:drupal/geofield"
                 }
             },
             {
                 "package": "drupal/geofield",
                 "description": "Update geofield validation constraint metadata for Drupal 11",
-                "url": "patches/geofield-validator-compatibility.patch",
+                "url": "web/modules/contrib/hivelog/patches/geofield-validator-compatibility.patch",
                 "sha256": "6ef6385eed58643b350d8447f9091bcb14ad95cc00e783b4b40ac236780eb7e0",
                 "depth": 1,
                 "extra": {
-                    "provenance": "root"
+                    "provenance": "dependency:drupal/geofield"
                 }
             }
         ]

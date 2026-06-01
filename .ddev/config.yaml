@@ -3,7 +3,7 @@ type: drupal11
 docroot: web
 webserver_type: apache-fpm
 xdebug_enabled: false
-additional_hostnames: []
+additional_hostnames: ["verdigris", "kragebaekgaard", "hestehoj"]
 additional_fqdns: []
 database:
   type: mariadb
