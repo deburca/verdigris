@@ -98,7 +98,7 @@
   "resolutions": {
     "webpack": "^5"
   },
-  "packageManager": "yarn@4.15.0",
+  "packageManager": "yarn@4.16.0",
   "release": {
     "branches": [
       "main"
