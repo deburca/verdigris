@@ -21,8 +21,8 @@
   },
   "dependencies": {
     "@ckeditor/ckeditor5-media-embed": "^48.0.0",
-    "@commitlint/cli": "^20.5.0",
-    "@commitlint/config-conventional": "^20.5.0",
+    "@commitlint/cli": "^21.0",
+    "@commitlint/config-conventional": "^21.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/exec": "^7.1.0",
@@ -78,7 +78,7 @@
     ]
   },
   "devDependencies": {
-    "@types/node": "^25.6.0",
+    "@types/node": "^26.0",
     "eslint": "^10.2.0",
     "eslint-plugin-storybook": "^10.3.5",
     "fork-ts-checker-webpack-plugin": "^9.1.0",
