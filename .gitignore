@@ -164,10 +164,10 @@ web/sites/*/files/*
 docroot/sites/*/files/*
 
 # Private files directory
-private/*
-sites/*/private/
-web/sites/*/private/
-docroot/sites/*/private/
+private_*/*
+sites/*/private_*/
+web/sites/*/private_*/
+docroot/sites/*/private_*/
 
 # Temporary files
 sites/*/tmp/
