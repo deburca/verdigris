@@ -1,0 +1,13 @@
+shh_cancellation_policy.cancellation_policy.*:
+  type: config_entity
+  label: 'Cancellation policy'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    refund_window_hours:
+      type: integer
+      label: 'Refund window (hours before booking start)'

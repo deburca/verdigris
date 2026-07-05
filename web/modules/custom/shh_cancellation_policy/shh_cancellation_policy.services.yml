@@ -1,0 +1,8 @@
+services:
+  shh_cancellation_policy.manager:
+    class: Drupal\shh_cancellation_policy\CancellationManager
+    arguments: ['@entity_type.manager', '@logger.channel.shh_cancellation_policy']
+
+  logger.channel.shh_cancellation_policy:
+    parent: logger.channel_base
+    arguments: ['shh_cancellation_policy']

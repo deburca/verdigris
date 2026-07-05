@@ -1,0 +1,82 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for shh_cancellation_policy.
+ */
+
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\shh_cancellation_policy\Entity\CancellationPolicy;
+
+/**
+ * Implements hook_install().
+ */
+function shh_cancellation_policy_install() {
+  // Default policy: 24-hour window (matches the example given in decision
+  // 0015's context — "full refund >24h out, none inside").
+  if (!CancellationPolicy::load('standard')) {
+    CancellationPolicy::create([
+      'id' => 'standard',
+      'label' => 'Standard (24 hours)',
+      'refund_window_hours' => 24,
+    ])->save();
+  }
+
+  // field_cancellation_policy on Bookable Facility.
+  $entity_type = 'node';
+  $bundle = 'bookable_facility';
+  $field_name = 'field_cancellation_policy';
+
+  $storage = FieldStorageConfig::loadByName($entity_type, $field_name);
+  if (!$storage) {
+    $storage = FieldStorageConfig::create([
+      'field_name' => $field_name,
+      'entity_type' => $entity_type,
+      'type' => 'entity_reference',
+      'cardinality' => 1,
+      'settings' => [
+        'target_type' => 'cancellation_policy',
+      ],
+    ]);
+    $storage->save();
+    // See docs/project-management/tasks/0011-shh-entity-content-type-modeling.md
+    // "Resolution" — mandatory workaround for a stale entity-field-manager
+    // cache within the same request on this build.
+    \Drupal::service('entity_field.manager')->clearCachedFieldDefinitions();
+  }
+
+  $field = FieldConfig::loadByName($entity_type, $bundle, $field_name);
+  if (!$field) {
+    $field = FieldConfig::create([
+      'field_name' => $field_name,
+      'entity_type' => $entity_type,
+      'bundle' => $bundle,
+      'label' => 'Cancellation policy',
+      'description' => 'Which policy applies to self-service cancellations of this facility. Leave empty to disable self-service cancellation (staff must handle it manually).',
+      'required' => FALSE,
+    ]);
+    $field->save();
+  }
+
+  $form_display = EntityFormDisplay::load("$entity_type.$bundle.default");
+  if ($form_display && !$form_display->getComponent($field_name)) {
+    $form_display->setComponent($field_name, [
+      'type' => 'options_select',
+      'weight' => 20,
+    ]);
+    $form_display->save();
+  }
+
+  $view_display = EntityViewDisplay::load("$entity_type.$bundle.default");
+  if ($view_display && !$view_display->getComponent($field_name)) {
+    $view_display->setComponent($field_name, [
+      'type' => 'entity_reference_label',
+      'label' => 'above',
+      'weight' => 20,
+    ]);
+    $view_display->save();
+  }
+}

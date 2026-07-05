@@ -1,0 +1,12 @@
+name: 'SHH Cancellation Policy'
+type: module
+description: 'Implements docs/project-management/decisions/0015-cancellation-refund-policy.md: a cancellation_policy config entity referenced by Bookable Facility, enforced via a self-service cancellation flow that checks policy + time-to-slot before authorizing a refund and releasing the BAT event.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - bat:bat_event
+  - bat:bat_booking
+  - bee:bee
+  - commerce_order:commerce_order
+  - commerce_payment:commerce_payment
+  - node:node

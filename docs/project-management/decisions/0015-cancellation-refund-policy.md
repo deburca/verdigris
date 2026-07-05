@@ -14,7 +14,11 @@ deciders:
 
 ## Status
 
-accepted
+accepted — implemented, see [[0015-implement-cancellation-refund-policy]]
+for the concrete implementation and one deliberate simplification of the
+"reverts booked → available only if policy check passes" wording below
+(flat denial inside the window, not a partial cancelled-but-unrefunded
+state).
 
 ## Context
 

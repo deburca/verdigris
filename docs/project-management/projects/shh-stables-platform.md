@@ -92,10 +92,25 @@ VAT *margin scheme* applies to any horse sales (depends on how each horse
 was acquired — bred in-house vs. bought in) — needs a real answer, not
 engineering work. See that task's Resolution for detail.
 
-Next actionable step: [[0015-cancellation-refund-policy]] can now target its
-own order type directly (no more cross-item-type branching to design
-around), or continue with whichever backlog task you'd like to prioritize
-next.
+[[0015-implement-cancellation-refund-policy]] is also done: new custom
+module `web/modules/custom/shh_cancellation_policy` — a `cancellation_policy`
+config entity referenced by Bookable Facility, a self-service cancellation
+route, and enforcement that checks the policy's refund window before
+authorizing a refund and releasing the BAT event. Required fixing a
+prerequisite gap first: neither order type actually had a payment step
+configured (no gateway existed at all), so a "Manual" (bank transfer/cash)
+gateway was set up too. Verified end to end with a real captured payment: a
+booking outside the 24-hour window gets refunded and released; one inside
+the window is denied outright, payment and slot both untouched. Also fixed
+two small pre-existing bugs found along the way: a text format
+(`basic_html`) used on the horse sample content since 0011 that doesn't
+actually exist on this site, and a config schema naming mistake in the new
+module itself.
+
+Next actionable step: whichever backlog task you'd like to prioritize next —
+[[0001-horse-deposit-reservation-flow]] and
+[[0003-rider-membership-eligibility-workflow]] are both high-priority and
+still backlog.
 
 ## Tasks
 ```dataview

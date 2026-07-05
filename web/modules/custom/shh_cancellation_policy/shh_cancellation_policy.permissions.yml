@@ -1,0 +1,4 @@
+administer cancellation policies:
+  title: 'Administer cancellation policies'
+  description: 'Create, edit, and delete cancellation policies.'
+  restrict access: true

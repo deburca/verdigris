@@ -1,0 +1,43 @@
+entity.cancellation_policy.collection:
+  path: '/admin/commerce/config/cancellation-policies'
+  defaults:
+    _entity_list: 'cancellation_policy'
+    _title: 'Cancellation policies'
+  requirements:
+    _permission: 'administer cancellation policies'
+
+entity.cancellation_policy.add_form:
+  path: '/admin/commerce/config/cancellation-policies/add'
+  defaults:
+    _entity_form: 'cancellation_policy.add'
+    _title: 'Add cancellation policy'
+  requirements:
+    _permission: 'administer cancellation policies'
+
+entity.cancellation_policy.edit_form:
+  path: '/admin/commerce/config/cancellation-policies/manage/{cancellation_policy}'
+  defaults:
+    _entity_form: 'cancellation_policy.edit'
+    _title: 'Edit cancellation policy'
+  requirements:
+    _permission: 'administer cancellation policies'
+
+entity.cancellation_policy.delete_form:
+  path: '/admin/commerce/config/cancellation-policies/manage/{cancellation_policy}/delete'
+  defaults:
+    _entity_form: 'cancellation_policy.delete'
+    _title: 'Delete cancellation policy'
+  requirements:
+    _permission: 'administer cancellation policies'
+
+shh_cancellation_policy.cancel_booking:
+  path: '/booking/{commerce_order_item}/cancel'
+  defaults:
+    _form: '\Drupal\shh_cancellation_policy\Form\CancelBookingForm'
+    _title: 'Cancel booking'
+  options:
+    parameters:
+      commerce_order_item:
+        type: entity:commerce_order_item
+  requirements:
+    _custom_access: '\Drupal\shh_cancellation_policy\Access\CancelBookingAccessCheck::access'

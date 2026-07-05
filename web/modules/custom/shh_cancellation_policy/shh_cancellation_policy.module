@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Implements docs/project-management/decisions/0015-cancellation-refund-policy.md.
+ */
+
+use Drupal\commerce_order\Entity\OrderItemInterface;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_ENTITY_TYPE_view() for commerce_order_item.
+ *
+ * Adds a "Cancel booking" link to a "bee" order item's rendered output when
+ * the current user has access to cancel it (see
+ * \Drupal\shh_cancellation_policy\Access\CancelBookingAccessCheck).
+ */
+function shh_cancellation_policy_commerce_order_item_view(array &$build, OrderItemInterface $order_item, $display, $view_mode) {
+  if ($order_item->bundle() !== 'bee') {
+    return;
+  }
+  $access = \Drupal::service('access_manager')->checkNamedRoute(
+    'shh_cancellation_policy.cancel_booking',
+    ['commerce_order_item' => $order_item->id()],
+    \Drupal::currentUser()
+  );
+  if (!$access) {
+    return;
+  }
+  $build['shh_cancel_booking_link'] = [
+    '#type' => 'link',
+    '#title' => t('Cancel booking'),
+    '#url' => Url::fromRoute('shh_cancellation_policy.cancel_booking', ['commerce_order_item' => $order_item->id()]),
+    '#weight' => 100,
+    '#attributes' => ['class' => ['button', 'button--danger']],
+  ];
+}
