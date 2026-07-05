@@ -82,10 +82,21 @@ sample (four-gaited, no flying pace) was added alongside the five-gaited one
 so the field's purpose is demonstrable, not just present. No customer-facing
 content on this site now misrepresents the breed.
 
-Next actionable step: [[0005-tax-classification-horses-vs-bookings]] and
-[[0015-cancellation-refund-policy]] can now each target their own order type
-directly (no more cross-item-type branching to design around), or continue
-with whichever backlog task you'd like to prioritize next.
+[[0005-tax-classification-horses-vs-bookings]] is technically configured
+(Commerce's EU VAT tax type enabled, store registered for DK, `horse` classed
+`physical_goods` and `bee` classed `services`; verified via real add-to-cart:
+a 45,000 DKK horse and a 150 DKK booking both correctly show a 25%-inclusive
+VAT breakdown) but marked **blocked**, not done — Denmark's flat 25%/no-
+reduced-rate schedule means horse vs. booking classification doesn't
+currently change the number, but whether the VAT *margin scheme* applies to
+any horse sales (depends on how each horse was acquired) and whether the
+business is even VAT-registered are real open questions that need an actual
+accountant, not more engineering. See that task's Resolution for detail.
+
+Next actionable step: [[0015-cancellation-refund-policy]] can now target its
+own order type directly (no more cross-item-type branching to design
+around), or continue with whichever backlog task you'd like to prioritize
+next.
 
 ## Tasks
 ```dataview
