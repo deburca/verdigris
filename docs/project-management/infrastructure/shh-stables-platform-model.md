@@ -21,6 +21,17 @@ the catalog/detail page. A parallel node + product-reference only buys a sync pr
 Each horse = one product, one variation, quantity 1. Only use node-references-product if
 horses must appear in non-commerce content flows.
 
+**1a. This is a single-breed catalog: Icelandic horses only.**
+Stutteri Hestehøj does not sell any other breed. `breed` is effectively a constant
+("Icelandic Horse"), not a field buyers need to filter on — the field that actually
+matters for this breed is **gaits**. Icelandic horses are the classic five-gaited
+breed: walk, trot, and canter/gallop are the baseline three; whether a horse
+additionally has **tölt** and/or **flying pace** (skeið) determines whether it's
+"four-gaited" or "five-gaited" (or something in between), and this is one of the
+first things a serious buyer looks for. Model this as its own multi-value field
+(`field_gaits`), not folded into `discipline`. See
+[[0014-icelandic-horse-gaits-field]].
+
 **2. One bookable content type, not two.**
 Arenas and the hall are mechanically identical (hourly, single resource, priced per hour).
 Use one *Bookable Facility* type with a `facility_kind` field (arena / hall) and per-node
@@ -32,8 +43,10 @@ config. Split into two types only if pricing rules or booking constraints genuin
 - **Store** (1)
 - **Product type: Horse** → **Variation type: Horse**
   - SKU = horse ID, price, stock = 1
-  - Fields: breed, sex, age/DOB, height, discipline, pedigree, vetting/health status,
-    media (photos/video), `sale_state` workflow (`available → reserved → sold`)
+  - Fields: breed (constant: Icelandic Horse), sex, age/DOB, height, **gaits**
+    (walk/trot/canter/tölt/flying pace — multi-value, the key buyer-facing spec
+    for this breed), discipline, pedigree, vetting/health status, media
+    (photos/video), `sale_state` workflow (`available → reserved → sold`)
   - Do not rely on stock decrement alone — use the explicit `sale_state` workflow
 - **Order item type: Horse** — the purchase line
 

@@ -10,25 +10,48 @@ target:
 # Project: stutteri-hestehoj.dk — stables platform
 
 ## Goal
-Build the shh site to support three activities: horses listed for sale, hourly
-reservation of riding areas, and hourly reservation of the riding hall — all through
-a single Commerce-backed checkout.
+Build the shh site to support three activities: Icelandic horses listed for sale,
+hourly reservation of riding areas, and hourly reservation of the riding hall — all
+through a single Commerce-backed checkout.
 
 ## Scope
-- In scope: horse sales catalog, hourly booking for riding areas + hall, unified cart/checkout, rider eligibility gating
+- In scope: horse sales catalog (**Icelandic horses only**), hourly booking for riding areas + hall, unified cart/checkout, rider eligibility gating
 - Out of scope: payment methods beyond what Commerce already supports platform-wide, multi-stable expansion
+
+## Domain notes
+- **Stutteri Hestehøj exclusively sells Icelandic horses** — no other breeds
+  (no Danish Warmbloods, no Connemara ponies, etc.). Any sample/test content
+  created for this site must be Icelandic horses. This isn't just cosmetic:
+  Icelandic horses are the classic five-gaited breed, and whether a given
+  horse has tölt and/or flying pace (skeið) — on top of the standard walk,
+  trot, and canter/gallop — is one of the most important facts a buyer needs
+  to see on the listing. See [[0014-icelandic-horse-gaits-field]] for the
+  concrete field/model correction this requires (the `horse` variation type
+  built in [[0011-shh-entity-content-type-modeling]] doesn't yet capture
+  gaits, and its sample content is a Danish Warmblood — both need fixing).
 
 ## Entity / architecture model
 See [[shh-stables-platform-model]] for the full entity model, ERD, and implementation notes.
 
 ## Current status (2026-07-05)
-[[0010-enable-shh-commerce-bat-bee-modules]] is done: Commerce, BAT, and BEE
-(20 modules total) are enabled and `hestehoj` is installed and set as the
-default theme. Getting there required uninstalling and re-enabling everything
-module-by-module to work around two genuine install-time bugs in this BAT/BEE
-RC release — see that task's "Resolution" section before repeating this on
-another environment. No content types built yet.
-Next actionable step is [[0011-shh-entity-content-type-modeling]].
+[[0010-enable-shh-commerce-bat-bee-modules]] and
+[[0011-shh-entity-content-type-modeling]] are both done. Commerce/BAT/BEE (21
+modules, including `commerce_payment` which 0010's original list missed) are
+enabled, `hestehoj` is the default theme, a Commerce Store exists, and the
+full entity model is built: product type `horse` (10 custom fields) and
+content type `bookable_facility` (BEE-enabled, hourly, payment on, 6 custom
+fields). Sample content exists and add-to-cart is verified working end to end
+over real HTTP. Getting here required working around a recurring
+stale-cache bug in this BAT/BEE RC release on nearly every multi-field
+creation — see both tasks' "Resolution"/"Bugs hit and fixed" sections before
+repeating any of this on another environment; the workaround
+(`clearCachedFieldDefinitions()` immediately after every field storage save)
+is now well understood and cheap to apply.
+
+Next actionable step is [[0012-cart-hold-concurrency-prototype]] — the
+concurrency/cart-hold mechanism, flagged in [[shh-stables-platform-model]] as
+the hardest part of this build. [[0013-mixed-order-checkout-prototype]]
+follows it.
 
 ## Tasks
 ```dataview
