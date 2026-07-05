@@ -1,0 +1,11 @@
+name: 'SHH Booking Hold'
+type: module
+description: 'Cart-hold concurrency prototype for hourly facility bookings on stutteri-hestehoj.dk: places an on-hold BAT event at cart-add time (instead of only at checkout completion), promotes it to booked on order placement, and releases it back to available when the cart/item is abandoned.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - bat:bat_event
+  - bat:bat_booking
+  - bee:bee
+  - commerce_order:commerce_order
+  - commerce_cart:commerce_cart

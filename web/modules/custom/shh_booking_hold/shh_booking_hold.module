@@ -1,0 +1,78 @@
+<?php
+
+/**
+ * @file
+ * Cart-hold concurrency prototype for hourly facility bookings.
+ *
+ * See docs/project-management/tasks/0012-cart-hold-concurrency-prototype.md.
+ */
+
+use Drupal\commerce_order\Entity\OrderItemInterface;
+use Drupal\commerce_order\Entity\OrderInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for commerce_order_item.
+ *
+ * Places an on-hold BAT event the moment a "bee" order item is added to a
+ * cart, instead of waiting for checkout completion (BEE/BAT's default
+ * behaviour, which leaves no reservation in place between add-to-cart and
+ * order placement — see \Drupal\shh_booking_hold\BookingHoldManager).
+ */
+function shh_booking_hold_commerce_order_item_insert(OrderItemInterface $order_item) {
+  if ($order_item->bundle() !== 'bee') {
+    return;
+  }
+  try {
+    \Drupal::service('shh_booking_hold.manager')->placeHold($order_item);
+  }
+  catch (\RuntimeException $e) {
+    // The slot became unavailable between form validation and this insert
+    // (the narrow race the lock in BookingHoldManager::placeHold() mostly
+    // closes, but defend anyway): remove the order item we just created
+    // rather than leave an unreserved "bee" line sitting in the cart, and
+    // tell the user why.
+    \Drupal::logger('shh_booking_hold')->error('Rolling back order item @item: @message', [
+      '@item' => $order_item->id(),
+      '@message' => $e->getMessage(),
+    ]);
+    \Drupal::messenger()->addError(t('Sorry — that time slot was just booked by someone else. Please choose another time.'));
+    // Delete after this hook returns; the item is mid-insert right now.
+    \Drupal::service('entity_type.manager')
+      ->getStorage('commerce_order_item')
+      ->delete([$order_item]);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete() for commerce_order.
+ *
+ * Releases any on-hold events belonging to an abandoned cart (whether
+ * deleted by a user emptying their cart, or by Commerce Cart's own
+ * cron-driven stale-cart cleanup — \Drupal\commerce_cart\Cron — which is
+ * what ties this hold's effective TTL to the "default" order type's
+ * configured cart_expiration rather than a separate timer). Orders that
+ * were actually *placed* are left alone — their events are already booked.
+ */
+function shh_booking_hold_commerce_order_predelete(OrderInterface $order) {
+  if ($order->getPlacedTime()) {
+    return;
+  }
+  $manager = \Drupal::service('shh_booking_hold.manager');
+  foreach ($order->getItems() as $order_item) {
+    $manager->releaseHold($order_item);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete() for commerce_order_item.
+ *
+ * Covers a single "bee" item being removed from an otherwise-still-active
+ * cart (e.g. the user changes their mind about one booking but keeps other
+ * items). Safe to also run as part of a whole-order deletion cascade —
+ * BookingHoldManager::releaseHold() only acts on events still in the
+ * on-hold state, so a second call from
+ * shh_booking_hold_commerce_order_predelete() is a no-op.
+ */
+function shh_booking_hold_commerce_order_item_predelete(OrderItemInterface $order_item) {
+  \Drupal::service('shh_booking_hold.manager')->releaseHold($order_item);
+}

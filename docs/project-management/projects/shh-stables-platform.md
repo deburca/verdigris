@@ -48,10 +48,20 @@ repeating any of this on another environment; the workaround
 (`clearCachedFieldDefinitions()` immediately after every field storage save)
 is now well understood and cheap to apply.
 
-Next actionable step is [[0012-cart-hold-concurrency-prototype]] — the
-concurrency/cart-hold mechanism, flagged in [[shh-stables-platform-model]] as
-the hardest part of this build. [[0013-mixed-order-checkout-prototype]]
-follows it.
+[[0012-cart-hold-concurrency-prototype]] is also done: a new custom module
+(`web/modules/custom/shh_booking_hold`) places an on-hold BAT event at
+cart-add time (BEE's default only reserves at checkout completion — a real,
+now-confirmed double-booking window), promotes it to booked on checkout, and
+releases it back to available when the cart/item is abandoned. Verified over
+real HTTP with two independent sessions racing for the same slot: the second
+is correctly rejected. Left open: the shared-order-type cart-expiration TTL
+(30 min, reasonable for a booking hold but arguably too aggressive for a
+horse-purchase cart sharing the same order type) and an explicit DST-boundary
+test — see that task's Resolution for detail.
+
+Next actionable step is [[0013-mixed-order-checkout-prototype]] — the mixed
+Horse + Booking order checkout, which is also where the shared-TTL tension
+above should get reconciled.
 
 ## Tasks
 ```dataview

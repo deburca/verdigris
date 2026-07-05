@@ -1,0 +1,14 @@
+services:
+  shh_booking_hold.manager:
+    class: Drupal\shh_booking_hold\BookingHoldManager
+    arguments: ['@entity_type.manager', '@logger.channel.shh_booking_hold', '@lock']
+
+  logger.channel.shh_booking_hold:
+    parent: logger.channel_base
+    arguments: ['shh_booking_hold']
+
+  shh_booking_hold.checkout_completion_subscriber:
+    class: Drupal\shh_booking_hold\EventSubscriber\CheckoutCompletionSubscriber
+    arguments: ['@shh_booking_hold.manager']
+    tags:
+      - { name: event_subscriber }

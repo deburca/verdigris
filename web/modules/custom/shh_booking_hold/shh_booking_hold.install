@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * Install/uninstall hooks for the shh_booking_hold prototype.
+ */
+
+use Drupal\commerce_order\Entity\OrderType;
+
+/**
+ * Implements hook_install().
+ */
+function shh_booking_hold_install() {
+  // Create the "on-hold" BAT event state for hourly bookings, if missing.
+  // BAT/BEE only ship available / not_available / booked out of the box —
+  // see docs/project-management/tasks/0012-cart-hold-concurrency-prototype.md.
+  if (!bat_event_load_state_by_machine_name('bee_hourly_on_hold')) {
+    bat_event_create_state([
+      'name' => 'On hold',
+      'color' => '#f2a900',
+      'calendar_label' => 'HOLD',
+      'blocking' => 1,
+      'machine_name' => 'bee_hourly_on_hold',
+      'event_type' => 'availability_hourly',
+    ])->save();
+  }
+
+  // Ensure the "default" Commerce order type has a cart_expiration set, so
+  // there is a Commerce-native TTL for commerce_cart's own cron sweep
+  // (Drupal\commerce_cart\Cron) to key off of. See this module's README for
+  // the important caveat: the "default" order type is shared between horse
+  // sales and facility bookings (per the mixed-order architecture), so this
+  // single value is a compromise, not a per-item-type setting.
+  $order_type = OrderType::load('default');
+  if ($order_type && !$order_type->getThirdPartySetting('commerce_cart', 'cart_expiration')) {
+    $order_type->setThirdPartySetting('commerce_cart', 'cart_expiration', [
+      'number' => '30',
+      'unit' => 'minute',
+      'anonymous_only' => FALSE,
+    ]);
+    $order_type->save();
+  }
+}
