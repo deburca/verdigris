@@ -11,12 +11,15 @@ target:
 
 ## Goal
 Build the shh site to support three activities: Icelandic horses listed for sale,
-hourly reservation of riding areas, and hourly reservation of the riding hall — all
-through a single Commerce-backed checkout.
+hourly reservation of riding areas, and hourly reservation of the riding hall —
+each through its own Commerce-backed checkout (see
+[[0018-separate-order-types-horse-vs-booking]]: horse sales and facility
+bookings are deliberately separate checkout flows, not a unified one — a
+combined single-checkout purchase was confirmed not to be a required scenario).
 
 ## Scope
-- In scope: horse sales catalog (**Icelandic horses only**), hourly booking for riding areas + hall, unified cart/checkout, rider eligibility gating
-- Out of scope: payment methods beyond what Commerce already supports platform-wide, multi-stable expansion
+- In scope: horse sales catalog (**Icelandic horses only**), hourly booking for riding areas + hall, separate cart/checkout per purchase kind, rider eligibility gating
+- Out of scope: payment methods beyond what Commerce already supports platform-wide, multi-stable expansion, combining a horse purchase and a facility booking into one checkout
 
 ## Domain notes
 - **Stutteri Hestehøj exclusively sells Icelandic horses** — no other breeds
@@ -54,14 +57,26 @@ cart-add time (BEE's default only reserves at checkout completion — a real,
 now-confirmed double-booking window), promotes it to booked on checkout, and
 releases it back to available when the cart/item is abandoned. Verified over
 real HTTP with two independent sessions racing for the same slot: the second
-is correctly rejected. Left open: the shared-order-type cart-expiration TTL
-(30 min, reasonable for a booking hold but arguably too aggressive for a
-horse-purchase cart sharing the same order type) and an explicit DST-boundary
-test — see that task's Resolution for detail.
+is correctly rejected.
 
-Next actionable step is [[0013-mixed-order-checkout-prototype]] — the mixed
-Horse + Booking order checkout, which is also where the shared-TTL tension
-above should get reconciled.
+**[[0018-separate-order-types-horse-vs-booking]] (new decision, done):**
+building 0012 surfaced that a single shared order type can't have both a
+short hold TTL (right for an hourly slot) and a long one (right for a horse
+purchase) at once — and separately, that mixing anonymous horse-cart
+purchases with login-required booking items in one cart was never cleanly
+resolved by [[0017-anonymous-vs-authenticated-booking-access]]. Confirmed
+combined single-checkout purchases aren't a required scenario, so the
+platform now uses two Commerce order types: `horse_sale` (new, own checkout
+flow/number pattern/3-day cart expiration) and `default`/"Facility booking"
+(existing, unchanged, 30-min expiration). This resolves the TTL tension
+outright and eliminates [[0013-mixed-order-checkout-prototype]]'s original
+premise — that task's scope has been revised accordingly (now just verifying
+the two independent flows work) and is done.
+
+Next actionable step: [[0005-tax-classification-horses-vs-bookings]] and
+[[0015-cancellation-refund-policy]] can now each target their own order type
+directly (no more cross-item-type branching to design around), or continue
+with whichever backlog task you'd like to prioritize next.
 
 ## Tasks
 ```dataview
@@ -72,8 +87,11 @@ SORT status asc, priority asc
 ```
 
 ## Open questions
-- Cart-hold TTL value and whether it should be configurable per facility — see
-  [[0012-cart-hold-concurrency-prototype]]
+- Cart-hold TTL value: **resolved at the order-type level** (30 min, the
+  `default`/"Facility booking" order type's `cart_expiration`, decoupled from
+  horse sales by [[0018-separate-order-types-horse-vs-booking]]) — **still
+  open**: whether it should be configurable *per facility* rather than one
+  platform-wide value. See [[0012-cart-hold-concurrency-prototype]]
 - Rider eligibility gate: route access check vs cart constraint vs both — see
   [[0003-rider-membership-eligibility-workflow]]
 - Deposit/hold workflow for horse sales (separate from facility booking holds) —

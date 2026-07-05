@@ -118,6 +118,14 @@ mare") is factually wrong and needs replacing. Tracked in
 status (the base model this task scoped is built and working), but should be
 done before this content is shown to anyone.
 
+## Amendment: order type reassignment
+[[0018-separate-order-types-horse-vs-booking]] moved
+`commerce_order_item_type.horse` from `orderType: default` to
+`orderType: horse_sale` (a new order type, its own checkout flow, number
+pattern, and cart expiration). Built here, changed there — noted for anyone
+tracing why the "horse" order item type's config doesn't match what this
+task originally set up.
+
 ## Related
 - [[shh-stables-platform]]
 - [[shh-stables-platform-model]]
@@ -125,4 +133,5 @@ done before this content is shown to anyone.
 - [[0012-cart-hold-concurrency-prototype]]
 - [[0013-mixed-order-checkout-prototype]]
 - [[0014-icelandic-horse-gaits-field]]
+- [[0018-separate-order-types-horse-vs-booking]]
 </content>

@@ -48,7 +48,9 @@ config. Split into two types only if pricing rules or booking constraints genuin
     for this breed), discipline, pedigree, vetting/health status, media
     (photos/video), `sale_state` workflow (`available → reserved → sold`)
   - Do not rely on stock decrement alone — use the explicit `sale_state` workflow
-- **Order item type: Horse** — the purchase line
+- **Order item type: Horse** — the purchase line, on its own **`horse_sale`
+  order type** (own checkout flow, own `cart_expiration`, own number
+  pattern — see [[0018-separate-order-types-horse-vs-booking]])
 
 ### BEE / BAT — booking side
 - **Content type: Bookable Facility** (BEE-enabled, **hourly** granularity, Commerce payment on, price-per-hour)
@@ -59,11 +61,18 @@ config. Split into two types only if pricing rules or booking constraints genuin
 - **BAT Unit** (one per facility node) — owns its availability calendar
 - **BAT Event** + **Event States**: `available` / `on-hold` / `booked`
   - `on-hold` is the cart-hold added for the concurrency problem
-- **Order item type: Booking** (BEE-provided) — references the BAT event; the reservation line
+- **Order item type: Booking** (`bee`, BEE-provided) — references the BAT
+  event; the reservation line. Stays on the **`default` order type**
+  (relabeled "Facility booking" in the admin UI) because `bee.module`'s
+  `AddReservationForm` hardcodes that order type id — see
+  [[0018-separate-order-types-horse-vs-booking]]
 
 ### Shared
-- **Order** — can carry both Horse and Booking order items simultaneously; branch
-  fulfillment / refund / tax logic on item type
+- **Order** — **two separate order types**, not one: `horse_sale` for Horse
+  order items, `default`/"Facility booking" for Booking order items. Combined
+  single-checkout purchases were confirmed not to be a required scenario;
+  see [[0018-separate-order-types-horse-vs-booking]] for the full rationale
+  (this reverses the original single-mixed-order design below)
 - **Rider** — Drupal user + role/profile field gating booking eligibility (membership, waiver),
   plus the Commerce customer (billing) profile
 
@@ -71,22 +80,24 @@ config. Split into two types only if pricing rules or booking constraints genuin
 
 ```mermaid
 graph TD
-    HP["Horse product<br/><i>1 variation, qty 1</i>"] --> HOI["Horse order item<br/><i>Purchase line</i>"]
+    HP["Horse product<br/><i>1 variation, qty 1</i>"] --> HOI["Horse order item"]
     BF["Bookable facility<br/><i>BEE node, hourly</i>"] --> BU["BAT unit<br/><i>+ availability events</i>"]
-    BU --> BOI["Booking order item<br/><i>Reservation line</i>"]
-    HOI --> ORD["Order<br/><i>Mixed line items</i>"]
-    BOI --> ORD
-    ORD --> RIDER["Rider<br/><i>User + eligibility</i>"]
+    BU --> BOI["Booking order item<br/><i>bee</i>"]
+    HOI --> ORD1["Order type: horse_sale"]
+    BOI --> ORD2["Order type: default<br/><i>'Facility booking'</i>"]
+    ORD1 --> RIDER["Rider<br/><i>User + eligibility</i>"]
+    ORD2 --> RIDER
 
     classDef sales fill:#E1F5EE,stroke:#0F6E56,color:#04342C;
     classDef booking fill:#EEEDFE,stroke:#534AB7,color:#26215C;
     classDef shared fill:#F1EFE8,stroke:#5F5E5A,color:#2C2C2A;
-    class HP,HOI sales;
-    class BF,BU,BOI booking;
-    class ORD,RIDER shared;
+    class HP,HOI,ORD1 sales;
+    class BF,BU,BOI,ORD2 booking;
+    class RIDER shared;
 ```
 
 Legend: teal = Sales (Commerce), purple = Booking (BEE/BAT), gray = Shared.
+Two separate orders, not one — see [[0018-separate-order-types-horse-vs-booking]].
 
 ## Implementation notes
 
@@ -99,8 +110,12 @@ Legend: teal = Sales (Commerce), purple = Booking (BEE/BAT), gray = Shared.
   expiration; checkout completion promotes them to `booked`; cart expiry reverts them to
   `available`. This is the hardest problem in the build — prototype it first.
 
-- **Single mixed Order.** Keep the two order item types genuinely distinct so checkout
-  completion, refund, and tax logic switch on item type rather than inspecting product fields.
+- **Separate order types, not a single mixed Order.** Originally designed as one shared
+  order carrying both item types; reversed by
+  [[0018-separate-order-types-horse-vs-booking]] once combined single-checkout
+  purchases were confirmed unnecessary. Each order type is now homogeneous, so
+  checkout completion, refund, and tax logic never need to branch on item type
+  within an order.
 
 - **Rider eligibility gate.** Membership / waiver eligibility is not a Commerce or BAT concept
   — it is a custom layer enforced *before* the Booking order item is allowed into the cart.
@@ -110,8 +125,10 @@ Legend: teal = Sales (Commerce), purple = Booking (BEE/BAT), gray = Shared.
 - **Timezone / DST.** Hourly bookings make this real. Store in UTC, render in Europe/Copenhagen,
   and test spring-forward / fall-back boundaries explicitly.
 
-- **Prototype order:** (1) the concurrency / cart-hold mechanism, (2) the mixed-order checkout.
-  Both are where this architecture either holds together or doesn't.
+- **Prototype order:** (1) the concurrency / cart-hold mechanism — done, see
+  [[0012-cart-hold-concurrency-prototype]]; (2) ~~the mixed-order checkout~~ —
+  no longer applicable, see [[0018-separate-order-types-horse-vs-booking]] and
+  [[0013-mixed-order-checkout-prototype]]'s revised scope.
 
 ## Module reference (confirmed on shared platform, 2026-07-05)
 

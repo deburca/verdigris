@@ -14,7 +14,10 @@ deciders:
 
 ## Status
 
-accepted
+accepted — **amended by [[0018-separate-order-types-horse-vs-booking]]**:
+the "Single cart/checkout/order pipeline covers both horse sales and
+facility bookings" consequence below no longer holds. BAT/BEE as the booking
+framework itself is unaffected; only the "one shared order" aspect changed.
 
 ## Context
 
@@ -36,7 +39,8 @@ granularity), each node backed by its own BAT unit.
 ## Consequences
 
 ### Positive
-- Single cart/checkout/order pipeline covers both horse sales and facility bookings
+- ~~Single cart/checkout/order pipeline covers both horse sales and facility
+  bookings~~ — superseded, see [[0018-separate-order-types-horse-vs-booking]]
 - BEE avoids hand-rolling the Commerce↔availability integration
 - One content type serves both riding areas and the hall — no duplicated logic
 
