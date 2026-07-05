@@ -402,6 +402,18 @@ ddev composer require drupal/webprofiler
 - Seckit module installed (`drupal/seckit: ^2.0`)
 - No documented security header configuration
 - `.htaccess` modifications tracked
+- **Fixed 2026-07-05:** `display_errors` was `On` for the PHP-FPM (web) SAPI —
+  raw, unstyled PHP warnings/deprecation notices (e.g. the many implicit-nullable-
+  parameter deprecations throughout the `bat`/`bee` contrib codebase, surfaced by
+  enabling those modules per [[0010-enable-shh-commerce-bat-bee-modules]]) were
+  being written directly into HTML response bodies instead of going through
+  Drupal's own themed/logged error handling (`system.logging.error_level`, which
+  was already correctly set to `hide` but doesn't govern raw PHP-level
+  `display_errors` output for `E_DEPRECATED`). Fixed via
+  `.ddev/php/error-display.ini` (`display_errors = stderr`,
+  `display_startup_errors = Off`); `log_errors` remains on so nothing is lost —
+  errors now go to the container log instead of the page. This is a DDEV/php.ini
+  setting shared by all three sites (vdg, kbg, shh), not shh-specific.
 
 **Recommendations:**
 

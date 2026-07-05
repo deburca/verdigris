@@ -1,9 +1,11 @@
 ---
 type: project
-tags: [hivelog/project]
+tags: [cms2/project]
 status: planning       # planning | active | paused | done | dropped
-target:                # target release, e.g. 1.2.0
-created: 2026-06-16
+site: shared           # vdg | kbg | shh | shared
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+target:                # target release/date, optional
 ---
 # Project: <title>
 
@@ -14,17 +16,19 @@ One paragraph: the outcome and who benefits.
 - In scope:
 - Out of scope:
 
+## Entity / architecture model
+Link out to a separate `-model.md` note if substantial, e.g. [[shh-stables-platform-model]].
+
 ## Tasks
 ```dataview
 TABLE status, priority
-FROM #hivelog/task
+FROM #cms2/task
 WHERE contains(string(project), this.file.name)
 SORT status asc, priority asc
 ```
-_(Set each task's `project:` frontmatter to the real wikilink for this note, e.g. `"[[queen-observation-enhancements]]"`, to populate.)_
 
 ## Open questions
 - 
 
 ## Related decisions
-- 
+- [[NNNN-decision-name]]

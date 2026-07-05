@@ -234,11 +234,19 @@
         "drupal/ai_provider_openai": "^1.1",
         "drupal/automatic_updates": "^4.1",
         "drupal/autosave_form": "^1.10",
+        "drupal/bat": "^11.1@RC",
+        "drupal/bee": "^11.1@RC",
         "drupal/bpmn_io": "^3",
         "drupal/byte_theme": "^1.0",
         "drupal/canvas": "^1",
         "drupal/captcha": "^2.0.7",
         "drupal/coffee": "^2",
+        "drupal/commerce": "^3.3",
+        "drupal/commerce_cart": "^3.3",
+        "drupal/commerce_checkout": "^3.3",
+        "drupal/commerce_order": "^3.3",
+        "drupal/commerce_product": "^3.3",
+        "drupal/commerce_tax": "^3.3",
         "drupal/core": "^11.3",
         "drupal/core-composer-scaffold": "^11.3",
         "drupal/core-project-message": "^11.3",
@@ -418,6 +426,9 @@
             },
             "drupal/canvas": {
                 "Fix TypeError in ComponentMetadataRequirementsChecker closure when example items are not arrays/objects": "patches/canvas-component-metadata-closure-type-fix.patch"
+            },
+            "drupal/mercury": {
+                "Preserve custom component prop schema (overlay_opacity on cta; relax overly strict uri-reference format on url/href/cite_url/button_url props that breaks the site-wide 'No URL' sentinel convention and causes Canvas component-version hash drift/OutOfRangeException)": "patches/mercury-component-schema-customizations.patch"
             }
         }
     },

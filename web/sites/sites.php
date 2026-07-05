@@ -63,7 +63,7 @@
            'www.hestehoj.dk' => 'shh',
       'stutteri-hestehoj.dk' => 'shh',
   'www.stutteri-hestehoj.dk' => 'shh',
-             'shh.ddev.site' => 'shh',
+        'hestehoj.ddev.site' => 'shh',
          'kragebaekgaard.dk' => 'kbg',
      'www.kragebaekgaard.dk' => 'kbg',
   'kragebaekgaard.ddev.site' => 'kbg',
@@ -72,5 +72,5 @@
               'verdigris.nu' => 'vdg',
           'www.verdigris.nu' => 'vdg',
        'verdigris.ddev.site' => 'vdg',
-            'cms2.ddev.site' => 'vdg',
+     'drupal-cms2.ddev.site' => 'vdg',
  ];

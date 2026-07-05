@@ -169,6 +169,19 @@ sites/*/private_*/
 web/sites/*/private_*/
 docroot/sites/*/private_*/
 
+# Private files directories: root-level, per-site (this multisite's actual
+# convention — see $settings['file_private_path'] in each web/sites/*/settings.php,
+# e.g. '../private', '../private_kbg', '../private_shh', resolving to
+# repo-root-level private/, private_kbg/, private_shh/ directories, siblings of
+# web/). The generic sites/*/private/ patterns above do NOT match these.
+/private/*
+/private_*/*
+# Keep the auto-generated Apache deny-all .htaccess stub tracked (no sensitive
+# content, and keeping it version-controlled protects against it ever being
+# accidentally deleted) — everything else in these directories is ignored.
+!/private/.htaccess
+!/private_*/.htaccess
+
 # Temporary files
 sites/*/tmp/
 web/sites/*/tmp/
@@ -407,9 +420,34 @@ docroot/sites/*/files/search_api/
 # =============================================================================
 # RECIPIES
 # =============================================================================
-recipes
-recipes/
 recipes/*
+
+# drupal_cms_starter is not managed by Composer (no drupal-recipe package is
+# required for it), so there is nothing for composer-patches to hook into.
+# Track the specific files we've had to hand-fix to correct component-version
+# hash drift/missing required props (relative to the currently installed
+# drupal/mercury + drupal/canvas versions) directly in git, so they aren't
+# silently lost/reverted. See patches/drupal-cms-starter-recipe-fixes.patch
+# for a reviewable diff of these exact changes.
+!recipes/drupal_cms_starter/
+recipes/drupal_cms_starter/*
+!recipes/drupal_cms_starter/config/
+!recipes/drupal_cms_starter/content/
+recipes/drupal_cms_starter/config/*
+!recipes/drupal_cms_starter/config/canvas.component.sdc.mercury.cta.yml
+!recipes/drupal_cms_starter/config/canvas.component.sdc.mercury.card.yml
+!recipes/drupal_cms_starter/config/canvas.component.sdc.mercury.image.yml
+!recipes/drupal_cms_starter/config/canvas.component.sdc.mercury.card-logo.yml
+!recipes/drupal_cms_starter/config/canvas.component.sdc.mercury.card-icon.yml
+!recipes/drupal_cms_starter/config/canvas.component.sdc.mercury.card-testimonial.yml
+!recipes/drupal_cms_starter/config/canvas.component.sdc.mercury.heading.yml
+!recipes/drupal_cms_starter/config/canvas.page_region.mercury.footer.yml
+!recipes/drupal_cms_starter/config/canvas.page_region.mercury.header.yml
+!recipes/drupal_cms_starter/config/canvas.content_template.node.page.full.yml
+recipes/drupal_cms_starter/content/*
+!recipes/drupal_cms_starter/content/canvas_page/
+recipes/drupal_cms_starter/content/canvas_page/*
+!recipes/drupal_cms_starter/content/canvas_page/home.yml
 
 # =============================================================================
 # CUSTOM EXCEPTIONS (UNCOMMENT AS NEEDED)
