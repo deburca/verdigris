@@ -16,9 +16,9 @@ treatment. Not yet reviewed or configured in Commerce tax settings.
 
 ## Acceptance criteria
 - [~] VAT rules confirmed with accountant/DK tax guidance for livestock sale
-      vs service rental — **cannot be completed by engineering work**; see
-      Resolution. Technical config below reflects the standard-case
-      assumption pending that confirmation.
+      vs service rental — **partially confirmed directly by the client**
+      (VAT-registered — see Resolution); the VAT margin scheme question
+      below is still open and needs a real answer, not engineering work.
 - [x] Commerce tax type/rate configured per order item type accordingly
 - [x] Documented in this task (no divergent treatment found between the two
       order item types under Denmark's actual VAT schedule — see Resolution)
@@ -69,16 +69,18 @@ items for a real accountant/Skattestyrelsen guidance, not just "confirm the
    Commerce's tax module has **no built-in support for the margin scheme** —
    if it turns out to apply, that needs custom development, not just
    configuration.
-2. **VAT registration status/threshold.** This configuration assumes the
-   business is VAT-registered (mandatory in Denmark above ~50,000 DKK annual
-   turnover; a small stable might legitimately be below that and not
-   VAT-registered at all, in which case none of this should be enabled).
-   Confirm actual registration status before this goes live.
+2. ~~VAT registration status/threshold.~~ **Confirmed by the client
+   (2026-07-06): Stutteri Hestehøj is VAT-registered.** The `eu_vat` tax type
+   and store `tax_registrations: DK` configured above are therefore correct
+   to have enabled, not just a placeholder assumption.
 3. This was configured and verified as a **general Danish B2C default**, not
-   as a substitute for real guidance — status is `blocked` (not `done`)
-   specifically because of item 1 and 2 above, both of which need a human
-   with real authority over this business's tax affairs, not more
-   engineering work.
+   as a substitute for real guidance — status stays `blocked` (not `done`)
+   specifically because of item 1 above, which needs a human with real
+   authority over this business's tax affairs (an accountant, or whoever
+   keeps the acquisition records for each horse), not more engineering work.
+   If it turns out the margin scheme never applies (e.g. every horse sold is
+   bred in-house rather than bought in from a private seller), this task can
+   close as-is with no further code changes.
 
 ## Related
 - [[shh-stables-platform]]
