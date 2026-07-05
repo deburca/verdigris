@@ -1,0 +1,9 @@
+name: 'SHH Horse Deposit'
+type: module
+description: 'Implements docs/project-management/tasks/0001-horse-deposit-reservation-flow.md: a percentage-based deposit order item type distinct from outright purchase, an extended sale_state workflow (available/reserved-deposit/reserved/sold/withdrawn), and a self-service deposit-refund flow via its own deposit_refund_policy (days since deposit paid, not slot-time-based like 0015s cancellation_policy).'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - commerce_order:commerce_order
+  - commerce_payment:commerce_payment
+  - commerce_product:commerce_product

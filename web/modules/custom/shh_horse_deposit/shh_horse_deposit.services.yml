@@ -1,0 +1,14 @@
+services:
+  shh_horse_deposit.manager:
+    class: Drupal\shh_horse_deposit\DepositManager
+    arguments: ['@entity_type.manager', '@config.factory', '@logger.channel.shh_horse_deposit']
+
+  logger.channel.shh_horse_deposit:
+    parent: logger.channel_base
+    arguments: ['shh_horse_deposit']
+
+  shh_horse_deposit.checkout_completion_subscriber:
+    class: Drupal\shh_horse_deposit\EventSubscriber\DepositCheckoutCompletionSubscriber
+    arguments: ['@shh_horse_deposit.manager']
+    tags:
+      - { name: event_subscriber }

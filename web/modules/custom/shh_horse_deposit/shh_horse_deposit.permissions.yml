@@ -1,0 +1,4 @@
+administer deposit refund policies:
+  title: 'Administer deposit refund policies'
+  description: 'Create, edit, and delete horse deposit refund policies.'
+  restrict access: true

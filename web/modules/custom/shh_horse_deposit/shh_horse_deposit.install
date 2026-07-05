@@ -1,0 +1,134 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for shh_horse_deposit.
+ */
+
+use Drupal\commerce_order\Entity\OrderItemType;
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\shh_horse_deposit\Entity\DepositRefundPolicy;
+
+/**
+ * Implements hook_install().
+ */
+function shh_horse_deposit_install() {
+  // 1. Extend field_sale_state: available, reserved-deposit, reserved,
+  // sold, withdrawn. Built in task 0011 with only available/reserved/sold.
+  $storage = FieldStorageConfig::loadByName('commerce_product_variation', 'field_sale_state');
+  if ($storage) {
+    // Runtime format is a flat associative array (value => label), not a
+    // list of {value, label} objects — confirmed via var_export() before
+    // writing this; mixing the two formats trips a config schema error
+    // (the exact "label.0 doesn't exist" error from task 0011's original
+    // field creation, which is why that one uses this same flat format).
+    $allowed_values = $storage->getSetting('allowed_values');
+    $additions = [
+      'reserved-deposit' => 'Reserved (deposit paid)',
+      'withdrawn' => 'Withdrawn',
+    ];
+    $changed = FALSE;
+    foreach ($additions as $value => $label) {
+      if (!isset($allowed_values[$value])) {
+        $allowed_values[$value] = $label;
+        $changed = TRUE;
+      }
+    }
+    if ($changed) {
+      $storage->setSetting('allowed_values', $allowed_values);
+      $storage->save();
+    }
+  }
+
+  // 2. Order item type "horse_deposit" — distinct from "horse" (outright
+  // purchase). Same order type (horse_sale) — a deposit is still
+  // fundamentally a horse-sale-category transaction, no need for a third
+  // Commerce order type.
+  if (!OrderItemType::load('horse_deposit')) {
+    OrderItemType::create([
+      'id' => 'horse_deposit',
+      'label' => 'Horse deposit',
+      'purchasableEntityType' => 'commerce_product_variation',
+      'orderType' => 'horse_sale',
+      'third_party_settings' => [
+        'commerce_tax' => ['taxable_type' => 'physical_goods'],
+      ],
+    ])->save();
+
+    EntityViewDisplay::create([
+      'targetEntityType' => 'commerce_order_item',
+      'bundle' => 'horse_deposit',
+      'mode' => 'default',
+      'status' => TRUE,
+    ])->save();
+  }
+
+  // 3. field_deposit_policy on the "horse" variation type — which policy
+  // governs a self-service deposit cancellation/refund for this horse.
+  // Fails closed, same as 0015's field_cancellation_policy: no policy
+  // assigned means no self-service deposit refund (contact staff).
+  $entity_type = 'commerce_product_variation';
+  $bundle = 'horse';
+  $field_name = 'field_deposit_policy';
+
+  $field_storage = FieldStorageConfig::loadByName($entity_type, $field_name);
+  if (!$field_storage) {
+    $field_storage = FieldStorageConfig::create([
+      'field_name' => $field_name,
+      'entity_type' => $entity_type,
+      'type' => 'entity_reference',
+      'cardinality' => 1,
+      'settings' => [
+        'target_type' => 'deposit_refund_policy',
+      ],
+    ]);
+    $field_storage->save();
+    // See docs/project-management/tasks/0011-shh-entity-content-type-modeling.md
+    // "Resolution" — mandatory workaround for a stale entity-field-manager
+    // cache within the same request on this build.
+    \Drupal::service('entity_field.manager')->clearCachedFieldDefinitions();
+  }
+
+  $field = FieldConfig::loadByName($entity_type, $bundle, $field_name);
+  if (!$field) {
+    FieldConfig::create([
+      'field_name' => $field_name,
+      'entity_type' => $entity_type,
+      'bundle' => $bundle,
+      'label' => 'Deposit refund policy',
+      'description' => 'Which policy applies to self-service cancellation of a paid deposit on this horse. Leave empty to disable self-service deposit cancellation (staff must handle it manually).',
+      'required' => FALSE,
+    ])->save();
+  }
+
+  $form_display = EntityFormDisplay::load("$entity_type.$bundle.default");
+  if ($form_display && !$form_display->getComponent($field_name)) {
+    $form_display->setComponent($field_name, [
+      'type' => 'options_select',
+      'weight' => 15,
+    ]);
+    $form_display->save();
+  }
+
+  $view_display = EntityViewDisplay::load("$entity_type.$bundle.default");
+  if ($view_display && !$view_display->getComponent($field_name)) {
+    $view_display->setComponent($field_name, [
+      'type' => 'entity_reference_label',
+      'label' => 'above',
+      'weight' => 15,
+    ]);
+    $view_display->save();
+  }
+
+  // 4. Default policy: 7-day cooling-off window.
+  if (!DepositRefundPolicy::load('standard')) {
+    DepositRefundPolicy::create([
+      'id' => 'standard',
+      'label' => 'Standard (7 days)',
+      'refund_window_days' => 7,
+    ])->save();
+  }
+}

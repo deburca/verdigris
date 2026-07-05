@@ -1,0 +1,55 @@
+entity.deposit_refund_policy.collection:
+  path: '/admin/commerce/config/deposit-refund-policies'
+  defaults:
+    _entity_list: 'deposit_refund_policy'
+    _title: 'Deposit refund policies'
+  requirements:
+    _permission: 'administer deposit refund policies'
+
+entity.deposit_refund_policy.add_form:
+  path: '/admin/commerce/config/deposit-refund-policies/add'
+  defaults:
+    _entity_form: 'deposit_refund_policy.add'
+    _title: 'Add deposit refund policy'
+  requirements:
+    _permission: 'administer deposit refund policies'
+
+entity.deposit_refund_policy.edit_form:
+  path: '/admin/commerce/config/deposit-refund-policies/manage/{deposit_refund_policy}'
+  defaults:
+    _entity_form: 'deposit_refund_policy.edit'
+    _title: 'Edit deposit refund policy'
+  requirements:
+    _permission: 'administer deposit refund policies'
+
+entity.deposit_refund_policy.delete_form:
+  path: '/admin/commerce/config/deposit-refund-policies/manage/{deposit_refund_policy}/delete'
+  defaults:
+    _entity_form: 'deposit_refund_policy.delete'
+    _title: 'Delete deposit refund policy'
+  requirements:
+    _permission: 'administer deposit refund policies'
+
+shh_horse_deposit.pay_deposit:
+  path: '/product/{commerce_product}/deposit'
+  defaults:
+    _form: '\Drupal\shh_horse_deposit\Form\PayDepositForm'
+    _title: 'Pay deposit'
+  options:
+    parameters:
+      commerce_product:
+        type: entity:commerce_product
+  requirements:
+    _permission: 'access checkout'
+
+shh_horse_deposit.cancel_deposit:
+  path: '/deposit/{commerce_order_item}/cancel'
+  defaults:
+    _form: '\Drupal\shh_horse_deposit\Form\CancelDepositForm'
+    _title: 'Cancel deposit'
+  options:
+    parameters:
+      commerce_order_item:
+        type: entity:commerce_order_item
+  requirements:
+    _custom_access: '\Drupal\shh_horse_deposit\Access\CancelDepositAccessCheck::access'

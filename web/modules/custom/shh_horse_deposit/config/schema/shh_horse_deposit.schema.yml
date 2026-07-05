@@ -1,0 +1,21 @@
+shh_horse_deposit.deposit_refund_policy.*:
+  type: config_entity
+  label: 'Deposit refund policy'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    refund_window_days:
+      type: integer
+      label: 'Refund window (days since deposit paid)'
+
+shh_horse_deposit.settings:
+  type: config_object
+  label: 'SHH Horse Deposit settings'
+  mapping:
+    deposit_percentage:
+      type: integer
+      label: 'Deposit percentage of the horse price'

@@ -107,10 +107,23 @@ two small pre-existing bugs found along the way: a text format
 actually exist on this site, and a config schema naming mistake in the new
 module itself.
 
-Next actionable step: whichever backlog task you'd like to prioritize next —
-[[0001-horse-deposit-reservation-flow]] and
-[[0003-rider-membership-eligibility-workflow]] are both high-priority and
-still backlog.
+[[0001-horse-deposit-reservation-flow]] is also done: new custom module
+`web/modules/custom/shh_horse_deposit` — `sale_state` extended to all 5
+values, a `horse_deposit` order item type priced at 20% of the horse's
+price (config, not flat), and its own `deposit_refund_policy` entity
+(deliberately distinct from 0015's slot-time-based `cancellation_policy` —
+this one is "days since deposit paid"). The key design decision, confirmed
+with the client first: cancelling a deposit **always** releases the horse
+back to available regardless of refund eligibility — only whether the
+money comes back depends on the window. That's the opposite of 0015's
+booking-hold behavior, deliberately, since there's no "disincentivize
+late cancellation" reason to keep a horse off-market. Verified end to end
+with real HTTP + real captured payments, both inside and outside the
+refund window.
+
+Next actionable step: [[0003-rider-membership-eligibility-workflow]] is
+high-priority and still backlog, or continue with whichever backlog task
+you'd like to prioritize next.
 
 ## Tasks
 ```dataview
@@ -128,8 +141,8 @@ SORT status asc, priority asc
   platform-wide value. See [[0012-cart-hold-concurrency-prototype]]
 - Rider eligibility gate: route access check vs cart constraint vs both — see
   [[0003-rider-membership-eligibility-workflow]]
-- Deposit/hold workflow for horse sales (separate from facility booking holds) —
-  see [[0001-horse-deposit-reservation-flow]]
+- ~~Deposit/hold workflow for horse sales (separate from facility booking
+  holds)~~ — **resolved**, see [[0001-horse-deposit-reservation-flow]]
 
 ## Related decisions
 ```dataview
