@@ -28,10 +28,10 @@ combined single-checkout purchase was confirmed not to be a required scenario).
   Icelandic horses are the classic five-gaited breed, and whether a given
   horse has tölt and/or flying pace (skeið) — on top of the standard walk,
   trot, and canter/gallop — is one of the most important facts a buyer needs
-  to see on the listing. See [[0014-icelandic-horse-gaits-field]] for the
-  concrete field/model correction this requires (the `horse` variation type
-  built in [[0011-shh-entity-content-type-modeling]] doesn't yet capture
-  gaits, and its sample content is a Danish Warmblood — both need fixing).
+  to see on the listing. **Done**, see [[0014-icelandic-horse-gaits-field]]:
+  `field_gaits` added to the `horse` variation type, and the sample catalog
+  now has a five-gaited and a four-gaited example so the distinction is
+  visible, not just asserted.
 
 ## Entity / architecture model
 See [[shh-stables-platform-model]] for the full entity model, ERD, and implementation notes.
@@ -72,6 +72,15 @@ flow/number pattern/3-day cart expiration) and `default`/"Facility booking"
 outright and eliminates [[0013-mixed-order-checkout-prototype]]'s original
 premise — that task's scope has been revised accordingly (now just verifying
 the two independent flows work) and is done.
+
+[[0014-icelandic-horse-gaits-field]] is also done: `field_gaits` added to the
+`horse` variation type, `field_breed` defaulted to "Icelandic Horse" (kept,
+not removed), and the sample catalog corrected — the original sample product
+turned out to be wrong in more than just breed (height, discipline, and
+pedigree all referenced real Danish Warmblood specifics), all fixed. A second
+sample (four-gaited, no flying pace) was added alongside the five-gaited one
+so the field's purpose is demonstrable, not just present. No customer-facing
+content on this site now misrepresents the breed.
 
 Next actionable step: [[0005-tax-classification-horses-vs-bookings]] and
 [[0015-cancellation-refund-policy]] can now each target their own order type
