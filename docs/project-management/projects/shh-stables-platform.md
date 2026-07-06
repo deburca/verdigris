@@ -164,9 +164,18 @@ side-stepped every Field API pitfall this session has otherwise hit
 repeatedly — worth defaulting to this pattern for any future simple ledger-
 style data on this platform.
 
+**Customer-facing pages audit** ([[shh-customer-facing-pages]]): a rider
+with no direct link currently cannot browse horses, browse facilities, see
+availability up front, or see their own bookings/deposits/credits in one
+place — everything built so far (0001, 0011, 0016–0018) is reachable only
+via direct/individual links, no discovery path. Tracked as
+[[0019-horse-catalog-page]], [[0020-facilities-overview-page]],
+[[0021-public-availability-calendar]], [[0022-rider-dashboard]] — all
+backlog, none started.
+
 Next actionable step: [[0003-rider-membership-eligibility-workflow]] is
-high-priority and still backlog, or continue with whichever backlog task
-you'd like to prioritize next.
+high-priority and still backlog, or the new page-discovery tasks above, or
+continue with whichever backlog task you'd like to prioritize next.
 
 ## Tasks
 ```dataview
