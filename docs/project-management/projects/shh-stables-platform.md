@@ -170,8 +170,10 @@ availability up front, or see their own bookings/deposits/credits in one
 place — everything built so far (0001, 0011, 0016–0018) is reachable only
 via direct/individual links, no discovery path. Tracked as
 [[0019-horse-catalog-page]], [[0020-facilities-overview-page]],
-[[0021-public-availability-calendar]], [[0022-rider-dashboard]] — all
-backlog, none started.
+[[0021-public-availability-calendar]], [[0022-rider-dashboard]], and
+[[0023-pricing-comparison-page]] (a side-by-side comparison of single-slot
+vs. 10-pack vs. same-timeframe-bundle pricing per facility) — all backlog,
+none started.
 
 Next actionable step: [[0003-rider-membership-eligibility-workflow]] is
 high-priority and still backlog, or the new page-discovery tasks above, or

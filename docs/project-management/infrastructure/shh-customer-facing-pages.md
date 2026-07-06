@@ -44,7 +44,8 @@ A rider/buyer who doesn't already have a direct link cannot currently:
 Tracked as: [[0019-horse-catalog-page]],
 [[0020-facilities-overview-page]],
 [[0021-public-availability-calendar]],
-[[0022-rider-dashboard]].
+[[0022-rider-dashboard]],
+[[0023-pricing-comparison-page]].
 
 ## Related
 - [[shh-stables-platform]]
