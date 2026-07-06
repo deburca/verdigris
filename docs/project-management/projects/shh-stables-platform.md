@@ -330,6 +330,17 @@ currently empty from earlier tasks' own real test purchases; a
 pre-existing, unrelated data-integrity bug on the stock "Test Page"
 node was found incidentally and is not linked from anywhere).
 
+[[0019-canvas-content-templates-for-structured-content]]'s deferred
+Canvas migration question is now operationalized into two concrete
+tasks: [[0030-canvas-content-template-bookable-facility]] (prototype
+Canvas's `ContentTemplate` for `bookable_facility` — the two open
+compatibility questions from the decision, then migrate if viable) and
+[[0031-sdc-based-commerce-product-display]] (`commerce_product` can't
+use `ContentTemplate` at all — hard-restricted to `node` upstream — so
+this instead investigates a custom-code SDC display mirroring how the
+discovery pages (0019–0023) already render components directly,
+without needing Canvas's per-bundle support).
+
 Next actionable step: [[0026-rider-account-access-policy]] first — it
 blocks the most direct path to actually using the booking flow as a
 real rider, and several other items ([[0027-site-footer-and-contact-link]]
@@ -337,8 +348,8 @@ in particular) are more useful once that's answered. Otherwise,
 continue with whichever new priority you'd like next (e.g. revisiting
 [[0005-tax-classification-horses-vs-bookings]]'s still-open VAT margin
 scheme question, [[0009-vendor-fullcalendar-library]]'s CDN dependency,
-or [[0019-canvas-content-templates-for-structured-content]]'s deferred
-Canvas migration question).
+or starting the Canvas/SDC display migration with
+[[0030-canvas-content-template-bookable-facility]]).
 
 ## Tasks
 ```dataview

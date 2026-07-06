@@ -168,6 +168,13 @@ When revisited:
   HTTP verification pass matching this project's established
   standard) rather than a quick swap.
 
+**Tracked as** [[0030-canvas-content-template-bookable-facility]]
+(the `ContentTemplate` prototype + migration, for `bookable_facility`)
+and [[0031-sdc-based-commerce-product-display]] (a custom-code SDC
+display for `commerce_product`, since `ContentTemplate` doesn't apply
+there — doesn't wait on the upstream restriction lifting, since it
+doesn't use `ContentTemplate` at all).
+
 ## References
 
 - Canvas docs: `web/modules/contrib/canvas/docs/config-management.md`
