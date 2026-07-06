@@ -1,0 +1,11 @@
+shh_rider_dashboard.dashboard:
+  path: '/user/{user}/bookings'
+  defaults:
+    _controller: '\Drupal\shh_rider_dashboard\Controller\RiderDashboardController::dashboard'
+    _title: 'My bookings, deposits, and credits'
+  options:
+    parameters:
+      user:
+        type: entity:user
+  requirements:
+    _custom_access: '\Drupal\shh_rider_dashboard\Access\RiderDashboardAccessCheck::access'

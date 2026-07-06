@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for shh_public_availability.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Grants `restful get bat_api_events_resource` to `anonymous` and
+ * `authenticated`.
+ *
+ * Found while implementing this task: `field_availability_hourly`'s
+ * `hourly_calendar` view mode (rendered on every Bookable Facility node
+ * page) embeds a FullCalendar widget that fetches its event data from
+ * this exact REST resource — but no role had this permission, so every
+ * real visitor got a silent 403 from it (only an admin/uid-1 session,
+ * which bypasses permission checks, ever saw real data — see task 0025's
+ * Resolution, which fixed a separate fatal-error bug in this same
+ * endpoint but deliberately left this permission question to this task).
+ * `anonymous` already has `view calendar data for any
+ * availability_hourly/daily event`, matching decision 0017's explicit
+ * implementation note: "Public read-only availability calendar stays
+ * anonymous; only the add-to-cart action is gated." Granting the REST
+ * permission alongside it completes that.
+ */
+function shh_public_availability_install() {
+  user_role_grant_permissions('anonymous', ['restful get bat_api_events_resource']);
+  user_role_grant_permissions('authenticated', ['restful get bat_api_events_resource']);
+}

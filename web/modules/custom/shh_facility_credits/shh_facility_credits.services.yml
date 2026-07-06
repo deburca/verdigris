@@ -3,6 +3,10 @@ services:
     class: Drupal\shh_facility_credits\FacilityCreditManager
     arguments: ['@entity_type.manager', '@logger.channel.shh_facility_credits']
 
+  shh_facility_credits.pricing_helper:
+    class: Drupal\shh_facility_credits\FacilityPricingHelper
+    arguments: ['@commerce_price.rounder']
+
   logger.channel.shh_facility_credits:
     parent: logger.channel_base
     arguments: ['shh_facility_credits']

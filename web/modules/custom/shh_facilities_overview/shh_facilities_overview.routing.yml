@@ -1,0 +1,7 @@
+shh_facilities_overview.overview:
+  path: '/facilities'
+  defaults:
+    _controller: '\Drupal\shh_facilities_overview\Controller\FacilitiesOverviewController::overview'
+    _title: 'Book a facility'
+  requirements:
+    _permission: 'access content'

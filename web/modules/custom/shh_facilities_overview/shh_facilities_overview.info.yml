@@ -1,0 +1,10 @@
+name: 'SHH Facilities Overview'
+type: module
+description: 'Implements docs/project-management/tasks/0020-facilities-overview-page.md: a public /facilities page listing all bookable facilities together, and explaining the multi-facility bundle discount and credit packs — currently undiscoverable except by landing on the right individual facility page.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - node:node
+  - shh_facility_credits:shh_facility_credits
+  - shh_facility_bundle_discount:shh_facility_bundle_discount
+  - shh_pricing_comparison:shh_pricing_comparison

@@ -1,0 +1,9 @@
+name: 'SHH Pricing Comparison'
+type: module
+description: 'Implements docs/project-management/tasks/0023-pricing-comparison-page.md: a /pricing page laying out, per facility, single-slot vs. credit-pack vs. same-timeframe-bundle pricing side by side -- previously never shown together anywhere, and every number pulled live from config/constants so it cannot silently drift from the actual checkout behaviour.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - node:node
+  - shh_facility_credits:shh_facility_credits
+  - shh_facility_bundle_discount:shh_facility_bundle_discount

@@ -252,9 +252,56 @@ pending, expired (cron-flipped, renew link shown), revoked (contact-us
 message, deliberately **no** resubmit link), and successfully booking
 immediately after staff approval.
 
-Next actionable step: the discovery-page backlog
-([[0019-horse-catalog-page]] through [[0023-pricing-comparison-page]]),
-or continue with whichever backlog task you'd like to prioritize next.
+The entire discovery-page backlog ([[shh-customer-facing-pages]]) is now
+done too — [[0019-horse-catalog-page]] through
+[[0023-pricing-comparison-page]], implemented and verified together in
+one session:
+
+- **[[0019-horse-catalog-page]]**: new `shh_horse_catalog` module,
+  `/horses` lists every `available` horse as a `hestehoj:card`.
+  Surfaced a bigger, previously-invisible gap while verifying "linked
+  from primary navigation": **this site had no rendered navigation
+  anywhere at all** (checked verdigris too, same gap platform-wide) —
+  the `main` menu had one link and no block ever displayed it, despite
+  the theme already shipping a fully-styled `menu--main.html.twig`.
+  Fixed with a new `shh_main_navigation` module placing a standard menu
+  block in the `header` region (scoped to hestehoj).
+- **[[0020-facilities-overview-page]]**: new `shh_facilities_overview`
+  module, `/facilities` lists all three with a bundle-discount/
+  credit-pack explainer. Extracted `BuyCreditPackForm`'s price
+  computation into a shared `FacilityPricingHelper` service (reused by
+  0023). **Found and fixed a critical, live, currently-active bug**
+  while building this: `field_price_frequency` had drifted to `hour` on
+  all three facilities (should be `minute` per 0016's own docs), which
+  makes `bee.module`'s own pricing silently compute **0.00 DKK** for any
+  non-whole-hour booking — confirmed real order items from this
+  session's own earlier testing had charged 0 DKK. Fixed the data;
+  verified a fresh booking immediately charged the correct 50 DKK.
+- **[[0021-public-availability-calendar]]**: corrected the task's own
+  assumption — `/node/{node}/availability` is bee's **staff-only**
+  management screen, not a public viewer; the real public calendar is
+  already embedded on each facility page. New `shh_public_availability`
+  module grants the missing `restful get bat_api_events_resource`
+  permission to `anonymous`/`authenticated` per decision 0017. Verified
+  on-hold slots show as unavailable via real HTTP (after tracing a
+  confusing but ultimately harmless red herring in how the REST
+  endpoint's `unit_types` parameter works).
+- **[[0022-rider-dashboard]]**: new `shh_rider_dashboard` module,
+  `/user/{user}/bookings` — upcoming/past bookings, active deposits,
+  credit balances, each cancel/buy-more link gated by the *existing*
+  cancel routes' own access checks. Verified with real deposit and
+  credit-pack purchases end to end, plus a real 403 for a second
+  account trying to view someone else's dashboard.
+- **[[0023-pricing-comparison-page]]**: new `shh_pricing_comparison`
+  module, `/pricing` — single-slot/pack/bundle side by side, sharing
+  0020's `FacilityPricingHelper`. Every number verified against this
+  task's own documented expected values exactly.
+
+Next actionable step: none of the originally-tracked backlog remains —
+continue with whichever new priority you'd like next (e.g. revisiting
+[[0005-tax-classification-horses-vs-bookings]]'s still-open VAT margin
+scheme question, or [[0009-vendor-fullcalendar-library]]'s CDN
+dependency).
 
 ## Tasks
 ```dataview

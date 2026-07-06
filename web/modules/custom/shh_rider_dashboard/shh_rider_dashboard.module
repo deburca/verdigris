@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Implements 0022-rider-dashboard.md, see docs/project-management.
+ */
+
+use Drupal\Core\Url;
+use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_view() for user.
+ *
+ * Adds a "My bookings, deposits, and credits" link on a rider's own
+ * rendered account page — the only discovery path this task's
+ * acceptance criteria asks for ("a page, e.g. on the user's own
+ * account"). Only shown to the account's own owner, mirroring the
+ * dashboard route's own access check.
+ */
+function shh_rider_dashboard_user_view(array &$build, UserInterface $user, $display, $view_mode) {
+  if ((int) \Drupal::currentUser()->id() !== (int) $user->id()) {
+    return;
+  }
+  $build['shh_rider_dashboard_link'] = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['mb-3']],
+    '#weight' => -100,
+    'link' => [
+      '#type' => 'component',
+      '#component' => 'hestehoj:button',
+      '#props' => [
+        'variant' => 'primary',
+        'size' => 'medium',
+        'label' => t('My bookings, deposits, and credits'),
+        'href' => Url::fromRoute('shh_rider_dashboard.dashboard', ['user' => $user->id()])->toString(),
+      ],
+    ],
+  ];
+}

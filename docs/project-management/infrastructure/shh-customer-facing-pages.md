@@ -9,43 +9,48 @@ updated: 2026-07-06
 
 Catalog of pages/views/blocks a rider or buyer actually needs to find
 things on stutteri-hestehoj.dk, vs. what currently exists. Prompted by a
-direct request to map this out; gaps are tracked as tasks, not fixed here.
+direct request to map this out; gaps were tracked as tasks, not fixed
+here.
+
+> **Update 2026-07-06**: all five gap-tracking tasks below
+> ([[0019-horse-catalog-page]] through
+> [[0023-pricing-comparison-page]]) are now done. See each task's own
+> Resolution for detail; the table below is updated to reflect the
+> current state.
 
 ## Exists today
 
 | Page | Path | Notes |
 |---|---|---|
-| Horse product page | `/product/{id}` | Individual horse only — no listing/browse page links to these (see gap below) |
-| Facility page | `/oval-track`, `/manege`, `/lunge-ring` | Individual facility only — no listing page |
-| Book a facility | `/node/{node}/add-reservation` | Linked from the facility page |
+| Horse catalog (browse) | `/horses` | New (0019) — every `available` horse, linked from primary navigation |
+| Horse product page | `/product/{id}` | Individual horse — now discoverable via the catalog page above |
+| Facilities overview | `/facilities` | New (0020) — all three facilities, bundle-discount/credit-pack explainer, linked from primary navigation |
+| Facility page | `/oval-track`, `/manege`, `/lunge-ring` | Individual facility — now discoverable via the overview page above; also has a public availability calendar embedded (`field_availability_hourly`) and a "Book now" CTA (0025) |
+| Pricing comparison | `/pricing` | New (0023) — single-slot vs. credit-pack vs. bundle pricing side by side, linked from the facilities overview page |
+| Rider dashboard | `/user/{user}/bookings` | New (0022) — upcoming/past bookings, active deposits, credit balances, linked from the rider's own account page |
+| Book a facility | `/node/{node}/add-reservation` | Linked from the facility page (0025) |
 | Buy horse deposit | `/product/{id}/deposit` | Linked from the horse product page (0001) |
-| Buy facility credit pack | `/node/{node}/buy-credit-pack` | Linked from the facility page (0018) |
-| Cancel booking | `/booking/{order_item}/cancel` | Only surfaced inline on the order item's own rendered view (0015) — not from a dashboard |
-| Cancel deposit | `/deposit/{order_item}/cancel` | Same limitation (0001) |
+| Buy facility credit pack | `/node/{node}/buy-credit-pack` | Linked from the facility page (0018), and from the rider dashboard above |
+| Cancel booking | `/booking/{order_item}/cancel` | Now also surfaced from the rider dashboard (0022), not just inline on the order item's own view (0015) |
+| Cancel deposit | `/deposit/{order_item}/cancel` | Same — also surfaced from the rider dashboard now (0022) |
 | Cart | `/cart` | Standard Commerce |
 | Checkout | `/checkout/{order}` | Standard Commerce |
-| Admin: product catalog | `/admin/commerce/products` | **Staff-only** — this is *not* a public browse page, despite the name |
+| Admin: product catalog | `/admin/commerce/products` | **Staff-only** — this is *not* a public browse page, despite the name; `/horses` above is |
 | Admin: facility credit balances | `/admin/commerce/facility-credits` | Staff-only (0018) |
 | Admin: cancellation/deposit policies | `/admin/commerce/config/*` | Staff-only (0001, 0015) |
-| BEE availability route | `/node/{node}/availability` | Route exists (ships with `bee`), but linked from nowhere and unverified — depends on `bat_fullcalendar`, which is still CDN-fallback per [[0009-vendor-fullcalendar-library]] |
+| Admin: rider memberships | `/admin/people/rider-memberships` | Staff-only (0003) |
+| BEE availability management route | `/node/{node}/availability` | Confirmed (0021) this is a **staff-only management screen** (blocks/unblocks slots), not suitable for public use — not the same thing as the public calendar embedded on the facility page itself |
 
-## Gaps — no discovery path exists
+## Gaps — resolved
 
-A rider/buyer who doesn't already have a direct link cannot currently:
-- Browse the list of horses for sale
-- Browse the list of bookable facilities
-- See a public availability calendar for a facility before committing to
-  the booking form
-- See their own bookings/deposits/credit balances in one place (cancel
-  links only appear buried in individual order item views)
-- Discover the bundle discount (0017) or credit packs (0018) exist at all,
-  beyond stumbling onto the one facility page that mentions it
-
-Tracked as: [[0019-horse-catalog-page]],
-[[0020-facilities-overview-page]],
-[[0021-public-availability-calendar]],
-[[0022-rider-dashboard]],
-[[0023-pricing-comparison-page]].
+Previously: a rider/buyer with no direct link couldn't browse horses or
+facilities, see availability up front, see their own bookings/deposits/
+credits in one place, discover the bundle discount or credit packs, or
+compare pricing. All resolved by
+[[0019-horse-catalog-page]], [[0020-facilities-overview-page]],
+[[0021-public-availability-calendar]], [[0022-rider-dashboard]], and
+[[0023-pricing-comparison-page]] — see each task's Resolution for what
+was built and how it was verified.
 
 ## Related
 - [[shh-stables-platform]]

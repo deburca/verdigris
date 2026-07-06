@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for shh_facilities_overview.
+ */
+
+use Drupal\menu_link_content\Entity\MenuLinkContent;
+
+/**
+ * Implements hook_install().
+ *
+ * Links the new overview page from the main navigation, alongside the
+ * horse catalog link added by shh_horse_catalog (0019) — see that
+ * module's own install hook for why the main menu needed a block placed
+ * at all before either link would be visible (shh_main_navigation).
+ */
+function shh_facilities_overview_install() {
+  $existing = \Drupal::entityTypeManager()->getStorage('menu_link_content')->loadByProperties([
+    'menu_name' => 'main',
+    'link.uri' => 'internal:/facilities',
+  ]);
+  if ($existing) {
+    return;
+  }
+
+  MenuLinkContent::create([
+    'title' => 'Book a facility',
+    'link' => ['uri' => 'internal:/facilities'],
+    'menu_name' => 'main',
+    'weight' => 20,
+  ])->save();
+}

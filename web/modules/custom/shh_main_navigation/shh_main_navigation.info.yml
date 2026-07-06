@@ -1,0 +1,8 @@
+name: 'SHH Main Navigation'
+type: module
+description: 'Places the "Main navigation" system menu block in the header region for the hestehoj theme. Found while implementing task 0019 (horse catalog page): the site has no rendered primary navigation anywhere at all (confirmed platform-wide — verdigris has the identical gap), despite the theme already shipping a fully-styled menu--main.html.twig template that has simply never had anything to render. Scoped to hestehoj only; the same gap on other sites is out of scope here.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - block:block
+  - system:system

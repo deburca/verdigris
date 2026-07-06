@@ -5,13 +5,12 @@ namespace Drupal\shh_facility_credits\Form;
 use Drupal\commerce_cart\CartManagerInterface;
 use Drupal\commerce_cart\CartProviderInterface;
 use Drupal\commerce_order\Entity\OrderItem;
-use Drupal\commerce_price\Price;
-use Drupal\commerce_price\RounderInterface;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
+use Drupal\shh_facility_credits\FacilityPricingHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -25,8 +24,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class BuyCreditPackForm extends ConfirmFormBase {
 
-  const PACK_SIZE = 10;
-  const DISCOUNT_PERCENTAGE = 75;
+  const PACK_SIZE = FacilityPricingHelper::PACK_SIZE;
+  const DISCOUNT_PERCENTAGE = FacilityPricingHelper::DISCOUNT_PERCENTAGE;
 
   protected NodeInterface $node;
 
@@ -34,7 +33,7 @@ class BuyCreditPackForm extends ConfirmFormBase {
     protected CartManagerInterface $cartManager,
     protected CartProviderInterface $cartProvider,
     protected AccountInterface $currentUser,
-    protected RounderInterface $rounder,
+    protected FacilityPricingHelper $pricingHelper,
   ) {}
 
   /**
@@ -45,7 +44,7 @@ class BuyCreditPackForm extends ConfirmFormBase {
       $container->get('commerce_cart.cart_manager'),
       $container->get('commerce_cart.cart_provider'),
       $container->get('current_user'),
-      $container->get('commerce_price.rounder'),
+      $container->get('shh_facility_credits.pricing_helper'),
     );
   }
 
@@ -74,37 +73,6 @@ class BuyCreditPackForm extends ConfirmFormBase {
   }
 
   /**
-   * Computes the per-slot price for this facility (per-minute rate ×
-   * fixed slot duration — see task 0016's facility fields), or NULL if the
-   * facility isn't set up for fixed-length slots.
-   */
-  protected function getSlotPrice(): ?Price {
-    if (!$this->node->hasField('field_slot_duration_minutes') || $this->node->get('field_slot_duration_minutes')->isEmpty()) {
-      return NULL;
-    }
-    if (!$this->node->hasField('field_price') || $this->node->get('field_price')->isEmpty()) {
-      return NULL;
-    }
-    $slot_minutes = (int) $this->node->get('field_slot_duration_minutes')->value;
-    $price_item = $this->node->get('field_price')->first();
-    $per_minute = $price_item->number;
-    $currency_code = $price_item->currency_code;
-    $slot_price_number = bcmul((string) $per_minute, (string) $slot_minutes, 6);
-    // Round here — the per-minute rate is stored truncated to 6 decimals
-    // (e.g. Oval Track's 1.666666, not 1.666667), so multiplying back out
-    // without rounding produces 49.99998 DKK instead of exactly 50.00. The
-    // actual booking flow (bee_get_unit_price()) rounds its final result
-    // too; this form needs to do the same for its own price preview/total.
-    return $this->rounder->round(new Price($slot_price_number, $currency_code));
-  }
-
-  protected function getPackPrice(Price $slot_price): Price {
-    $full_price = $slot_price->multiply((string) self::PACK_SIZE);
-    $multiplier = bcdiv((string) (100 - self::DISCOUNT_PERCENTAGE), '100', 6);
-    return $this->rounder->round($full_price->multiply($multiplier));
-  }
-
-  /**
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $node = NULL) {
@@ -119,7 +87,7 @@ class BuyCreditPackForm extends ConfirmFormBase {
       return $form;
     }
 
-    $slot_price = $this->getSlotPrice();
+    $slot_price = $this->pricingHelper->getSlotPrice($this->node);
     if (!$slot_price || !$this->node->hasField('field_product') || $this->node->get('field_product')->isEmpty()) {
       $form['warning'] = [
         '#markup' => '<p>' . $this->t('Credit packs are not available for this facility.') . '</p>',
@@ -128,7 +96,7 @@ class BuyCreditPackForm extends ConfirmFormBase {
       return $form;
     }
 
-    $pack_price = $this->getPackPrice($slot_price);
+    $pack_price = $this->pricingHelper->getPackPrice($slot_price);
     $full_price = $slot_price->multiply((string) self::PACK_SIZE);
     $form['summary'] = [
       '#markup' => '<p>' . $this->t('@count reservations for %title, normally @full, now @pack (@discount%% off). No expiry — use them anytime this season.', [
@@ -147,8 +115,8 @@ class BuyCreditPackForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $slot_price = $this->getSlotPrice();
-    $pack_price = $this->getPackPrice($slot_price);
+    $slot_price = $this->pricingHelper->getSlotPrice($this->node);
+    $pack_price = $this->pricingHelper->getPackPrice($slot_price);
 
     $product = $this->node->get('field_product')->entity;
     $stores = $product->getStores();

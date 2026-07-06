@@ -1,0 +1,7 @@
+shh_pricing_comparison.comparison:
+  path: '/pricing'
+  defaults:
+    _controller: '\Drupal\shh_pricing_comparison\Controller\PricingComparisonController::comparison'
+    _title: 'Pricing comparison'
+  requirements:
+    _permission: 'access content'

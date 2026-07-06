@@ -1,0 +1,8 @@
+name: 'SHH Horse Catalog'
+type: module
+description: 'Implements docs/project-management/tasks/0019-horse-catalog-page.md: a public /horses page listing every horse product currently for sale (field_sale_state: available only), linked from the main navigation.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - commerce_product:commerce_product
+  - node:node

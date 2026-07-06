@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for shh_main_navigation.
+ */
+
+use Drupal\block\Entity\Block;
+
+/**
+ * Implements hook_install().
+ *
+ * Places a standard "Main navigation" system menu block in the hestehoj
+ * theme's `header` region — the theme ships a fully-styled
+ * `templates/navigation/menu--main.html.twig` already, it just has never
+ * had a block placed anywhere that would actually invoke it. Confirmed
+ * via `block.block.*` config: no menu block, in fact no block at all
+ * beyond the stock Claro/Gin admin-theme blocks, exists on this site (or
+ * on verdigris, checked for comparison) — Canvas owns page composition
+ * everywhere on this platform and a primary navbar was simply never
+ * built yet. This is the minimal, standard-Drupal fix to make the
+ * `main` menu (and therefore every "linked from primary navigation"
+ * task in the customer-facing-pages backlog) actually visible, without
+ * taking on the larger, separate task of wiring up the theme's more
+ * elaborate slotted `navbar` SDC component (logo/navigation/CTA slots,
+ * presumably intended to be composed via Canvas's page-region UI, which
+ * hasn't been set up for this theme either).
+ */
+function shh_main_navigation_install() {
+  if (Block::load('hestehoj_main_navigation')) {
+    return;
+  }
+
+  Block::create([
+    'id' => 'hestehoj_main_navigation',
+    'theme' => 'hestehoj',
+    'region' => 'header',
+    'weight' => 0,
+    'status' => TRUE,
+    'plugin' => 'system_menu_block:main',
+    'settings' => [
+      'id' => 'system_menu_block:main',
+      'label' => 'Main navigation',
+      'label_display' => '0',
+      'provider' => 'system',
+      'level' => 1,
+      'depth' => 0,
+      'expand_all_items' => FALSE,
+    ],
+    'visibility' => [],
+  ])->save();
+}

@@ -1,0 +1,11 @@
+name: 'SHH Rider Dashboard'
+type: module
+description: 'Implements docs/project-management/tasks/0022-rider-dashboard.md: a "my bookings, deposits, and credits" page on the rider''s own account, since cancel links previously only appeared inline on an individual order item''s own rendered view with no list to find them from.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - commerce_order:commerce_order
+  - shh_facility_credits:shh_facility_credits
+  - shh_horse_deposit:shh_horse_deposit
+  - shh_cancellation_policy:shh_cancellation_policy
+  - user:user

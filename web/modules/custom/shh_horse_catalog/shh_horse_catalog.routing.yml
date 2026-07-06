@@ -1,0 +1,7 @@
+shh_horse_catalog.catalog:
+  path: '/horses'
+  defaults:
+    _controller: '\Drupal\shh_horse_catalog\Controller\HorseCatalogController::catalog'
+    _title: 'Horses for sale'
+  requirements:
+    _permission: 'view commerce_product'
