@@ -227,11 +227,32 @@ through to a placed order — watchdog confirms `shh_booking_hold` (0012)
 correctly placed and promoted the on-hold event, so the link connects to
 the fully working booking pipeline, not just a form that renders.
 
-Next actionable step: [[0003-rider-membership-eligibility-workflow]]
-(high-priority, still backlog — the vague "eligibility" field mentioned
-there has, in practice, meant *no* rider-facing eligibility gate exists
-at all, since `create bee reservation` access is now open to any
-authenticated account), or the discovery-page backlog
+[[0003-rider-membership-eligibility-workflow]] is also done: new custom
+module `web/modules/custom/shh_rider_membership` closes the gap 0025 just
+surfaced (`create bee reservation` access open to any authenticated
+account with no eligibility gate at all). Confirmed the task's own framing
+was wrong before building anything — there was no existing "vague
+eligibility field" anywhere on the site to extend, so this is a from-scratch
+build: a plain-base-fields `Membership` entity (pending/active/expired/revoked,
+same pattern as 0018's `FacilityCredit`), a `shh_rider_waiver` webform
+created programmatically in `hook_install()`, an auto-created pending
+membership on submission, staff approval via a simple status-dropdown
+form that auto-computes the expiry date, a cron sweep that auto-expires
+stale memberships, and the actual hard block via a `#validate` handler on
+bee's `AddReservationForm` (the same technique 0016's
+`shh_facility_slots` already uses on this exact form — bee's form is a
+plain `FormBase`, so 0024's `commerce_order.availability_checker` service
+pattern doesn't apply here). A real bug was found and fixed along the
+way: an empty `datetime_timestamp` widget doesn't submit NULL, so making
+`approved`/`expires` staff-editable form fields silently defeated the
+"only auto-set if empty" approval logic — fixed by making them view-only,
+genuinely system-computed. Verified end to end over real HTTP with a
+non-admin test account through every path: blocked with no membership,
+pending, expired (cron-flipped, renew link shown), revoked (contact-us
+message, deliberately **no** resubmit link), and successfully booking
+immediately after staff approval.
+
+Next actionable step: the discovery-page backlog
 ([[0019-horse-catalog-page]] through [[0023-pricing-comparison-page]]),
 or continue with whichever backlog task you'd like to prioritize next.
 
@@ -249,8 +270,10 @@ SORT status asc, priority asc
   horse sales by [[0018-separate-order-types-horse-vs-booking]]) — **still
   open**: whether it should be configurable *per facility* rather than one
   platform-wide value. See [[0012-cart-hold-concurrency-prototype]]
-- Rider eligibility gate: route access check vs cart constraint vs both — see
-  [[0003-rider-membership-eligibility-workflow]]
+- ~~Rider eligibility gate: route access check vs cart constraint vs
+  both~~ — **resolved**: a `#validate` handler on bee's
+  `AddReservationForm` (neither route access nor a cart constraint — see
+  [[0003-rider-membership-eligibility-workflow]] for why)
 - ~~Deposit/hold workflow for horse sales (separate from facility booking
   holds)~~ — **resolved**, see [[0001-horse-deposit-reservation-flow]]
 

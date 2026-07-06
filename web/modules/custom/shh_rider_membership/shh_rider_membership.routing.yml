@@ -1,0 +1,31 @@
+entity.shh_rider_membership.collection:
+  path: '/admin/people/rider-memberships'
+  defaults:
+    _entity_list: 'shh_rider_membership'
+    _title: 'Rider memberships'
+  requirements:
+    _permission: 'administer rider memberships'
+
+entity.shh_rider_membership.add_form:
+  path: '/admin/people/rider-memberships/add'
+  defaults:
+    _entity_form: 'shh_rider_membership.add'
+    _title: 'Add rider membership'
+  requirements:
+    _permission: 'administer rider memberships'
+
+entity.shh_rider_membership.edit_form:
+  path: '/admin/people/rider-memberships/{shh_rider_membership}/edit'
+  defaults:
+    _entity_form: 'shh_rider_membership.edit'
+    _title: 'Review rider membership'
+  requirements:
+    _permission: 'administer rider memberships'
+
+entity.shh_rider_membership.delete_form:
+  path: '/admin/people/rider-memberships/{shh_rider_membership}/delete'
+  defaults:
+    _entity_form: 'shh_rider_membership.delete'
+    _title: 'Delete rider membership'
+  requirements:
+    _permission: 'administer rider memberships'

@@ -1,0 +1,79 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for shh_rider_membership.
+ */
+
+use Drupal\webform\Entity\Webform;
+
+/**
+ * Implements hook_install().
+ *
+ * Creates the "shh_rider_waiver" webform programmatically (via the entity
+ * API), not a config/install YAML file — a full webform config export has
+ * a large, easy-to-get-wrong schema (settings/access/handlers/variants),
+ * so building it in PHP and letting Webform's own defaults fill in the
+ * rest is the same "avoid hand-written config, use the entity API"
+ * caution this project has already applied elsewhere (e.g. order item
+ * types created via OrderItemType::create() in shh_facility_credits and
+ * shh_horse_deposit's own install hooks, rather than exported config).
+ */
+function shh_rider_membership_install() {
+  if (Webform::load('shh_rider_waiver')) {
+    return;
+  }
+
+  $webform = Webform::create([
+    'id' => 'shh_rider_waiver',
+    'title' => 'Rider liability waiver',
+    'description' => 'Submit this waiver to request an active membership before booking a facility. Staff will review and approve it.',
+  ]);
+
+  $webform->setElements([
+    'full_name' => [
+      '#type' => 'textfield',
+      '#title' => 'Full name',
+      '#required' => TRUE,
+      '#default_value' => '[current-user:display-name]',
+    ],
+    'emergency_contact_name' => [
+      '#type' => 'textfield',
+      '#title' => 'Emergency contact name',
+      '#required' => TRUE,
+    ],
+    'emergency_contact_phone' => [
+      '#type' => 'tel',
+      '#title' => 'Emergency contact phone',
+      '#required' => TRUE,
+    ],
+    'waiver_agreement' => [
+      '#type' => 'checkbox',
+      '#title' => "I have read and agree to Stutteri Hestehøj's liability waiver and terms of use.",
+      '#required' => TRUE,
+    ],
+    'actions' => [
+      '#type' => 'webform_actions',
+      '#title' => 'Submit button(s)',
+      '#submit__label' => 'Submit waiver',
+    ],
+  ]);
+
+  // Submitting requires being logged in (matches decision 0017: booking
+  // itself already requires authentication, and a membership record needs
+  // an owner to attach to — see MembershipManager::createPendingFromWaiver()).
+  $webform->setAccessRules([
+    'create' => [
+      'roles' => ['authenticated'],
+      'users' => [],
+      'permissions' => [],
+    ],
+  ]);
+
+  $webform->setSetting('confirmation_type', 'message');
+  $webform->setSetting('confirmation_message', 'Thank you — your waiver has been submitted for staff review. You will be able to book once it is approved.');
+
+  $webform->save();
+
+  \Drupal::logger('shh_rider_membership')->info('Created webform: shh_rider_waiver');
+}
