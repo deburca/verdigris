@@ -305,7 +305,35 @@ and has two unverified compatibility questions (whether the existing
 CTA hooks and the availability calendar widget survive it). Deferred,
 not decided — see [[0019-canvas-content-templates-for-structured-content]].
 
-Next actionable step: none of the originally-tracked backlog remains —
+**[[shh-account-access-gap-analysis]] (new, high priority)**: walked
+the site again as a real visitor now that discovery works. The core
+booking/sales mechanics are all fine; what's missing is almost entirely
+about getting a real visitor into an account in the first place. Two
+critical findings: **`user.settings: register: admin_only` site-wide
+(all three sites) means a brand-new rider cannot create an account at
+all**, so "Book now" on any facility page leads straight to a login
+wall with no way through — this is a business decision, not an
+engineering one, tracked as
+[[0026-rider-account-access-policy]]; and **no login link, no footer,
+and no "Contact us" path exist anywhere on the site**, so a visitor
+turned away at that wall has no way to even ask for help — tracked as
+[[0027-site-footer-and-contact-link]] (small, no decision needed,
+mirrors `shh_main_navigation`'s exact pattern). Two smaller, lower
+priority findings also tracked:
+[[0028-rider-dashboard-membership-status]] (the dashboard doesn't show
+*why* a rider can't book) and
+[[0029-cancel-flow-dashboard-redirect]] (cancel forms redirect to the
+homepage, predating the dashboard). Also noted, not tracked as tasks:
+a cosmetic breadcrumb inconsistency on the five new pages, and two
+housekeeping items unrelated to shh logic (the sample horse catalog is
+currently empty from earlier tasks' own real test purchases; a
+pre-existing, unrelated data-integrity bug on the stock "Test Page"
+node was found incidentally and is not linked from anywhere).
+
+Next actionable step: [[0026-rider-account-access-policy]] first — it
+blocks the most direct path to actually using the booking flow as a
+real rider, and several other items ([[0027-site-footer-and-contact-link]]
+in particular) are more useful once that's answered. Otherwise,
 continue with whichever new priority you'd like next (e.g. revisiting
 [[0005-tax-classification-horses-vs-bookings]]'s still-open VAT margin
 scheme question, [[0009-vendor-fullcalendar-library]]'s CDN dependency,
