@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+/*
+ * Tailwind v4's automatic content detection only scans from this file's
+ * project root (this theme directory) downward, so it never sees utility
+ * class strings used in PHP outside the theme — e.g. shh_* custom
+ * modules' hook_ENTITY_TYPE_view() implementations, which build
+ * `#type: component` render arrays with hardcoded wrapper classes like
+ * `mb-3` rather than a .twig file. Without this, those classes silently
+ * don't exist in the compiled CSS at all (no build error — the utility
+ * is just missing), even though the theme's own PHP-free .twig
+ * templates work fine without it.
+ */
+@source "../../../../modules/custom";
+
 @import "../components/hero-blog/hero-blog.tailwind.css";
 @import "../components/navbar/navbar.tailwind.css";
 @import "../components/anchor/anchor.tailwind.css";
@@ -334,6 +347,22 @@
   /* Provide basic styles for views elements */
   .views-exposed-form {
     @apply flex items-center gap-2;
+  }
+
+  /* Style the office_hours module's field formatter output (used on the
+     shh Bookable Facility content type's "Open Hours" field) — otherwise
+     unstyled browser-default table markup. */
+  .office-hours__table {
+    @apply w-full max-w-md border-collapse text-base text-foreground md:text-lg;
+  }
+
+  .office-hours__item {
+    @apply border-b border-border/40;
+  }
+
+  .office-hours__item-label,
+  .office-hours__item-slots {
+    @apply py-1.5 pr-4 text-left;
   }
 
   .view-header {

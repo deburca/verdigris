@@ -119,6 +119,20 @@ build/
 .nuxt/
 .vuepress/dist/
 
+# Exception: hestehoj (the only custom theme actually tracked in this
+# repo — quick_silver and zwarte_piet are excluded further below as
+# independent repos managed via Composer) intentionally commits its
+# single compiled Tailwind output file, so the site renders correctly
+# without every environment needing a working Node/Yarn toolchain — see
+# the matching `!build/main.min.css` rule in the theme's own .gitignore.
+# The bare `build/` rule above excludes the directory itself at any
+# depth, which silently defeats that per-theme negation — git cannot
+# re-include a file inside an already-excluded parent directory — so the
+# un-ignore has to happen here too.
+!web/themes/custom/hestehoj/build/
+web/themes/custom/hestehoj/build/*
+!web/themes/custom/hestehoj/build/main.min.css
+
 # =============================================================================
 # DRUPAL CONFIGURATION AND SENSITIVE FILES
 # =============================================================================

@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for shh_facility_booking_cta.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Grants `create bee reservation` (bee's own permission, gating access to
+ * `/node/{node}/add-reservation`) to the `authenticated` role.
+ *
+ * Found while implementing this task: no role on this site — not
+ * `anonymous`, not `authenticated` — actually has this permission today.
+ * Task 0012's (cart-hold concurrency prototype) own resolution notes
+ * mention granting it *temporarily* to `anonymous` for a manual test and
+ * explicitly reverting afterward, but nothing ever granted it permanently
+ * to a real role. That means every previous "verified over real HTTP"
+ * booking test in this project's history must have run as an admin/uid-1
+ * session (which bypasses permission checks), not a realistic rider
+ * account — a "Book now" link on the facility page would otherwise send
+ * every real visitor straight to an Access Denied page, which would fail
+ * this task's own "a rider can reach the booking form" acceptance
+ * criterion.
+ *
+ * Granting to `authenticated` (not `anonymous`) matches decision 0017's
+ * (anonymous-vs-authenticated booking access) exactly: authentication is
+ * required before booking, anonymous browsing/availability viewing stays
+ * open.
+ */
+function shh_facility_booking_cta_install() {
+  user_role_grant_permissions('authenticated', ['create bee reservation']);
+}

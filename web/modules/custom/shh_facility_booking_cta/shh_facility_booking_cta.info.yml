@@ -1,0 +1,8 @@
+name: 'SHH Facility Booking CTA'
+type: module
+description: 'Implements docs/project-management/tasks/0025-facility-booking-cta.md: adds a prominent "Book now" link on a Bookable Facility node to its own add-reservation form, which previously had no discovery path at all from the page itself.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - bee:bee
+  - node:node

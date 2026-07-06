@@ -6,6 +6,12 @@ updated: 2026-07-06
 priority: high
 ---
 
+> **Update 2026-07-06**: All three critical gaps below are now resolved.
+> Gaps 1–2 by [[0024-horse-sale-state-enforcement]]; gap 3 by
+> [[0025-facility-booking-cta]] (which also surfaced and fixed a more
+> fundamental issue: no role actually had permission to reach the booking
+> form at all — see that task's Resolution).
+
 # shh — Rider Journey Gap Analysis: "Buy a Horse" / "Book a Facility"
 
 Walking both core journeys step by step as an actual rider would experience
@@ -28,7 +34,7 @@ to find," they're "the system doesn't stop a horse being sold twice."
 | Arrange remaining balance | ⚠️ By design, manual/staff-driven (confirmed with client) — but nothing *tells staff a deposit was just paid* |
 | Cancel a deposit | ✅ Works, but only reachable via a link buried on the order item's own view ([[0022-rider-dashboard]]) |
 
-### 🔴 Critical gap 1: nothing stops buying an unavailable horse
+### 🔴 Critical gap 1: nothing stops buying an unavailable horse — ✅ resolved by [[0024-horse-sale-state-enforcement]]
 Confirmed by code review: `field_sale_state` is referenced **only** inside
 `shh_horse_deposit` (which checks it before allowing a deposit). It is
 **never** checked by the standard Commerce `AddToCartForm` used for a full
@@ -37,7 +43,7 @@ purchase. Right now, a horse marked `reserved`, `reserved-deposit`,
 buyer — there is no technical reason two people couldn't both "buy" the
 same horse. This is a data-integrity/business gap, not a discovery gap.
 
-### 🔴 Critical gap 2: nothing marks a horse "sold"
+### 🔴 Critical gap 2: nothing marks a horse "sold" — ✅ resolved by [[0024-horse-sale-state-enforcement]]
 `shh_horse_deposit`'s `DepositCheckoutCompletionSubscriber` transitions
 `sale_state` to `reserved-deposit` when a *deposit* order is placed — but
 there is no equivalent subscriber for the standard `horse` order item type.
@@ -68,7 +74,7 @@ just noting the deposit flow is a concrete case of it.
 | Pay, checkout | ✅ Works (VAT correct) |
 | Cancel a booking | ✅ Works, same buried-link issue as deposits ([[0022-rider-dashboard]]) |
 
-### 🔴 Critical gap 3: the facility page has no "Book Now" link at all
+### 🔴 Critical gap 3: the facility page has no "Book Now" link at all — ✅ resolved by [[0025-facility-booking-cta]]
 Confirmed by direct check: `/oval-track` shows the "Buy a 10-session credit
 pack" link (0018) but **nothing linking to
 `/node/{node}/add-reservation`** — the actual booking form. Every booking

@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @file
+ * Implements 0024-horse-sale-state-enforcement.md, see project-management.
+ */
+
+use Drupal\commerce_product\Entity\ProductVariationInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for commerce_order_item_add_to_cart_form.
+ *
+ * Disables the add-to-cart submit button and shows a plain-language notice
+ * when the underlying horse variation's field_sale_state isn't "available".
+ * This is a UX complement to the hard validation block already enforced
+ * regardless of this hook by
+ * \Drupal\shh_horse_sale_state\Availability\HorseAvailabilityChecker (a
+ * direct POST bypassing this alter is still rejected by that constraint).
+ * Mirrors the same "hide the action if not currently possible" pattern
+ * \Drupal\shh_horse_deposit\Form\PayDepositForm::buildForm() already uses
+ * for the deposit link.
+ */
+function shh_horse_sale_state_form_commerce_order_item_add_to_cart_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  $order_item = $form_state->getFormObject()->getEntity();
+  $variation = $order_item->getPurchasedEntity();
+  if (!$variation instanceof ProductVariationInterface || !$variation->hasField('field_sale_state')) {
+    return;
+  }
+
+  $sale_state = $variation->get('field_sale_state')->value;
+  if ($sale_state === NULL || $sale_state === 'available') {
+    return;
+  }
+
+  $form['shh_unavailable_notice'] = [
+    '#markup' => '<p>' . t('This horse is no longer available for purchase.') . '</p>',
+    '#weight' => -100,
+  ];
+  $form['actions']['submit']['#access'] = FALSE;
+}

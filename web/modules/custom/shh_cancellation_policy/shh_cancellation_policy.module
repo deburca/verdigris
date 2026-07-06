@@ -6,8 +6,6 @@
  */
 
 use Drupal\commerce_order\Entity\OrderItemInterface;
-use Drupal\Core\Access\AccessResult;
-use Drupal\Core\Link;
 use Drupal\Core\Url;
 
 /**
@@ -30,10 +28,21 @@ function shh_cancellation_policy_commerce_order_item_view(array &$build, OrderIt
     return;
   }
   $build['shh_cancel_booking_link'] = [
-    '#type' => 'link',
-    '#title' => t('Cancel booking'),
-    '#url' => Url::fromRoute('shh_cancellation_policy.cancel_booking', ['commerce_order_item' => $order_item->id()]),
+    '#type' => 'container',
+    '#attributes' => ['class' => ['mb-3']],
     '#weight' => 100,
-    '#attributes' => ['class' => ['button', 'button--danger']],
+    'link' => [
+      '#type' => 'component',
+      '#component' => 'hestehoj:button',
+      '#props' => [
+        // No "destructive" variant exists on the shared button component;
+        // "secondary" (visually the least prominent) is the closest fit
+        // for a cancel action without adding a new variant just for this.
+        'variant' => 'secondary',
+        'size' => 'medium',
+        'label' => t('Cancel booking'),
+        'href' => Url::fromRoute('shh_cancellation_policy.cancel_booking', ['commerce_order_item' => $order_item->id()])->toString(),
+      ],
+    ],
   ];
 }

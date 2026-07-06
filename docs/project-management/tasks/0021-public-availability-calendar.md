@@ -28,6 +28,15 @@ slots up front.
   unavailable, not just `booked` ones — an availability calendar showing
   a slot as free when it's actually mid-checkout for someone else would
   be worse than not having one
+- **Decide who can actually see this data.** Found while fixing an
+  unrelated crash in [[0025-facility-booking-cta]]: no role — not
+  `anonymous`, not `authenticated` — currently has the `restful get
+  bat_api_events_resource` permission that the calendar widget's own
+  event-fetching REST endpoint requires, so today a real rider gets a
+  silent `403` from it (an admin/uid-1 session is the only one that
+  currently sees any calendar data at all, bugs notwithstanding). Grant it
+  to whichever role(s) this task decides should see availability data
+  before considering the calendar "working."
 
 ## Related
 - [[shh-stables-platform]]
@@ -35,4 +44,6 @@ slots up front.
 - [[0009-vendor-fullcalendar-library]]
 - [[0012-cart-hold-concurrency-prototype]]
 - [[0016-facility-fixed-length-slots]]
+- [[0025-facility-booking-cta]] (fixed a crash in the calendar widget's
+  REST endpoint along the way; see that task's Resolution)
 </content>

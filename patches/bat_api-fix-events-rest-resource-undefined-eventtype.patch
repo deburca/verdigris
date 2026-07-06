@@ -1,0 +1,17 @@
+--- a/src/Plugin/rest/resource/EventsRestResource.php	2026-07-06 21:28:03
++++ b/src/Plugin/rest/resource/EventsRestResource.php	2026-07-06 21:32:12
+@@ -193,7 +193,13 @@
+       // TODO: Make this configurable per event type.
+       // Currently hardcoded to BAT_STATE for BEE daily availability.
+       // See follow-up issue #3576443.
+-      $store_constant = $this->eventType->usesStates()
++      // $this->eventType->usesStates() always fatals: $this->eventType is
++      // never assigned on this class, and usesStates() does not exist
++      // anywhere in bat/bat_api either. getFixedEventStates() is the real,
++      // already-existing method for exactly this per-event-type check
++      // (used 30 lines below in this same method, and throughout
++      // bat/bat_api/bat_event) — use it here too instead.
++      $store_constant = $bat_event_type->getFixedEventStates()
+           ? DrupalDBStore::BAT_STATE
+           : DrupalDBStore::BAT_EVENT;
+       $event_store = new DrupalDBStore($type, $store_constant, $prefix);

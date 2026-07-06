@@ -108,10 +108,18 @@ function shh_facility_credits_node_view(array &$build, NodeInterface $node, $dis
     return;
   }
   $build['shh_buy_credit_pack_link'] = [
-    '#type' => 'link',
-    '#title' => t('Buy a 10-session credit pack'),
-    '#url' => Url::fromRoute('shh_facility_credits.buy_pack', ['node' => $node->id()]),
+    '#type' => 'container',
+    '#attributes' => ['class' => ['mb-3']],
     '#weight' => 100,
-    '#attributes' => ['class' => ['button']],
+    'link' => [
+      '#type' => 'component',
+      '#component' => 'hestehoj:button',
+      '#props' => [
+        'variant' => 'secondary',
+        'size' => 'medium',
+        'label' => t('Buy a 10-session credit pack'),
+        'href' => Url::fromRoute('shh_facility_credits.buy_pack', ['node' => $node->id()])->toString(),
+      ],
+    ],
   ];
 }

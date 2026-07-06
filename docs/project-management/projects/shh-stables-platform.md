@@ -175,18 +175,65 @@ via direct/individual links, no discovery path. Tracked as
 vs. 10-pack vs. same-timeframe-bundle pricing per facility) — all backlog,
 none started.
 
-**[[shh-rider-journey-gap-analysis]] (new, high priority)**: walking both
-core journeys step by step surfaced two gaps more serious than "hard to
-find" — the horse product page never checks `sale_state` before allowing
-a purchase and nothing marks a horse `sold` after one completes
-([[0024-horse-sale-state-enforcement]]), and the facility page has no link
-to its own booking form at all ([[0025-facility-booking-cta]]). Recommend
-tackling these two before the discovery-page backlog above — a catalog
-page would just funnel more people into these holes faster.
+**[[shh-rider-journey-gap-analysis]] (high priority, now fully resolved)**:
+walking both core journeys step by step surfaced two gaps more serious
+than "hard to find" — the horse product page never checked `sale_state`
+before allowing a purchase and nothing marked a horse `sold` after one
+completed ([[0024-horse-sale-state-enforcement]], done), and the facility
+page has no link to its own booking form at all
+([[0025-facility-booking-cta]], done).
 
-Next actionable step: [[0003-rider-membership-eligibility-workflow]] is
-high-priority and still backlog, or the new page-discovery tasks above, or
-continue with whichever backlog task you'd like to prioritize next.
+[[0024-horse-sale-state-enforcement]] is done: new custom module
+`web/modules/custom/shh_horse_sale_state` closes both critical gaps from
+the journey analysis. A `HorseAvailabilityChecker` service tagged
+`commerce_order.availability_checker` — Commerce's own pluggable
+extension point, already wired onto every order item's `purchased_entity`
+field validation — blocks add-to-cart/checkout for a non-`available`
+horse with **no form-alter needed for the actual security boundary**; a
+`HorseSaleCompletionSubscriber` (same `commerce_order.place.pre_transition`
+pattern as 0001's deposit subscriber) marks a horse `sold` the moment its
+order is placed. Deliberately accepted a narrower race window (checked at
+each validation point) rather than building a cart-add-time hold like
+0012's — judged not worth the complexity for a comparatively slow,
+low-volume horse-purchase checkout, and explicitly allowed by this task's
+own acceptance criteria. Verified over real HTTP with two independent
+anonymous sessions: a genuinely-sold horse is rejected by a **forged
+direct POST** (not just a hidden button), and completing a real purchase
+end to end automatically flips `sale_state` to `sold` with no staff step.
+Also investigated, then ruled out, a suspected twin issue in
+`shh_horse_deposit`'s `PayDepositForm` (same direct-save-not-through-
+`ContentEntityForm` pattern) — confirmed via a logging probe that Drupal
+core's Form API already refuses to process input for any `#access =
+FALSE` element, so that form's existing button-hide is already a real
+server-side block, not just a UI nicety. No code change was needed there;
+see 0024's Resolution for the detail, so it isn't re-investigated as a
+false lead later.
+
+[[0025-facility-booking-cta]] is also done: new custom module
+`web/modules/custom/shh_facility_booking_cta` adds a "Book now" link on
+every Bookable Facility node, pointing at bee's own
+`bee.node.add_reservation` route. **A more fundamental blocker was found
+while verifying this task**: no role on this site — not `anonymous`, not
+`authenticated` — actually had the `create bee reservation` permission
+that gates that route, meaning every previous "verified over real HTTP"
+booking test in this project's history must have run as an admin/uid-1
+session (which bypasses permission checks); a rider clicking the new link
+would have hit Access Denied. Fixed in the same module's `hook_install()`
+by granting that permission to `authenticated` (not `anonymous`, matching
+[[0017-anonymous-vs-authenticated-booking-access]]'s decision exactly).
+Verified over real HTTP as a genuine non-admin test account: logged in,
+followed the new link from `/oval-track`, and completed a real booking
+through to a placed order — watchdog confirms `shh_booking_hold` (0012)
+correctly placed and promoted the on-hold event, so the link connects to
+the fully working booking pipeline, not just a form that renders.
+
+Next actionable step: [[0003-rider-membership-eligibility-workflow]]
+(high-priority, still backlog — the vague "eligibility" field mentioned
+there has, in practice, meant *no* rider-facing eligibility gate exists
+at all, since `create bee reservation` access is now open to any
+authenticated account), or the discovery-page backlog
+([[0019-horse-catalog-page]] through [[0023-pricing-comparison-page]]),
+or continue with whichever backlog task you'd like to prioritize next.
 
 ## Tasks
 ```dataview

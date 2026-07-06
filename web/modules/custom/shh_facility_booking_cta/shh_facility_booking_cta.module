@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * Implements 0025-facility-booking-cta.md, see project-management.
+ */
+
+use Drupal\Core\Url;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_view() for node.
+ *
+ * Adds a "Book now" link on a Bookable Facility node's rendered output,
+ * pointing at bee's own add-reservation form (`/node/{node}/add-reservation`)
+ * — the actual booking form, which previously had no link to it anywhere on
+ * the facility page itself (found via the shh rider-journey gap analysis:
+ * every booking made during this project so far was reached by typing that
+ * URL directly). Mirrors the "Buy a credit pack" link pattern already
+ * established by shh_facility_credits, but weighted to appear above it —
+ * this is the primary action, the credit pack is an alternative payment
+ * method for a booking, not the booking itself.
+ */
+function shh_facility_booking_cta_node_view(array &$build, NodeInterface $node, $display, $view_mode) {
+  if ($node->bundle() !== 'bookable_facility') {
+    return;
+  }
+  $build['shh_book_now_link'] = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['mb-3']],
+    '#weight' => 90,
+    'link' => [
+      '#type' => 'component',
+      '#component' => 'hestehoj:button',
+      '#props' => [
+        'variant' => 'primary',
+        'size' => 'medium',
+        'label' => t('Book now'),
+        'href' => Url::fromRoute('bee.node.add_reservation', ['node' => $node->id()])->toString(),
+      ],
+    ],
+  ];
+}

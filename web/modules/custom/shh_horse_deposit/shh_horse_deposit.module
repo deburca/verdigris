@@ -25,11 +25,19 @@ function shh_horse_deposit_commerce_product_view(array &$build, ProductInterface
     return;
   }
   $build['shh_pay_deposit_link'] = [
-    '#type' => 'link',
-    '#title' => t('Pay a deposit to reserve instead'),
-    '#url' => Url::fromRoute('shh_horse_deposit.pay_deposit', ['commerce_product' => $product->id()]),
+    '#type' => 'container',
+    '#attributes' => ['class' => ['mb-3']],
     '#weight' => 100,
-    '#attributes' => ['class' => ['button']],
+    'link' => [
+      '#type' => 'component',
+      '#component' => 'hestehoj:button',
+      '#props' => [
+        'variant' => 'secondary',
+        'size' => 'medium',
+        'label' => t('Pay a deposit to reserve instead'),
+        'href' => Url::fromRoute('shh_horse_deposit.pay_deposit', ['commerce_product' => $product->id()])->toString(),
+      ],
+    ],
   ];
 }
 
@@ -52,10 +60,21 @@ function shh_horse_deposit_commerce_order_item_view(array &$build, OrderItemInte
     return;
   }
   $build['shh_cancel_deposit_link'] = [
-    '#type' => 'link',
-    '#title' => t('Cancel deposit'),
-    '#url' => Url::fromRoute('shh_horse_deposit.cancel_deposit', ['commerce_order_item' => $order_item->id()]),
+    '#type' => 'container',
+    '#attributes' => ['class' => ['mb-3']],
     '#weight' => 100,
-    '#attributes' => ['class' => ['button', 'button--danger']],
+    'link' => [
+      '#type' => 'component',
+      '#component' => 'hestehoj:button',
+      '#props' => [
+        // No "destructive" variant exists on the shared button component;
+        // "secondary" (visually the least prominent) is the closest fit
+        // for a cancel action without adding a new variant just for this.
+        'variant' => 'secondary',
+        'size' => 'medium',
+        'label' => t('Cancel deposit'),
+        'href' => Url::fromRoute('shh_horse_deposit.cancel_deposit', ['commerce_order_item' => $order_item->id()])->toString(),
+      ],
+    ],
   ];
 }

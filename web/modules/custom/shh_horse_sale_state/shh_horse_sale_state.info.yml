@@ -1,0 +1,8 @@
+name: 'SHH Horse Sale State'
+type: module
+description: 'Implements docs/project-management/tasks/0024-horse-sale-state-enforcement.md: blocks add-to-cart/checkout for a horse whose field_sale_state is not "available" on the standard full-price purchase path (previously only the deposit flow checked this), and marks a horse "sold" when its order is placed.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - commerce_order:commerce_order
+  - commerce_product:commerce_product
