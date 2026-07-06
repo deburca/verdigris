@@ -297,11 +297,20 @@ one session:
   0020's `FacilityPricingHelper`. Every number verified against this
   task's own documented expected values exactly.
 
+Considered whether `/oval-track`/`/product/{id}` (currently classic
+field-formatter rendering) could move to Canvas/SDC like the new
+discovery pages — researched Canvas's `ContentTemplate` mechanism, which
+does exist for this, but is `node`-only (excludes `commerce_product`)
+and has two unverified compatibility questions (whether the existing
+CTA hooks and the availability calendar widget survive it). Deferred,
+not decided — see [[0019-canvas-content-templates-for-structured-content]].
+
 Next actionable step: none of the originally-tracked backlog remains —
 continue with whichever new priority you'd like next (e.g. revisiting
 [[0005-tax-classification-horses-vs-bookings]]'s still-open VAT margin
-scheme question, or [[0009-vendor-fullcalendar-library]]'s CDN
-dependency).
+scheme question, [[0009-vendor-fullcalendar-library]]'s CDN dependency,
+or [[0019-canvas-content-templates-for-structured-content]]'s deferred
+Canvas migration question).
 
 ## Tasks
 ```dataview
