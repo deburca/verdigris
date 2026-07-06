@@ -121,6 +121,18 @@ late cancellation" reason to keep a horse off-market. Verified end to end
 with real HTTP + real captured payments, both inside and outside the
 refund window.
 
+Also renamed "Outdoor Arena 1" → **Oval Track**, added **Manège** and
+**Lunge Ring** as new facilities, and implemented
+[[0016-facility-fixed-length-slots]]: all three now restricted to fixed
+30-minute booking slots, 08:00–20:00, priced 50/30/20 DKK respectively.
+BEE already had most of the plumbing (opening-hours restriction, per-minute
+pricing) — just needed data, plus one small new module
+(`shh_facility_slots`) for the "exactly 30 minutes, slot-aligned" rule BEE
+has no concept of. Also surfaced a real bug in `bee.module` itself: its
+`hour`-frequency pricing silently computes 0.00 DKK for any non-whole-hour
+duration (truncates via whole hours only) — not something introduced here,
+but worth knowing before pricing any other sub-hour facility.
+
 Next actionable step: [[0003-rider-membership-eligibility-workflow]] is
 high-priority and still backlog, or continue with whichever backlog task
 you'd like to prioritize next.

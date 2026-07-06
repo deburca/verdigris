@@ -1,0 +1,65 @@
+<?php
+
+/**
+ * @file
+ * Enforces fixed-length booking slots on opted-in Bookable Facility nodes.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\Node;
+
+/**
+ * Implements hook_form_FORM_ID_alter() for bee_add_reservation_form.
+ *
+ * Adds slot-duration validation *in addition to* bee.module's own
+ * validateForm() (which already enforces the open-hours window via
+ * field_use_open_hours/field_open_hours — no change needed there, this
+ * only adds the "must be exactly N minutes, slot-aligned" check bee.module
+ * doesn't have a concept of).
+ */
+function shh_facility_slots_form_bee_add_reservation_form_alter(array &$form, FormStateInterface $form_state) {
+  $form['#validate'][] = 'shh_facility_slots_validate_slot_duration';
+}
+
+/**
+ * Validates the requested booking matches the facility's fixed slot length.
+ */
+function shh_facility_slots_validate_slot_duration(array &$form, FormStateInterface $form_state) {
+  $values = $form_state->getValues();
+  if (empty($values['node'])) {
+    return;
+  }
+  $node = Node::load($values['node']);
+  if (!$node || !$node->hasField('field_slot_duration_minutes') || $node->get('field_slot_duration_minutes')->isEmpty()) {
+    // No fixed slot duration configured for this facility — BEE's own
+    // flexible-duration behaviour applies, nothing for us to enforce.
+    return;
+  }
+  $slot_minutes = (int) $node->get('field_slot_duration_minutes')->value;
+
+  $start = $values['start_date'] ?? NULL;
+  $end = $values['end_date'] ?? NULL;
+  if (!$start || !$end) {
+    // Daily bookable_type or some other shape this module doesn't cover.
+    return;
+  }
+
+  // Both are DrupalDateTime objects for hourly (flexible-duration) bookable
+  // types, which is the only bookable_type this platform actually uses.
+  $start_minute = (int) $start->format('i');
+  $start_second = (int) $start->format('s');
+  if ($start_second !== 0 || $start_minute % $slot_minutes !== 0) {
+    $form_state->setErrorByName('start_date', t('@label only takes bookings on the hour or half hour (e.g. 08:00, 08:30, 09:00...).', [
+      '@label' => $node->label(),
+    ]));
+    return;
+  }
+
+  $diff_seconds = $end->getTimestamp() - $start->getTimestamp();
+  if ($diff_seconds !== $slot_minutes * 60) {
+    $form_state->setErrorByName('end_date', t('@label can only be booked in fixed @minutes-minute slots. Please set the end time to exactly @minutes minutes after the start time.', [
+      '@label' => $node->label(),
+      '@minutes' => $slot_minutes,
+    ]));
+  }
+}

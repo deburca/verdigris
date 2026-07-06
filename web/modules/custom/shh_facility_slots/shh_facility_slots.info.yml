@@ -1,0 +1,8 @@
+name: 'SHH Facility Fixed-Length Slots'
+type: module
+description: 'Enforces fixed-length booking slots (e.g. exactly 30 minutes) on Bookable Facility nodes that opt in via field_slot_duration_minutes, alongside BEEs existing open-hours restriction. bee.module supports arbitrary-duration bookings within an optional opening-hours window; this adds the missing "must be exactly N minutes, aligned to a slot boundary" constraint.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - bee:bee
+  - node:node
