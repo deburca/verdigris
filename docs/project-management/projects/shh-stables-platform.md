@@ -152,6 +152,18 @@ DKK instead of 100. Two significant things came out of this:
    instead — didn't actually need Promotion's admin UI/coupons for one
    fixed rule anyway.
 
+[[0018-facility-credit-packs]] is also done: a rider can buy a 10-session
+credit pack for one specific facility at 75% off (125 DKK instead of 500),
+with no expiry, then redeem credits one at a time on future bookings
+instead of paying. Deliberately not built on `commerce_promotion` —
+confirmed this is a different concept entirely from a checkout discount
+code (a persistent per-rider balance drawn down over months, not a one-time
+coupon), so 0017's Canvas/Promotion blocker doesn't apply here. Built as
+plain content entities using base fields only (not the Field API), which
+side-stepped every Field API pitfall this session has otherwise hit
+repeatedly — worth defaulting to this pattern for any future simple ledger-
+style data on this platform.
+
 Next actionable step: [[0003-rider-membership-eligibility-workflow]] is
 high-priority and still backlog, or continue with whichever backlog task
 you'd like to prioritize next.

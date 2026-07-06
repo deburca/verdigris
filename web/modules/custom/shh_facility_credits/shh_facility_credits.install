@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for shh_facility_credits.
+ */
+
+use Drupal\commerce_order\Entity\OrderItemType;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
+
+/**
+ * Implements hook_install().
+ */
+function shh_facility_credits_install() {
+  // Order item type "facility_credit_pack" — same order type as bookings
+  // ("default"/"Facility booking") since it's facility-related and not
+  // time-sensitive enough to need its own cart_expiration; distinct from
+  // "bee" (an actual time-slot booking) and "horse"/"horse_deposit" (a
+  // different product category entirely on the horse_sale order type).
+  if (!OrderItemType::load('facility_credit_pack')) {
+    OrderItemType::create([
+      'id' => 'facility_credit_pack',
+      'label' => 'Facility credit pack',
+      'purchasableEntityType' => 'commerce_product_variation',
+      'orderType' => 'default',
+      'third_party_settings' => [
+        'commerce_tax' => ['taxable_type' => 'services'],
+      ],
+    ])->save();
+
+    EntityViewDisplay::create([
+      'targetEntityType' => 'commerce_order_item',
+      'bundle' => 'facility_credit_pack',
+      'mode' => 'default',
+      'status' => TRUE,
+    ])->save();
+
+    \Drupal::logger('shh_facility_credits')->info('Created order item type: facility_credit_pack');
+  }
+}

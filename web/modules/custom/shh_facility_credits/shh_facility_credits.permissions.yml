@@ -1,0 +1,4 @@
+administer facility credits:
+  title: 'Administer facility credits'
+  description: 'View and manually adjust rider facility credit balances.'
+  restrict access: true

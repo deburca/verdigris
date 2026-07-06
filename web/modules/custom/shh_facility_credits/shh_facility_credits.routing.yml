@@ -1,0 +1,43 @@
+shh_facility_credits.buy_pack:
+  path: '/node/{node}/buy-credit-pack'
+  defaults:
+    _form: '\Drupal\shh_facility_credits\Form\BuyCreditPackForm'
+    _title: 'Buy a credit pack'
+  options:
+    parameters:
+      node:
+        type: entity:node
+  requirements:
+    _permission: 'access checkout'
+
+entity.shh_facility_credit.collection:
+  path: '/admin/commerce/facility-credits'
+  defaults:
+    _entity_list: 'shh_facility_credit'
+    _title: 'Facility credits'
+  requirements:
+    _permission: 'administer facility credits'
+
+entity.shh_facility_credit.edit_form:
+  path: '/admin/commerce/facility-credits/{shh_facility_credit}/edit'
+  defaults:
+    _entity_form: 'shh_facility_credit.edit'
+    _title: 'Edit facility credit balance'
+  requirements:
+    _permission: 'administer facility credits'
+
+entity.shh_facility_credit.delete_form:
+  path: '/admin/commerce/facility-credits/{shh_facility_credit}/delete'
+  defaults:
+    _entity_form: 'shh_facility_credit.delete'
+    _title: 'Delete facility credit balance'
+  requirements:
+    _permission: 'administer facility credits'
+
+entity.shh_facility_credit_transaction.collection:
+  path: '/admin/commerce/facility-credit-transactions'
+  defaults:
+    _entity_list: 'shh_facility_credit_transaction'
+    _title: 'Facility credit transactions'
+  requirements:
+    _permission: 'administer facility credits'

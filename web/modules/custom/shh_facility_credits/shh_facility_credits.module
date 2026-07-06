@@ -1,0 +1,117 @@
+<?php
+
+/**
+ * @file
+ * Implements docs/project-management/tasks/0018-facility-credit-packs.md.
+ */
+
+use Drupal\commerce_order\Entity\OrderItemInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter() for bee_add_reservation_form.
+ *
+ * Adds a "use 1 credit instead of paying" checkbox when the current user
+ * has a live balance for this facility, and an early #submit handler
+ * (runs *before* bee's own submitForm(), which is what actually creates
+ * the order item) marking the redemption request — consumed by
+ * hook_commerce_order_item_insert() below once the order item exists.
+ */
+function shh_facility_credits_form_bee_add_reservation_form_alter(array &$form, FormStateInterface $form_state) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if (!$node instanceof NodeInterface) {
+    return;
+  }
+  $account = \Drupal::currentUser();
+  if ($account->isAnonymous()) {
+    return;
+  }
+  $balance = \Drupal::service('shh_facility_credits.manager')->getBalance((int) $account->id(), (int) $node->id());
+  if ($balance < 1) {
+    return;
+  }
+
+  $form['shh_use_credit'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Use 1 credit instead of paying (@balance remaining)', ['@balance' => $balance]),
+    '#weight' => -10,
+  ];
+  array_unshift($form['#submit'], 'shh_facility_credits_mark_redemption_submit');
+}
+
+/**
+ * Early #submit handler for bee_add_reservation_form — runs before bee's
+ * own submitForm(), which is where the order item actually gets created.
+ */
+function shh_facility_credits_mark_redemption_submit(array &$form, FormStateInterface $form_state) {
+  if (empty($form_state->getValue('shh_use_credit'))) {
+    return;
+  }
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof NodeInterface) {
+    \Drupal::service('shh_facility_credits.manager')->markPendingRedemption($node);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for commerce_order_item.
+ *
+ * Applies a pending credit redemption (see above) to a freshly-created
+ * 'bee' order item: zeroes its price and spends one credit. Runs after
+ * shh_booking_hold's own insert hook (both react to the same event; this
+ * one only overrides price, doesn't touch the on-hold BAT event placement).
+ */
+function shh_facility_credits_commerce_order_item_insert(OrderItemInterface $order_item) {
+  if ($order_item->bundle() !== 'bee') {
+    return;
+  }
+  $node = $order_item->get('field_node')->entity ?? NULL;
+  if (!$node instanceof NodeInterface) {
+    return;
+  }
+  $manager = \Drupal::service('shh_facility_credits.manager');
+  if (!$manager->consumePendingRedemption($node)) {
+    return;
+  }
+
+  $account = \Drupal::currentUser();
+  $redeemed = $manager->redeemOne((int) $account->id(), (int) $node->id(), $order_item);
+  if ($redeemed) {
+    $zero_price = $order_item->getUnitPrice()->multiply('0');
+    $order_item->setUnitPrice($zero_price, TRUE);
+    $order_item->save();
+    \Drupal::messenger()->addMessage(t('1 credit redeemed for this booking — no charge.'));
+  }
+  else {
+    // Balance changed between page load and submission (e.g. two tabs) —
+    // fail safe by charging the normal price, which is already set.
+    \Drupal::messenger()->addWarning(t('Your credit balance changed and could not be redeemed for this booking — the normal price applies.'));
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view() for node.
+ *
+ * Adds a "Buy a credit pack" link on a Bookable Facility node's rendered
+ * output, mirroring the "Pay a deposit" link pattern from
+ * shh_horse_deposit.
+ */
+function shh_facility_credits_node_view(array &$build, NodeInterface $node, $display, $view_mode) {
+  if ($node->bundle() !== 'bookable_facility') {
+    return;
+  }
+  if (!$node->hasField('field_slot_duration_minutes') || $node->get('field_slot_duration_minutes')->isEmpty()) {
+    // Credit packs assume fixed-length slots (task 0016) so the per-slot
+    // price is well defined.
+    return;
+  }
+  $build['shh_buy_credit_pack_link'] = [
+    '#type' => 'link',
+    '#title' => t('Buy a 10-session credit pack'),
+    '#url' => Url::fromRoute('shh_facility_credits.buy_pack', ['node' => $node->id()]),
+    '#weight' => 100,
+    '#attributes' => ['class' => ['button']],
+  ];
+}

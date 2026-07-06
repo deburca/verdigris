@@ -1,0 +1,10 @@
+name: 'SHH Facility Credits'
+type: module
+description: 'Prepaid facility credit packs: a rider buys a bundle of N reservations for one specific facility at a discount, then redeems them one at a time throughout the season instead of paying per booking. Distinct from Commerce coupons/promotions (see task 0017) — this is a persistent per-rider balance drawn down over time, not a checkout discount code.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - bee:bee
+  - commerce_order:commerce_order
+  - node:node
+  - user:user
