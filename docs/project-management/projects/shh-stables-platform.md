@@ -175,6 +175,15 @@ via direct/individual links, no discovery path. Tracked as
 vs. 10-pack vs. same-timeframe-bundle pricing per facility) — all backlog,
 none started.
 
+**[[shh-rider-journey-gap-analysis]] (new, high priority)**: walking both
+core journeys step by step surfaced two gaps more serious than "hard to
+find" — the horse product page never checks `sale_state` before allowing
+a purchase and nothing marks a horse `sold` after one completes
+([[0024-horse-sale-state-enforcement]]), and the facility page has no link
+to its own booking form at all ([[0025-facility-booking-cta]]). Recommend
+tackling these two before the discovery-page backlog above — a catalog
+page would just funnel more people into these holes faster.
+
 Next actionable step: [[0003-rider-membership-eligibility-workflow]] is
 high-priority and still backlog, or the new page-discovery tasks above, or
 continue with whichever backlog task you'd like to prioritize next.
