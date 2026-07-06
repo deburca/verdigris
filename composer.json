@@ -429,6 +429,9 @@
             },
             "drupal/mercury": {
                 "Preserve custom component prop schema (overlay_opacity on cta; relax overly strict uri-reference format on url/href/cite_url/button_url props that breaks the site-wide 'No URL' sentinel convention and causes Canvas component-version hash drift/OutOfRangeException)": "patches/mercury-component-schema-customizations.patch"
+            },
+            "drupal/bee": {
+                "AddReservationForm empties an existing cart on every new reservation submission, so a customer can never have more than one booking in a cart at a time — stop that, let bookings accumulate like a normal cart (needed for the shh multi-facility package discount)": "patches/bee-accumulate-cart-instead-of-emptying.patch"
             }
         }
     },

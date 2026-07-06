@@ -133,6 +133,25 @@ has no concept of. Also surfaced a real bug in `bee.module` itself: its
 duration (truncates via whole hours only) — not something introduced here,
 but worth knowing before pricing any other sub-hour facility.
 
+[[0017-facility-bundle-discount]] is also done: booking the Oval Track,
+Manège, and Lunge Ring all for the exact same 30-minute slot now totals 80
+DKK instead of 100. Two significant things came out of this:
+1. **Fixed a real cart bug**: `bee.module`'s reservation form emptied the
+   cart on every new booking, so a rider could never have more than one
+   facility booked in the same order — patched (composer patch, registered
+   in `composer.json`) so bookings accumulate normally.
+2. **`commerce_promotion` cannot currently be enabled on this site** — hit a
+   genuine, 100%-reproducible bug where installing its new `coupons` field
+   on the `commerce_order` entity type triggers a cache-invalidation
+   cascade into Canvas's eager Views-block-derivative rebuild, which fails
+   because the field's table doesn't exist yet at that exact instant. Not
+   fixable by retry/reordering — it's Drupal core's own
+   "install schema, then invalidate cache" sequence colliding with Canvas's
+   synchronous rebuild-on-any-cache-clear behaviour. Worth reporting
+   upstream. Built the discount as a plain custom Commerce order processor
+   instead — didn't actually need Promotion's admin UI/coupons for one
+   fixed rule anyway.
+
 Next actionable step: [[0003-rider-membership-eligibility-workflow]] is
 high-priority and still backlog, or continue with whichever backlog task
 you'd like to prioritize next.

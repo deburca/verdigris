@@ -1,0 +1,18 @@
+diff --git a/src/Form/AddReservationForm.php b/src/Form/AddReservationForm.php
+--- a/src/Form/AddReservationForm.php
++++ b/src/Form/AddReservationForm.php
+@@ -362,9 +362,11 @@
+       if (!$cart) {
+         $cart = $this->cartProvider->createCart('default', $store);
+       }
+-      else {
+-        $this->cartManager->emptyCart($cart);
+-      }
++      // Do NOT empty an existing cart here — bookings should accumulate in
++      // the cart like any normal e-commerce cart (e.g. so a rider can book
++      // multiple facilities in one order), not silently replace whatever
++      // was already there. See docs/project-management/patches or the
++      // shh-stables-platform project note for context.
+ 
+       $unit_price = bee_get_unit_price($node, $booking, $start_date, $end_date);
+ 

@@ -1,0 +1,7 @@
+product_ids:
+  - 2
+  - 4
+  - 5
+discount_amount:
+  number: '20.00'
+  currency_code: DKK

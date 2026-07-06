@@ -1,0 +1,9 @@
+name: 'SHH Facility Bundle Discount'
+type: module
+description: 'A same-timeframe multi-facility package discount (e.g. book the Oval Track, Manege, and Lunge Ring for the same 30-minute slot for a flat discount), implemented as a custom Commerce order processor. Not built on commerce_promotion: enabling that module hit a genuine, reproducible Canvas/Layout Builder interaction bug on this environment (see task doc) unrelated to this feature, and a simple order processor achieves the same outcome without that dependency.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - commerce_order:commerce_order
+  - bee:bee
+  - commerce_product:commerce_product

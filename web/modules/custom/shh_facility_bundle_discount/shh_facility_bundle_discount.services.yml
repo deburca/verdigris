@@ -1,0 +1,6 @@
+services:
+  shh_facility_bundle_discount.order_processor:
+    class: Drupal\shh_facility_bundle_discount\FacilityBundleDiscountOrderProcessor
+    arguments: ['@config.factory', '@commerce_price.rounder']
+    tags:
+      - { name: commerce_order.order_processor }
