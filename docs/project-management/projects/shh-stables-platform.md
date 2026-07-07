@@ -446,9 +446,17 @@ stripped the 0017 bee cart patch) — now relocked covering all 8 patched
 packages; after any patch change: `composer patches-relock` +
 `composer patches-repatch`, never bare reinstall.
 
-Next actionable step: all remaining work is medium/low:
-[[0028-rider-dashboard-membership-status]] (more useful now that
-self-registered riders can exist in every membership state), the
+[[0028-rider-dashboard-membership-status]] is **done** (closed
+2026-07-07): a "Membership" section at the top of the rider dashboard,
+reusing `shh_rider_membership`'s own eligibility API verbatim (message
+from `getEligibilityMessage()`, the booking form's exact waiver-button
+component, gated by `canSelfServiceResubmit()` so a revoked rider gets
+the contact-us message with no self-service route around staff).
+Verified over real HTTP in all five membership states with real test
+accounts — including expiry via the real cron sweep — and uid 3's
+membership restored to active afterwards.
+
+Next actionable step: all remaining work is medium/low: the
 0026-review follow-ups ([[0033-durable-config-strategy-shh]],
 [[0034-guest-checkout-approval-policy-alignment]],
 [[0035-shh-install-hook-cleanup]]), or the Canvas/SDC display

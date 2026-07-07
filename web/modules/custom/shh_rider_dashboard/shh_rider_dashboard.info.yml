@@ -8,4 +8,5 @@ dependencies:
   - shh_facility_credits:shh_facility_credits
   - shh_horse_deposit:shh_horse_deposit
   - shh_cancellation_policy:shh_cancellation_policy
+  - shh_rider_membership:shh_rider_membership
   - user:user
