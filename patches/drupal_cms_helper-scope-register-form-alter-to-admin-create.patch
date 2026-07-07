@@ -1,0 +1,23 @@
+--- a/src/Hook/FormHooks.php
++++ b/src/Hook/FormHooks.php
+@@ -44,6 +44,20 @@ public function __construct(
+    */
+   #[Hook('form_user_register_form_alter')]
+   public function alterAccountCreationForm(array &$form): void {
++    // This alter targets the admin-create form only (the `notify`
++    // checkbox, "Email user with password setup instructions"). On
++    // anonymous self-registration the notify element is #access FALSE,
++    // and Form API resolves access-denied elements to their
++    // #default_value — so the unconditional '#default_value' => TRUE
++    // below leaks notify=TRUE into form state, making
++    // RegisterForm::save() treat every self-registration as an
++    // admin-created account: the registrant gets the wrong welcome
++    // email (a "you may now log in" one-time login link that does not
++    // work on a blocked, pending-approval account) and the admin never
++    // receives the register_pending_approval_admin notification.
++    if (empty($form['administer_users']['#value'])) {
++      return;
++    }
+     $visibility = [
+       'visible' => [
+         'input[name="notify"]' => ['checked' => FALSE],

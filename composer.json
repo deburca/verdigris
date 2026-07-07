@@ -427,6 +427,9 @@
             "drupal/canvas": {
                 "Fix TypeError in ComponentMetadataRequirementsChecker closure when example items are not arrays/objects": "patches/canvas-component-metadata-closure-type-fix.patch"
             },
+            "drupal/drupal_cms_helper": {
+                "form_user_register_form_alter sets the admin-only notify checkbox's #default_value to TRUE unconditionally; on anonymous self-registration that element is #access FALSE, so Form API resolves it to the default and RegisterForm::save() treats every self-registration as admin-created — wrong welcome email (an unusable one-time login link on a blocked pending-approval account) and no pending-approval notification to the admin. Scope the whole alter to the admin-create form": "patches/drupal_cms_helper-scope-register-form-alter-to-admin-create.patch"
+            },
             "drupal/mercury": {
                 "Preserve custom component prop schema (overlay_opacity on cta; relax overly strict uri-reference format on url/href/cite_url/button_url props that breaks the site-wide 'No URL' sentinel convention and causes Canvas component-version hash drift/OutOfRangeException)": "patches/mercury-component-schema-customizations.patch"
             },

@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for shh_rider_registration.
+ */
+
+use Drupal\menu_link_content\Entity\MenuLinkContent;
+
+/**
+ * Implements hook_install().
+ *
+ * Two things, both idempotent:
+ *
+ * 1. Opens self-registration with mandatory admin approval
+ *    (`user.settings: register: visitors_admin_approval`) — the client
+ *    decision on task 0026. `verify_mail` stays TRUE (the Drupal CMS
+ *    default): a registrant sets no password up front; once staff
+ *    approve the account, core emails a one-time login link. Note this
+ *    is deliberately per-site config: only shh opens registration, the
+ *    other sites in this multisite keep the `admin_only` default.
+ *
+ * 2. Adds a "Log in / Register" link to the `main` menu, after the
+ *    existing Home/Horses/Facilities links. Points at /user/login:
+ *    core's user.login route requires an *anonymous* session, and menu
+ *    links are access-filtered per user, so the link hides itself
+ *    automatically for logged-in riders — no visibility conditions or
+ *    custom code needed. The login page links onward to registration
+ *    once registration is open (verified as part of 0026).
+ *
+ * Riders who register still start with no membership: the 0003 waiver →
+ * pending → staff-approval flow is unchanged and remains the actual
+ * booking gate. Account approval and membership approval are two
+ * deliberate, separate staff checkpoints (decided under 0026: the
+ * waiver is NOT folded into registration — revisit only if staff find
+ * double approval too heavy in practice).
+ */
+function shh_rider_registration_install() {
+  \Drupal::configFactory()->getEditable('user.settings')
+    ->set('register', 'visitors_admin_approval')
+    ->save();
+
+  $link_storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
+  $existing = $link_storage->loadByProperties([
+    'menu_name' => 'main',
+    'link.uri' => 'internal:/user/login',
+  ]);
+  if (!$existing) {
+    MenuLinkContent::create([
+      'title' => 'Log in / Register',
+      'link' => ['uri' => 'internal:/user/login'],
+      'menu_name' => 'main',
+      // After Home (0), Horses for sale (10), Book a facility (20).
+      'weight' => 30,
+      'enabled' => TRUE,
+    ])->save();
+  }
+}

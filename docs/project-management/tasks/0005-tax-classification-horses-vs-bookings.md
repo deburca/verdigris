@@ -1,12 +1,12 @@
 ---
 type: task
 tags: [cms2/task]
-status: blocked
+status: done
 priority: medium
 site: shh
 project: "[[shh-stables-platform]]"
 created: 2026-07-05
-updated: 2026-07-05
+updated: 2026-07-07
 ---
 # Task: Tax classification for horses vs facility bookings
 
@@ -15,10 +15,10 @@ Horses (goods) and facility time (service) may carry different Danish VAT
 treatment. Not yet reviewed or configured in Commerce tax settings.
 
 ## Acceptance criteria
-- [~] VAT rules confirmed with accountant/DK tax guidance for livestock sale
-      vs service rental — **partially confirmed directly by the client**
-      (VAT-registered — see Resolution); the VAT margin scheme question
-      below is still open and needs a real answer, not engineering work.
+- [x] VAT rules confirmed with accountant/DK tax guidance for livestock sale
+      vs service rental — **confirmed directly by the client** (VAT-registered
+      2026-07-06; margin-scheme question answered 2026-07-07 — see Resolution
+      addendum below).
 - [x] Commerce tax type/rate configured per order item type accordingly
 - [x] Documented in this task (no divergent treatment found between the two
       order item types under Denmark's actual VAT schedule — see Resolution)
@@ -81,6 +81,27 @@ items for a real accountant/Skattestyrelsen guidance, not just "confirm the
    If it turns out the margin scheme never applies (e.g. every horse sold is
    bred in-house rather than bought in from a private seller), this task can
    close as-is with no further code changes.
+
+## Resolution addendum (2026-07-07) — margin scheme answered, task closed
+
+Client's answer to the open margin-scheme question: **the vast majority
+of horses are bred in-house; resale of a bought-in horse would be a
+rare exception.** Per this task's own closing condition ("if it turns
+out the margin scheme never applies… this task can close as-is"), the
+standard 25%-on-full-price configuration is correct for the normal
+case and the task closes with no code changes.
+
+**One standing operational caveat, which is the whole reason the rare
+exception doesn't reopen this task now**: if a horse *bought in from a
+private (non-VAT-registered) seller* is ever to be listed for sale,
+**do not list it before (a) the accountant confirms whether the margin
+scheme (brugtmoms) applies to that specific sale and (b) if it does,
+the shop gets custom development for margin-based invoicing** —
+Commerce's tax module has no built-in margin-scheme support, so this
+is real development work, not configuration. Building that
+speculatively now, for a case the client describes as a rare
+exception, would be premature; this caveat is the agreed trigger for
+when it becomes real work.
 
 ## Related
 - [[shh-stables-platform]]

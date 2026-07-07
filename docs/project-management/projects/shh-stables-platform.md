@@ -82,15 +82,19 @@ sample (four-gaited, no flying pace) was added alongside the five-gaited one
 so the field's purpose is demonstrable, not just present. No customer-facing
 content on this site now misrepresents the breed.
 
-[[0005-tax-classification-horses-vs-bookings]] is technically configured
-(Commerce's EU VAT tax type enabled, store registered for DK, `horse` classed
-`physical_goods` and `bee` classed `services`; verified via real add-to-cart:
-a 45,000 DKK horse and a 150 DKK booking both correctly show a 25%-inclusive
-VAT breakdown). Client confirmed 2026-07-06 the business is VAT-registered.
-Still marked **blocked**, not done, on one remaining question: whether the
-VAT *margin scheme* applies to any horse sales (depends on how each horse
-was acquired — bred in-house vs. bought in) — needs a real answer, not
-engineering work. See that task's Resolution for detail.
+[[0005-tax-classification-horses-vs-bookings]] is now **done**
+(closed 2026-07-07): Commerce's EU VAT tax type enabled, store
+registered for DK, `horse` classed `physical_goods` and `bee` classed
+`services`; verified via real add-to-cart with correct 25%-inclusive
+VAT breakdowns. Client confirmed VAT-registered (2026-07-06) and
+answered the margin-scheme question (2026-07-07): the vast majority
+of horses are bred in-house, resale a rare exception — so the
+standard configuration is correct. **One standing operational
+caveat** recorded in the task: a horse bought in from a private
+seller must NOT be listed for sale before the accountant confirms
+margin-scheme (brugtmoms) treatment and, if it applies, the shop gets
+custom margin-invoicing development (Commerce has no built-in
+support).
 
 [[0015-implement-cancellation-refund-policy]] is also done: new custom
 module `web/modules/custom/shh_cancellation_policy` — a `cancellation_policy`
@@ -365,20 +369,42 @@ this instead investigates a custom-code SDC display mirroring how the
 discovery pages (0019–0023) already render components directly,
 without needing Canvas's per-bundle support).
 
-Next actionable step: get the client's answer on
-[[0026-rider-account-access-policy]] (blocked — a business decision:
-self-registration vs. staff-created accounts; ideally asked together
-with [[0005-tax-classification-horses-vs-bookings]]'s equally-blocked
-VAT margin-scheme question). With [[0027-site-footer-and-contact-link]]
-now done, a prospective rider at least has a "Contact us" path while
-that's pending — though note 0027's finding that the `gin_login`-themed
-`/user/login` page itself still shows no footer, which 0026 should
-address. Next engineering work that's independent of 0026's answer:
-[[0002-booking-lifecycle-notifications-audit]] (the only remaining
-high-priority backlog item), or
-[[0009-vendor-fullcalendar-library]]'s CDN dependency, or the
-Canvas/SDC display migration starting with
-[[0030-canvas-content-template-bookable-facility]].
+[[0026-rider-account-access-policy]] is **done** (client answered
+2026-07-07: self-registration with mandatory admin approval): new
+custom module `web/modules/custom/shh_rider_registration` sets
+`register: visitors_admin_approval` on shh only and adds a
+self-hiding "Log in / Register" link to the main navigation. The
+waiver deliberately stays a separate post-registration step (two
+staff checkpoints: account approval, then membership approval —
+revisit only if that proves too heavy). **Found and patched a real
+Drupal CMS platform bug** during verification: `drupal_cms_helper`'s
+register-form alter leaks `notify=TRUE` into anonymous
+self-registrations (Form API resolves `#access = FALSE` elements to
+their `#default_value`), so every applicant got the wrong
+"administrator created your account" email with a dead login link
+and **the admin never got the pending-approval notification** —
+latent in every Drupal CMS site that opens registration, invisible
+under the shipped `admin_only` default; composer-patched per
+decision 0006, worth reporting upstream. Verified end to end over
+real HTTP as a genuinely never-seen account (`soren_holm`): nav link
+→ register → correct pending emails → staff approve → real emailed
+one-time login link → password → waiver-gated at booking → waiver →
+membership approved via real staff form → books Oval Track → order 6
+`completed`, 50 DKK, hold placed and promoted. The full
+public-visitor→booked-rider journey now works from a cold start.
+
+Next actionable step: with both blocked business decisions now
+answered and closed, the highest-priority remaining work is
+[[0002-booking-lifecycle-notifications-audit]] (high, backlog — the
+only high-priority item left). After that:
+[[0009-vendor-fullcalendar-library]]'s CDN dependency,
+[[0028-rider-dashboard-membership-status]] (more useful now that
+self-registered riders can exist in every membership state), or the
+Canvas/SDC display migration
+([[0030-canvas-content-template-bookable-facility]] /
+[[0031-sdc-based-commerce-product-display]], with
+[[0032-adopt-footer-navbar-sdc-components]] as its page-furniture
+companion).
 
 ## Tasks
 ```dataview
