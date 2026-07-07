@@ -456,9 +456,24 @@ Verified over real HTTP in all five membership states with real test
 accounts — including expiry via the real cron sweep — and uid 3's
 membership restored to active afterwards.
 
+[[0034-guest-checkout-approval-policy-alignment]] is **done** (closed
+2026-07-07): approval is universal (derived from 0026's decision).
+Investigation found THREE Commerce paths that create active accounts
+without consulting `user.settings.register` (the guest_new_account
+flow setting plus both the Login and CompletionRegister panes — the
+panes even log the new user in). Enforced at the shared chokepoint
+instead of hiding checkboxes: `shh_rider_registration` gained a
+runtime `hook_user_presave()` guard (blocks any web-created active
+account while the admin-approval policy is on; CLI and
+`administer users` sessions exempt) + pending-approval notifications +
+a `hook_user_login()` backstop ending the panes' automatic sessions.
+Verified with three real anonymous horse purchases (each misconfig
+enabled then restored): accounts come out blocked and unable to log
+in, orders complete and assign normally, and the untouched default
+path still creates no account at all.
+
 Next actionable step: all remaining work is medium/low: the
-0026-review follow-ups ([[0033-durable-config-strategy-shh]],
-[[0034-guest-checkout-approval-policy-alignment]],
+0026-review follow-ups ([[0033-durable-config-strategy-shh]] and
 [[0035-shh-install-hook-cleanup]]), or the Canvas/SDC display
 migration ([[0030-canvas-content-template-bookable-facility]] /
 [[0031-sdc-based-commerce-product-display]], with

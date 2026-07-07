@@ -1,0 +1,95 @@
+<?php
+
+/**
+ * @file
+ * Runtime enforcement of the rider account-approval policy.
+ *
+ * Task 0034: the "mandatory admin approval" policy (decision in task
+ * 0026, applied by this module's hook_install()) is only consulted by
+ * core's own /user/register form. Commerce's guest-checkout paths — the
+ * GuestCheckoutCompletionSubscriber (`guest_new_account` flow setting),
+ * the Login pane's register option, and the CompletionRegister pane —
+ * all create accounts with `status => TRUE` directly, never reading
+ * `user.settings.register`, so any of them being switched on would
+ * silently bypass the approval gate every self-registered rider passes.
+ *
+ * Rather than form-altering those specific admin checkboxes away, the
+ * policy is enforced at the only chokepoint all account-creation paths
+ * share: user entity presave. Whatever creates an active account during
+ * an ordinary web request gets aligned with the policy; operator paths
+ * (admin UI, drush) stay exempt.
+ */
+
+use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_user_presave().
+ */
+function shh_rider_registration_user_presave(UserInterface $account) {
+  if (!$account->isNew() || !$account->isActive()) {
+    return;
+  }
+  // Only while the site policy actually requires admin approval (0026).
+  // Read live, not at install time, so the guard disarms itself if the
+  // policy is ever deliberately relaxed — and stays inert on any site
+  // this module might be enabled on by mistake.
+  $register = \Drupal::config('user.settings')->get('register');
+  if ($register !== UserInterface::REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL) {
+    return;
+  }
+  // Operator paths stay operator paths: staff creating an account in the
+  // admin UI (or anything else running with `administer users`) and CLI
+  // (drush) creation are deliberate staff actions — the approval gate is
+  // about visitor-initiated self-service over the web.
+  if (PHP_SAPI === 'cli' || \Drupal::currentUser()->hasPermission('administer users')) {
+    return;
+  }
+  // Core's RegisterForm already creates blocked accounts under this
+  // policy (isActive() is FALSE above), so reaching this point means some
+  // other path — Commerce's guest-checkout subscriber/panes, or a future
+  // contrib module — is about to create a live account around the gate.
+  $account->block();
+  // Read by hook_user_insert() below; a plain runtime property, not a
+  // field — it must not survive past this save.
+  $account->shh_rider_registration_notify_pending = TRUE;
+  \Drupal::logger('shh_rider_registration')->notice('Blocked new account %name (created via %route, not the registration form) to match the admin-approval registration policy.', [
+    '%name' => $account->getAccountName(),
+    '%route' => \Drupal::routeMatch()->getRouteName() ?? 'unknown',
+  ]);
+}
+
+/**
+ * Implements hook_user_insert().
+ */
+function shh_rider_registration_user_insert(UserInterface $account) {
+  if (empty($account->shh_rider_registration_notify_pending)) {
+    return;
+  }
+  // The same notifications a self-registered rider gets from core's
+  // RegisterForm under visitors_admin_approval: "awaiting approval" to
+  // the rider, and the pending-approval copy to the site admin (core
+  // sends both from this one op) — otherwise staff would never learn
+  // the account exists and it would stay blocked forever.
+  _user_mail_notify('register_pending_approval', $account);
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function shh_rider_registration_user_login(UserInterface $account) {
+  if (!$account->isBlocked()) {
+    return;
+  }
+  // No core path finalizes a login for a blocked account. Commerce's
+  // Login and CompletionRegister checkout panes, however, call
+  // user_login_finalize() immediately after saving their new account —
+  // which the presave guard above has just blocked — leaving a live
+  // session for a blocked user. Undo it and tell the customer what
+  // actually happened. (Their checkout is unaffected: the order is
+  // already placed / continues as guest.)
+  \Drupal::logger('shh_rider_registration')->warning('Ended a just-created session for blocked account %name (a checkout pane logs new accounts in unconditionally).', [
+    '%name' => $account->getAccountName(),
+  ]);
+  \Drupal::messenger()->addWarning(t('Your account has been created but needs to be approved by staff before you can log in. You will receive an email once it has been approved.'));
+  user_logout();
+}
