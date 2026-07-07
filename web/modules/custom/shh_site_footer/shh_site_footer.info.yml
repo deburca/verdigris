@@ -1,0 +1,9 @@
+name: 'SHH Site Footer'
+type: module
+description: 'Places the "Footer" system menu block in the footer region for the hestehoj theme and adds a "Contact us" link to that menu. Found via the account-access gap analysis (task 0027): a `footer` menu has existed in config all along ("Privacy policy", "My privacy settings") but — the same gap shh_main_navigation found and fixed for the `main` menu — nothing has ever placed a block to display it, and the pre-existing /form/contact webform is not linked from anywhere on the site, leaving a visitor turned away at the login wall with no way to ask staff for an account. Scoped to hestehoj only.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - block:block
+  - menu_link_content:menu_link_content
+  - system:system

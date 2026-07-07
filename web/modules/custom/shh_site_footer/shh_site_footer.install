@@ -1,0 +1,70 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for shh_site_footer.
+ */
+
+use Drupal\block\Entity\Block;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
+
+/**
+ * Implements hook_install().
+ *
+ * Two things, both idempotent:
+ *
+ * 1. Adds a "Contact us" link (to the pre-existing `contact` webform at
+ *    /form/contact, decision 0009) to the `footer` menu. The menu already
+ *    ships with Drupal CMS ("Privacy policy", plus a disabled "My privacy
+ *    settings" placeholder) but the contact form has never been linked
+ *    from any page, menu, or footer on this site.
+ *
+ * 2. Places the standard "Footer" system menu block in the hestehoj
+ *    theme's `footer` region — the exact same never-placed-a-block gap
+ *    shh_main_navigation closed for the `main` menu in the header, and
+ *    the same minimal standard-Drupal fix: page.html.twig already wraps
+ *    `page.footer` in a styled <footer role="contentinfo">, and the
+ *    theme's generic menu.html.twig renders a flat link list; the
+ *    theme's more elaborate slotted `footer` SDC component (presumably
+ *    meant for Canvas page-region composition, which isn't set up for
+ *    this theme) is deliberately not taken on here, matching
+ *    shh_main_navigation's identical call on the `navbar` SDC.
+ */
+function shh_site_footer_install() {
+  $link_storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
+  $existing = $link_storage->loadByProperties([
+    'menu_name' => 'footer',
+    'link.uri' => 'internal:/form/contact',
+  ]);
+  if (!$existing) {
+    MenuLinkContent::create([
+      'title' => 'Contact us',
+      'link' => ['uri' => 'internal:/form/contact'],
+      'menu_name' => 'footer',
+      // After "Privacy policy" (weight 0).
+      'weight' => 10,
+      'enabled' => TRUE,
+    ])->save();
+  }
+
+  if (!Block::load('hestehoj_footer_menu')) {
+    Block::create([
+      'id' => 'hestehoj_footer_menu',
+      'theme' => 'hestehoj',
+      'region' => 'footer',
+      'weight' => 0,
+      'status' => TRUE,
+      'plugin' => 'system_menu_block:footer',
+      'settings' => [
+        'id' => 'system_menu_block:footer',
+        'label' => 'Footer',
+        'label_display' => '0',
+        'provider' => 'system',
+        'level' => 1,
+        'depth' => 0,
+        'expand_all_items' => FALSE,
+      ],
+      'visibility' => [],
+    ])->save();
+  }
+}

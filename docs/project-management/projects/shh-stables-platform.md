@@ -4,7 +4,7 @@ tags: [cms2/project]
 status: planning
 site: shh
 created: 2026-07-05
-updated: 2026-07-05
+updated: 2026-07-07
 target:
 ---
 # Project: stutteri-hestehoj.dk — stables platform
@@ -330,6 +330,24 @@ currently empty from earlier tasks' own real test purchases; a
 pre-existing, unrelated data-integrity bug on the stock "Test Page"
 node was found incidentally and is not linked from anywhere).
 
+[[0027-site-footer-and-contact-link]] is done: new custom module
+`web/modules/custom/shh_site_footer`, a deliberate near-clone of
+`shh_main_navigation` — a "Contact us" link added to the existing
+`footer` menu and a `system_menu_block:footer` block placed in the
+hestehoj `footer` region (the theme's `page.html.twig` and generic
+menu template were already fully prepared; the region had simply
+never had a block, same as `main` before 0019). Verified over real
+HTTP, anonymous and as the non-admin `shh_test_rider` account, across
+all five discovery pages plus node and webform pages. Two pre-existing
+findings noted in the task, not fixed there: the footer's stock
+"Privacy policy" link is invisible to visitors because its target
+(node 1) ships **unpublished** in Drupal CMS (a content decision,
+related to [[0006-gdpr-data-retention-policy]]); and `/user/login` —
+the exact page a turned-away rider lands on — renders via `gin_login`
+in the **admin theme**, so it can never show a hestehoj footer block;
+the contact-path-at-the-login-wall gap should be folded into
+[[0026-rider-account-access-policy]]'s implementation.
+
 [[0019-canvas-content-templates-for-structured-content]]'s deferred
 Canvas migration question is now operationalized into two concrete
 tasks: [[0030-canvas-content-template-bookable-facility]] (prototype
@@ -341,15 +359,20 @@ this instead investigates a custom-code SDC display mirroring how the
 discovery pages (0019–0023) already render components directly,
 without needing Canvas's per-bundle support).
 
-Next actionable step: [[0026-rider-account-access-policy]] first — it
-blocks the most direct path to actually using the booking flow as a
-real rider, and several other items ([[0027-site-footer-and-contact-link]]
-in particular) are more useful once that's answered. Otherwise,
-continue with whichever new priority you'd like next (e.g. revisiting
-[[0005-tax-classification-horses-vs-bookings]]'s still-open VAT margin
-scheme question, [[0009-vendor-fullcalendar-library]]'s CDN dependency,
-or starting the Canvas/SDC display migration with
-[[0030-canvas-content-template-bookable-facility]]).
+Next actionable step: get the client's answer on
+[[0026-rider-account-access-policy]] (blocked — a business decision:
+self-registration vs. staff-created accounts; ideally asked together
+with [[0005-tax-classification-horses-vs-bookings]]'s equally-blocked
+VAT margin-scheme question). With [[0027-site-footer-and-contact-link]]
+now done, a prospective rider at least has a "Contact us" path while
+that's pending — though note 0027's finding that the `gin_login`-themed
+`/user/login` page itself still shows no footer, which 0026 should
+address. Next engineering work that's independent of 0026's answer:
+[[0002-booking-lifecycle-notifications-audit]] (the only remaining
+high-priority backlog item), or
+[[0009-vendor-fullcalendar-library]]'s CDN dependency, or the
+Canvas/SDC display migration starting with
+[[0030-canvas-content-template-bookable-facility]].
 
 ## Tasks
 ```dataview
