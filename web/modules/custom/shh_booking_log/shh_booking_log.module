@@ -1,0 +1,95 @@
+<?php
+
+/**
+ * @file
+ * Booking lifecycle audit trail and notifications (task 0002).
+ */
+
+use Drupal\bat_event\Entity\Event;
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for bat_event.
+ *
+ * A newly created event is itself a transition (into its initial state):
+ * shh_booking_hold placing a cart hold, or staff creating an availability
+ * block through bee's management UI (0016).
+ */
+function shh_booking_log_bat_event_insert(Event $event) {
+  $logger = \Drupal::service('shh_booking_log.logger');
+  $logger->logTransition($event, NULL, $logger->getStateName($event));
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update() for bat_event.
+ *
+ * Only state changes are booking lifecycle transitions; other updates
+ * (e.g. date edits) are ignored.
+ */
+function shh_booking_log_bat_event_update(Event $event) {
+  $logger = \Drupal::service('shh_booking_log.logger');
+  $original = $event->getOriginal();
+  $from = $original instanceof Event ? $logger->getStateName($original) : NULL;
+  $to = $logger->getStateName($event);
+  if ($from !== $to) {
+    $logger->logTransition($event, $from, $to);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete() for bat_event.
+ *
+ * Nothing on this platform deletes events in normal operation, which is
+ * exactly why a deletion (e.g. a staff cleanup by hand) must show in the
+ * trail.
+ */
+function shh_booking_log_bat_event_delete(Event $event) {
+  $logger = \Drupal::service('shh_booking_log.logger');
+  $logger->logTransition($event, $logger->getStateName($event), 'deleted');
+}
+
+/**
+ * Implements hook_mail().
+ */
+function shh_booking_log_mail($key, &$message, $params) {
+  $slot = '';
+  if (!empty($params['slot_start'])) {
+    $slot = $params['slot_start']->format('j M Y H:i') . '–'
+      . $params['slot_end']->format('H:i');
+  }
+  switch ($key) {
+    case 'booking_confirmed':
+      $message['subject'] = t('Your booking is confirmed: @facility, @slot', [
+        '@facility' => $params['facility_label'],
+        '@slot' => $slot,
+      ]);
+      $message['body'][] = t("Your booking is confirmed.\n\nFacility: @facility\nTime: @slot\nOrder number: @order\n\nYou can see all your bookings, or cancel this one, on your dashboard on our website (My account).", [
+        '@facility' => $params['facility_label'],
+        '@slot' => $slot,
+        '@order' => $params['order_number'],
+      ]);
+      break;
+
+    case 'booking_cancelled':
+      $message['subject'] = t('Your booking has been cancelled: @facility, @slot', [
+        '@facility' => $params['facility_label'],
+        '@slot' => $slot,
+      ]);
+      $message['body'][] = t("Your booking of @facility for @slot (order @order) has been cancelled and the slot released. If a refund was authorized, it will be processed to you by bank transfer.\n\nIf you did not expect this cancellation, please contact us.", [
+        '@facility' => $params['facility_label'],
+        '@slot' => $slot,
+        '@order' => $params['order_number'],
+      ]);
+      break;
+
+    case 'hold_expired':
+      $message['subject'] = t('Your reserved slot has been released: @facility, @slot', [
+        '@facility' => $params['facility_label'],
+        '@slot' => $slot,
+      ]);
+      $message['body'][] = t("The slot you had in your cart — @facility, @slot — was held for you while you completed checkout, but the hold has now expired and the slot has been released for other riders.\n\nIf you still want it, please book it again on our website.", [
+        '@facility' => $params['facility_label'],
+        '@slot' => $slot,
+      ]);
+      break;
+  }
+}

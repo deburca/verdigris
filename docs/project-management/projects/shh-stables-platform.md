@@ -400,15 +400,39 @@ tracked as [[0033-durable-config-strategy-shh]],
 [[0034-guest-checkout-approval-policy-alignment]], and
 [[0035-shh-install-hook-cleanup]].
 
-Next actionable step: with both blocked business decisions now
-answered and closed, the highest-priority remaining work is
-[[0002-booking-lifecycle-notifications-audit]] (high, backlog — the
-only high-priority item left). After that:
+[[0002-booking-lifecycle-notifications-audit]] is **done** (closed
+2026-07-07): new custom module `web/modules/custom/shh_booking_log` —
+an append-only `shh_booking_log` content entity (plain base fields,
+the 0018/0003 pattern) written from bat_event insert/update/delete
+hooks, so every booking path is covered by construction: 0012's
+holds/promotes/releases, 0015's cancellations, cart-expiry cron, and
+0016's orderless staff-created events. Actor recorded as
+customer/staff/system; admin trail at `/admin/reports/booking-log`
+(restricted permission); three rider emails (`booking_confirmed` —
+deliberately in addition to the Commerce receipt, which carries no
+slot date/time at all; `booking_cancelled`; `hold_expired` for
+system-expired holds only, not self-removed cart items). All four
+lifecycle scenarios verified over real HTTP as a non-admin rider
+(plus admin for the staff-event case). Two real bugs found and fixed
+during verification: the cart-add hold row misclassified the rider
+as staff (the event→booking→order chain isn't saved yet at event
+insert time — actor classification now falls back to bee's own
+staff permission when no order resolves), and the confirmation email
+cited the internal order id instead of the order number (Commerce
+sets the number only on the in-flight order object during
+pre_transition — `shh_booking_hold`'s promote subscriber moved to
+`place.post_transition`, so that module is part of this task's diff
+too).
+
+Next actionable step: with the last high-priority backlog item
+(0002) now closed, the remaining work is all medium/low:
 [[0009-vendor-fullcalendar-library]]'s CDN dependency,
 [[0028-rider-dashboard-membership-status]] (more useful now that
-self-registered riders can exist in every membership state), or the
-Canvas/SDC display migration
-([[0030-canvas-content-template-bookable-facility]] /
+self-registered riders can exist in every membership state), the
+0026-review follow-ups ([[0033-durable-config-strategy-shh]],
+[[0034-guest-checkout-approval-policy-alignment]],
+[[0035-shh-install-hook-cleanup]]), or the Canvas/SDC display
+migration ([[0030-canvas-content-template-bookable-facility]] /
 [[0031-sdc-based-commerce-product-display]], with
 [[0032-adopt-footer-navbar-sdc-components]] as its page-furniture
 companion).

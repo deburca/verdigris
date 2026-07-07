@@ -1,0 +1,4 @@
+access booking log:
+  title: 'Access the booking lifecycle log'
+  description: 'View the audit trail of booking state transitions at /admin/reports/booking-log.'
+  restrict access: true

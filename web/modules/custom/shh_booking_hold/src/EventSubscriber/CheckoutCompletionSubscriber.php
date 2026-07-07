@@ -9,7 +9,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 /**
  * Promotes on-hold booking events to booked when an order is placed.
  *
- * Runs on the same event as
+ * Runs on the same workflow transition as
  * \Drupal\bee\EventSubscriber\OrderEventSubscriber::finalizeCart(); that
  * subscriber only creates a fresh event if the booking has none yet, so it
  * is a no-op here (our on-hold event was already created at cart-add time by
@@ -24,7 +24,14 @@ class CheckoutCompletionSubscriber implements EventSubscriberInterface {
    * {@inheritdoc}
    */
   public static function getSubscribedEvents(): array {
-    return ['commerce_order.place.pre_transition' => 'promoteHolds'];
+    // post_transition, i.e. after the placed order is saved: the bat_event
+    // save inside promoteToBooked() triggers shh_booking_log's rider
+    // confirmation email, which must carry the real order number. During
+    // pre_transition the number only exists on the in-flight order object
+    // ($event->getEntity()) — a storage load still sees NULL, so anything
+    // resolving the order independently (as the logger does) gets the
+    // wrong reference. Priority 0 still beats the order receipt (-100).
+    return ['commerce_order.place.post_transition' => 'promoteHolds'];
   }
 
   /**

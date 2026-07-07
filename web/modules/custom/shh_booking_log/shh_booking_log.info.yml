@@ -1,0 +1,11 @@
+name: 'SHH Booking Log'
+type: module
+description: 'Audit trail and rider notifications for the booking lifecycle (task 0002). Logs every BAT event state transition (held, confirmed, cancelled/released, expired, admin-created) as an shh_booking_log entity with actor and timestamp, by hooking bat_event insert/update/delete — the one chokepoint every booking path passes through, including bee''s staff-facing availability management (task 0016). Emails the rider on booking confirmed (the Commerce receipt shows no slot date/time), booking cancelled, and hold expired.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - bat:bat_event
+  - bat:bat_booking
+  - commerce:commerce_order
+  - drupal:node
+  - drupal:user

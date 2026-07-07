@@ -1,0 +1,12 @@
+services:
+  shh_booking_log.logger:
+    class: Drupal\shh_booking_log\BookingLifecycleLogger
+    arguments:
+      - '@entity_type.manager'
+      - '@current_user'
+      - '@plugin.manager.mail'
+      - '@language_manager'
+      - '@logger.channel.shh_booking_log'
+  logger.channel.shh_booking_log:
+    parent: logger.channel_base
+    arguments: ['shh_booking_log']
