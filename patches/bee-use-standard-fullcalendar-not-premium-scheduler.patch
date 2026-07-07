@@ -1,0 +1,30 @@
+diff --git a/bee.module b/bee.module
+--- a/bee.module
++++ b/bee.module
+@@ -53,7 +53,7 @@ function bee_preprocess_bat_fullcalendar(&$variables) {
+       $variables['calendar_settings']['fc_settings']['batCalendar'][0]['initialView'] = $data['config']->get('bat_fullcalendar_calendar_edit_hourly');
+       $variables['calendar_settings']['fc_settings']['batCalendar'][0]['defaultView'] = $variables['calendar_settings']['fc_settings']['batCalendar'][0]['defaultView'];
+       $variables['calendar_settings']['fc_settings']['batCalendar'][0]['Swe3r'] = "1.1";
+-      $data['bat_library'] = "bat_fullcalendar/bat-fullcalendar-scheduler";
++      $data['bat_library'] = "bat_fullcalendar/bat-fullcalendar";
+     }
+     else {
+       $variables['calendar_settings']['fc_settings']['batCalendar'][0]['initialView'] = $data['config']->get('bat_fullcalendar_calendar_edit_daily');
+@@ -68,7 +68,7 @@ function bee_preprocess_bat_fullcalendar(&$variables) {
+       $variables['calendar_settings']['fc_settings']['batCalendar'][0]['initialView'] = $data['config']->get('bat_fullcalendar_calendar_view_hourly');
+       $variables['calendar_settings']['fc_settings']['batCalendar'][0]['defaultView'] = $variables['calendar_settings']['fc_settings']['batCalendar'][0]['defaultView'];
+       $variables['calendar_settings']['fc_settings']['batCalendar'][0]['Swe3r'] = "2.1";
+-      $data['bat_library'] = "bat_fullcalendar/bat-fullcalendar-scheduler";
++      $data['bat_library'] = "bat_fullcalendar/bat-fullcalendar";
+     }
+     else {
+       $variables['calendar_settings']['fc_settings']['batCalendar'][0]['initialView'] = $data['config']->get('bat_fullcalendar_calendar_view_daily');
+@@ -218,7 +218,7 @@ function bee_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+   elseif ($route_name == 'bee.node.availability') {
+ 
+     $form['#attached']['library'][] = 'bee/bee';
+-    $form['#attached']['library'][] = 'bat_fullcalendar/bat-fullcalendar-scheduler';
++    $form['#attached']['library'][] = 'bat_fullcalendar/bat-fullcalendar';
+   }
+ 
+   elseif (preg_match('/^node_.*_edit_form$/', $form_id)) {

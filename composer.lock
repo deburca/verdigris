@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4a08ab676314828c7d468de94061ad7d",
+    "content-hash": "14fdc1aad6740eb5d8e916ac6c345ff8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -9951,6 +9951,21 @@
                 "source": "https://github.com/darylldoyle/svg-sanitizer/tree/0.22.0"
             },
             "time": "2025-08-12T10:13:48+00:00"
+        },
+        {
+            "name": "fullcalendar/fullcalendar",
+            "version": "6.1.21",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/fullcalendar/-/fullcalendar-6.1.21.tgz"
+            },
+            "type": "drupal-library",
+            "extra": {
+                "installer-name": "fullcalendar"
+            },
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "goalgorilla/rtseo.js",

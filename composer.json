@@ -150,6 +150,23 @@
                 "license": "MIT"
             }
         },
+        "fullcalendar": {
+            "_bat": true,
+            "type": "package",
+            "package": {
+                "name": "fullcalendar/fullcalendar",
+                "version": "6.1.21",
+                "type": "drupal-library",
+                "extra": {
+                    "installer-name": "fullcalendar"
+                },
+                "dist": {
+                    "url": "https://registry.npmjs.org/fullcalendar/-/fullcalendar-6.1.21.tgz",
+                    "type": "tar"
+                },
+                "license": "MIT"
+            }
+        },
         "progress-tracker": {
             "_webform": true,
             "type": "package",
@@ -311,6 +328,7 @@
         "drupal/views_infinite_scroll": "^2",
         "drupal/webform": "^6.3-beta3",
         "drupal/yoast_seo": "^2.1",
+        "fullcalendar/fullcalendar": "6.1.21",
         "hivelog/hivelog": "^1.3",
         "jquery/inputmask": "*",
         "jquery/intl-tel-input": "*",
@@ -434,10 +452,14 @@
                 "Preserve custom component prop schema (overlay_opacity on cta; relax overly strict uri-reference format on url/href/cite_url/button_url props that breaks the site-wide 'No URL' sentinel convention and causes Canvas component-version hash drift/OutOfRangeException)": "patches/mercury-component-schema-customizations.patch"
             },
             "drupal/bee": {
-                "AddReservationForm empties an existing cart on every new reservation submission, so a customer can never have more than one booking in a cart at a time — stop that, let bookings accumulate like a normal cart (needed for the shh multi-facility package discount)": "patches/bee-accumulate-cart-instead-of-emptying.patch"
+                "AddReservationForm empties an existing cart on every new reservation submission, so a customer can never have more than one booking in a cart at a time — stop that, let bookings accumulate like a normal cart (needed for the shh multi-facility package discount)": "patches/bee-accumulate-cart-instead-of-emptying.patch",
+                "Attach bat_fullcalendar's standard library instead of the -scheduler variant for hourly types (public node view, staff availability screen, availability form): the scheduler JS hardcodes premium resourceTimeline* toolbar buttons with no schedulerLicenseKey — unlicensed FullCalendar Premium views reachable from every calendar — while every configured view on this platform is the standard dayGridMonth. The standard variant also drops the extra units REST fetch (task 0009)": "patches/bee-use-standard-fullcalendar-not-premium-scheduler.patch"
             },
             "drupal/bat_api": {
                 "EventsRestResource::get() references $this->eventType, which is never assigned on the class, so bat_api/rest/calendar-events (hit by the FullCalendar widget embedded on every BEE-bookable node view) always fatals with 'Call to a member function usesStates() on null' — use the local $bat_event_type already loaded a few lines above instead, exactly like the rest of the method does": "patches/bat_api-fix-events-rest-resource-undefined-eventtype.patch"
+            },
+            "drupal/bat": {
+                "bat_fullcalendar loads FullCalendar from the jsdelivr CDN at runtime (standard bundle UNPINNED = whatever version jsdelivr serves that day) — point the bat-fullcalendar-cdn library at the locally vendored copy in /libraries/fullcalendar instead (vendored via the fullcalendar/fullcalendar composer repository entry, matching the Webform JS-dependency pattern; task 0009)": "patches/bat_fullcalendar-vendor-local-fullcalendar-library.patch"
             }
         }
     },

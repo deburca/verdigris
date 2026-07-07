@@ -1,5 +1,5 @@
 {
-    "_hash": "55f32686e8dc2e543d3ec71e54b2fe01ee6911623a7ac4f95facda87c54b2933",
+    "_hash": "b57e8c44278fae348a75b5ed8a1b3729d531ee190bbbd600437da7ff124cc583",
     "patches": {
         "drupal/byte_theme": [
             {
@@ -19,6 +19,76 @@
                 "description": "Fix TypeError in ComponentMetadataRequirementsChecker closure when example items are not arrays/objects",
                 "url": "patches/canvas-component-metadata-closure-type-fix.patch",
                 "sha256": "ac7e46005088e7323db79f5b4f4814b0b5bef39f3e69d65e18ef16c6003b4825",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
+        "drupal/drupal_cms_helper": [
+            {
+                "package": "drupal/drupal_cms_helper",
+                "description": "form_user_register_form_alter sets the admin-only notify checkbox's #default_value to TRUE unconditionally; on anonymous self-registration that element is #access FALSE, so Form API resolves it to the default and RegisterForm::save() treats every self-registration as admin-created — wrong welcome email (an unusable one-time login link on a blocked pending-approval account) and no pending-approval notification to the admin. Scope the whole alter to the admin-create form",
+                "url": "patches/drupal_cms_helper-scope-register-form-alter-to-admin-create.patch",
+                "sha256": "6edcc5428a92fe948902275222e245c695a62411d97a5097beefdad159d86598",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
+        "drupal/mercury": [
+            {
+                "package": "drupal/mercury",
+                "description": "Preserve custom component prop schema (overlay_opacity on cta; relax overly strict uri-reference format on url/href/cite_url/button_url props that breaks the site-wide 'No URL' sentinel convention and causes Canvas component-version hash drift/OutOfRangeException)",
+                "url": "patches/mercury-component-schema-customizations.patch",
+                "sha256": "145ba17296bcd530de43d75dd2ec41c042c61fe1d0eed6c2a63d99487de2e5a3",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
+        "drupal/bee": [
+            {
+                "package": "drupal/bee",
+                "description": "AddReservationForm empties an existing cart on every new reservation submission, so a customer can never have more than one booking in a cart at a time — stop that, let bookings accumulate like a normal cart (needed for the shh multi-facility package discount)",
+                "url": "patches/bee-accumulate-cart-instead-of-emptying.patch",
+                "sha256": "121db0e45df83e863e1e84a75e98f29edf6c58d222d41d069c0f02272b22de3f",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "drupal/bee",
+                "description": "Attach bat_fullcalendar's standard library instead of the -scheduler variant for hourly types (public node view, staff availability screen, availability form): the scheduler JS hardcodes premium resourceTimeline* toolbar buttons with no schedulerLicenseKey — unlicensed FullCalendar Premium views reachable from every calendar — while every configured view on this platform is the standard dayGridMonth. The standard variant also drops the extra units REST fetch (task 0009)",
+                "url": "patches/bee-use-standard-fullcalendar-not-premium-scheduler.patch",
+                "sha256": "beaef09d0e5b99fbb43c1f6bf65dea05746ec3cf733e74413bbd7850893f7192",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
+        "drupal/bat_api": [
+            {
+                "package": "drupal/bat_api",
+                "description": "EventsRestResource::get() references $this->eventType, which is never assigned on the class, so bat_api/rest/calendar-events (hit by the FullCalendar widget embedded on every BEE-bookable node view) always fatals with 'Call to a member function usesStates() on null' — use the local $bat_event_type already loaded a few lines above instead, exactly like the rest of the method does",
+                "url": "patches/bat_api-fix-events-rest-resource-undefined-eventtype.patch",
+                "sha256": "08d22128604d0c59b76e71ed4379488f818df6c253bd58d6b328013f6b10ec61",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
+        "drupal/bat": [
+            {
+                "package": "drupal/bat",
+                "description": "bat_fullcalendar loads FullCalendar from the jsdelivr CDN at runtime (standard bundle UNPINNED = whatever version jsdelivr serves that day) — point the bat-fullcalendar-cdn library at the locally vendored copy in /libraries/fullcalendar instead (vendored via the fullcalendar/fullcalendar composer repository entry, matching the Webform JS-dependency pattern; task 0009)",
+                "url": "patches/bat_fullcalendar-vendor-local-fullcalendar-library.patch",
+                "sha256": "a7d53c5ad03e75745eb7d82c707202ec8265d7a5ba5cab6d450db0633523b7d3",
                 "depth": 1,
                 "extra": {
                     "provenance": "root"

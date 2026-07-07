@@ -424,9 +424,29 @@ pre_transition — `shh_booking_hold`'s promote subscriber moved to
 `place.post_transition`, so that module is part of this task's diff
 too).
 
-Next actionable step: with the last high-priority backlog item
-(0002) now closed, the remaining work is all medium/low:
-[[0009-vendor-fullcalendar-library]]'s CDN dependency,
+[[0009-vendor-fullcalendar-library]] is **done** (closed 2026-07-07),
+with a corrected premise: the FC3-era `fullcalendar_library` module is
+disabled and unused (a metapackage-dependency leftover) — the real CDN
+dependency was `bat_fullcalendar` (RC11) loading FullCalendar **v6**
+from jsdelivr, the standard bundle *unpinned* and the premium Scheduler
+bundle pinned but **unlicensed and user-reachable** (bee attached the
+scheduler variant for hourly types, whose JS hardcodes premium
+resourceTimeline toolbar buttons and never injects a
+schedulerLicenseKey — while every configured view is the standard MIT
+`dayGridMonth`). Resolved by vendoring `fullcalendar/fullcalendar`
+6.1.21 via a composer repository entry (the Webform-assets pattern) and
+two composer patches: bat's library now loads the local copy, and bee
+attaches the standard variant instead of scheduler everywhere —
+licensing question eliminated rather than licensed. Verified over real
+HTTP: both calendar pages CDN-free, the library now ships inside the
+local JS aggregate, anonymous events feed intact. **Important
+operational find:** `patches.lock.json` was stale (composer-patches 2.x
+applies only what's in that lock; a bare `composer reinstall` silently
+stripped the 0017 bee cart patch) — now relocked covering all 8 patched
+packages; after any patch change: `composer patches-relock` +
+`composer patches-repatch`, never bare reinstall.
+
+Next actionable step: all remaining work is medium/low:
 [[0028-rider-dashboard-membership-status]] (more useful now that
 self-registered riders can exist in every membership state), the
 0026-review follow-ups ([[0033-durable-config-strategy-shh]],
