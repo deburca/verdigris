@@ -392,6 +392,13 @@ one-time login link → password → waiver-gated at booking → waiver →
 membership approved via real staff form → books Oval Track → order 6
 `completed`, 50 DKK, hold placed and promoted. The full
 public-visitor→booked-rider journey now works from a cold start.
+Post-review hardening (same day): `hook_uninstall()` restores
+`admin_only` and removes the nav link (verified with a real
+uninstall/reinstall cycle), and a `site.path` guard makes both hooks
+an explicit no-op on non-shh sites; remaining review findings
+tracked as [[0033-durable-config-strategy-shh]],
+[[0034-guest-checkout-approval-policy-alignment]], and
+[[0035-shh-install-hook-cleanup]].
 
 Next actionable step: with both blocked business decisions now
 answered and closed, the highest-priority remaining work is

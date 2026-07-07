@@ -36,6 +36,17 @@ use Drupal\menu_link_content\Entity\MenuLinkContent;
  * double approval too heavy in practice).
  */
 function shh_rider_registration_install() {
+  // Multisite guard: this module changes a per-site registration policy
+  // decided for shh only. On any other site in this codebase, installing
+  // it must be a no-op — there is no theme-scoped inertness here (unlike
+  // shh_main_navigation's hestehoj-keyed block), so guard explicitly.
+  if (!_shh_rider_registration_is_shh_site()) {
+    \Drupal::logger('shh_rider_registration')->notice(
+      'Not the shh site; leaving registration settings untouched.'
+    );
+    return;
+  }
+
   \Drupal::configFactory()->getEditable('user.settings')
     ->set('register', 'visitors_admin_approval')
     ->save();
@@ -55,4 +66,39 @@ function shh_rider_registration_install() {
       'enabled' => TRUE,
     ])->save();
   }
+}
+
+/**
+ * Implements hook_uninstall().
+ *
+ * Uninstalling this module must actually close what it opened: restore
+ * the platform's `admin_only` registration default (the value this
+ * module changed from) and remove the "Log in / Register" menu link, so
+ * the site does not keep accepting self-registrations — or advertising
+ * a Register path — after the feature is removed. Same site guard as
+ * install: if install no-op'd on a non-shh site, uninstall must not
+ * touch that site's settings either.
+ */
+function shh_rider_registration_uninstall() {
+  if (!_shh_rider_registration_is_shh_site()) {
+    return;
+  }
+
+  \Drupal::configFactory()->getEditable('user.settings')
+    ->set('register', 'admin_only')
+    ->save();
+
+  $link_storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
+  $links = $link_storage->loadByProperties([
+    'menu_name' => 'main',
+    'link.uri' => 'internal:/user/login',
+  ]);
+  $link_storage->delete($links);
+}
+
+/**
+ * Whether the current site is shh (multisite: config is per-site).
+ */
+function _shh_rider_registration_is_shh_site(): bool {
+  return \Drupal::getContainer()->getParameter('site.path') === 'sites/shh';
 }

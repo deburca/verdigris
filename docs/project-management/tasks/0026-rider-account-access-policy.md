@@ -124,6 +124,23 @@ registration — left in place, permanently blocked/pending, as the
 account whose wrong-template email (Mailpit, 15:07) documents the bug;
 harmless, delete freely if it clutters `/admin/people`.
 
+**Post-review hardening (2026-07-07, same day)**: a high-effort code
+review of this implementation confirmed the composer patch and the
+menu-link access mechanism as sound, and surfaced lifecycle gaps in
+the module itself — both fixed: `hook_uninstall()` now restores
+`register: admin_only` and deletes the "Log in / Register" link
+(verified with a real uninstall → state-restored → reinstall cycle),
+and both hooks are guarded by a `site.path === 'sites/shh'` check so
+enabling the module on another site in this multisite is an explicit
+logged no-op (this module has no theme-scoped inertness the way
+shh_main_navigation does). Remaining review findings tracked as
+[[0033-durable-config-strategy-shh]] (fire-once config vs. any future
+config import), [[0034-guest-checkout-approval-policy-alignment]]
+(Commerce guest-checkout registration would bypass approval —
+currently disabled on both flows), and
+[[0035-shh-install-hook-cleanup]] (shared menu-link helper, patch
+comment size, duplicated prose, upstream bug report).
+
 Related follow-ups: 0027's finding stands — the gin_login-rendered
 `/user/login` and `/user/register` pages are admin-themed, so they
 show no site footer/nav; acceptable now that the nav link and the
