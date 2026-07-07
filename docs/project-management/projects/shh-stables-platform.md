@@ -346,7 +346,13 @@ related to [[0006-gdpr-data-retention-policy]]); and `/user/login` —
 the exact page a turned-away rider lands on — renders via `gin_login`
 in the **admin theme**, so it can never show a hestehoj footer block;
 the contact-path-at-the-login-wall gap should be folded into
-[[0026-rider-account-access-policy]]'s implementation.
+[[0026-rider-account-access-policy]]'s implementation. The question of
+eventually replacing both placeholder menu blocks (0019's header,
+0027's footer) with the theme's slotted `navbar`/`footer` SDC
+components — which needs both a rendering-mechanism decision (Canvas
+page regions vs. custom code) and client content for the slots — is
+now tracked as [[0032-adopt-footer-navbar-sdc-components]] (backlog,
+low priority; natural companion to the 0030/0031 display migration).
 
 [[0019-canvas-content-templates-for-structured-content]]'s deferred
 Canvas migration question is now operationalized into two concrete
