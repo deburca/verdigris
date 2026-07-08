@@ -1,9 +1,9 @@
 ---
 tags: [cms2/decision]
-status: proposed
+status: accepted
 created: 2026-07-06
-updated: 2026-07-06
-decided:
+updated: 2026-07-08
+decided: 2026-07-08
 site: shh
 deciders: []
 ---
@@ -12,7 +12,10 @@ deciders: []
 
 ## Status
 
-proposed
+accepted — the deferral resolved empirically by [[0030-canvas-content-template-bookable-facility]]
+(2026-07-08): **do not adopt ContentTemplate**; custom-code SDC
+composition stays the single site-wide approach. See the 0030 Outcome
+section below.
 
 ## Context
 
@@ -204,6 +207,52 @@ without it. Should 3498525 ever land, converting `horse` product
 pages to `ContentTemplate` would be a *consolidation* option, not a
 prerequisite — the custom-code display is the supported pattern in
 the meantime.
+
+## Outcome — 0030 prototyped for real; ContentTemplate not adopted (2026-07-08)
+
+The prototype this decision's Implementation Notes called for was done
+by [[0030-canvas-content-template-bookable-facility]]: a real, enabled
+`canvas.content_template.node.bookable_facility.full` on dev (title
+bound to `hestehoj:heading` via an `entity-field` prop source, a
+static and a `field_surface`-bound `hestehoj:text`), rendered over
+real HTTP, then deleted. Both open questions are now answered
+empirically:
+
+1. **`hook_ENTITY_TYPE_view()` survives.** Both facility CTA hooks
+   ("Book now", "Buy a 10-session credit pack") rendered on the
+   templated page. The bypass this decision worried about is real but
+   narrower than feared: `ContentTemplateAwareViewBuilder` replaces
+   field-formatter rendering (and unsets `#theme`), but core's
+   `buildMultiple()` still invokes entity-view hooks, whose additions
+   render as siblings of the template output.
+2. **The availability calendar does not fit — structurally.** The
+   template replaces the entire view display, so
+   `field_availability_hourly`'s `entity_reference_entity_view`
+   formatter (→ `bat_unit` in `hourly_calendar` view mode, the
+   FullCalendar embed) never runs, and Canvas 1.7.1 has no prop
+   source, adapter, or component source that renders field-formatter
+   output. The same gap covers `field_open_hours`
+   (`office_hours_table`) and label-rendered fields. A hybrid
+   (template for scalars + hook-injected renders for the rest) works
+   mechanically but was rejected: both paradigms on one page, more
+   moving parts than either pure approach.
+
+Plus an interop bug found in passing: Drupal CMS's
+`content_template_disable_preview` ECA rule runs a validated config
+action on `node.type.<bundle>` on every `canvas.content_template.node.*`
+save; bee ships no config schema for its node-type
+`third_party_settings`, so the action errors on every template save
+for `bookable_facility` — and its `preview_mode` write lands anyway
+despite the reported failure. (Candidate upstream issue against bee.)
+
+**Decision finalized**: keep the classic entity-view pipeline +
+custom-code SDC composition (`hook_ENTITY_TYPE_view` /
+`hook_ENTITY_TYPE_view_alter` building `#type: component` render
+arrays) as the one approach for *all* individual entity pages —
+`bookable_facility` and `commerce_product` alike. Revisit only if
+drupal.org/i/3498525 lands (lifting `node`-only, so products could
+follow) **and** Canvas grows a sanctioned way to render
+formatter-driven output inside a template.
 
 Note this decision also spawned [[0032-adopt-footer-navbar-sdc-components]]
 (the theme's `navbar`/`footer` slotted SDCs), done in the same

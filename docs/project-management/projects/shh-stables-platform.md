@@ -592,10 +592,32 @@ identifier appears. Verified over real HTTP: anonymous tripped at
 exactly 60, a logged-in rider had (and tripped) an independent
 bucket, admin bypassed 63-for-63. No config changed.
 
+[[0030-canvas-content-template-bookable-facility]] is **done**
+(closed 2026-07-08) — investigated for real, decided **not to
+migrate**, which also flips decision 0019 from deferred to
+**accepted**. A real enabled
+`canvas.content_template.node.bookable_facility.full` was created on
+dev, rendered over HTTP, and deleted. Empirical answers to 0019's two
+open questions: the facility CTA `hook_ENTITY_TYPE_view()` hooks
+**survive** (both buttons rendered — the Canvas view builder bypasses
+field formatters, not entity-view hooks), and prop bindings work
+(title, `field_surface`); but the availability calendar **cannot be
+expressed** in a template — the template replaces the whole view
+display so the `entity_reference_entity_view` formatter (the
+FullCalendar embed) never runs, and Canvas 1.7.1 has no prop source,
+adapter, or component source that renders formatter output (same gap:
+`office_hours_table`, label formatters). A hybrid was rejected
+(template for scalars + hook-injected custom code for the rest =
+both paradigms on one page). Bonus interop bug found: Drupal CMS's
+`content_template_disable_preview` ECA rule errors on **every**
+template save for this bundle because bee ships no config schema for
+its node-type `third_party_settings` — and its `preview_mode` write
+lands despite the reported validation failure (restored). Candidate
+upstream issue against bee. Custom-code SDC composition stays the
+single site-wide approach; the Canvas track is closed unless
+drupal.org/i/3498525 lands *and* formatter output becomes expressible.
+
 Next actionable step: the remaining backlog is medium/low —
-[[0030-canvas-content-template-bookable-facility]] (the last piece of
-the Canvas track, now only relevant to `bookable_facility` since the
-product side is settled without ContentTemplate),
 [[0004-staff-admin-booking-calendar]], the client-input-gated
 [[0006-gdpr-data-retention-policy]], and the new
 [[0037-unsell-sold-horse]] (staff relisting of a sold horse, split
