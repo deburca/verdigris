@@ -1,0 +1,4 @@
+bypass availability calendar rate limiting:
+  title: 'Bypass availability calendar rate limiting'
+  description: 'Exempts requests to the public BAT calendar-events endpoint from flood control. For staff tooling that legitimately polls availability.'
+  restrict access: true

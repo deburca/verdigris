@@ -573,6 +573,25 @@ full purchase price, per-case staff refund decisions — relist and
 refund should decouple), is recorded as [[0037-unsell-sold-horse]]
 (backlog, low).
 
+[[0007-availability-calendar-rate-limiting]] is **done** (closed
+2026-07-08): the public `/bat_api/rest/calendar-events` endpoint
+(anonymous per decision 0017, opened by 0021, uncacheable per unique
+URL and doing real availability calculation per request) is now
+flood-limited from within `shh_public_availability` — 60 requests/60 s
+by default (config-overridable), keyed per user id when authenticated
+and per IP when anonymous, 429 + `Retry-After` when exceeded, with a
+new no-role restricted permission `bypass availability calendar rate
+limiting` as the staff escape hatch. Anonymous `page_cache` still
+absorbs repeated identical URLs before the limiter (correct: cache
+hits are cheap; a scraper's unique query strings always miss and get
+counted), and the 429 itself is uncacheable by construction. The PII
+criterion was verified against a full-year anonymous pull: only unit
+names / "N/A" titles plus times, colors and state flags — booked
+slots are indistinguishable from staff-blocked ones, and no rider
+identifier appears. Verified over real HTTP: anonymous tripped at
+exactly 60, a logged-in rider had (and tripped) an independent
+bucket, admin bypassed 63-for-63. No config changed.
+
 Next actionable step: the remaining backlog is medium/low —
 [[0030-canvas-content-template-bookable-facility]] (the last piece of
 the Canvas track, now only relevant to `bookable_facility` since the

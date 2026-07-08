@@ -1,6 +1,6 @@
 name: 'SHH Public Availability'
 type: module
-description: 'Implements docs/project-management/tasks/0021-public-availability-calendar.md: grants the restful get bat_api_events_resource permission to anonymous and authenticated (per decision 0017 -- the availability calendar embedded on each facility page should stay publicly viewable), so the calendar widget already embedded on every Bookable Facility page actually shows real data to real visitors instead of a silent 403.'
+description: 'Implements docs/project-management/tasks/0021-public-availability-calendar.md: grants the restful get bat_api_events_resource permission to anonymous and authenticated (per decision 0017 -- the availability calendar embedded on each facility page should stay publicly viewable), so the calendar widget already embedded on every Bookable Facility page actually shows real data to real visitors instead of a silent 403. Also implements task 0007: flood-based rate limiting of that same public endpoint (per-IP anonymous, per-user authenticated) so staying public does not mean staying scrapeable.'
 core_version_requirement: ^10.2 || ^11
 package: Custom
 dependencies:

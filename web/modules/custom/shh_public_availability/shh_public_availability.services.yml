@@ -1,0 +1,6 @@
+services:
+  shh_public_availability.calendar_rate_limit_subscriber:
+    class: Drupal\shh_public_availability\EventSubscriber\CalendarRateLimitSubscriber
+    arguments: ['@flood', '@current_user', '@config.factory']
+    tags:
+      - { name: event_subscriber }
