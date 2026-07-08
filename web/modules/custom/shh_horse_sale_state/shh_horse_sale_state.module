@@ -2,11 +2,14 @@
 
 /**
  * @file
- * Implements 0024-horse-sale-state-enforcement.md, see project-management.
+ * Implements 0024-horse-sale-state-enforcement.md and the 0037 staff
+ * relist action, see project-management.
  */
 
+use Drupal\commerce_product\Entity\ProductInterface;
 use Drupal\commerce_product\Entity\ProductVariationInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter() for commerce_order_item_add_to_cart_form.
@@ -38,4 +41,43 @@ function shh_horse_sale_state_form_commerce_order_item_add_to_cart_form_alter(ar
     '#weight' => -100,
   ];
   $form['actions']['submit']['#access'] = FALSE;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view() for commerce_product.
+ *
+ * Adds a staff-only "Relist for sale" button on a sold horse's product
+ * page — the exact page a staff member is looking at when a sale falls
+ * through and the horse needs to go back on the market (task 0037).
+ * Mirrors shh_horse_deposit's staff release button (0036): same
+ * placement, same permission-gated visibility, and survives 0031's
+ * product view-alter by the same sibling-hook mechanism.
+ */
+function shh_horse_sale_state_commerce_product_view(array &$build, ProductInterface $product, $display, $view_mode) {
+  if ($product->bundle() !== 'horse') {
+    return;
+  }
+  $variation = $product->getDefaultVariation();
+  if (!$variation || !$variation->hasField('field_sale_state')) {
+    return;
+  }
+  if ($variation->get('field_sale_state')->value === 'sold'
+    && \Drupal::currentUser()->hasPermission('relist sold horses')) {
+    $build['shh_relist_link'] = [
+      '#type' => 'container',
+      '#attributes' => ['class' => ['mb-3']],
+      '#weight' => 100,
+      '#cache' => ['contexts' => ['user.permissions']],
+      'link' => [
+        '#type' => 'component',
+        '#component' => 'hestehoj:button',
+        '#props' => [
+          'variant' => 'secondary',
+          'size' => 'medium',
+          'label' => t('Relist for sale (staff)'),
+          'href' => Url::fromRoute('shh_horse_sale_state.relist', ['commerce_product' => $product->id()])->toString(),
+        ],
+      ],
+    ];
+  }
 }

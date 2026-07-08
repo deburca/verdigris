@@ -14,3 +14,7 @@ services:
     arguments: ['@logger.channel.shh_horse_sale_state']
     tags:
       - { name: event_subscriber }
+
+  shh_horse_sale_state.relist_manager:
+    class: Drupal\shh_horse_sale_state\RelistManager
+    arguments: ['@entity_type.manager', '@current_user', '@logger.channel.shh_horse_sale_state']

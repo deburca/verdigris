@@ -1,0 +1,11 @@
+shh_horse_sale_state.relist:
+  path: '/product/{commerce_product}/relist'
+  defaults:
+    _form: '\Drupal\shh_horse_sale_state\Form\RelistSoldHorseForm'
+    _title: 'Relist horse'
+  options:
+    parameters:
+      commerce_product:
+        type: entity:commerce_product
+  requirements:
+    _permission: 'relist sold horses'

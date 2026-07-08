@@ -1,0 +1,4 @@
+relist sold horses:
+  title: 'Relist sold horses'
+  description: 'Return a sold horse to available. Deliberately does not touch the originating order or its payments — refunds stay a manual decision in Commerce.'
+  restrict access: true

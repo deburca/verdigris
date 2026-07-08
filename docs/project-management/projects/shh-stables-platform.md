@@ -617,11 +617,34 @@ upstream issue against bee. Custom-code SDC composition stays the
 single site-wide approach; the Canvas track is closed unless
 drupal.org/i/3498525 lands *and* formatter output becomes expressible.
 
+[[0037-unsell-sold-horse]] is **done** (closed 2026-07-08): the
+missing reverse of 0024's automatic `available → sold` flip. New in
+`shh_horse_sale_state` (set and un-set now live in the same module):
+`RelistManager` + a staff confirm form at `/product/{id}/relist`
+(new restricted permission `relist sold horses`, assigned to no
+role) + a staff-only product-page button on sold horses. Scope
+decisions recorded in the task: a dedicated `sold → available`
+action rather than a general sale-state switcher (a generic surface
+would bypass per-transition bookkeeping — deposit refund rules,
+originating-sale identification); its own permission rather than
+sharing 0036's (deposit release and sale undo carry different money
+exposure); watchdog + Commerce's own permanent order/payment records
+rather than a 0002-style log entity (rejected as disproportionate
+for one staff action). Relisting is fully decoupled from refunding —
+the form identifies the sale being undone (order link, payments,
+payments-tab link) and touches no money. Verified over real HTTP
+through the full cycle: real checkout as test_rider flipped horse 1
+`sold` (order 43); while sold, the relist route was 403 for
+non-staff, forged purchases stayed rejected (even after staff viewed
+the form); the real confirm POST relisted it; a second real checkout
+(order 44) went through and re-flipped it `sold`, with the form then
+pointing at order 44, not 43. Test orders deleted, horse 1 ends
+`available`. The `reserved`/`withdrawn` gap (no transitions, manual
+field edits only) is now recorded in 0001's workflow notes.
+
 Next actionable step: the remaining backlog is medium/low —
-[[0004-staff-admin-booking-calendar]], the client-input-gated
-[[0006-gdpr-data-retention-policy]], and the new
-[[0037-unsell-sold-horse]] (staff relisting of a sold horse, split
-from 0036). Also worth a small follow-up: the
+[[0004-staff-admin-booking-calendar]] and the client-input-gated
+[[0006-gdpr-data-retention-policy]]. Also worth a small follow-up: the
 horse add-to-cart form exposes "Override the unit price" + a currency
 selector to anonymous visitors (pre-existing `commerce_order_item.horse`
 form-display config, surfaced during 0031, deliberately left untouched

@@ -100,7 +100,26 @@ is actually a flat associative array (`value => label`) regardless of the
 list-of-objects shape it exports to YAML as — confirmed via `var_export()`
 before fixing.
 
+## Workflow note (2026-07-08, from task 0037)
+
+Staff-facing *reverse* transitions now exist for the two states set
+automatically by order placement: `reserved-deposit → available`
+([[0036-staff-release-deposit-reservation]]) and `sold → available`
+([[0037-unsell-sold-horse]]), each with its own restricted permission
+and product-page entry point. **Deliberately left out**: `reserved`
+and `withdrawn` still have no dedicated transitions or automation in
+either direction — they are manual administrative states, set and
+cleared by editing `field_sale_state` on the variation form (the
+"admin can transition to withdrawn without a linked order" criterion
+above). If they ever gain lifecycle semantics (e.g. a non-deposit
+"reserved" hold with an expiry), that's a new task; a general staff
+sale-state switcher was considered in 0037 and rejected because it
+would bypass the per-transition bookkeeping (deposit refund rules,
+originating-sale identification).
+
 ## Related
 - [[shh-stables-platform]]
 - [[0015-implement-cancellation-refund-policy]]
 - [[0015-cancellation-refund-policy]]
+- [[0036-staff-release-deposit-reservation]]
+- [[0037-unsell-sold-horse]]
