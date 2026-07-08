@@ -12,33 +12,62 @@ use Drupal\Core\Url;
 /**
  * Implements hook_ENTITY_TYPE_view() for commerce_product.
  *
- * Adds a "Pay a deposit instead" link to a horse product's rendered output,
- * alongside the standard add-to-cart-for-full-price form, when the
- * variation is currently depositable.
+ * Adds, on a horse product's rendered output:
+ * - a "Pay a deposit instead" link when the horse is available for a
+ *   deposit reservation (any visitor), and
+ * - a staff-only "Release deposit reservation" link when the horse is
+ *   currently reserved-deposit and the user may release it.
+ *
+ * Both survive 0031's shh_horse_product_display view-alter, which only
+ * strips the injected variation_* field formatters and the display
+ * title, not sibling hook_ENTITY_TYPE_view() additions.
  */
 function shh_horse_deposit_commerce_product_view(array &$build, ProductInterface $product, $display, $view_mode) {
   if ($product->bundle() !== 'horse') {
     return;
   }
   $variation = $product->getDefaultVariation();
-  if (!$variation || !\Drupal::service('shh_horse_deposit.manager')->isDepositable($variation)) {
+  if (!$variation || !$variation->hasField('field_sale_state')) {
     return;
   }
-  $build['shh_pay_deposit_link'] = [
-    '#type' => 'container',
-    '#attributes' => ['class' => ['mb-3']],
-    '#weight' => 100,
-    'link' => [
-      '#type' => 'component',
-      '#component' => 'hestehoj:button',
-      '#props' => [
-        'variant' => 'secondary',
-        'size' => 'medium',
-        'label' => t('Pay a deposit to reserve instead'),
-        'href' => Url::fromRoute('shh_horse_deposit.pay_deposit', ['commerce_product' => $product->id()])->toString(),
+  $manager = \Drupal::service('shh_horse_deposit.manager');
+
+  if ($manager->isDepositable($variation)) {
+    $build['shh_pay_deposit_link'] = [
+      '#type' => 'container',
+      '#attributes' => ['class' => ['mb-3']],
+      '#weight' => 100,
+      'link' => [
+        '#type' => 'component',
+        '#component' => 'hestehoj:button',
+        '#props' => [
+          'variant' => 'secondary',
+          'size' => 'medium',
+          'label' => t('Pay a deposit to reserve instead'),
+          'href' => Url::fromRoute('shh_horse_deposit.pay_deposit', ['commerce_product' => $product->id()])->toString(),
+        ],
       ],
-    ],
-  ];
+    ];
+  }
+  elseif ($variation->get('field_sale_state')->value === 'reserved-deposit'
+    && \Drupal::currentUser()->hasPermission('release horse deposit reservations')) {
+    $build['shh_release_reservation_link'] = [
+      '#type' => 'container',
+      '#attributes' => ['class' => ['mb-3']],
+      '#weight' => 100,
+      '#cache' => ['contexts' => ['user.permissions']],
+      'link' => [
+        '#type' => 'component',
+        '#component' => 'hestehoj:button',
+        '#props' => [
+          'variant' => 'secondary',
+          'size' => 'medium',
+          'label' => t('Release deposit reservation (staff)'),
+          'href' => Url::fromRoute('shh_horse_deposit.release_reservation', ['commerce_product' => $product->id()])->toString(),
+        ],
+      ],
+    ];
+  }
 }
 
 /**

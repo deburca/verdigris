@@ -1,7 +1,7 @@
 services:
   shh_horse_deposit.manager:
     class: Drupal\shh_horse_deposit\DepositManager
-    arguments: ['@entity_type.manager', '@config.factory', '@logger.channel.shh_horse_deposit']
+    arguments: ['@entity_type.manager', '@config.factory', '@logger.channel.shh_horse_deposit', '@datetime.time']
 
   logger.channel.shh_horse_deposit:
     parent: logger.channel_base

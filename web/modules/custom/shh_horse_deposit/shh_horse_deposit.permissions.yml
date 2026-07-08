@@ -2,3 +2,8 @@ administer deposit refund policies:
   title: 'Administer deposit refund policies'
   description: 'Create, edit, and delete horse deposit refund policies.'
   restrict access: true
+
+release horse deposit reservations:
+  title: 'Release horse deposit reservations'
+  description: 'Staff action to return a deposit-reserved horse to available, regardless of how it was reserved (used for corrections and testing). Refunds a covering deposit only when a placed order and refund window apply.'
+  restrict access: true

@@ -519,13 +519,38 @@ issue the alter mimics (context, not an existing report of this bug).
 Our composer patch retires when #3591417 (or core 3481627 removing
 the alter) lands — check before any drupal_cms_helper version bump.
 
+[[0036-staff-release-deposit-reservation]] is **done** (closed
+2026-07-08, raised and implemented the same day): testing surfaced
+that nothing could free a deposit-reserved horse unless a placed order
+existed and its owner (or an admin navigating the customer's own order
+item) used the self-service cancel — an unpaid/orphaned
+`reserved-deposit` state was simply stuck (sample horse 1 was in
+exactly that state, an artifact of 0031's testing). New
+staff-gated action in `shh_horse_deposit`:
+`DepositManager::releaseReservation()` + a confirm form at
+`/product/{id}/release-reservation` (new restricted permission
+`release horse deposit reservations`, assigned to no role yet) + a
+staff-only button on the product page when a horse is
+`reserved-deposit`. Release is unconditional; refund runs only through
+a placed order's normal 0001 policy rules (an unpaid deposit refunds
+nothing). Verified over real HTTP through all three cases (orphaned →
+direct release; placed+paid → released and refunded, payment balance
+0; placed+unpaid → released, unrefunded). Horse 1 ends `available`
+again — the catalog has a listing once more. The deliberately-excluded
+counterpart, un-selling a **sold** horse (different money questions:
+full purchase price, per-case staff refund decisions — relist and
+refund should decouple), is recorded as [[0037-unsell-sold-horse]]
+(backlog, low).
+
 Next actionable step: the remaining backlog is medium/low: the
 Canvas/SDC display migration
 ([[0030-canvas-content-template-bookable-facility]] /
 [[0031-sdc-based-commerce-product-display]], with
 [[0032-adopt-footer-navbar-sdc-components]] as its page-furniture
-companion), plus [[0004-staff-admin-booking-calendar]] and the
-client-input-gated [[0006-gdpr-data-retention-policy]].
+companion), plus [[0004-staff-admin-booking-calendar]], the
+client-input-gated [[0006-gdpr-data-retention-policy]], and the new
+[[0037-unsell-sold-horse]] (staff relisting of a sold horse, split
+from 0036).
 
 ## Tasks
 ```dataview

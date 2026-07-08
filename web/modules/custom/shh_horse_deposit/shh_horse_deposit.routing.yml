@@ -53,3 +53,15 @@ shh_horse_deposit.cancel_deposit:
         type: entity:commerce_order_item
   requirements:
     _custom_access: '\Drupal\shh_horse_deposit\Access\CancelDepositAccessCheck::access'
+
+shh_horse_deposit.release_reservation:
+  path: '/product/{commerce_product}/release-reservation'
+  defaults:
+    _form: '\Drupal\shh_horse_deposit\Form\ReleaseReservationForm'
+    _title: 'Release deposit reservation'
+  options:
+    parameters:
+      commerce_product:
+        type: entity:commerce_product
+  requirements:
+    _permission: 'release horse deposit reservations'
