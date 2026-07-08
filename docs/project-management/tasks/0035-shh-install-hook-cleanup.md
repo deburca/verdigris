@@ -44,11 +44,10 @@ Three low-severity cleanup findings from the code review of
       the `enabled`/guard-style drift resolved deliberately
 - [x] drupal_cms_helper patch comment ≤ ~5 lines; patch still applies
       (`composer install` clean) and registration behavior unchanged
-- [ ] Upstream issue filed for the drupal_cms_helper notify bug, link
-      recorded in task 0026 — **drafted, not filed**: the ready-to-paste
-      report is in task 0026 ("Upstream bug report" section); filing
-      needs a drupal.org account, i.e. a human step. Once filed,
-      replace the draft with the link and tick this.
+- [x] Upstream issue filed for the drupal_cms_helper notify bug, link
+      recorded in task 0026 — filed by Paddy 2026-07-08 as Drupal CMS
+      issue #3591417:
+      https://git.drupalcode.org/project/drupal_cms/-/work_items/3591417
 - [x] shh_rider_registration docblock/info.yml trimmed to code-facts
 
 ## Resolution (2026-07-08)
@@ -98,16 +97,18 @@ likewise (also now mentions the 0034 runtime guard the module has
 carried since that task). Task 0026's Resolution remains the single
 owner of the waiver-not-merged / two-checkpoints story.
 
-**4. Upstream report — drafted, needs a human to file.** A
-ready-to-paste issue (title, version, problem, impact, reproduce
-steps, proposed fix) is recorded in task 0026 under "Upstream bug
-report"; file it against the Drupal CMS queue and replace the draft
-with the link. Investigated the task's own `drupal.org/i/3481627`
-reference: that is the **core** admin-create UX issue the alter mimics
-(cited by the method's own `@todo`), i.e. context — not an existing
-report of this bug, so the filing is genuinely still outstanding. When
-core 3481627 lands and drupal_cms_helper drops the alter, both the bug
-and our patch retire together.
+**4. Upstream report — filed.** Drafted here (title, version,
+problem, impact, reproduce steps, proposed fix), filed by Paddy
+2026-07-08 as **Drupal CMS issue #3591417**
+(https://git.drupalcode.org/project/drupal_cms/-/work_items/3591417 —
+the queue lives on GitLab work items; `drupal.org/i/3591417` resolves
+to an unrelated node). Investigated the task's own
+`drupal.org/i/3481627` reference first: that is the **core**
+admin-create UX issue the alter mimics (cited by the method's own
+`@todo`), i.e. context — not a pre-existing report of this bug. When
+core 3481627 lands and drupal_cms_helper drops the alter, both the
+bug and our patch retire together — check #3591417 before any
+drupal_cms_helper version bump.
 
 Verified over real HTTP as anonymous after all changes: all three
 main-nav links + footer "Contact us" render, `/`, `/horses`,
