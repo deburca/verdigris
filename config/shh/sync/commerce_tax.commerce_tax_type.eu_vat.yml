@@ -1,0 +1,12 @@
+uuid: 9e8b8ca7-c6a2-4598-82b7-341d990c8c31
+langcode: en
+status: true
+dependencies: {  }
+id: eu_vat
+label: 'EU VAT'
+plugin: european_union_vat
+configuration:
+  display_inclusive: true
+  display_tax_rate_in_label: true
+conditions: {  }
+conditionOperator: AND

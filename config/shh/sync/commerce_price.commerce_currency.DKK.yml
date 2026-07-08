@@ -1,0 +1,9 @@
+uuid: bfb99723-84d4-425c-b70e-3c665fb242e3
+langcode: en
+status: true
+dependencies: {  }
+currencyCode: DKK
+name: 'Danish Krone'
+numericCode: '208'
+symbol: DKK
+fractionDigits: 2

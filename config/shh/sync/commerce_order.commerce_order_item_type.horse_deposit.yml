@@ -1,0 +1,15 @@
+uuid: d5e79bfb-0910-4d66-a4ed-c2d5ca0f29e0
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_tax
+third_party_settings:
+  commerce_tax:
+    taxable_type: physical_goods
+id: horse_deposit
+label: 'Horse deposit'
+traits: {  }
+locked: false
+purchasableEntityType: commerce_product_variation
+orderType: horse_sale

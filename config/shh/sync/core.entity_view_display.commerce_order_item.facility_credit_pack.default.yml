@@ -1,0 +1,36 @@
+uuid: dc1a6064-5976-45a3-9eeb-4da954465e67
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_item_type.facility_credit_pack
+id: commerce_order_item.facility_credit_pack.default
+targetEntityType: commerce_order_item
+bundle: facility_credit_pack
+mode: default
+content:
+  created:
+    type: timestamp
+    label: hidden
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+      tooltip:
+        date_format: long
+        custom_date_format: ''
+      time_diff:
+        enabled: false
+        future_format: '@interval hence'
+        past_format: '@interval ago'
+        granularity: 2
+        refresh: 60
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  adjustments: true
+  purchased_entity: true
+  quantity: true
+  total_price: true
+  unit_price: true

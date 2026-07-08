@@ -1,0 +1,12 @@
+uuid: 72439ff0-a4d6-4b4e-b673-af77d3854f3f
+langcode: en
+status: true
+dependencies: {  }
+id: bee_bookable_facility
+label: 'Bookable Facility'
+traits: {  }
+locked: false
+description: ''
+variationTypes: {  }
+multipleVariations: true
+injectVariationFields: true

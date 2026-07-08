@@ -1,0 +1,23 @@
+uuid: 6e074cb6-3e1d-43fa-92fe-2d6816e205ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.horse
+    - field.storage.commerce_product_variation.field_vetting_status
+  module:
+    - options
+id: commerce_product_variation.horse.field_vetting_status
+field_name: field_vetting_status
+entity_type: commerce_product_variation
+bundle: horse
+label: 'Vetting status'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: not_started
+default_value_callback: ''
+settings: {  }
+field_type: list_string

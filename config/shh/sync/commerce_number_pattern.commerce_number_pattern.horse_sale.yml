@@ -1,0 +1,13 @@
+uuid: 885cdcb8-e1f2-4c8d-93d1-6f12822c8e2e
+langcode: en
+status: true
+dependencies: {  }
+id: horse_sale
+label: 'Horse sale'
+targetEntityType: commerce_order
+plugin: infinite
+configuration:
+  pattern: 'HS-[pattern:number]'
+  initial_number: 1
+  padding: 0
+  per_store_sequence: true

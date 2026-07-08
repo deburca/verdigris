@@ -1,0 +1,21 @@
+uuid: 12e8b65d-b371-48d3-a9ae-a90b24e775be
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_availability_hourly
+    - node.type.bookable_facility
+id: node.bookable_facility.field_availability_hourly
+field_name: field_availability_hourly
+entity_type: node
+bundle: bookable_facility
+label: Availability
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:bat_unit'
+  handler_settings: {  }
+field_type: entity_reference

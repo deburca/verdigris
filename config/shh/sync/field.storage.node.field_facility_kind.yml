@@ -1,0 +1,36 @@
+uuid: 7f769184-e4fe-45ef-b6b9-1e64c644b4ae
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_facility_kind
+field_name: field_facility_kind
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: arena
+      label: 'Riding arena'
+    -
+      value: hall
+      label: 'Riding hall'
+    -
+      value: oval_track
+      label: 'Oval track'
+    -
+      value: manege
+      label: Manège
+    -
+      value: lunge_ring
+      label: 'Lunge ring'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

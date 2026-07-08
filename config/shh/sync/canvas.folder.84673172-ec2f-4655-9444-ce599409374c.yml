@@ -1,0 +1,15 @@
+uuid: 84673172-ec2f-4655-9444-ce599409374c
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.commerce.commerce-status-badge
+    - canvas.component.sdc.navigation.message
+    - canvas.component.sdc.navigation.title
+name: Other
+configEntityTypeId: component
+weight: 0
+items:
+  - sdc.commerce.commerce-status-badge
+  - sdc.navigation.message
+  - sdc.navigation.title

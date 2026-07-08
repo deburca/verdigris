@@ -1,0 +1,22 @@
+uuid: 541e22a4-9e1a-48d2-b53a-2e85560c0eba
+langcode: en
+status: true
+dependencies:
+  module:
+    - bee
+third_party_settings:
+  bee:
+    bee:
+      bookable: 1
+      bookable_type: hourly
+      availability: available
+      payment: 1
+      payment_default_value: 0
+      type_id: '2'
+name: 'Bookable Facility'
+type: bookable_facility
+description: 'A ridable arena or the riding hall, bookable by the hour.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

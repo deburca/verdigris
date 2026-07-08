@@ -1,0 +1,13 @@
+uuid: 9355ca87-1f33-4855-97ee-91b7e627a779
+langcode: en
+status: true
+dependencies: {  }
+id: horse
+label: Horse
+traits: {  }
+locked: false
+description: ''
+variationTypes:
+  - horse
+multipleVariations: false
+injectVariationFields: true

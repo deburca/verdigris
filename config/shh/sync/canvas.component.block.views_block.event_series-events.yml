@@ -1,0 +1,26 @@
+uuid: c341d648-1463-4f16-bb39-ab4be6154ea1
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.event_series
+  module:
+    - views
+active_version: 786407fe49c49d4d
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'views_block:event_series-events'
+        label: 'Event series'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+label: 'Event series'
+id: block.views_block.event_series-events
+provider: views
+source: block
+source_local_id: 'views_block:event_series-events'

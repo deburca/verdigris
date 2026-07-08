@@ -1,0 +1,20 @@
+uuid: 492b739d-dd92-470f-b6dd-9d741f39aae4
+langcode: en
+status: true
+dependencies:
+  module:
+    - bat_api
+    - serialization
+    - user
+_core:
+  default_config_hash: cSyTL-QEGWcYODfEZ_nudKgQ1BX2StozgytjZ5Ioolc
+id: bat_api_units_resource
+plugin_id: bat_api_units_resource
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - cookie

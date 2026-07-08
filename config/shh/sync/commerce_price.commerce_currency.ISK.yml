@@ -1,0 +1,9 @@
+uuid: 765970db-5f8f-413f-85f5-e19ea12b23a3
+langcode: en
+status: true
+dependencies: {  }
+currencyCode: ISK
+name: 'Icelandic Króna'
+numericCode: '352'
+symbol: ISK
+fractionDigits: 0

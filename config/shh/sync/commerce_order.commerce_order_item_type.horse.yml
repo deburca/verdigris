@@ -1,0 +1,15 @@
+uuid: fa460826-8c50-4739-9953-3ca20bde4951
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_tax
+third_party_settings:
+  commerce_tax:
+    taxable_type: physical_goods
+id: horse
+label: Horse
+traits: {  }
+locked: false
+purchasableEntityType: commerce_product_variation
+orderType: horse_sale

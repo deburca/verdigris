@@ -1,0 +1,23 @@
+uuid: ad7e4bce-b6eb-4be3-b7c1-3af641b3a088
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_capacity
+    - node.type.bookable_facility
+id: node.bookable_facility.field_capacity
+field_name: field_capacity
+entity_type: node
+bundle: bookable_facility
+label: 'Capacity (riders)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

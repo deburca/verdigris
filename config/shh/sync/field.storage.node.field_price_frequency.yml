@@ -1,0 +1,27 @@
+uuid: 8b1ac180-5ee4-469b-b114-ab9610b85987
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_price_frequency
+field_name: field_price_frequency
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: hour
+      label: Hour
+    -
+      value: minute
+      label: Minute
+  allowed_values_function: ''
+module: options
+locked: true
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

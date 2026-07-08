@@ -1,0 +1,36 @@
+uuid: a1793e31-c6d0-4321-96e3-ffcb7f6997ee
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - options
+id: commerce_product_variation.field_discipline
+field_name: field_discipline
+entity_type: commerce_product_variation
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: dressage
+      label: Dressage
+    -
+      value: show_jumping
+      label: 'Show jumping'
+    -
+      value: eventing
+      label: Eventing
+    -
+      value: trail
+      label: Trail/leisure
+    -
+      value: other
+      label: Other
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,15 @@
+uuid: 6558584e-45f6-492b-a6bb-01297ff5082f
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_tax
+third_party_settings:
+  commerce_tax:
+    taxable_type: services
+id: facility_credit_pack
+label: 'Facility credit pack'
+traits: {  }
+locked: false
+purchasableEntityType: commerce_product_variation
+orderType: default

@@ -1,0 +1,10 @@
+uuid: a8773efc-eec3-45d3-8879-db722a555926
+langcode: en
+status: true
+dependencies: {  }
+id: horse
+label: Horse
+traits: {  }
+locked: false
+orderItemType: horse
+generateTitle: true

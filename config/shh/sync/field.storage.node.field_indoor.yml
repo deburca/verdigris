@@ -1,0 +1,18 @@
+uuid: ade7f4da-0faf-4db3-a83e-b9cbd4b33bb9
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_indoor
+field_name: field_indoor
+entity_type: node
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,21 @@
+uuid: 2242fc9c-9d8b-4ded-8bf1-2a5154182ccd
+langcode: en
+status: true
+dependencies:
+  config:
+    - bat_booking.booking_bundle.bee
+    - field.storage.bat_booking.booking_event_reference
+id: bat_booking.bee.booking_event_reference
+field_name: booking_event_reference
+entity_type: bat_booking
+bundle: bee
+label: Event
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:bat_event'
+  handler_settings: {  }
+field_type: entity_reference

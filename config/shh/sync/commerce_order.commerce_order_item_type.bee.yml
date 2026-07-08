@@ -1,0 +1,15 @@
+uuid: 90b4415e-83fa-46ab-8f8e-30d01f3dfe6c
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_tax
+third_party_settings:
+  commerce_tax:
+    taxable_type: services
+id: bee
+label: BEE
+traits: {  }
+locked: false
+purchasableEntityType: commerce_product_variation
+orderType: default

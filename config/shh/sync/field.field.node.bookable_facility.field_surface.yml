@@ -1,0 +1,19 @@
+uuid: ba976755-2b79-4084-b989-9cfaa056c461
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_surface
+    - node.type.bookable_facility
+id: node.bookable_facility.field_surface
+field_name: field_surface
+entity_type: node
+bundle: bookable_facility
+label: Surface
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

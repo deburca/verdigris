@@ -1,0 +1,20 @@
+uuid: 5cb1a31a-cfec-4e19-a76d-1d7fc6254e86
+langcode: en
+status: true
+dependencies:
+  module:
+    - bat_booking
+id: bat_booking.booking_capacity
+field_name: booking_capacity
+entity_type: bat_booking
+type: integer
+settings:
+  unsigned: true
+  size: normal
+module: core
+locked: true
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

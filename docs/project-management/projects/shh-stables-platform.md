@@ -4,7 +4,7 @@ tags: [cms2/project]
 status: planning
 site: shh
 created: 2026-07-05
-updated: 2026-07-07
+updated: 2026-07-08
 target:
 ---
 # Project: stutteri-hestehoj.dk — stables platform
@@ -472,13 +472,40 @@ enabled then restored): accounts come out blocked and unable to log
 in, orders complete and assign normally, and the untouched default
 path still creates no account at all.
 
-Next actionable step: all remaining work is medium/low: the
-0026-review follow-ups ([[0033-durable-config-strategy-shh]] and
-[[0035-shh-install-hook-cleanup]]), or the Canvas/SDC display
-migration ([[0030-canvas-content-template-bookable-facility]] /
+[[0033-durable-config-strategy-shh]] is **done** (closed 2026-07-08),
+and it changed the platform's config regime: **config export is now
+the source of truth for shh** — see the new decision
+[[0020-shh-config-export-strategy]]. The task's trap was reproduced
+live first (cex → flip `register:` in the store → cim → 0026's
+registration policy silently reverted), then the strategy went
+through one deliberate reversal: an import-blocking guard module was
+built to protect the imperative pattern, before client review
+surfaced the deciding fact that **shh is headed to production for
+external users** — so the guard was discarded (never committed) in
+favor of a deployable pipeline. `config_sync_directory` now points
+at git-tracked `config/shh/sync` (852-item baseline; the old
+location under `sites/shh/files/` is gitignored, which is what made
+the trap silent), with `config_split` 2.0.2 carrying `field_ui` +
+`views_ui` in a `local` split (`config/shh/local`) that DDEV
+activates via a `$config` override — a production import uninstalls
+both by construction. Verified: cex→cim roundtrip is a no-op, the
+tamper scenario is now predictable in both directions and
+git-visible, and the site serves normally afterwards. **Every future
+task inherits a new workflow rule: after any config-affecting
+change, `cex` and commit the config diff in the same commit as the
+code** — a stale export is the new failure mode. Note settings.php
+is gitignored: the required block (sync path + split activation) is
+recorded in the decision entry.
+
+Next actionable step: all remaining work is medium/low:
+[[0035-shh-install-hook-cleanup]] (now slightly reframed by 0033 —
+the tracked store owns re-assertion, so hooks can rationalize toward
+first-install bootstrapping), or the Canvas/SDC display migration
+([[0030-canvas-content-template-bookable-facility]] /
 [[0031-sdc-based-commerce-product-display]], with
 [[0032-adopt-footer-navbar-sdc-components]] as its page-furniture
-companion).
+companion), plus [[0004-staff-admin-booking-calendar]] and the
+client-input-gated [[0006-gdpr-data-retention-policy]].
 
 ## Tasks
 ```dataview

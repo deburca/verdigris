@@ -1,0 +1,10 @@
+uuid: deb79f8b-266b-4148-b26e-a8ad2b7f2604
+langcode: en
+status: true
+dependencies: {  }
+id: bee
+label: BEE
+traits: {  }
+locked: false
+orderItemType: default
+generateTitle: true

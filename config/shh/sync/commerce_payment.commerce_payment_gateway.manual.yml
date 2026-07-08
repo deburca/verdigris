@@ -1,0 +1,20 @@
+uuid: 6791910a-7277-4798-ae39-0065bf7961be
+langcode: en
+status: true
+dependencies: {  }
+id: manual
+label: 'Bank transfer / cash (manual)'
+weight: null
+plugin: manual
+configuration:
+  display_label: 'Bank transfer / cash'
+  mode: test
+  payment_method_types:
+    - manual
+  collect_billing_information: true
+  instructions:
+    value: 'Please transfer the total amount to our bank account. Details will be sent by email.'
+    format: content_format
+  payment_process: commerce_payment.gateway.default
+conditions: {  }
+conditionOperator: AND

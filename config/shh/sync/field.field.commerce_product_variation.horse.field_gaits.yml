@@ -1,0 +1,21 @@
+uuid: be1e9dca-2214-4ea7-b856-2bd2275cb55d
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.horse
+    - field.storage.commerce_product_variation.field_gaits
+  module:
+    - options
+id: commerce_product_variation.horse.field_gaits
+field_name: field_gaits
+entity_type: commerce_product_variation
+bundle: horse
+label: Gaits
+description: 'Which gaits this horse has. Five-gaited (all five) vs. four-gaited (no flying pace) is one of the first things a serious buyer looks for.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

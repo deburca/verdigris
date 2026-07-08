@@ -1,0 +1,21 @@
+uuid: dce521cc-c519-4192-9d3a-1a474bc99735
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cancellation_policy
+    - node.type.bookable_facility
+id: node.bookable_facility.field_cancellation_policy
+field_name: field_cancellation_policy
+entity_type: node
+bundle: bookable_facility
+label: 'Cancellation policy'
+description: 'Which policy applies to self-service cancellations of this facility. Leave empty to disable self-service cancellation (staff must handle it manually).'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:cancellation_policy'
+  handler_settings: {  }
+field_type: entity_reference

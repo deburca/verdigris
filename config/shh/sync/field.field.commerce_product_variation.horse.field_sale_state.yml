@@ -1,0 +1,23 @@
+uuid: b85e29eb-9e60-479b-8048-38f2994dbd45
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.horse
+    - field.storage.commerce_product_variation.field_sale_state
+  module:
+    - options
+id: commerce_product_variation.horse.field_sale_state
+field_name: field_sale_state
+entity_type: commerce_product_variation
+bundle: horse
+label: 'Sale state'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: available
+default_value_callback: ''
+settings: {  }
+field_type: list_string

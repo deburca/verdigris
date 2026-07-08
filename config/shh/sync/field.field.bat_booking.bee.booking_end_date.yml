@@ -1,0 +1,21 @@
+uuid: 5c828e07-3744-4bdd-81cd-02748f591e87
+langcode: en
+status: true
+dependencies:
+  config:
+    - bat_booking.booking_bundle.bee
+    - field.storage.bat_booking.booking_end_date
+  module:
+    - datetime
+id: bat_booking.bee.booking_end_date
+field_name: booking_end_date
+entity_type: bat_booking
+bundle: bee
+label: 'End Date'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

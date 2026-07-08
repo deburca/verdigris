@@ -1,0 +1,23 @@
+uuid: 2f9148d2-381d-4378-8fe2-47b61b1c8333
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_slot_duration_minutes
+    - node.type.bookable_facility
+id: node.bookable_facility.field_slot_duration_minutes
+field_name: field_slot_duration_minutes
+entity_type: node
+bundle: bookable_facility
+label: 'Fixed slot duration (minutes)'
+description: 'If set, bookings for this facility must be exactly this many minutes long, aligned to a slot boundary (e.g. 30 minutes → 08:00, 08:30, 09:00, ...). Leave empty to allow BEEs default flexible-duration bookings.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

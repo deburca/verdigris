@@ -1,0 +1,23 @@
+uuid: 1857dc36-c5d0-4bdc-8ed1-f65ffd76370b
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_item_type.bee
+    - field.storage.commerce_order_item.field_booking
+id: commerce_order_item.bee.field_booking
+field_name: field_booking
+entity_type: commerce_order_item
+bundle: bee
+label: Booking
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:bat_booking'
+  handler_settings:
+    target_bundles:
+      bee: bee
+field_type: entity_reference

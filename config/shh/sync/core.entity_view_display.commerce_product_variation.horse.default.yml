@@ -1,0 +1,145 @@
+uuid: 213be913-2032-4b7c-81fe-1975c8a88484
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.horse
+    - field.field.commerce_product_variation.horse.field_breed
+    - field.field.commerce_product_variation.horse.field_date_of_birth
+    - field.field.commerce_product_variation.horse.field_deposit_policy
+    - field.field.commerce_product_variation.horse.field_discipline
+    - field.field.commerce_product_variation.horse.field_gaits
+    - field.field.commerce_product_variation.horse.field_health_notes
+    - field.field.commerce_product_variation.horse.field_height_hh
+    - field.field.commerce_product_variation.horse.field_media
+    - field.field.commerce_product_variation.horse.field_pedigree
+    - field.field.commerce_product_variation.horse.field_sale_state
+    - field.field.commerce_product_variation.horse.field_sex
+    - field.field.commerce_product_variation.horse.field_vetting_status
+  module:
+    - commerce_price
+    - datetime
+    - options
+    - text
+id: commerce_product_variation.horse.default
+targetEntityType: commerce_product_variation
+bundle: horse
+mode: default
+content:
+  field_breed:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_date_of_birth:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_deposit_policy:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 15
+    region: content
+  field_discipline:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 14
+    region: content
+  field_gaits:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_health_notes:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 17
+    region: content
+  field_height_hh:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_media:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 18
+    region: content
+  field_pedigree:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 15
+    region: content
+  field_sale_state:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 19
+    region: content
+  field_sex:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_vetting_status:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 16
+    region: content
+  list_price:
+    type: commerce_price_default
+    label: above
+    settings:
+      strip_trailing_zeroes: false
+      currency_display: symbol
+    third_party_settings: {  }
+    weight: -1
+    region: content
+  price:
+    type: commerce_price_default
+    label: above
+    settings:
+      strip_trailing_zeroes: false
+      currency_display: symbol
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  product_id: true
+  sku: true
+  title: true

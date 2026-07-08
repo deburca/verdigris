@@ -1,0 +1,20 @@
+uuid: a5a0dcd9-45fa-44f8-a2f3-69df1ce61498
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - datetime
+id: commerce_product_variation.field_date_of_birth
+field_name: field_date_of_birth
+entity_type: commerce_product_variation
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

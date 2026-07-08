@@ -1,0 +1,14 @@
+uuid: c8b0f3e1-98e6-44eb-8ab9-376d85e7daf8
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - bee
+_core:
+  default_config_hash: 6NnqouqCrRhFR-iQ84FDx3pLf1DGH47VeFd57HesPSw
+name: Daily
+type: daily
+default_event_value_field_ids:
+  availability_daily: field_availability_daily
+  availability_hourly: ''

@@ -1,0 +1,153 @@
+uuid: b5e97ee9-050f-46c9-ba1d-be93fdb54850
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.bookable_facility.field_availability_hourly
+    - field.field.node.bookable_facility.field_cancellation_policy
+    - field.field.node.bookable_facility.field_capacity
+    - field.field.node.bookable_facility.field_dimensions
+    - field.field.node.bookable_facility.field_facility_kind
+    - field.field.node.bookable_facility.field_indoor
+    - field.field.node.bookable_facility.field_open_hours
+    - field.field.node.bookable_facility.field_peak_pricing_notes
+    - field.field.node.bookable_facility.field_price
+    - field.field.node.bookable_facility.field_price_frequency
+    - field.field.node.bookable_facility.field_product
+    - field.field.node.bookable_facility.field_slot_duration_minutes
+    - field.field.node.bookable_facility.field_surface
+    - field.field.node.bookable_facility.field_use_open_hours
+    - node.type.bookable_facility
+  module:
+    - office_hours
+    - options
+    - text
+    - user
+id: node.bookable_facility.default
+targetEntityType: node
+bundle: bookable_facility
+mode: default
+content:
+  field_availability_hourly:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: hourly_calendar
+      link: false
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_cancellation_policy:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 20
+    region: content
+  field_capacity:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 14
+    region: content
+  field_dimensions:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_facility_kind:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_indoor:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_open_hours:
+    type: office_hours_table
+    label: above
+    settings:
+      day_format: long
+      time_format: G
+      compress: false
+      grouped: false
+      show_empty: false
+      show_closed: all
+      closed_format: Closed
+      all_day_format: 'All day open'
+      separator:
+        days: '<br />'
+        grouped_days: ' - '
+        day_hours: ': '
+        hours_hours: '-'
+        more_hours: ', '
+      current_status:
+        position: ''
+        open_text: 'Currently open!'
+        closed_text: 'Currently closed'
+      exceptions:
+        title: 'Exception hours'
+        replace_exceptions: false
+        restrict_exceptions_to_num_days: 7
+        restrict_seasons_to_num_days: 366
+        date_format: long
+        all_day_format: 'All day open'
+      timezone_field: ''
+      office_hours_first_day: ''
+      schema:
+        enabled: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_peak_pricing_notes:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 15
+    region: content
+  field_slot_duration_minutes:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 25
+    region: content
+  field_surface:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_price: true
+  field_price_frequency: true
+  field_product: true
+  field_use_open_hours: true

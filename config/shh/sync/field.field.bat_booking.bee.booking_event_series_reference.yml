@@ -1,0 +1,21 @@
+uuid: 95ab0d6a-2559-4b31-8024-03a53e08adaf
+langcode: en
+status: true
+dependencies:
+  config:
+    - bat_booking.booking_bundle.bee
+    - field.storage.bat_booking.booking_event_series_reference
+id: bat_booking.bee.booking_event_series_reference
+field_name: booking_event_series_reference
+entity_type: bat_booking
+bundle: bee
+label: 'Event series'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:bat_event_series'
+  handler_settings: {  }
+field_type: entity_reference

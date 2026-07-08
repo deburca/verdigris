@@ -1,0 +1,22 @@
+uuid: ef072384-00b9-4fb1-9642-29a5f4c2f012
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.horse
+    - field.storage.commerce_product_variation.field_pedigree
+  module:
+    - text
+id: commerce_product_variation.horse.field_pedigree
+field_name: field_pedigree
+entity_type: commerce_product_variation
+bundle: horse
+label: Pedigree
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

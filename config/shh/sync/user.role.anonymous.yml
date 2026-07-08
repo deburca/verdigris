@@ -1,0 +1,29 @@
+uuid: 21eaaa7a-2601-435c-be8e-3555c3a1c6b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - rest.resource.bat_api_events_resource
+  module:
+    - bee
+    - commerce_checkout
+    - commerce_product
+    - klaro
+    - media
+    - rest
+    - system
+_core:
+  default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
+id: anonymous
+label: 'Anonymous user'
+weight: 0
+is_admin: false
+permissions:
+  - 'access checkout'
+  - 'access content'
+  - 'restful get bat_api_events_resource'
+  - 'use klaro'
+  - 'view calendar data for any availability_daily event'
+  - 'view calendar data for any availability_hourly event'
+  - 'view commerce_product'
+  - 'view media'

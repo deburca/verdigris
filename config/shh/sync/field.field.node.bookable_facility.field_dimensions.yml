@@ -1,0 +1,19 @@
+uuid: 176e3f68-3af4-4a07-854b-140493688189
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dimensions
+    - node.type.bookable_facility
+id: node.bookable_facility.field_dimensions
+field_name: field_dimensions
+entity_type: node
+bundle: bookable_facility
+label: Dimensions
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

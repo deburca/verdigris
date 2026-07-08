@@ -1,0 +1,23 @@
+uuid: d2cbe7db-b0af-43a1-8c76-0c6e5b4890f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - bat_booking.booking_bundle.bee
+    - field.storage.bat_booking.booking_capacity
+id: bat_booking.bee.booking_capacity
+field_name: booking_capacity
+entity_type: bat_booking
+bundle: bee
+label: Capacity
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

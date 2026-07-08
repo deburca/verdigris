@@ -1,0 +1,20 @@
+uuid: d31bbf72-f5b7-4823-b80e-94009b6439d9
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product_variation.field_height_hh
+field_name: field_height_hh
+entity_type: commerce_product_variation
+type: decimal
+settings:
+  precision: 4
+  scale: 1
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,27 @@
+uuid: 6b5347f8-8ec3-472c-9190-20c6af9b85cb
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_cart
+    - commerce_checkout
+third_party_settings:
+  commerce_cart:
+    cart_expiration:
+      number: 3
+      unit: day
+      anonymous_only: false
+  commerce_checkout:
+    checkout_flow: horse_sale
+id: horse_sale
+label: 'Horse sale'
+traits: {  }
+locked: false
+workflow: order_default
+showOrderEditLinks: null
+numberPattern: horse_sale
+refresh_mode: customer
+refresh_frequency: 300
+sendReceipt: true
+receiptBcc: null
+receiptSubject: ''

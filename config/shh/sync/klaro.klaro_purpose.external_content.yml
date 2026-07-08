@@ -1,0 +1,10 @@
+uuid: b81c0037-594b-45c3-8667-e10c26a2c4ee
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: DdVZR131nyy6OVL9mBguPmzKgAzSs-6NjqEdbkF55NI
+id: external_content
+label: 'Embedded external content'
+description: ''
+weight: 6

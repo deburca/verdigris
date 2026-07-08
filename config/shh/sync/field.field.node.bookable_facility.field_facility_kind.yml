@@ -1,0 +1,21 @@
+uuid: 110c83b0-d371-4890-87a2-78e3e1a95b38
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_facility_kind
+    - node.type.bookable_facility
+  module:
+    - options
+id: node.bookable_facility.field_facility_kind
+field_name: field_facility_kind
+entity_type: node
+bundle: bookable_facility
+label: 'Facility kind'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

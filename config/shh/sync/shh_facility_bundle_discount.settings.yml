@@ -1,0 +1,9 @@
+_core:
+  default_config_hash: HKEMS_pch4URCDrmoG8h3ft4ZGnkgRXR24Rh8XK5DDE
+product_ids:
+  - 2
+  - 4
+  - 5
+discount_amount:
+  number: '20.00'
+  currency_code: DKK

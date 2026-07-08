@@ -1,0 +1,21 @@
+uuid: 1afa7a61-bad5-4296-badd-bc3f2a512197
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.horse
+    - field.storage.commerce_product_variation.field_deposit_policy
+id: commerce_product_variation.horse.field_deposit_policy
+field_name: field_deposit_policy
+entity_type: commerce_product_variation
+bundle: horse
+label: 'Deposit refund policy'
+description: 'Which policy applies to self-service cancellation of a paid deposit on this horse. Leave empty to disable self-service deposit cancellation (staff must handle it manually).'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:deposit_refund_policy'
+  handler_settings: {  }
+field_type: entity_reference

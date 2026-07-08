@@ -1,0 +1,7 @@
+uuid: 7e1c017d-c22e-4951-9e03-a63f0b5713ef
+langcode: en
+status: true
+dependencies: {  }
+id: standard
+label: 'Standard (24 hours)'
+refund_window_hours: 24

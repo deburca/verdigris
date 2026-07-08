@@ -1,0 +1,21 @@
+uuid: af6dcf8f-e050-49f9-87be-1a26aeed5b6e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_indoor
+    - node.type.bookable_facility
+id: node.bookable_facility.field_indoor
+field_name: field_indoor
+entity_type: node
+bundle: bookable_facility
+label: Indoor
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: Indoor
+  off_label: Outdoor
+field_type: boolean

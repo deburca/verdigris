@@ -1,0 +1,36 @@
+uuid: edc41bf5-1a8b-45ab-b212-8abef44fc8ac
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - options
+id: commerce_product_variation.field_sale_state
+field_name: field_sale_state
+entity_type: commerce_product_variation
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: available
+      label: Available
+    -
+      value: reserved
+      label: Reserved
+    -
+      value: sold
+      label: Sold
+    -
+      value: reserved-deposit
+      label: 'Reserved (deposit paid)'
+    -
+      value: withdrawn
+      label: Withdrawn
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

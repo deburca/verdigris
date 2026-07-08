@@ -1,0 +1,34 @@
+uuid: e673d945-daa4-4fc7-99f7-0912d8f8bd2e
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.horse
+  module:
+    - commerce_product
+id: commerce_product.horse.default
+targetEntityType: commerce_product
+bundle: horse
+mode: default
+content:
+  title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  variations:
+    type: commerce_add_to_cart
+    label: above
+    settings:
+      combine: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+hidden:
+  created: true
+  stores: true
+  uid: true

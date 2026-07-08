@@ -1,0 +1,24 @@
+uuid: 24cb5b0e-c3d7-480e-a923-bb76fc3f855d
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.bee_bookable_facility
+    - field.storage.node.field_product
+    - node.type.bookable_facility
+id: node.bookable_facility.field_product
+field_name: field_product
+entity_type: node
+bundle: bookable_facility
+label: Product
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:commerce_product'
+  handler_settings:
+    target_bundles:
+      bee_bookable_facility: bee_bookable_facility
+field_type: entity_reference

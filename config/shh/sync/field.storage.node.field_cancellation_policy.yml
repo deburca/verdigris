@@ -1,0 +1,20 @@
+uuid: da1b7bf5-38dd-4f45-bead-f18354ebd193
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - shh_cancellation_policy
+id: node.field_cancellation_policy
+field_name: field_cancellation_policy
+entity_type: node
+type: entity_reference
+settings:
+  target_type: cancellation_policy
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

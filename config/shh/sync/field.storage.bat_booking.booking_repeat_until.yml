@@ -1,0 +1,20 @@
+uuid: eea64849-3f6c-435c-acc5-829e5442727b
+langcode: en
+status: true
+dependencies:
+  module:
+    - bat_booking
+    - datetime
+id: bat_booking.booking_repeat_until
+field_name: booking_repeat_until
+entity_type: bat_booking
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: true
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

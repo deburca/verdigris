@@ -1,0 +1,25 @@
+uuid: 60c66135-1e04-478f-bf8e-f83d4635dbac
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_price
+    - node.type.bookable_facility
+  module:
+    - commerce_price
+id: node.bookable_facility.field_price
+field_name: field_price
+entity_type: node
+bundle: bookable_facility
+label: Price
+description: ''
+required: true
+translatable: true
+default_value:
+  number: 0
+  currency_code: DKK
+default_value_callback: ''
+settings:
+  available_currencies: {  }
+  allow_negative: false
+field_type: commerce_price

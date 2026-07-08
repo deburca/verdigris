@@ -1,0 +1,20 @@
+uuid: e9e5a40e-b91f-4cb3-a318-b116b7851a89
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_order
+    - node
+id: commerce_order_item.field_node
+field_name: field_node
+entity_type: commerce_order_item
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: true
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

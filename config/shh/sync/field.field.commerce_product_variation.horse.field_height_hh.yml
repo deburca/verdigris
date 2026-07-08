@@ -1,0 +1,23 @@
+uuid: b4e92ba7-0d34-46fc-a7be-bcd35ae3ccd8
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.horse
+    - field.storage.commerce_product_variation.field_height_hh
+id: commerce_product_variation.horse.field_height_hh
+field_name: field_height_hh
+entity_type: commerce_product_variation
+bundle: horse
+label: 'Height (hands)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

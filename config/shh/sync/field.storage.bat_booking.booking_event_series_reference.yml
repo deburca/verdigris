@@ -1,0 +1,20 @@
+uuid: 92903c63-6895-4f86-bf57-886b9c416280
+langcode: en
+status: true
+dependencies:
+  module:
+    - bat_booking
+    - bat_event_series
+id: bat_booking.booking_event_series_reference
+field_name: booking_event_series_reference
+entity_type: bat_booking
+type: entity_reference
+settings:
+  target_type: bat_event_series
+module: core
+locked: true
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

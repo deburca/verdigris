@@ -1,0 +1,21 @@
+uuid: 51181296-409f-4fa0-9d18-28653795474f
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.horse
+    - field.storage.commerce_product_variation.field_discipline
+  module:
+    - options
+id: commerce_product_variation.horse.field_discipline
+field_name: field_discipline
+entity_type: commerce_product_variation
+bundle: horse
+label: Discipline
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

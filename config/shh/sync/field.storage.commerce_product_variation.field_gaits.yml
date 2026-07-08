@@ -1,0 +1,36 @@
+uuid: 9511bc0b-d608-4ce1-a5b5-b2e2c592cef4
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - options
+id: commerce_product_variation.field_gaits
+field_name: field_gaits
+entity_type: commerce_product_variation
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: walk
+      label: Walk
+    -
+      value: trot
+      label: Trot
+    -
+      value: canter_gallop
+      label: Canter/gallop
+    -
+      value: tolt
+      label: Tölt
+    -
+      value: flying_pace
+      label: 'Flying pace (skeið)'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
