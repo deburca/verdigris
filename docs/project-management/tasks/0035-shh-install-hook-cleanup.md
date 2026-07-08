@@ -1,12 +1,12 @@
 ---
 type: task
 tags: [cms2/task]
-status: backlog
+status: done
 priority: low
 site: shh
 project: "[[shh-stables-platform]]"
 created: 2026-07-07
-updated: 2026-07-07
+updated: 2026-07-08
 ---
 # Task: shh install-hook cleanup — shared menu-link helper, trim duplicated prose
 
@@ -40,16 +40,82 @@ Three low-severity cleanup findings from the code review of
    registration" revisit can't leave stale narrative behind.
 
 ## Acceptance criteria
-- [ ] One shared helper used by all four menu-link install hooks, with
+- [x] One shared helper used by all four menu-link install hooks, with
       the `enabled`/guard-style drift resolved deliberately
-- [ ] drupal_cms_helper patch comment ≤ ~5 lines; patch still applies
+- [x] drupal_cms_helper patch comment ≤ ~5 lines; patch still applies
       (`composer install` clean) and registration behavior unchanged
 - [ ] Upstream issue filed for the drupal_cms_helper notify bug, link
-      recorded in task 0026
-- [ ] shh_rider_registration docblock/info.yml trimmed to code-facts
+      recorded in task 0026 — **drafted, not filed**: the ready-to-paste
+      report is in task 0026 ("Upstream bug report" section); filing
+      needs a drupal.org account, i.e. a human step. Once filed,
+      replace the draft with the link and tick this.
+- [x] shh_rider_registration docblock/info.yml trimmed to code-facts
+
+## Resolution (2026-07-08)
+
+**1. Shared helper — done.** New two-file module
+`web/modules/custom/shh_common` (info.yml + .module, no install hook,
+no config): `shh_ensure_menu_link(string $menu, string $uri, string
+$title, int $weight)`. All four install hooks
+(`shh_horse_catalog`, `shh_facilities_overview`, `shh_site_footer`,
+`shh_rider_registration`) now call it; each module gained a
+`shh_common:shh_common` dependency (which also fixes, transitively, the
+latent gap where shh_horse_catalog and shh_facilities_overview used
+`MenuLinkContent` without declaring `menu_link_content` at all). Drift
+resolved deliberately: create-unless-present keyed by menu + URI (an
+existing link's title/weight/enabled are never overwritten — staff
+edits survive a reinstall), `enabled => TRUE` always set explicitly.
+The rider_registration `hook_uninstall()` link *removal* is not
+create-shaped and deliberately stays local to that module. Verified
+with a real uninstall → reinstall cycle of shh_horse_catalog through
+both branches: existing link → exactly 1 link before and after (no
+duplicate); link deleted first → recreated with
+title/weight/enabled all correct. `shh_common` enabled on shh
+(config export updated: `core.extension` is the only config diff).
+
+**2. Patch comment trimmed — done, with a self-inflicted lesson.**
+The 14-line prose comment in
+`patches/drupal_cms_helper-scope-register-form-alter-to-admin-create.patch`
+is now 4 lines pointing at the composer.json entry + task 0026. First
+attempt shipped a malformed hunk header (`+44,11` for a hunk adding 7
+lines to 6 — must be `+44,13`), and **`composer patches-repatch`
+reinstalls the pristine package and reports "Patching …" even when the
+hunk then fails to apply** — the guard line was silently missing until
+grepped for. Always verify the patched file's content after a
+relock/repatch, not just the command's exit. After fixing the header:
+relock + repatch clean, guard line present, `composer install` clean,
+all 8 patched packages' hunks re-verified in the live files (bee ×2,
+bat, bat_api, canvas, byte_theme, mercury, drupal_cms_helper).
+Registration behavior unchanged by construction (hunk logic
+byte-identical, only the comment shrank); re-verified anonymous
+`/user/register` renders (200, mail field present, no notify element).
+
+**3. Prose de-duplicated — done.**
+`shh_rider_registration.install`'s hook_install docblock is now
+code-facts only (what it sets, why the link self-hides) with one
+pointer to task 0026 for the policy narrative; info.yml description
+likewise (also now mentions the 0034 runtime guard the module has
+carried since that task). Task 0026's Resolution remains the single
+owner of the waiver-not-merged / two-checkpoints story.
+
+**4. Upstream report — drafted, needs a human to file.** A
+ready-to-paste issue (title, version, problem, impact, reproduce
+steps, proposed fix) is recorded in task 0026 under "Upstream bug
+report"; file it against the Drupal CMS queue and replace the draft
+with the link. Investigated the task's own `drupal.org/i/3481627`
+reference: that is the **core** admin-create UX issue the alter mimics
+(cited by the method's own `@todo`), i.e. context — not an existing
+report of this bug, so the filing is genuinely still outstanding. When
+core 3481627 lands and drupal_cms_helper drops the alter, both the bug
+and our patch retire together.
+
+Verified over real HTTP as anonymous after all changes: all three
+main-nav links + footer "Contact us" render, `/`, `/horses`,
+`/facilities`, `/pricing` all 200.
 
 ## Related
 - [[shh-stables-platform]]
 - [[0026-rider-account-access-policy]]
 - [[0019-horse-catalog-page]]
 - [[0027-site-footer-and-contact-link]]
+- [[0006-composer-patch-management]]

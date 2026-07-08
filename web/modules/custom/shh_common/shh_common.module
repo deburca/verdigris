@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Shared helpers for the shh module family.
+ */
+
+/**
+ * Ensures a menu link exists, keyed by menu name + URI.
+ *
+ * Idempotency contract shared by the shh install hooks (task 0035):
+ * creates the link only when no menu_link_content entity with the same
+ * menu and URI exists, so reinstalls never duplicate a link and an
+ * existing link's title/weight/enabled state is never overwritten
+ * (staff edits survive a reinstall). `enabled` is set explicitly —
+ * deliberate resolution of the drift where two of the original four
+ * copies relied on the field default.
+ *
+ * @param string $menu
+ *   Menu machine name (e.g. 'main', 'footer').
+ * @param string $uri
+ *   Link URI (e.g. 'internal:/horses').
+ * @param string $title
+ *   Link title, used only when the link is created.
+ * @param int $weight
+ *   Menu weight, used only when the link is created.
+ */
+function shh_ensure_menu_link(string $menu, string $uri, string $title, int $weight): void {
+  $storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
+  $existing = $storage->loadByProperties([
+    'menu_name' => $menu,
+    'link.uri' => $uri,
+  ]);
+  if ($existing) {
+    return;
+  }
+  $storage->create([
+    'title' => $title,
+    'link' => ['uri' => $uri],
+    'menu_name' => $menu,
+    'weight' => $weight,
+    'enabled' => TRUE,
+  ])->save();
+}

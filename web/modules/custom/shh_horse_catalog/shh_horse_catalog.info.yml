@@ -4,5 +4,6 @@ description: 'Implements docs/project-management/tasks/0019-horse-catalog-page.m
 core_version_requirement: ^10.2 || ^11
 package: Custom
 dependencies:
+  - shh_common:shh_common
   - commerce_product:commerce_product
   - node:node

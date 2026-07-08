@@ -4,6 +4,7 @@ description: 'Implements docs/project-management/tasks/0020-facilities-overview-
 core_version_requirement: ^10.2 || ^11
 package: Custom
 dependencies:
+  - shh_common:shh_common
   - node:node
   - shh_facility_credits:shh_facility_credits
   - shh_facility_bundle_discount:shh_facility_bundle_discount

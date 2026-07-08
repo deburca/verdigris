@@ -4,6 +4,7 @@ description: 'Places the "Footer" system menu block in the footer region for the
 core_version_requirement: ^10.2 || ^11
 package: Custom
 dependencies:
+  - shh_common:shh_common
   - block:block
   - menu_link_content:menu_link_content
   - system:system

@@ -6,7 +6,7 @@ priority: high
 site: shh
 project: "[[shh-stables-platform]]"
 created: 2026-07-06
-updated: 2026-07-07
+updated: 2026-07-08
 ---
 # Task: Rider account access policy (self-registration vs. staff-only)
 
@@ -148,6 +148,58 @@ register path exist, revisit only if riders get lost in practice.
 The gap analysis's minor "no proactive 'you'll need an account'
 messaging on facility pages" item also remains open (fold into any
 future front-end polish pass).
+
+## Upstream bug report (prepared under 0035 — needs filing)
+
+**Status: drafted, not yet filed** — filing needs a drupal.org
+account, so this is a human step. File against the **Drupal CMS**
+project queue (https://www.drupal.org/project/issues/drupal_cms,
+component: drupal_cms_helper), then replace this draft with the
+issue link. Note: core issue drupal.org/i/3481627 (referenced by the
+method's own `@todo`) is the *admin-create UX* issue this alter
+mimics — it is context, **not** this bug's report; when 3481627
+lands in core and the alter is removed, this bug disappears with it,
+which is worth saying in the report.
+
+> **Title:** drupal_cms_helper: form_user_register_form_alter leaks
+> notify=TRUE into anonymous self-registrations — wrong welcome email,
+> admin approval notification never sent
+>
+> **Version/component:** drupal_cms_helper 2.1.3, FormHooks.php
+>
+> **Problem:** `alterAccountCreationForm()` (the
+> `form_user_register_form_alter` implementation mimicking core issue
+> #3481627 for the admin-create form) sets the `notify` checkbox's
+> `#default_value` to TRUE unconditionally. On **anonymous
+> self-registration** the `notify` element is `#access = FALSE`, and
+> Form API resolves access-denied elements to their `#default_value`
+> — so `RegisterForm::save()` sees `notify=TRUE` and takes the
+> admin-created branch for every self-registration.
+>
+> **Impact** (any Drupal CMS site that changes `user.settings:
+> register` from the shipped `admin_only` to
+> `visitors_admin_approval`): the applicant receives the
+> `register_admin_created` email ("An administrator created an
+> account for you… you may now log in") whose one-time login link is
+> useless on a blocked pending-approval account, and the
+> `register_pending_approval_admin` notification is **never sent** —
+> staff never learn anyone applied. Latent under the shipped
+> `admin_only` default, so it shows up only after a site opens
+> registration.
+>
+> **Steps to reproduce:** fresh Drupal CMS install → set
+> `user.settings: register: visitors_admin_approval` → register an
+> account anonymously via /user/register → inspect outgoing mail.
+> Expected: applicant gets `register_pending_approval`, admin gets
+> `register_pending_approval_admin`. Actual: applicant gets
+> `register_admin_created`, admin gets nothing.
+>
+> **Proposed fix:** early-return unless the form is the admin-create
+> variant, e.g. `if (empty($form['administer_users']['#value'])) {
+> return; }` at the top of the method (this is exactly what we run in
+> production as a composer patch). Alternatively set the default only
+> when the element is accessible. The whole alter goes away once core
+> #3481627 is released, per the method's existing @todo.
 
 ## Related
 - [[shh-stables-platform]]

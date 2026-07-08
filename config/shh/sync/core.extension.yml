@@ -112,6 +112,7 @@ module:
   shh_booking_hold: 0
   shh_booking_log: 0
   shh_cancellation_policy: 0
+  shh_common: 0
   shh_facilities_overview: 0
   shh_facility_booking_cta: 0
   shh_facility_bundle_discount: 0

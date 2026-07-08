@@ -6,7 +6,6 @@
  */
 
 use Drupal\block\Entity\Block;
-use Drupal\menu_link_content\Entity\MenuLinkContent;
 
 /**
  * Implements hook_install().
@@ -31,21 +30,8 @@ use Drupal\menu_link_content\Entity\MenuLinkContent;
  *    shh_main_navigation's identical call on the `navbar` SDC.
  */
 function shh_site_footer_install() {
-  $link_storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
-  $existing = $link_storage->loadByProperties([
-    'menu_name' => 'footer',
-    'link.uri' => 'internal:/form/contact',
-  ]);
-  if (!$existing) {
-    MenuLinkContent::create([
-      'title' => 'Contact us',
-      'link' => ['uri' => 'internal:/form/contact'],
-      'menu_name' => 'footer',
-      // After "Privacy policy" (weight 0).
-      'weight' => 10,
-      'enabled' => TRUE,
-    ])->save();
-  }
+  // After "Privacy policy" (weight 0).
+  shh_ensure_menu_link('footer', 'internal:/form/contact', 'Contact us', 10);
 
   if (!Block::load('hestehoj_footer_menu')) {
     Block::create([

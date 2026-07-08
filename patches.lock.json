@@ -1,5 +1,5 @@
 {
-    "_hash": "b57e8c44278fae348a75b5ed8a1b3729d531ee190bbbd600437da7ff124cc583",
+    "_hash": "a965bbdd545ffd3d238c083a16abde80c5915c505b6cc36ed54bbd7a3ec538c6",
     "patches": {
         "drupal/byte_theme": [
             {
@@ -30,7 +30,7 @@
                 "package": "drupal/drupal_cms_helper",
                 "description": "form_user_register_form_alter sets the admin-only notify checkbox's #default_value to TRUE unconditionally; on anonymous self-registration that element is #access FALSE, so Form API resolves it to the default and RegisterForm::save() treats every self-registration as admin-created — wrong welcome email (an unusable one-time login link on a blocked pending-approval account) and no pending-approval notification to the admin. Scope the whole alter to the admin-create form",
                 "url": "patches/drupal_cms_helper-scope-register-form-alter-to-admin-create.patch",
-                "sha256": "6edcc5428a92fe948902275222e245c695a62411d97a5097beefdad159d86598",
+                "sha256": "295c30f1299441778646ff1746e338c56a1da33db8a8582ce411ad5203999868",
                 "depth": 1,
                 "extra": {
                     "provenance": "root"

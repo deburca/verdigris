@@ -497,10 +497,27 @@ code** — a stale export is the new failure mode. Note settings.php
 is gitignored: the required block (sync path + split activation) is
 recorded in the decision entry.
 
-Next actionable step: all remaining work is medium/low:
-[[0035-shh-install-hook-cleanup]] (now slightly reframed by 0033 —
-the tracked store owns re-assertion, so hooks can rationalize toward
-first-install bootstrapping), or the Canvas/SDC display migration
+[[0035-shh-install-hook-cleanup]] is **done** (closed 2026-07-08),
+bar one human step: new `shh_common` module with
+`shh_ensure_menu_link()` replacing the four drifted copies of the
+create-unless-present menu-link block (drift resolved: keyed by
+menu + URI, existing links never overwritten, `enabled` explicit;
+verified through a real uninstall/reinstall cycle on both branches);
+the drupal_cms_helper patch comment trimmed 14 → 4 lines — where
+**`composer patches-repatch` was caught reporting "Patching …" while
+silently leaving the package pristine** on a malformed hunk header,
+so after any relock/repatch, grep the patched file, don't trust the
+exit code; and `shh_rider_registration`'s docblock/info.yml cut to
+code-facts with task 0026 owning the policy narrative. **The one open
+item: the upstream drupal_cms_helper bug report is drafted
+ready-to-paste in task 0026 ("Upstream bug report" section) but needs
+a human with a drupal.org account to file it** — the task's 3481627
+reference turned out to be the core admin-create UX issue the alter
+mimics (context, not an existing report of this bug).
+
+Next actionable step: **file the drafted drupal_cms_helper issue
+upstream** (human step, 5 minutes, draft in task 0026); then the
+remaining backlog is medium/low: the Canvas/SDC display migration
 ([[0030-canvas-content-template-bookable-facility]] /
 [[0031-sdc-based-commerce-product-display]], with
 [[0032-adopt-footer-navbar-sdc-components]] as its page-furniture

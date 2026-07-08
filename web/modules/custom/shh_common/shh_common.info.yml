@@ -1,0 +1,7 @@
+name: 'SHH Common'
+type: module
+description: 'Shared helpers for the shh module family. Currently one: shh_ensure_menu_link(), the idempotent create-unless-present menu-link block that previously existed in four drifted near-copies across the shh install hooks (task 0035). Pure code, no config or install hooks of its own.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - menu_link_content:menu_link_content

@@ -1,9 +1,10 @@
 name: 'SHH Rider Registration'
 type: module
-description: 'Implements the client decision on task 0026 (rider account access policy): opens account self-registration on the shh site with mandatory admin approval (register: visitors_admin_approval), and adds a "Log in / Register" link to the main navigation so both new and existing riders can actually find the account pages — previously register was admin_only (a Drupal CMS platform default) and no login link existed anywhere, so "Book now" dead-ended every new rider at a login wall. Riders still need staff-approved membership (shh_rider_membership, task 0003) before they can book; account approval controls who gets an account, membership approval controls who may book. Scoped to shh; the other sites keep admin_only.'
+description: 'Opens account self-registration on the shh site with mandatory admin approval (user.settings: register: visitors_admin_approval) and adds a "Log in / Register" link to the main navigation. Also enforces the approval policy at runtime on all Commerce-created accounts (task 0034). Scoped to shh — other sites keep admin_only; client decision and policy rationale: task 0026.'
 core_version_requirement: ^10.2 || ^11
 package: Custom
 dependencies:
+  - shh_common:shh_common
   - menu_link_content:menu_link_content
   - system:system
   - user:user

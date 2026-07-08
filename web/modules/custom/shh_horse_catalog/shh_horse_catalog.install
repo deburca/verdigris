@@ -5,8 +5,6 @@
  * Install hooks for shh_horse_catalog.
  */
 
-use Drupal\menu_link_content\Entity\MenuLinkContent;
-
 /**
  * Implements hook_install().
  *
@@ -16,18 +14,7 @@ use Drupal\menu_link_content\Entity\MenuLinkContent;
  * structure to slot into; this is simply the first real nav item.
  */
 function shh_horse_catalog_install() {
-  $existing = \Drupal::entityTypeManager()->getStorage('menu_link_content')->loadByProperties([
-    'menu_name' => 'main',
-    'link.uri' => 'internal:/horses',
-  ]);
-  if ($existing) {
-    return;
-  }
-
-  MenuLinkContent::create([
-    'title' => 'Horses for sale',
-    'link' => ['uri' => 'internal:/horses'],
-    'menu_name' => 'main',
-    'weight' => 10,
-  ])->save();
+  // After Home (0); Book a facility (20) and Log in / Register (30)
+  // slot in behind.
+  shh_ensure_menu_link('main', 'internal:/horses', 'Horses for sale', 10);
 }
