@@ -1,0 +1,11 @@
+uuid: 6ef3cfc9-feb6-495c-84b0-7113fa8011a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.shh_footer
+name: 'SHH Site Footer'
+configEntityTypeId: component
+weight: 0
+items:
+  - block.shh_footer

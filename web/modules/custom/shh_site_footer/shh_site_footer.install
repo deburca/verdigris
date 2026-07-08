@@ -6,6 +6,7 @@
  */
 
 use Drupal\block\Entity\Block;
+use Drupal\system\Entity\Menu;
 
 /**
  * Implements hook_install().
@@ -18,37 +19,49 @@ use Drupal\block\Entity\Block;
  *    settings" placeholder) but the contact form has never been linked
  *    from any page, menu, or footer on this site.
  *
- * 2. Places the standard "Footer" system menu block in the hestehoj
- *    theme's `footer` region — the exact same never-placed-a-block gap
- *    shh_main_navigation closed for the `main` menu in the header, and
- *    the same minimal standard-Drupal fix: page.html.twig already wraps
- *    `page.footer` in a styled <footer role="contentinfo">, and the
- *    theme's generic menu.html.twig renders a flat link list; the
- *    theme's more elaborate slotted `footer` SDC component (presumably
- *    meant for Canvas page-region composition, which isn't set up for
- *    this theme) is deliberately not taken on here, matching
- *    shh_main_navigation's identical call on the `navbar` SDC.
+ * 2. Ensures the `social` menu exists with the 0032 placeholder
+ *    Facebook/Instagram links (client to confirm the real profile URLs
+ *    — tracked on task 0032; the links are content, so staff can edit
+ *    them without a deploy).
+ *
+ * 3. Places this module's ShhFooterBlock (the theme's slotted
+ *    `hestehoj:footer` SDC composed in custom code — task 0032's chosen
+ *    mechanism) in the hestehoj `footer` region, replacing the plain
+ *    system_menu_block:footer this hook placed before 0032 if it is
+ *    still present.
  */
 function shh_site_footer_install() {
   // After "Privacy policy" (weight 0).
-  shh_ensure_menu_link('footer', 'internal:/form/contact', 'Contact us', 10);
+  shh_common_ensure_menu_link('footer', 'internal:/form/contact', 'Contact us', 10);
 
-  if (!Block::load('hestehoj_footer_menu')) {
+  if (!Menu::load('social')) {
+    Menu::create([
+      'id' => 'social',
+      'label' => 'Social media',
+      'description' => 'Social profile links shown in the footer (task 0032). Placeholder URLs pending client confirmation.',
+    ])->save();
+  }
+  shh_common_ensure_menu_link('social', 'https://www.facebook.com/stutterihestehoj', 'Facebook', 0);
+  shh_common_ensure_menu_link('social', 'https://www.instagram.com/stutterihestehoj', 'Instagram', 10);
+
+  // Pre-0032 placement of the plain menu block; superseded.
+  if ($legacy = Block::load('hestehoj_footer_menu')) {
+    $legacy->delete();
+  }
+
+  if (!Block::load('hestehoj_footer_sdc')) {
     Block::create([
-      'id' => 'hestehoj_footer_menu',
+      'id' => 'hestehoj_footer_sdc',
       'theme' => 'hestehoj',
       'region' => 'footer',
       'weight' => 0,
       'status' => TRUE,
-      'plugin' => 'system_menu_block:footer',
+      'plugin' => 'shh_footer',
       'settings' => [
-        'id' => 'system_menu_block:footer',
-        'label' => 'Footer',
+        'id' => 'shh_footer',
+        'label' => 'SHH footer',
         'label_display' => '0',
-        'provider' => 'system',
-        'level' => 1,
-        'depth' => 0,
-        'expand_all_items' => FALSE,
+        'provider' => 'shh_site_footer',
       ],
       'visibility' => [],
     ])->save();

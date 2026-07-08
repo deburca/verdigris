@@ -15,5 +15,5 @@
  */
 function shh_facilities_overview_install() {
   // After Home (0) and Horses for sale (10).
-  shh_ensure_menu_link('main', 'internal:/facilities', 'Book a facility', 20);
+  shh_common_ensure_menu_link('main', 'internal:/facilities', 'Book a facility', 20);
 }

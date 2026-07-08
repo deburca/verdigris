@@ -175,6 +175,42 @@ display for `commerce_product`, since `ContentTemplate` doesn't apply
 there — doesn't wait on the upstream restriction lifting, since it
 doesn't use `ContentTemplate` at all).
 
+## Outcome — 0031 done via the custom-code path (2026-07-08)
+
+`drupal.org/i/3498525` re-checked 2026-07-08: still an **open [META]**
+("Allow Canvas to be used on any content entity type"), no fix merged
+— so `ContentTemplate` remains `node`-only and unavailable for
+`commerce_product`, exactly as this decision assumed. [[0031-sdc-based-commerce-product-display]]
+was therefore implemented on the **custom-code SDC path** (new
+`shh_horse_product_display` module: a `hook_ENTITY_TYPE_view_alter()`
+for `commerce_product` bundle `horse` that drops the injected
+`variation_*` field formatters and re-presents the same data as
+`hestehoj:heading`/`badge`/`text`/`image` render arrays — the
+0019–0023 discovery-page pattern, gated by nothing Canvas restricts).
+Verified over real HTTP: both sample horse pages render the new
+display; anonymous add-to-cart on an available horse creates a
+`horse_sale` order end to end; 0024's availability checker still
+rejects a forged POST on the sold horse with "no longer available"
+(no order item created); the 0001 "Pay a deposit" CTA still appears —
+all because running as an *alter* leaves every other
+`hook_ENTITY_TYPE_view()` addition (the add-to-cart form included)
+untouched. This validates the decision's own Neutral note: direct
+`#type: component` render arrays are a full alternative to
+`ContentTemplate`, needing none of its per-bundle support.
+
+So the ContentTemplate/`node`-only path (0030, still backlog) now
+matters only for `bookable_facility`; the product side is settled
+without it. Should 3498525 ever land, converting `horse` product
+pages to `ContentTemplate` would be a *consolidation* option, not a
+prerequisite — the custom-code display is the supported pattern in
+the meantime.
+
+Note this decision also spawned [[0032-adopt-footer-navbar-sdc-components]]
+(the theme's `navbar`/`footer` slotted SDCs), done in the same
+session by the *same* custom-code mechanism (block plugins rendering
+`#type: component`), not Canvas page regions — see that task and the
+0032 note below for why page-region composition was not adopted.
+
 ## References
 
 - Canvas docs: `web/modules/contrib/canvas/docs/config-management.md`

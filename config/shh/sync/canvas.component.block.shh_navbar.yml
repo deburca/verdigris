@@ -1,0 +1,22 @@
+uuid: 547102b4-1b00-4d97-b93e-80b2e7b637a4
+langcode: en
+status: true
+dependencies:
+  module:
+    - shh_main_navigation
+active_version: 4f64dab8c8617e55
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: shh_navbar
+        label: 'SHH navbar (hestehoj:navbar)'
+        label_display: '0'
+        provider: shh_main_navigation
+    fallback_metadata:
+      slot_definitions: null
+label: 'SHH navbar (hestehoj:navbar)'
+id: block.shh_navbar
+provider: shh_main_navigation
+source: block
+source_local_id: shh_navbar

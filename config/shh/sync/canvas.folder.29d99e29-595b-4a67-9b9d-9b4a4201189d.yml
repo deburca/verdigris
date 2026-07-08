@@ -9,6 +9,7 @@ dependencies:
     - canvas.component.block.system_menu_block.footer
     - canvas.component.block.system_menu_block.main
     - canvas.component.block.system_menu_block.navigation-user-links
+    - canvas.component.block.system_menu_block.social
     - canvas.component.block.system_menu_block.tools
     - canvas.component.block.system_menu_block.top-tasks
 name: Menus
@@ -21,5 +22,6 @@ items:
   - block.system_menu_block.footer
   - block.system_menu_block.main
   - block.system_menu_block.navigation-user-links
+  - block.system_menu_block.social
   - block.system_menu_block.tools
   - block.system_menu_block.top-tasks

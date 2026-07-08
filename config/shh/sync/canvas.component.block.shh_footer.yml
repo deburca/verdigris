@@ -1,0 +1,22 @@
+uuid: 1e490278-1484-47e2-8c7a-f180d98e4f3c
+langcode: en
+status: true
+dependencies:
+  module:
+    - shh_site_footer
+active_version: 6626018d1fcd2728
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: shh_footer
+        label: 'SHH footer (hestehoj:footer)'
+        label_display: '0'
+        provider: shh_site_footer
+    fallback_metadata:
+      slot_definitions: null
+label: 'SHH footer (hestehoj:footer)'
+id: block.shh_footer
+provider: shh_site_footer
+source: block
+source_local_id: shh_footer

@@ -1,0 +1,231 @@
+<?php
+
+/**
+ * @file
+ * SDC-based display for horse product pages (task 0031).
+ */
+
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Render\Markup;
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter() for commerce_product.
+ *
+ * Replaces the classic field-formatter output (the `variation_*`
+ * elements Commerce's ProductViewBuilder injects from the variation's
+ * view display, plus the duplicate title element) with hestehoj SDC
+ * components. Runs as an *alter* so every hook_ENTITY_TYPE_view()
+ * addition is already in $build and survives untouched — notably
+ * `variations` (the add-to-cart form, which carries 0024's
+ * availability-checker validation and unavailable-horse messaging) and
+ * shh_horse_deposit's `shh_pay_deposit_link` CTA (weight 100).
+ */
+function shh_horse_product_display_commerce_product_view_alter(array &$build, EntityInterface $product, EntityViewDisplayInterface $display) {
+  /** @var \Drupal\commerce_product\Entity\ProductInterface $product */
+  if ($product->bundle() !== 'horse' || !in_array($display->getMode(), ['default', 'full'], TRUE)) {
+    return;
+  }
+  $variation = $product->getDefaultVariation();
+  if (!$variation) {
+    return;
+  }
+
+  // Drop the injected variation field formatters — the components below
+  // re-present the same data — and the product display's own title
+  // element (the page-title block already renders the H1; the display
+  // copy was a duplicate).
+  foreach (array_keys($build) as $key) {
+    if (str_starts_with($key, 'variation_')) {
+      unset($build[$key]);
+    }
+  }
+  if (isset($build['title'])) {
+    $build['title']['#access'] = FALSE;
+  }
+
+  // The removed formatters carried the variation's cacheability; the
+  // components below are built from the same entity, so re-attach it.
+  CacheableMetadata::createFromRenderArray($build)
+    ->addCacheableDependency($variation)
+    ->applyTo($build);
+
+  $price = $variation->getPrice();
+  $formatted_price = \Drupal::service('commerce_price.currency_formatter')
+    ->format($price->getNumber(), $price->getCurrencyCode());
+
+  // --- Hero row: image beside price/status/gaits/key facts. ---
+  $summary = [];
+
+  $summary['price'] = [
+    '#type' => 'component',
+    '#component' => 'hestehoj:heading',
+    '#props' => [
+      'heading_text' => $formatted_price,
+      'level' => 2,
+      'text_size' => 'heading-responsive-3xl',
+      'text_color' => 'primary',
+      'align' => 'left',
+    ],
+  ];
+
+  $sale_state = $variation->hasField('field_sale_state')
+    ? $variation->get('field_sale_state')->value
+    : NULL;
+  if ($sale_state && $sale_state !== 'available') {
+    $state_labels = shh_common_list_string_labels($variation->get('field_sale_state'));
+    $summary['sale_state'] = [
+      '#type' => 'component',
+      '#component' => 'hestehoj:badge',
+      '#props' => [
+        'label' => reset($state_labels) ?: $sale_state,
+        'style' => 'secondary',
+        'icon' => '',
+      ],
+    ];
+  }
+
+  if ($variation->hasField('field_gaits')) {
+    $gait_badges = [];
+    foreach (shh_common_list_string_labels($variation->get('field_gaits')) as $gait_label) {
+      $gait_badges[] = [
+        '#type' => 'component',
+        '#component' => 'hestehoj:badge',
+        '#props' => [
+          'label' => $gait_label,
+          'style' => 'primary',
+          'icon' => '',
+        ],
+      ];
+    }
+    if ($gait_badges) {
+      $summary['gaits'] = [
+        '#type' => 'container',
+        '#attributes' => ['class' => ['flex', 'flex-wrap', 'gap-2']],
+        'badges' => $gait_badges,
+      ];
+    }
+  }
+
+  $summary['facts'] = [
+    '#type' => 'component',
+    '#component' => 'hestehoj:text',
+    '#props' => [
+      // Markup::create(), not a plain string: the component's twig
+      // outputs {{ text }}, so a string would be autoescaped (the same
+      // reason FacilitiesOverviewController does this).
+      'text' => Markup::create(_shh_horse_product_display_facts_html($variation)),
+      'text_size' => 'normal',
+      'text_color' => 'default',
+    ],
+  ];
+
+  $hero = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['grid', 'gap-8', 'md:grid-cols-2', 'mb-8']],
+    'summary' => [
+      '#type' => 'container',
+      '#attributes' => ['class' => ['flex', 'flex-col', 'gap-4', 'order-last', 'md:order-first']],
+      'items' => $summary,
+    ],
+  ];
+  $media_props = shh_common_image_media_props($variation, 'field_media');
+  if ($media_props) {
+    $hero['image'] = [
+      '#type' => 'component',
+      '#component' => 'hestehoj:image',
+      '#props' => [
+        'media' => $media_props,
+        'size' => '4:3',
+        'radius' => 'large',
+      ],
+    ];
+  }
+  $build['shh_hero'] = $hero + ['#weight' => -10];
+
+  // --- Narrative sections: pedigree and health, only when present. ---
+  $details = [];
+  foreach ([
+    'field_pedigree' => t('Pedigree'),
+    'field_health_notes' => t('Health & vetting'),
+  ] as $field_name => $heading) {
+    if (!$variation->hasField($field_name) || $variation->get($field_name)->isEmpty()) {
+      continue;
+    }
+    $details[$field_name . '_heading'] = [
+      '#type' => 'component',
+      '#component' => 'hestehoj:heading',
+      '#props' => [
+        'heading_text' => (string) $heading,
+        'level' => 2,
+        'text_size' => 'heading-responsive-2xl',
+        'text_color' => 'default',
+        'align' => 'left',
+      ],
+    ];
+    // Formatted-text fields: ->processed has already been through the
+    // field's text format filters, so it is safe HTML by definition —
+    // and it is a MarkupInterface object; passing it uncast keeps it
+    // from being autoescaped by the component's {{ text }} output.
+    $details[$field_name] = [
+      '#type' => 'component',
+      '#component' => 'hestehoj:text',
+      '#props' => [
+        'text' => $variation->get($field_name)->processed,
+        'text_size' => 'normal',
+        'text_color' => 'default',
+      ],
+    ];
+  }
+  if ($details) {
+    $build['shh_details'] = [
+      '#type' => 'container',
+      '#attributes' => ['class' => ['flex', 'flex-col', 'gap-3', 'mb-8']],
+      '#weight' => -5,
+      'items' => $details,
+    ];
+  }
+}
+
+/**
+ * Builds the key-facts definition list HTML for a horse variation.
+ *
+ * Escaped plain-value facts only (breed, sex, born, height, discipline,
+ * vetting) — the formatted-text narrative fields get their own sections.
+ */
+function _shh_horse_product_display_facts_html($variation): string {
+  $facts = [];
+
+  if (!$variation->get('field_breed')->isEmpty()) {
+    $facts[(string) t('Breed')] = $variation->get('field_breed')->value;
+  }
+  foreach ([
+    'field_sex' => t('Sex'),
+    'field_discipline' => t('Discipline'),
+    'field_vetting_status' => t('Vetting'),
+  ] as $field_name => $label) {
+    $values = shh_common_list_string_labels($variation->get($field_name));
+    if ($values) {
+      $facts[(string) $label] = implode(', ', $values);
+    }
+  }
+  if (!$variation->get('field_date_of_birth')->isEmpty()) {
+    $facts[(string) t('Born')] = \Drupal::service('date.formatter')->format(
+      $variation->get('field_date_of_birth')->date->getTimestamp(),
+      'custom',
+      'j F Y',
+    );
+  }
+  if (!$variation->get('field_height_hh')->isEmpty()) {
+    $facts[(string) t('Height')] = $variation->get('field_height_hh')->value . ' hh';
+  }
+
+  $rows = '';
+  foreach ($facts as $label => $value) {
+    $rows .= '<div class="flex justify-between gap-4 border-b border-border py-1"><dt class="font-semibold">'
+      . htmlspecialchars($label, ENT_QUOTES)
+      . '</dt><dd>' . htmlspecialchars((string) $value, ENT_QUOTES) . '</dd></div>';
+  }
+  return '<dl class="m-0">' . $rows . '</dl>';
+}

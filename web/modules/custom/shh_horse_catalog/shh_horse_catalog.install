@@ -16,5 +16,5 @@
 function shh_horse_catalog_install() {
   // After Home (0); Book a facility (20) and Log in / Register (30)
   // slot in behind.
-  shh_ensure_menu_link('main', 'internal:/horses', 'Horses for sale', 10);
+  shh_common_ensure_menu_link('main', 'internal:/horses', 'Horses for sale', 10);
 }

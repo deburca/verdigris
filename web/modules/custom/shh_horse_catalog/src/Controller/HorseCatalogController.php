@@ -5,7 +5,6 @@ namespace Drupal\shh_horse_catalog\Controller;
 use CommerceGuys\Intl\Formatter\CurrencyFormatterInterface;
 use Drupal\commerce_product\Entity\ProductVariationInterface;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\media\MediaInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -92,22 +91,14 @@ class HorseCatalogController extends ControllerBase {
     if ($variation->hasField('field_breed') && !$variation->get('field_breed')->isEmpty()) {
       $summary_parts[] = $variation->get('field_breed')->value;
     }
-    if ($variation->hasField('field_gaits') && !$variation->get('field_gaits')->isEmpty()) {
-      $gait_labels = array_map(
-        fn ($item) => $item->value,
-        iterator_to_array($variation->get('field_gaits')),
-      );
+    if ($variation->hasField('field_gaits')) {
       // field_gaits is a plain list_string field (see task 0014) — resolve
-      // machine-name values to their human-readable labels via the field
-      // definition's own allowed values rather than printing e.g.
-      // "flying_pace" verbatim.
-      $allowed_values = $variation->get('field_gaits')->getFieldDefinition()
-        ->getFieldStorageDefinition()->getSetting('allowed_values');
-      $gait_labels = array_map(
-        fn ($value) => $allowed_values[$value] ?? $value,
-        $gait_labels,
-      );
-      $summary_parts[] = implode(', ', $gait_labels);
+      // machine-name values to human-readable labels (task 0031's shared
+      // helper, factored out of this controller).
+      $gait_labels = shh_common_list_string_labels($variation->get('field_gaits'));
+      if ($gait_labels) {
+        $summary_parts[] = implode(', ', $gait_labels);
+      }
     }
     $summary_parts[] = $this->currencyFormatter->format(
       $variation->getPrice()->getNumber(),
@@ -122,7 +113,9 @@ class HorseCatalogController extends ControllerBase {
       'text' => implode(' · ', array_filter($summary_parts)),
     ];
 
-    $media_props = $this->buildMediaProps($variation);
+    // Shared image-media-to-props helper (task 0031, factored out of
+    // this controller's original private copy).
+    $media_props = shh_common_image_media_props($variation, 'field_media');
     if ($media_props) {
       $props['media'] = $media_props;
     }
@@ -131,40 +124,6 @@ class HorseCatalogController extends ControllerBase {
       '#type' => 'component',
       '#component' => 'hestehoj:card',
       '#props' => $props,
-    ];
-  }
-
-  /**
-   * Builds the media props for a variation's first field_media image.
-   *
-   * The `{src, alt, width, height}` shape the card component's `media`
-   * prop expects. No reusable helper for this conversion existed anywhere
-   * in the
-   * codebase yet (checked) — canvas module has the equivalent logic
-   * privately in ApiMediaControllers::getInputsResolved(), not exposed
-   * as a service/trait, so this replicates it directly against the
-   * known field_media_image field on the media "image" bundle.
-   */
-  protected function buildMediaProps(ProductVariationInterface $variation): array {
-    if (!$variation->hasField('field_media') || $variation->get('field_media')->isEmpty()) {
-      return [];
-    }
-    $media = $variation->get('field_media')->entity;
-    if (!$media instanceof MediaInterface || $media->bundle() !== 'image' || !$media->hasField('field_media_image')) {
-      // Only image media is meaningful for a card thumbnail — a
-      // video/remote_video first item (field_media allows either, see
-      // task 0011) is skipped rather than erroring.
-      return [];
-    }
-    $image_item = $media->get('field_media_image')->first();
-    if (!$image_item) {
-      return [];
-    }
-    return [
-      'src' => (string) $image_item->get('src_with_alternate_widths')->getString(),
-      'alt' => (string) $image_item->get('alt')->getValue(),
-      'width' => (int) $image_item->get('width')->getValue(),
-      'height' => (int) $image_item->get('height')->getValue(),
     ];
   }
 

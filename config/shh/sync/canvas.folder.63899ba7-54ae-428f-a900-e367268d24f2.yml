@@ -1,0 +1,11 @@
+uuid: 63899ba7-54ae-428f-a900-e367268d24f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.shh_navbar
+name: 'SHH Main Navigation'
+configEntityTypeId: component
+weight: 0
+items:
+  - block.shh_navbar

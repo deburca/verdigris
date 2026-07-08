@@ -5,6 +5,61 @@
  * Shared helpers for the shh module family.
  */
 
+use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\media\MediaInterface;
+
+/**
+ * Resolves a list_string field's values to their human-readable labels.
+ *
+ * Factored out of HorseCatalogController (task 0031): machine values
+ * like "flying_pace" are resolved through the field storage's own
+ * allowed_values map, falling back to the raw value for anything
+ * unmapped.
+ *
+ * @return string[]
+ *   Labels in field delta order; empty array for an empty field.
+ */
+function shh_common_list_string_labels(FieldItemListInterface $items): array {
+  if ($items->isEmpty()) {
+    return [];
+  }
+  $allowed_values = $items->getFieldDefinition()
+    ->getFieldStorageDefinition()->getSetting('allowed_values') ?? [];
+  return array_map(
+    fn ($item) => (string) ($allowed_values[$item->value] ?? $item->value),
+    iterator_to_array($items),
+  );
+}
+
+/**
+ * Builds hestehoj media props from an entity's first image-media item.
+ *
+ * The `{src, alt, width, height}` shape hestehoj components' `media`
+ * prop expects. Factored out of HorseCatalogController (task 0031);
+ * only image media is meaningful — a video/remote_video first item is
+ * skipped (returns []) rather than erroring.
+ */
+function shh_common_image_media_props(FieldableEntityInterface $entity, string $field_name): array {
+  if (!$entity->hasField($field_name) || $entity->get($field_name)->isEmpty()) {
+    return [];
+  }
+  $media = $entity->get($field_name)->entity;
+  if (!$media instanceof MediaInterface || $media->bundle() !== 'image' || !$media->hasField('field_media_image')) {
+    return [];
+  }
+  $image_item = $media->get('field_media_image')->first();
+  if (!$image_item) {
+    return [];
+  }
+  return [
+    'src' => (string) $image_item->get('src_with_alternate_widths')->getString(),
+    'alt' => (string) $image_item->get('alt')->getValue(),
+    'width' => (int) $image_item->get('width')->getValue(),
+    'height' => (int) $image_item->get('height')->getValue(),
+  ];
+}
+
 /**
  * Ensures a menu link exists, keyed by menu name + URI.
  *
@@ -25,7 +80,7 @@
  * @param int $weight
  *   Menu weight, used only when the link is created.
  */
-function shh_ensure_menu_link(string $menu, string $uri, string $title, int $weight): void {
+function shh_common_ensure_menu_link(string $menu, string $uri, string $title, int $weight): void {
   $storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
   $existing = $storage->loadByProperties([
     'menu_name' => $menu,

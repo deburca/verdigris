@@ -35,7 +35,7 @@ function shh_rider_registration_install() {
     ->save();
 
   // After Home (0), Horses for sale (10), Book a facility (20).
-  shh_ensure_menu_link('main', 'internal:/user/login', 'Log in / Register', 30);
+  shh_common_ensure_menu_link('main', 'internal:/user/login', 'Log in / Register', 30);
 }
 
 /**

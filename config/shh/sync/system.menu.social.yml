@@ -1,0 +1,8 @@
+uuid: df5ddc67-574d-4bc2-b66a-8ab2648baee9
+langcode: en
+status: true
+dependencies: {  }
+id: social
+label: 'Social media'
+description: 'Social profile links shown in the footer (task 0032). Placeholder URLs pending client confirmation.'
+locked: false

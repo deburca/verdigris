@@ -1,0 +1,8 @@
+name: 'SHH Horse Product Display'
+type: module
+description: 'Implements docs/project-management/tasks/0031-sdc-based-commerce-product-display.md: renders /product/{id} horse pages with hestehoj SDC components (direct #type: component render arrays, the discovery-page pattern from 0019-0023) instead of classic field-formatter output. Canvas ContentTemplate cannot do this — it is hard-restricted to the node entity type upstream (drupal.org/i/3498525, still an open META) — so this is plain custom code, gated by nothing. The add-to-cart form, 0024 sale-state enforcement, and the 0001 deposit CTA are deliberately untouched: only the informational field display around them is replaced.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - commerce_product:commerce_product
+  - shh_common:shh_common

@@ -499,7 +499,7 @@ recorded in the decision entry.
 
 [[0035-shh-install-hook-cleanup]] is **done** (closed 2026-07-08),
 in full: new `shh_common` module with
-`shh_ensure_menu_link()` replacing the four drifted copies of the
+`shh_common_ensure_menu_link()` replacing the four drifted copies of the
 create-unless-present menu-link block (drift resolved: keyed by
 menu + URI, existing links never overwritten, `enabled` explicit;
 verified through a real uninstall/reinstall cycle on both branches);
@@ -518,6 +518,37 @@ original 3481627 reference turned out to be the core admin-create UX
 issue the alter mimics (context, not an existing report of this bug).
 Our composer patch retires when #3591417 (or core 3481627 removing
 the alter) lands — check before any drupal_cms_helper version bump.
+
+[[0031-sdc-based-commerce-product-display]] and
+[[0032-adopt-footer-navbar-sdc-components]] are both **done** (closed
+2026-07-08, same session) — the SDC display work advances without the
+Canvas ContentTemplate track, see [[0019-canvas-content-templates-for-structured-content]]'s
+Outcome section. Re-checked `drupal.org/i/3498525` first: still an
+open [META], so `ContentTemplate` stays `node`-only and can't touch
+`commerce_product` — as anticipated. **0031**: new
+`shh_horse_product_display` module renders `/product/{id}` horse pages
+with `hestehoj:heading`/`badge`/`text`/`image` via a
+`hook_ENTITY_TYPE_view_alter()` that runs *after* everything else, so
+the add-to-cart form, 0024's sale-state enforcement, and the 0001
+deposit CTA all survive untouched (verified: real anonymous
+add-to-cart on an available horse creates a `horse_sale` order; forged
+POST on the sold horse is rejected with 0024's message and zero order
+items). `HorseCatalogController`'s gait-label and image-media helpers
+were factored into `shh_common` (and 0035's helper renamed to the
+prefixed `shh_common_ensure_menu_link` so phpcs is clean). **0032**:
+the header and footer now render through the theme's slotted
+`hestehoj:navbar`/`hestehoj:footer` SDCs via block plugins
+(`shh_navbar`/`shh_footer`) — **custom code, not Canvas page
+regions**, keeping one SDC-composition approach site-wide. Per the
+client's slot direction: site-name wordmark branding, navbar shows the
+access-filtered main menu (CTAs deliberately live in page content, not
+furniture), footer carries address/email read live from the Commerce
+store + a placeholder `social` menu + the footer menu + a computed
+copyright line. Verified anonymous and as a non-admin rider (the "Log
+in / Register" link correctly hides when authenticated). **Two open
+client items**, both non-blocking: real social profile URLs (Facebook/
+Instagram are placeholders, editable as content) and an eventual
+leaflet map embed for the address.
 
 [[0036-staff-release-deposit-reservation]] is **done** (closed
 2026-07-08, raised and implemented the same day): testing surfaced
@@ -542,15 +573,18 @@ full purchase price, per-case staff refund decisions — relist and
 refund should decouple), is recorded as [[0037-unsell-sold-horse]]
 (backlog, low).
 
-Next actionable step: the remaining backlog is medium/low: the
-Canvas/SDC display migration
-([[0030-canvas-content-template-bookable-facility]] /
-[[0031-sdc-based-commerce-product-display]], with
-[[0032-adopt-footer-navbar-sdc-components]] as its page-furniture
-companion), plus [[0004-staff-admin-booking-calendar]], the
-client-input-gated [[0006-gdpr-data-retention-policy]], and the new
+Next actionable step: the remaining backlog is medium/low —
+[[0030-canvas-content-template-bookable-facility]] (the last piece of
+the Canvas track, now only relevant to `bookable_facility` since the
+product side is settled without ContentTemplate),
+[[0004-staff-admin-booking-calendar]], the client-input-gated
+[[0006-gdpr-data-retention-policy]], and the new
 [[0037-unsell-sold-horse]] (staff relisting of a sold horse, split
-from 0036).
+from 0036). Also worth a small follow-up: the
+horse add-to-cart form exposes "Override the unit price" + a currency
+selector to anonymous visitors (pre-existing `commerce_order_item.horse`
+form-display config, surfaced during 0031, deliberately left untouched
+there), and the client still owes the real social URLs for 0032.
 
 ## Tasks
 ```dataview

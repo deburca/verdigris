@@ -1,0 +1,20 @@
+uuid: 657f46fb-63fe-4711-b3d8-1cb7dff6661c
+langcode: en
+status: true
+dependencies:
+  module:
+    - shh_site_footer
+  theme:
+    - hestehoj
+id: hestehoj_footer_sdc
+theme: hestehoj
+region: footer
+weight: 0
+provider: null
+plugin: shh_footer
+settings:
+  id: shh_footer
+  label: 'SHH footer'
+  label_display: '0'
+  provider: shh_site_footer
+visibility: {  }

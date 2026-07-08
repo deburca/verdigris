@@ -1,0 +1,20 @@
+uuid: f9a21d51-794e-4e67-9f1e-1d304da8d913
+langcode: en
+status: true
+dependencies:
+  module:
+    - shh_main_navigation
+  theme:
+    - hestehoj
+id: hestehoj_navbar
+theme: hestehoj
+region: header
+weight: 0
+provider: null
+plugin: shh_navbar
+settings:
+  id: shh_navbar
+  label: 'SHH navbar'
+  label_display: '0'
+  provider: shh_main_navigation
+visibility: {  }

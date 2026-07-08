@@ -1,0 +1,27 @@
+uuid: 2824c9a4-ac85-46eb-b141-e378143d1d1f
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.social
+  module:
+    - system
+active_version: 16c35015968c8404
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'system_menu_block:social'
+        label: 'Social media'
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
+label: 'Social media'
+id: block.system_menu_block.social
+provider: system
+source: block
+source_local_id: 'system_menu_block:social'
