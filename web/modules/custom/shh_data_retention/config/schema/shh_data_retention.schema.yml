@@ -1,0 +1,28 @@
+shh_data_retention.settings:
+  type: config_object
+  label: 'SHH data retention settings'
+  mapping:
+    categories:
+      type: mapping
+      label: 'Retention windows in days per category (null = not confirmed, purge disabled)'
+      mapping:
+        waiver_submissions:
+          type: integer
+          label: 'Days after the rider''s last visit'
+          nullable: true
+        contact_messages:
+          type: integer
+          label: 'Days after submission'
+          nullable: true
+        membership_records:
+          type: integer
+          label: 'Days after expiry/revocation'
+          nullable: true
+        closed_accounts:
+          type: integer
+          label: 'Days after the account was blocked/last seen'
+          nullable: true
+        booking_log:
+          type: integer
+          label: 'Days after the booked slot ended'
+          nullable: true

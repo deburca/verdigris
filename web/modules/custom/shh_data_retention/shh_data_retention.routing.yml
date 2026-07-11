@@ -1,0 +1,9 @@
+shh_data_retention.status:
+  path: '/admin/reports/data-retention'
+  defaults:
+    _controller: '\Drupal\shh_data_retention\Controller\RetentionStatusController::status'
+    _title: 'Data retention'
+  requirements:
+    _permission: 'access site reports'
+  options:
+    _admin_route: TRUE

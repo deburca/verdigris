@@ -1,0 +1,15 @@
+# Retention windows in DAYS per data category. NULL means the window
+# has not been confirmed with the client/adviser yet - that category's
+# purge is disabled and the status page says so (task 0006: the site
+# must never implement a practice the privacy policy doesn't state, or
+# state one it doesn't implement).
+#
+# Orders/invoices are deliberately NOT a category here: the Danish
+# Bookkeeping Act's 5-year retention is a keep-rule owned by the
+# accountant, not an automated purge.
+categories:
+  waiver_submissions: null
+  contact_messages: null
+  membership_records: null
+  closed_accounts: null
+  booking_log: null

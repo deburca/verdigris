@@ -1,0 +1,13 @@
+services:
+  shh_data_retention.manager:
+    class: Drupal\shh_data_retention\RetentionManager
+    arguments:
+      - '@entity_type.manager'
+      - '@config.factory'
+      - '@database'
+      - '@state'
+      - '@logger.channel.shh_data_retention'
+      - '@datetime.time'
+  logger.channel.shh_data_retention:
+    parent: logger.channel_base
+    arguments: ['shh_data_retention']
