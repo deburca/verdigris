@@ -1,0 +1,8 @@
+name: 'SHH Feed Catalog'
+type: module
+description: 'Implements docs/project-management/tasks/0038-straw-and-wrap-sale-items.md: a public /feed page listing the feed & bedding products (straw, wrap) for sale, linked from the main navigation.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - shh_common:shh_common
+  - commerce_product:commerce_product

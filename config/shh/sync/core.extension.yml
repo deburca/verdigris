@@ -118,6 +118,7 @@ module:
   shh_facility_bundle_discount: 0
   shh_facility_credits: 0
   shh_facility_slots: 0
+  shh_feed_catalog: 0
   shh_horse_catalog: 0
   shh_horse_deposit: 0
   shh_horse_product_display: 0

@@ -1,0 +1,10 @@
+uuid: 4b0f8a16-1b0a-42de-afd2-06697377e5fe
+langcode: en
+status: true
+dependencies: {  }
+id: feed
+label: Feed
+traits: {  }
+locked: false
+orderItemType: feed
+generateTitle: true

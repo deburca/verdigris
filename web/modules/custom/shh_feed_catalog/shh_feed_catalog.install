@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for shh_feed_catalog.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Links the feed & bedding catalog from the main navigation, between
+ * "Horses for sale" (10) and "Book a facility" (20).
+ */
+function shh_feed_catalog_install() {
+  shh_common_ensure_menu_link('main', 'internal:/feed', 'Feed & bedding', 15);
+}

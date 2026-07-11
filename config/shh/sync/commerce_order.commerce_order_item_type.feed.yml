@@ -1,0 +1,15 @@
+uuid: 8b9ba6e4-013f-4aef-9fa2-cb9b1f9b292d
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_tax
+third_party_settings:
+  commerce_tax:
+    taxable_type: physical_goods
+id: feed
+label: 'Feed item'
+traits: {  }
+locked: false
+purchasableEntityType: commerce_product_variation
+orderType: horse_sale

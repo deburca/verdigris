@@ -644,21 +644,49 @@ field edits only) is now recorded in 0001's workflow notes.
 
 **New client requirement (2026-07-11)**: SHH also sells baled straw
 and **wrap** (silage-like feed wrapped in multiple layers of plastic)
-— tracked as [[0038-straw-and-wrap-sale-items]] (new product/order
-modelling: commodity quantity goods, deliberately *without* the
-horse-only `field_sale_state` lifecycle, plus a discovery page) and
+— tracked as [[0038-straw-and-wrap-sale-items]] and
 [[0039-product-images-featured-and-gallery]] (staff image uploads;
 one featured image on list cards, ALL images on the individual item
 page — for horses and the new items alike; the horse half is pure
 display work, since `field_media` already stores unlimited media but
-every consumer renders only the first image). 0039's horse half can
-start independently; its straw/wrap half lands on 0038's bundles.
-0038 carries client questions (units/prices, stock tracking,
-pickup vs. delivery — no shipping exists on the platform).
+every consumer renders only the first image).
 
-Next actionable step: [[0038-straw-and-wrap-sale-items]] then
-[[0039-product-images-featured-and-gallery]] (client-requested,
-medium); the remaining older backlog is medium/low —
+[[0038-straw-and-wrap-sale-items]] is **done** (closed 2026-07-11,
+same day): one shared `feed` bundle family (product type "Feed &
+bedding" → variation type → order item type; straw and wrap are two
+*products*, `multipleVariations` on for later unit sizes), riding
+the existing `horse_sale` order type **relabelled "Product sale"** —
+0018's split drivers (cart TTL, login policy) match the horse side
+exactly, so a third order type would just be a third parallel cart.
+The feed variation type deliberately has no `field_sale_state`,
+which is precisely what keeps 0024's availability checker away
+(verified both directions: a feed purchase produced zero horse
+machinery activity, and a sold horse still rejects a forged POST
+while feed sells normally). The feed add-to-cart form display shows
+**quantity** and hides `unit_price` — deliberately not copying the
+horse form's unit-price-override leak (that follow-up stays open).
+New `shh_feed_catalog` module: `/feed` catalog page, main-nav link
+between Horses and Book a facility. The client answered most open
+items the same day: **variations are per harvest year** (built as a
+real Commerce `year` attribute on the feed variation type, so the
+add-to-cart form grew a year selector for free), confirmed
+VAT-inclusive prices — straw 2025 at 250 DKK, wrap 2025 at 350,
+wrap 2026 at 300 — and **pickup only** (delivery is never offered
+online, both product bodies say so). ⚠ Standing operational
+reminder: **wrap 2026 (variation 8) rises to 350 DKK during 2027**
+— a manual price edit, deliberately not automated. Catalog cards
+show the cheapest variation price ("From 300,00 DKK"). Verified
+over real HTTP as test_rider twice: straw ×3 + wrap ×1 → 495,00 DKK
+/ 99,00 VAT → order `HS-9`; then post-answers, wrap **2026** ×2 +
+straw ×1 → 850,00 DKK / 170,00 VAT → order `HS-10`, the attribute
+POST resolving the right year variation — both with pending manual
+payments, both test orders deleted. Still open: stock tracking
+(published = listed today) and per-bale unit confirmation.
+
+Next actionable step: [[0039-product-images-featured-and-gallery]]
+(client-requested, medium — its horse half is unblocked and its
+feed half now has 0038's bundles to land on); the remaining older
+backlog is medium/low —
 [[0004-staff-admin-booking-calendar]] and the client-input-gated
 [[0006-gdpr-data-retention-policy]]. Also worth a small follow-up: the
 horse add-to-cart form exposes "Override the unit price" + a currency

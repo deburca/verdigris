@@ -14,7 +14,7 @@ third_party_settings:
   commerce_checkout:
     checkout_flow: horse_sale
 id: horse_sale
-label: 'Horse sale'
+label: 'Product sale'
 traits: {  }
 locked: false
 workflow: order_default

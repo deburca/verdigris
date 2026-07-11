@@ -1,0 +1,7 @@
+shh_feed_catalog.catalog:
+  path: '/feed'
+  defaults:
+    _controller: '\Drupal\shh_feed_catalog\Controller\FeedCatalogController::catalog'
+    _title: 'Feed & bedding'
+  requirements:
+    _permission: 'view commerce_product'

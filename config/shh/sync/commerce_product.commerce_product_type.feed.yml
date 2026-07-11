@@ -1,0 +1,13 @@
+uuid: 829392b5-da65-422f-aafc-e3b3b11998fb
+langcode: en
+status: true
+dependencies: {  }
+id: feed
+label: 'Feed & bedding'
+traits: {  }
+locked: false
+description: ''
+variationTypes:
+  - feed
+multipleVariations: true
+injectVariationFields: true
