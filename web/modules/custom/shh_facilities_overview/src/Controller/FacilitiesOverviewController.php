@@ -134,16 +134,25 @@ class FacilitiesOverviewController extends ControllerBase {
       ]);
     }
 
+    $props = [
+      'heading_text' => $node->label(),
+      'orientation' => 'vertical',
+      'style' => 'framed',
+      'url' => $node->toUrl()->toString(),
+      'text' => implode(' · ', array_filter($summary_parts)),
+    ];
+
+    // Featured image (task 0040, the 0039 model): first image item in
+    // field delta order.
+    $media_props = shh_common_image_media_props($node, 'field_media');
+    if ($media_props) {
+      $props['media'] = $media_props;
+    }
+
     return [
       '#type' => 'component',
       '#component' => 'hestehoj:card',
-      '#props' => [
-        'heading_text' => $node->label(),
-        'orientation' => 'vertical',
-        'style' => 'framed',
-        'url' => $node->toUrl()->toString(),
-        'text' => implode(' · ', array_filter($summary_parts)),
-      ],
+      '#props' => $props,
     ];
   }
 

@@ -1,10 +1,15 @@
 {% set has_radius = radius is not empty ? 'yes' : 'no' %}
 {% set has_url = url is not empty ? 'yes' : 'no' %}
+{% set bleed_value = bleed is not empty ? bleed : 'full' %}
 
 {% set image_container =
   html_cva(
-    base: 'cq-full w-full',
+    base: 'w-full',
     variants: {
+      bleed: {
+        full: 'cq-full',
+        contained: ''
+      },
       size: {
         '2:1': 'aspect-2/1',
         '16:9': 'aspect-16/9',
@@ -27,6 +32,7 @@
 
 {% set container_classes =
   image_container.apply({
+    bleed: bleed_value,
     size: size,
     hasRadius: has_radius,
     radius: radius

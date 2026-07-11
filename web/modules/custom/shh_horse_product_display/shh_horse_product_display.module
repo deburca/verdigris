@@ -139,6 +139,10 @@ function shh_horse_product_display_commerce_product_view_alter(array &$build, En
         'media' => $all_media_props[0],
         'size' => '4:3',
         'radius' => 'large',
+        // The hero image sits in a grid column: contained keeps it in
+        // its cell instead of the component's default full-content-width
+        // cq-full breakout.
+        'bleed' => 'contained',
       ],
     ];
   }

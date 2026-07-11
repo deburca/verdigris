@@ -710,13 +710,43 @@ and the add-to-cart/deposit-CTA survival on Freja's). Eight
 GD-generated placeholder photos seed the catalog until the client
 sends real ones.
 
+[[0040-facility-images-featured-and-gallery]] is **done** (closed
+2026-07-11, requested and implemented the same day as 0039): the
+riding facilities now carry images in the 0039 model — a new
+multi-value `field.storage.node.field_media` (deliberately not
+Drupal CMS's cardinality-1 `field_featured_image`, which can't
+model "featured = first of many"), `media_library` widget on the
+`bookable_facility` node form, featured image on the `/facilities`
+cards, and the shared "Photos" gallery on the facility pages via a
+`hook_node_view()` sibling hook in `shh_facilities_overview` (the
+booking CTA and FullCalendar availability embed verified intact
+alongside). Zero new image plumbing — 0039's `shh_common` helpers
+took a node bundle unchanged. Sample content: Oval Track ×2,
+Manège ×1, and Lunge Ring deliberately imageless so the
+zero-image degrade case stays live. Verified anonymous over real
+HTTP on all four pages plus the staff node form as admin.
+Same-day client review caught a real display bug — fixed under
+0040: **`hestehoj:image` is full-bleed by design** (its `cq-full`
+utility breaks out of any wrapper to span the full content width),
+so the horse hero and every gallery tile overflowed their grid
+cells; latent since 0031 and invisible until this day's first-ever
+real media. Fixed with a new `bleed` prop on the component
+(`full` default preserves every existing usage; `contained` = no
+breakout class, so the committed CSS build needed no rebuild — NB
+this machine's theme toolchain is stale, tailwind 4.1.18 vs the
+committed build's 4.2.1; don't rebuild `build/main.min.css` without
+a proper dependency install first). The client's lightbox question
+is recorded as [[0041-gallery-lightbox]] (assessment: worthwhile,
+modest scope — native `<dialog>`, theme JS component pattern, no
+contrib/CDN), backlog until approved.
+
 Next actionable step: the client-requested work is done — remaining
 backlog is medium/low: [[0004-staff-admin-booking-calendar]] and the
 client-input-gated [[0006-gdpr-data-retention-policy]]. Client items
-outstanding: real product photos (0039's placeholders), 0038's
-stock-tracking and per-bale-unit answers, the wrap-2026 price rise
-during 2027, and the real social URLs from 0032. Also worth a small
-follow-up: the
+outstanding: real photos for products (0039) and facilities (0040),
+0038's stock-tracking and per-bale-unit answers, the wrap-2026 price
+rise during 2027, and the real social URLs from 0032. Also worth a
+small follow-up: the
 horse add-to-cart form exposes "Override the unit price" + a currency
 selector to anonymous visitors (pre-existing `commerce_order_item.horse`
 form-display config, surfaced during 0031, deliberately left untouched

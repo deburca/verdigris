@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * @file
+ * Hooks for shh_facilities_overview.
+ */
+
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_view() for node.
+ *
+ * Adds the all-images photo gallery to bookable facility pages (task
+ * 0040, reusing task 0039's shared helpers and presentation). A plain
+ * sibling view hook — the facility page keeps its classic
+ * field-formatter display (decision 0030) and the booking CTA and
+ * availability calendar render untouched alongside.
+ */
+function shh_facilities_overview_node_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode) {
+  /** @var \Drupal\node\NodeInterface $node */
+  if ($node->bundle() !== 'bookable_facility' || !in_array($display->getMode(), ['default', 'full'], TRUE)) {
+    return;
+  }
+
+  $gallery = shh_common_image_gallery(shh_common_image_media_props_all($node, 'field_media'));
+  if (!$gallery) {
+    return;
+  }
+
+  // Between the facility facts fields (weights 10-25) and the links /
+  // open hours / availability calendar block (100+).
+  $build['shh_photos'] = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['flex', 'flex-col', 'gap-3', 'my-8']],
+    '#weight' => 50,
+    'heading' => [
+      '#type' => 'component',
+      '#component' => 'hestehoj:heading',
+      '#props' => [
+        'heading_text' => (string) t('Photos'),
+        'level' => 2,
+        'text_size' => 'heading-responsive-2xl',
+        'text_color' => 'default',
+        'align' => 'left',
+      ],
+    ],
+    'grid' => $gallery,
+  ];
+}

@@ -44,6 +44,19 @@ props:
         extra-large: Extra large
       examples:
         - "small"
+    bleed:
+      type: string
+      title: Width behaviour
+      description: "full breaks out to the full content width (the cq-full container-query utility, the historic behaviour); contained stays inside the parent element — required when the image sits in a composed layout such as a grid column or gallery tile."
+      enum:
+        - full
+        - contained
+      meta:enum:
+        full: Full content width
+        contained: Contained by parent
+      default: full
+      examples:
+        - "contained"
     caption:
       title: Caption
       type: string

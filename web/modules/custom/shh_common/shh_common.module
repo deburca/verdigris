@@ -131,6 +131,10 @@ function shh_common_image_gallery(array $media_props_list): array {
         'media' => $props,
         'size' => '1:1',
         'radius' => 'large',
+        // Gallery tiles sit inside a grid cell: without this the
+        // component's default cq-full utility breaks out to the full
+        // content width and overflows the cell.
+        'bleed' => 'contained',
       ],
     ];
   }

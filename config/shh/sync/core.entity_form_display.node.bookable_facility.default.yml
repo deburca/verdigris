@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.bookable_facility.field_dimensions
     - field.field.node.bookable_facility.field_facility_kind
     - field.field.node.bookable_facility.field_indoor
+    - field.field.node.bookable_facility.field_media
     - field.field.node.bookable_facility.field_open_hours
     - field.field.node.bookable_facility.field_peak_pricing_notes
     - field.field.node.bookable_facility.field_price
@@ -22,6 +23,7 @@ dependencies:
   module:
     - commerce_price
     - content_moderation
+    - media_library
     - office_hours
     - path
     - text
@@ -69,6 +71,13 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  field_media:
+    type: media_library_widget
+    weight: 6
+    region: content
+    settings:
+      media_types: {  }
     third_party_settings: {  }
   field_open_hours:
     type: office_hours_default
