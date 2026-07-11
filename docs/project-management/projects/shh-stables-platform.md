@@ -4,7 +4,7 @@ tags: [cms2/project]
 status: planning
 site: shh
 created: 2026-07-05
-updated: 2026-07-08
+updated: 2026-07-11
 target:
 ---
 # Project: stutteri-hestehoj.dk — stables platform
@@ -18,7 +18,7 @@ bookings are deliberately separate checkout flows, not a unified one — a
 combined single-checkout purchase was confirmed not to be a required scenario).
 
 ## Scope
-- In scope: horse sales catalog (**Icelandic horses only**), hourly booking for riding areas + hall, separate cart/checkout per purchase kind, rider eligibility gating
+- In scope: horse sales catalog (**Icelandic horses only**), hourly booking for riding areas + hall, separate cart/checkout per purchase kind, rider eligibility gating; **added by client request 2026-07-11**: commodity feed/bedding sales — straw and wrap ([[0038-straw-and-wrap-sale-items]]) with per-item image galleries ([[0039-product-images-featured-and-gallery]])
 - Out of scope: payment methods beyond what Commerce already supports platform-wide, multi-stable expansion, combining a horse purchase and a facility booking into one checkout
 
 ## Domain notes
@@ -642,7 +642,23 @@ pointing at order 44, not 43. Test orders deleted, horse 1 ends
 `available`. The `reserved`/`withdrawn` gap (no transitions, manual
 field edits only) is now recorded in 0001's workflow notes.
 
-Next actionable step: the remaining backlog is medium/low —
+**New client requirement (2026-07-11)**: SHH also sells baled straw
+and **wrap** (silage-like feed wrapped in multiple layers of plastic)
+— tracked as [[0038-straw-and-wrap-sale-items]] (new product/order
+modelling: commodity quantity goods, deliberately *without* the
+horse-only `field_sale_state` lifecycle, plus a discovery page) and
+[[0039-product-images-featured-and-gallery]] (staff image uploads;
+one featured image on list cards, ALL images on the individual item
+page — for horses and the new items alike; the horse half is pure
+display work, since `field_media` already stores unlimited media but
+every consumer renders only the first image). 0039's horse half can
+start independently; its straw/wrap half lands on 0038's bundles.
+0038 carries client questions (units/prices, stock tracking,
+pickup vs. delivery — no shipping exists on the platform).
+
+Next actionable step: [[0038-straw-and-wrap-sale-items]] then
+[[0039-product-images-featured-and-gallery]] (client-requested,
+medium); the remaining older backlog is medium/low —
 [[0004-staff-admin-booking-calendar]] and the client-input-gated
 [[0006-gdpr-data-retention-policy]]. Also worth a small follow-up: the
 horse add-to-cart form exposes "Override the unit price" + a currency
