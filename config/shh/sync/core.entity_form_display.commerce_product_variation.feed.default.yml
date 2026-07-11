@@ -5,8 +5,10 @@ dependencies:
   config:
     - commerce_product.commerce_product_variation_type.feed
     - field.field.commerce_product_variation.feed.attribute_year
+    - field.field.commerce_product_variation.feed.field_media
   module:
     - commerce_price
+    - media_library
 id: commerce_product_variation.feed.default
 targetEntityType: commerce_product_variation
 bundle: feed
@@ -17,6 +19,13 @@ content:
     weight: 1
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_media:
+    type: media_library_widget
+    weight: 5
+    region: content
+    settings:
+      media_types: {  }
     third_party_settings: {  }
   list_price:
     type: commerce_list_price

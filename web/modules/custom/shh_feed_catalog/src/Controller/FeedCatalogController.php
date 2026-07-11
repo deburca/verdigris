@@ -112,16 +112,30 @@ class FeedCatalogController extends ControllerBase {
         : (string) $this->t('From @price', ['@price' => $formatted]);
     }
 
+    $props = [
+      'heading_text' => $product->label(),
+      'orientation' => 'vertical',
+      'style' => 'framed',
+      'url' => $product->toUrl()->toString(),
+      'text' => implode(' · ', $summary_parts),
+    ];
+
+    // Featured image (task 0039): first image found walking the
+    // variations in order — with per-year variations the photos
+    // usually sit on the current year, so don't stop at the default
+    // variation.
+    foreach ($product->getVariations() as $variation) {
+      $media_props = shh_common_image_media_props($variation, 'field_media');
+      if ($media_props) {
+        $props['media'] = $media_props;
+        break;
+      }
+    }
+
     return [
       '#type' => 'component',
       '#component' => 'hestehoj:card',
-      '#props' => [
-        'heading_text' => $product->label(),
-        'orientation' => 'vertical',
-        'style' => 'framed',
-        'url' => $product->toUrl()->toString(),
-        'text' => implode(' · ', $summary_parts),
-      ],
+      '#props' => $props,
     ];
   }
 

@@ -37,14 +37,58 @@ function shh_common_list_string_labels(FieldItemListInterface $items): array {
  *
  * The `{src, alt, width, height}` shape hestehoj components' `media`
  * prop expects. Factored out of HorseCatalogController (task 0031);
- * only image media is meaningful — a video/remote_video first item is
- * skipped (returns []) rather than erroring.
+ * only image media is meaningful. Since task 0039 this is the
+ * "featured image" accessor — the first *image* item in field delta
+ * order (a leading video no longer hides a later image), which is the
+ * platform's definition of featured: staff pick it by reordering the
+ * media widget.
  */
 function shh_common_image_media_props(FieldableEntityInterface $entity, string $field_name): array {
+  return shh_common_image_media_props_all($entity, $field_name)[0] ?? [];
+}
+
+/**
+ * Builds hestehoj media props for every image-media item on a field.
+ *
+ * List form of shh_common_image_media_props() (task 0039): one props
+ * entry per image media item, in field delta order; video/remote_video
+ * items are skipped rather than erroring.
+ *
+ * @return array[]
+ *   A list of {src, alt, width, height} prop arrays; empty when the
+ *   field is missing, empty, or holds no image media.
+ */
+function shh_common_image_media_props_all(FieldableEntityInterface $entity, string $field_name): array {
   if (!$entity->hasField($field_name) || $entity->get($field_name)->isEmpty()) {
     return [];
   }
-  $media = $entity->get($field_name)->entity;
+  $props_list = [];
+  foreach ($entity->get($field_name)->referencedEntities() as $media) {
+    $props = shh_common_image_media_props_from_media($media);
+    if ($props) {
+      $props_list[] = $props;
+    }
+  }
+  return $props_list;
+}
+
+/**
+ * Builds hestehoj media props from one media entity.
+ *
+ * Lowest-level piece of the task 0039 helper family, public so callers
+ * aggregating media across several entities (shh_feed_catalog's
+ * per-year variations) can dedupe media themselves and still share the
+ * props construction. The `src` is canvas's computed
+ * src_with_alternate_widths property, so it serves responsive widths.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface|null $media
+ *   A media entity (anything else returns []).
+ *
+ * @return array
+ *   {src, alt, width, height} props, or [] for anything that isn't
+ *   image media with a file.
+ */
+function shh_common_image_media_props_from_media($media): array {
   if (!$media instanceof MediaInterface || $media->bundle() !== 'image' || !$media->hasField('field_media_image')) {
     return [];
   }
@@ -57,6 +101,43 @@ function shh_common_image_media_props(FieldableEntityInterface $entity, string $
     'alt' => (string) $image_item->get('alt')->getValue(),
     'width' => (int) $image_item->get('width')->getValue(),
     'height' => (int) $image_item->get('height')->getValue(),
+  ];
+}
+
+/**
+ * Builds a responsive image-grid render array from media props.
+ *
+ * The shared product-page gallery presentation (task 0039): a grid of
+ * uniform 1:1 hestehoj:image tiles, one per entry from
+ * shh_common_image_media_props_all(). Deliberately no lightbox or
+ * full-size links — the tiles ARE the "see all images" surface;
+ * revisit only if the client asks for one. Returns [] for an empty
+ * list so callers skip gallery furniture entirely (task 0039's
+ * degrade-gracefully criterion).
+ *
+ * @param array[] $media_props_list
+ *   A list of {src, alt, width, height} prop arrays.
+ */
+function shh_common_image_gallery(array $media_props_list): array {
+  if (!$media_props_list) {
+    return [];
+  }
+  $images = [];
+  foreach ($media_props_list as $props) {
+    $images[] = [
+      '#type' => 'component',
+      '#component' => 'hestehoj:image',
+      '#props' => [
+        'media' => $props,
+        'size' => '1:1',
+        'radius' => 'large',
+      ],
+    ];
+  }
+  return [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['grid', 'grid-cols-2', 'gap-4', 'sm:grid-cols-3']],
+    'images' => $images,
   ];
 }
 

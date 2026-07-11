@@ -130,19 +130,43 @@ function shh_horse_product_display_commerce_product_view_alter(array &$build, En
       'items' => $summary,
     ],
   ];
-  $media_props = shh_common_image_media_props($variation, 'field_media');
-  if ($media_props) {
+  $all_media_props = shh_common_image_media_props_all($variation, 'field_media');
+  if ($all_media_props) {
     $hero['image'] = [
       '#type' => 'component',
       '#component' => 'hestehoj:image',
       '#props' => [
-        'media' => $media_props,
+        'media' => $all_media_props[0],
         'size' => '4:3',
         'radius' => 'large',
       ],
     ];
   }
   $build['shh_hero'] = $hero + ['#weight' => -10];
+
+  // --- Gallery: every image after the featured one (task 0039). The
+  // hero already shows delta 0, so a single-image horse gets no
+  // gallery furniture at all.
+  $gallery = shh_common_image_gallery(array_slice($all_media_props, 1));
+  if ($gallery) {
+    $build['shh_gallery'] = [
+      '#type' => 'container',
+      '#attributes' => ['class' => ['flex', 'flex-col', 'gap-3', 'mb-8']],
+      '#weight' => -4,
+      'heading' => [
+        '#type' => 'component',
+        '#component' => 'hestehoj:heading',
+        '#props' => [
+          'heading_text' => (string) t('More photos'),
+          'level' => 2,
+          'text_size' => 'heading-responsive-2xl',
+          'text_color' => 'default',
+          'align' => 'left',
+        ],
+      ],
+      'grid' => $gallery,
+    ];
+  }
 
   // --- Narrative sections: pedigree and health, only when present. ---
   $details = [];

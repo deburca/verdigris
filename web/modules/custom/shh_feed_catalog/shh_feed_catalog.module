@@ -1,0 +1,75 @@
+<?php
+
+/**
+ * @file
+ * Hooks for shh_feed_catalog.
+ */
+
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_view() for commerce_product.
+ *
+ * Adds the all-images photo gallery to feed product pages (task 0039).
+ * A plain view hook, not the view_alter takeover shh_horse_product_display
+ * needs — feed pages keep their classic field-formatter display and the
+ * gallery is just one more section, the same sibling-hook mechanism as
+ * the facility/deposit CTAs.
+ *
+ * Images live on the variations (one per harvest year, task 0038), but
+ * photos belong to the product, not the year — so the gallery is the
+ * union of every published variation's images, deduped by media entity,
+ * in variation-then-delta order.
+ */
+function shh_feed_catalog_commerce_product_view(array &$build, EntityInterface $product, EntityViewDisplayInterface $display, $view_mode) {
+  /** @var \Drupal\commerce_product\Entity\ProductInterface $product */
+  if ($product->bundle() !== 'feed' || !in_array($display->getMode(), ['default', 'full'], TRUE)) {
+    return;
+  }
+
+  $cacheability = CacheableMetadata::createFromRenderArray($build);
+  $media_by_id = [];
+  foreach ($product->getVariations() as $variation) {
+    $cacheability->addCacheableDependency($variation);
+    if (!$variation->isPublished() || !$variation->hasField('field_media')) {
+      continue;
+    }
+    foreach ($variation->get('field_media')->referencedEntities() as $media) {
+      $media_by_id[$media->id()] ??= $media;
+    }
+  }
+  $cacheability->applyTo($build);
+
+  $props_list = [];
+  foreach ($media_by_id as $media) {
+    $props = shh_common_image_media_props_from_media($media);
+    if ($props) {
+      $props_list[] = $props;
+    }
+  }
+
+  $gallery = shh_common_image_gallery($props_list);
+  if ($gallery) {
+    // Between the body (5) and the add-to-cart form (10) in the feed
+    // product view display.
+    $build['shh_photos'] = [
+      '#type' => 'container',
+      '#attributes' => ['class' => ['flex', 'flex-col', 'gap-3', 'my-8']],
+      '#weight' => 7,
+      'heading' => [
+        '#type' => 'component',
+        '#component' => 'hestehoj:heading',
+        '#props' => [
+          'heading_text' => (string) t('Photos'),
+          'level' => 2,
+          'text_size' => 'heading-responsive-2xl',
+          'text_color' => 'default',
+          'align' => 'left',
+        ],
+      ],
+      'grid' => $gallery,
+    ];
+  }
+}

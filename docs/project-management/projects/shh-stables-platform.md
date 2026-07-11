@@ -683,12 +683,40 @@ POST resolving the right year variation — both with pending manual
 payments, both test orders deleted. Still open: stock tracking
 (published = listed today) and per-bale unit confirmation.
 
-Next actionable step: [[0039-product-images-featured-and-gallery]]
-(client-requested, medium — its horse half is unblocked and its
-feed half now has 0038's bundles to land on); the remaining older
-backlog is medium/low —
-[[0004-staff-admin-booking-calendar]] and the client-input-gated
-[[0006-gdpr-data-retention-policy]]. Also worth a small follow-up: the
+[[0039-product-images-featured-and-gallery]] is **done** (closed
+2026-07-11, same day): featured image = **first image item in field
+delta order** (staff drag it first in the widget; a leading video no
+longer hides a later image), and every item page now shows **all**
+its images as a grid of 1:1 `hestehoj:image` tiles — no new theme
+SDC, no lightbox (revisit on client ask), custom-code SDC
+composition unchanged. The helper family lives in `shh_common`
+(`…_props_all`, `…_props_from_media`, `…_image_gallery`); horse
+pages get a "More photos" section (hero keeps the featured image, a
+single-image horse gets no gallery furniture), feed pages get a
+"Photos" section via the sibling-hook mechanism showing the **union
+of images across the year variations** (photos belong to the
+product, not the harvest year). Two notable finds: the site had
+**zero media entities** — every image code path since 0031 had
+never run against real content (canvas's `src_with_alternate_widths`
+worked on first exercise); and the horse variation form's media
+widget was a plain autocomplete with **no upload path at all** —
+both variation forms now use the `media_library` widget, proven
+over real HTTP with a genuine multipart upload through
+`/media/add/image` (the widget's selection modal is AJAX-only core
+UI; upload and reference were each proven separately). Verified
+anonymous across `/horses`, `/feed` and all four product pages
+(including Þór as the single-image + sold case, with 0024's notice
+and the add-to-cart/deposit-CTA survival on Freja's). Eight
+GD-generated placeholder photos seed the catalog until the client
+sends real ones.
+
+Next actionable step: the client-requested work is done — remaining
+backlog is medium/low: [[0004-staff-admin-booking-calendar]] and the
+client-input-gated [[0006-gdpr-data-retention-policy]]. Client items
+outstanding: real product photos (0039's placeholders), 0038's
+stock-tracking and per-bale-unit answers, the wrap-2026 price rise
+during 2027, and the real social URLs from 0032. Also worth a small
+follow-up: the
 horse add-to-cart form exposes "Override the unit price" + a currency
 selector to anonymous visitors (pre-existing `commerce_order_item.horse`
 form-display config, surfaced during 0031, deliberately left untouched

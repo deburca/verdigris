@@ -1,0 +1,28 @@
+uuid: dac56ce0-6b49-44dd-8ffc-2cdab079cbd5
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.feed
+    - field.storage.commerce_product_variation.field_media
+    - media.type.image
+    - media.type.remote_video
+    - media.type.video
+id: commerce_product_variation.feed.field_media
+field_name: field_media
+entity_type: commerce_product_variation
+bundle: feed
+label: Media
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+      video: video
+      remote_video: remote_video
+field_type: entity_reference

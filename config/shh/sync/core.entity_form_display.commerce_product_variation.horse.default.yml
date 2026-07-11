@@ -19,6 +19,7 @@ dependencies:
   module:
     - commerce_price
     - datetime
+    - media_library
     - text
 id: commerce_product_variation.horse.default
 targetEntityType: commerce_product_variation
@@ -73,14 +74,11 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_media:
-    type: entity_reference_autocomplete
+    type: media_library_widget
     weight: 18
     region: content
     settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+      media_types: {  }
     third_party_settings: {  }
   field_pedigree:
     type: text_textarea
