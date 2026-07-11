@@ -42,21 +42,13 @@ function shh_feed_catalog_commerce_product_view(array &$build, EntityInterface $
   }
   $cacheability->applyTo($build);
 
-  $props_list = [];
-  foreach ($media_by_id as $media) {
-    $props = shh_common_image_media_props_from_media($media);
-    if ($props) {
-      $props_list[] = $props;
-    }
-  }
-
-  $gallery = shh_common_image_gallery($props_list);
+  $gallery = shh_common_image_gallery(array_values($media_by_id));
   if ($gallery) {
     // Between the body (5) and the add-to-cart form (10) in the feed
     // product view display.
     $build['shh_photos'] = [
       '#type' => 'container',
-      '#attributes' => ['class' => ['flex', 'flex-col', 'gap-3', 'my-8']],
+      '#attributes' => ['class' => ['flex', 'flex-col', 'gap-3', 'mb-8']],
       '#weight' => 7,
       'heading' => [
         '#type' => 'component',

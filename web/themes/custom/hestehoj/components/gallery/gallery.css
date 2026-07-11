@@ -1,0 +1,86 @@
+/*
+ * Lightbox styling for the gallery component.
+ *
+ * Deliberately plain CSS, not Tailwind utilities: build/main.min.css
+ * only contains classes used in theme sources at its last compile, and
+ * this stylesheet must not require a Tailwind rebuild to work (see
+ * task 0040's toolchain note). Auto-attached by SDC alongside the
+ * component.
+ */
+
+.gallery--dialog {
+  /* The UA stylesheet centers a modal dialog with `margin: auto`, but
+     Tailwind's preflight zeroes margin on every element — without this
+     the dialog pins to the top-left of its inset(0) containing block. */
+  margin: auto;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  max-width: 96vw;
+  max-height: 96vh;
+  overflow: visible;
+}
+
+.gallery--dialog::backdrop {
+  background: rgb(0 0 0 / 0.85);
+}
+
+.gallery--dialog-image {
+  display: block;
+  margin: 0 auto;
+  width: auto;
+  height: auto;
+  max-width: 92vw;
+  max-height: 86vh;
+  border-radius: 0.5rem;
+}
+
+.gallery--dialog-caption {
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  min-height: 1.5rem;
+}
+
+.gallery--control {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.15);
+  color: #fff;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.gallery--control:hover {
+  background: rgb(255 255 255 / 0.3);
+}
+
+.gallery--control:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.gallery--close {
+  top: 1rem;
+  right: 1rem;
+}
+
+.gallery--prev {
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.gallery--next {
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}

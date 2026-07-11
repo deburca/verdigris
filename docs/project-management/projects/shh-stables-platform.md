@@ -750,12 +750,43 @@ alike; restored, plus a theme
 heading size instead of inside the generic field template's
 body-text div.
 
-Next actionable step: the client-requested work is done — remaining
-backlog is medium/low: [[0004-staff-admin-booking-calendar]] and the
-client-input-gated [[0006-gdpr-data-retention-policy]]. Client items
-outstanding: real photos for products (0039) and facilities (0040),
-0038's stock-tracking and per-bale-unit answers, the wrap-2026 price
-rise during 2027, and the real social URLs from 0032. Also worth a
+[[0041-gallery-lightbox]] is **done** (closed 2026-07-11, client
+approved the recommendation the same day): a new `hestehoj:gallery`
+SDC owns the tile grid plus a native-`<dialog>` lightbox —
+prev/next with wrap-around, arrow keys, backdrop-click close,
+Escape/focus via `showModal()`; `gallery.js` follows the theme's
+`ComponentInstance` pattern, `gallery.css` is deliberately plain
+CSS (rebuild-independent — the Tailwind toolchain note from 0040),
+and without JS every tile is a plain link to the original file.
+`shh_common`'s gallery builder now takes media entities and renders
+the component; two dead utility classes from 0039 fixed along the
+way (`sm:grid-cols-3` was never compiled — the grid had silently
+been 2-col everywhere). Verified over real HTTP on all five
+image-bearing pages and in a real headless Chromium (JS init marker
+in the live DOM + full-page screenshot); the click→dialog step
+itself is native browser API, one human click-through welcome.
+
+**[[0043-bee-price-frequency-form-reset]] (new, HIGH)**: the
+client's live test edit of Lunge Ring during 0041 verification
+exposed that **bee's node-form alter hardcodes
+`field_price_frequency` to `hour` over the stored value**
+(bee.module:303) — so *any* staff save of *any* facility form
+silently reinstates 0020's 0,00-DKK pricing bug (and that's how
+0020's original "drift" happened, mystery finally solved). Lunge
+Ring's data re-fixed immediately; **do not save facility node
+forms until the bee patch lands**. Lunge Ring also now carries a
+Freja photo from that same test edit — a content decision left to
+the client (it also means the zero-image degrade case is no longer
+live on the site, only verified).
+
+Next actionable step: [[0043-bee-price-frequency-form-reset]]
+(high — every staff facility edit is a pricing landmine until
+patched); then the remaining backlog is medium/low:
+[[0004-staff-admin-booking-calendar]] and the client-input-gated
+[[0006-gdpr-data-retention-policy]]. Client items outstanding: real
+photos for products (0039) and facilities (0040), 0038's
+stock-tracking and per-bale-unit answers, the wrap-2026 price rise
+during 2027, and the real social URLs from 0032. Also worth a
 small follow-up: the
 horse add-to-cart form exposes "Override the unit price" + a currency
 selector to anonymous visitors (pre-existing `commerce_order_item.horse`

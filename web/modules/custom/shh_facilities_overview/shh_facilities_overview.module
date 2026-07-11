@@ -23,7 +23,7 @@ function shh_facilities_overview_node_view(array &$build, EntityInterface $node,
     return;
   }
 
-  $gallery = shh_common_image_gallery(shh_common_image_media_props_all($node, 'field_media'));
+  $gallery = shh_common_image_gallery(shh_common_image_media_list($node, 'field_media'));
   if (!$gallery) {
     return;
   }
@@ -32,7 +32,7 @@ function shh_facilities_overview_node_view(array &$build, EntityInterface $node,
   // open hours / availability calendar block (100+).
   $build['shh_photos'] = [
     '#type' => 'container',
-    '#attributes' => ['class' => ['flex', 'flex-col', 'gap-3', 'my-8']],
+    '#attributes' => ['class' => ['flex', 'flex-col', 'gap-3', 'mb-8']],
     '#weight' => 50,
     'heading' => [
       '#type' => 'component',

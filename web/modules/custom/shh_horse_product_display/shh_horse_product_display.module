@@ -151,7 +151,7 @@ function shh_horse_product_display_commerce_product_view_alter(array &$build, En
   // --- Gallery: every image after the featured one (task 0039). The
   // hero already shows delta 0, so a single-image horse gets no
   // gallery furniture at all.
-  $gallery = shh_common_image_gallery(array_slice($all_media_props, 1));
+  $gallery = shh_common_image_gallery(array_slice(shh_common_image_media_list($variation, 'field_media'), 1));
   if ($gallery) {
     $build['shh_gallery'] = [
       '#type' => 'container',

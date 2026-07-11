@@ -105,43 +105,72 @@ function shh_common_image_media_props_from_media($media): array {
 }
 
 /**
- * Builds a responsive image-grid render array from media props.
+ * Lists an entity's image-media entities, in field delta order.
  *
- * The shared product-page gallery presentation (task 0039): a grid of
- * uniform 1:1 hestehoj:image tiles, one per entry from
- * shh_common_image_media_props_all(). Deliberately no lightbox or
- * full-size links — the tiles ARE the "see all images" surface;
- * revisit only if the client asks for one. Returns [] for an empty
- * list so callers skip gallery furniture entirely (task 0039's
- * degrade-gracefully criterion).
+ * The entity-level companion to shh_common_image_media_props_all()
+ * (task 0041): same filtering — only image media that would yield
+ * props survive — but returns the media entities themselves, for
+ * callers that need more than display props (the gallery needs the
+ * original file URL too).
  *
- * @param array[] $media_props_list
- *   A list of {src, alt, width, height} prop arrays.
+ * @return \Drupal\media\MediaInterface[]
+ *   Image media entities; empty when the field is missing, empty, or
+ *   holds no usable image media.
  */
-function shh_common_image_gallery(array $media_props_list): array {
-  if (!$media_props_list) {
+function shh_common_image_media_list(FieldableEntityInterface $entity, string $field_name): array {
+  if (!$entity->hasField($field_name) || $entity->get($field_name)->isEmpty()) {
     return [];
   }
-  $images = [];
-  foreach ($media_props_list as $props) {
-    $images[] = [
-      '#type' => 'component',
-      '#component' => 'hestehoj:image',
-      '#props' => [
-        'media' => $props,
-        'size' => '1:1',
-        'radius' => 'large',
-        // Gallery tiles sit inside a grid cell: without this the
-        // component's default cq-full utility breaks out to the full
-        // content width and overflows the cell.
-        'bleed' => 'contained',
-      ],
+  $list = [];
+  foreach ($entity->get($field_name)->referencedEntities() as $media) {
+    if (shh_common_image_media_props_from_media($media)) {
+      $list[] = $media;
+    }
+  }
+  return $list;
+}
+
+/**
+ * Builds the shared image gallery render array from media entities.
+ *
+ * The product/facility-page gallery presentation (tasks 0039/0041):
+ * renders the hestehoj:gallery component — a grid of uniform 1:1
+ * tiles with a lightbox dialog (task 0041; supersedes 0039's
+ * "grid of image components, no lightbox" once the client asked).
+ * Each tile links to the original file, so without JavaScript a click
+ * still shows the full image. Non-image media are skipped; returns []
+ * for an empty result so callers skip gallery furniture entirely
+ * (the degrade-gracefully criterion).
+ *
+ * @param \Drupal\media\MediaInterface[] $media_list
+ *   Media entities, e.g. from shh_common_image_media_list() or a
+ *   caller's own cross-entity aggregation (shh_feed_catalog).
+ */
+function shh_common_image_gallery(array $media_list): array {
+  $file_url_generator = \Drupal::service('file_url_generator');
+  $items = [];
+  foreach ($media_list as $media) {
+    $props = shh_common_image_media_props_from_media($media);
+    if (!$props) {
+      continue;
+    }
+    $file = $media->get('field_media_image')->entity;
+    if (!$file) {
+      continue;
+    }
+    $items[] = $props + [
+      'full_src' => $file_url_generator->generateString($file->getFileUri()),
     ];
   }
+  if (!$items) {
+    return [];
+  }
   return [
-    '#type' => 'container',
-    '#attributes' => ['class' => ['grid', 'grid-cols-2', 'gap-4', 'sm:grid-cols-3']],
-    'images' => $images,
+    '#type' => 'component',
+    '#component' => 'hestehoj:gallery',
+    '#props' => [
+      'items' => $items,
+    ],
   ];
 }
 
