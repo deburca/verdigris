@@ -882,10 +882,17 @@ Minimum rider age confirmed (2026-07-11): **18 to sign independently**;
 under-18 riders need a responsible adult to sign the paper contract.
 Privacy policy section 2 updated; task 0006 open items now at one.
 
-Next actionable step: confirm hosting and email provider names and
-whether they are inside the EU/EEA (one sentence from the client) —
-then resolve the final `[TO CONFIRM]` in the privacy draft, publish
-node 1, and close task 0006.
+Hosting and email providers confirmed (2026-07-11): **OVHcloud**
+(France, website) and **Open-Xchange GmbH** (Germany, email) — both
+EU-based, no transfer safeguard needed. Privacy policy §4 updated.
+All GDPR/retention content in task 0006 is now confirmed and
+implemented. The privacy policy draft is substantively complete.
+
+Next actionable step: provide the **postal address** and **CVR number**
+for §1 and §10 of the privacy policy. These are the only remaining
+`[TO CONFIRM]` items. When provided: fill them in, remove the DRAFT
+warning box, publish node 1 (making the footer Privacy Policy link
+live), and close task 0006.
 Client items outstanding: real photos for products (0039) and facilities
 (0040), 0038's stock-tracking and per-bale-unit answers, the wrap-2026
 price rise during 2027, and the real social URLs from 0032. Also worth a

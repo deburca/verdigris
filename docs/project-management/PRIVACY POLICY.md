@@ -77,17 +77,16 @@ decision-making.
 We do not sell your information and we do not share it with
 advertising networks. It is shared only with:
 
-- **Service providers** who host our website and deliver our email
-  [TO CONFIRM: name the hosting and email providers and where they are
-  located], acting under our instructions.
+- **Service providers** who host our website (OVHcloud, France) and
+  deliver our email (Open-Xchange GmbH, Germany), acting under our
+  instructions.
 - **Authorities and advisers** where the law requires it — for
   example, our accountant and the tax authorities.
 - **A buyer of the business**, if Stutteri Hestehøj is ever sold or
   merged, in which case this notice continues to apply.
 
-[TO CONFIRM: are the hosting/email providers inside the EU/EEA? If
-yes, state "your information does not leave the EU/EEA"; if not, the
-transfer safeguard (e.g. SCCs) must be named here.]
+Both providers are based within the EU. Your information does not
+leave the EU/EEA.
 
 ## 5. Cookies
 

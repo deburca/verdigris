@@ -140,14 +140,21 @@ when reading the membership list. phpcs clean; config exported
   their behalf. The site holds no data about the responsible adult.
   Privacy policy section 2 updated.
 
-**Still open — one item remaining:**
-1. Draft §4: hosting and email provider names + EU/EEA location
-   (for the data-transfers statement).
+**Resolved (2026-07-11, client):**
+- Hosting and email providers: **OVHcloud (France)** for the website,
+  **Open-Xchange GmbH (Germany)** for email. Both are EU-based — no
+  transfer safeguard statement needed. Privacy policy §4 updated.
 
-When answered: resolve the one remaining `[TO CONFIRM]` in the privacy
-draft, publish node 1 (which also makes 0027's footer link appear),
-`make shh-export`, and close this task with the policy⇄practice
-match check.
+**All GDPR/retention content is now confirmed and implemented.**
+The privacy policy draft is substantively complete. Two non-GDPR
+business details remain before node 1 can be published:
+1. Postal address (appears in §1 and §10)
+2. CVR number (§1)
+
+These are content items requiring no implementation work. When
+provided: fill them in, remove the DRAFT warning box, publish
+node 1 (which also makes 0027’s footer Privacy Policy link appear),
+`make shh-export`, and close this task.
 
 ## Related
 - [[shh-stables-platform]]
