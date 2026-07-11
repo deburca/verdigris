@@ -32,10 +32,10 @@ We only collect information you give us directly:
 
 - **Account details** — username, email address, and password, when
   you register or we create an account for you.
-- **Rider waiver and membership** — your full name, your emergency
-  contact's name and phone number, and your membership status and
-  dates. *Please make sure your emergency contact is aware you have
-  given us their details.*
+- **Rider membership** — your account status and the date your
+  account was approved. The liability contract and emergency contact
+  details are held on a paper contract managed by our staff, not on
+  this website.
 - **Bookings and orders** — the facilities and times you book, horses
   you purchase or place a deposit on, credit packs you buy, and your
   billing name and address.
@@ -104,9 +104,6 @@ via "My privacy settings" in the site footer.
   personal records are deleted immediately. Operational records that
   reference your account (such as booking history) are anonymised and
   no longer linked to you personally.
-- **Signed waivers**: [TO CONFIRM: waivers document accepted risk —
-  how long after the last visit should they be kept for potential
-  claims? Ask the insurer/adviser.]
 - **Contact messages**: deleted 12 months after you send them.
 
 Where a record must be kept for legal reasons after you close your

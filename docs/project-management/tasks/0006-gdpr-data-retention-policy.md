@@ -126,17 +126,22 @@ when reading the membership list. phpcs clean; config exported
   message they accept the practice; if not, they can use the phone);
   config exported.
 
-**Still open — one conversation closes all three:**
-1. `waiver_submissions`: how long after the last visit (insurer's
-   claims exposure window)?
-2. Draft §2: minimum rider age; how is parental consent recorded for
+**Resolved (2026-07-11, task 0045 — paper contract model):**
+- `waiver_submissions` → **category removed**. The site holds no
+  waiver data. Liability is covered by a paper contract managed
+  off-site; account activation confirms the contract is signed.
+  `shh_rider_membership` module uninstalled; `shh_rider_waiver`
+  webform deleted; category removed from `shh_data_retention`.
+- `membership_records` → **category removed** (same reason).
+
+**Still open — two items remaining:**
+1. Draft §2: minimum rider age; how is parental consent recorded for
    under-18 riders (if allowed)?
-3. Draft §4: hosting and email provider names + EU/EEA location
+2. Draft §4: hosting and email provider names + EU/EEA location
    (for the data-transfers statement).
 
-When answered: set `waiver_submissions` in `shh_data_retention.settings`,
-resolve the three remaining `[TO CONFIRM]`s in the privacy draft,
-publish node 1 (which also makes 0027's footer link appear),
+When answered: resolve the two remaining `[TO CONFIRM]`s in the privacy
+draft, publish node 1 (which also makes 0027's footer link appear),
 `make shh-export`, and close this task with the policy⇄practice
 match check.
 

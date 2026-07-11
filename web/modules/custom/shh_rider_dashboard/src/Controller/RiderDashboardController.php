@@ -10,7 +10,6 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
-use Drupal\shh_rider_membership\MembershipManager;
 use Drupal\user\UserInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -30,7 +29,6 @@ class RiderDashboardController extends ControllerBase {
 
   public function __construct(
     protected AccessManagerInterface $accessManager,
-    protected MembershipManager $membershipManager,
   ) {}
 
   /**
@@ -39,7 +37,6 @@ class RiderDashboardController extends ControllerBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('access_manager'),
-      $container->get('shh_rider_membership.manager'),
     );
   }
 
@@ -70,10 +67,6 @@ class RiderDashboardController extends ControllerBase {
     [$upcoming, $past] = $this->splitBookingsByDate($bee_items);
 
     $build = [];
-    // Membership first: for an ineligible rider (especially one waiting on
-    // staff approval) this is the answer to "why can't I book yet?", which
-    // previously only appeared on the reservation form itself (task 0028).
-    $build['membership'] = $this->buildMembershipSection((int) $user->id());
     $build['bookings_upcoming'] = $this->buildBookingsSection(
       $this->t('Upcoming bookings'),
       $upcoming,
@@ -87,44 +80,6 @@ class RiderDashboardController extends ControllerBase {
       $past,
       show_cancel: FALSE,
     );
-
-    return $build;
-  }
-
-  /**
-   * Builds the "membership" status section.
-   *
-   * Deliberately reuses shh_rider_membership's own eligibility API and
-   * mirrors its booking-form alter exactly (message text, waiver-link
-   * component, revoked riders get no self-service link) — the dashboard
-   * must never disagree with what the reservation form itself would say.
-   */
-  protected function buildMembershipSection(int $uid): array {
-    $build = [
-      '#type' => 'container',
-      '#attributes' => ['class' => ['mb-8']],
-      // The message depends on the rider's membership records and the
-      // current time (pending approval, expiry) — don't let a stale
-      // cached copy tell an approved rider they still can't book.
-      '#cache' => ['max-age' => 0],
-    ];
-    $build['heading'] = ['#markup' => '<h2>' . $this->t('Membership') . '</h2>'];
-    $build['status'] = [
-      '#markup' => '<p>' . $this->membershipManager->getEligibilityMessage($uid) . '</p>',
-    ];
-
-    if (!$this->membershipManager->isEligible($uid) && $this->membershipManager->canSelfServiceResubmit($uid)) {
-      $build['waiver_link'] = [
-        '#type' => 'component',
-        '#component' => 'hestehoj:button',
-        '#props' => [
-          'variant' => 'secondary',
-          'size' => 'medium',
-          'label' => $this->t('Submit the waiver form'),
-          'href' => Url::fromRoute('entity.webform.canonical', ['webform' => 'shh_rider_waiver'])->toString(),
-        ],
-      ];
-    }
 
     return $build;
   }

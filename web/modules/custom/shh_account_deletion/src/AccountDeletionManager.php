@@ -58,7 +58,6 @@ class AccountDeletionManager {
       return;
     }
 
-    $this->deleteMemberships($uid);
     $this->deleteFacilityCredits($uid);
     $this->deleteWebformSubmissions($uid);
     $this->anonymiseBookingLog($uid);
@@ -68,24 +67,6 @@ class AccountDeletionManager {
       'Account deletion (task 0044): purged and anonymised all PII for uid @uid (@name).',
       ['@uid' => $uid, '@name' => $account->getAccountName()],
     );
-  }
-
-  /**
-   * Hard-deletes all rider membership records for this uid.
-   *
-   * All statuses are deleted (pending, active, expired, revoked) — the
-   * entire eligibility history is personal data and has no purpose once
-   * the account is gone.
-   */
-  protected function deleteMemberships(int $uid): void {
-    $storage = $this->entityTypeManager->getStorage('shh_rider_membership');
-    $ids = $storage->getQuery()
-      ->condition('uid', $uid)
-      ->accessCheck(FALSE)
-      ->execute();
-    if ($ids) {
-      $storage->delete($storage->loadMultiple($ids));
-    }
   }
 
   /**

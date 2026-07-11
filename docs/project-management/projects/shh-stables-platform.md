@@ -861,10 +861,27 @@ privacy policy draft updated for both contact messages and the account-
 closure grace period (resolved by 0044 to immediate; no
 cron grace window). Open question list in task 0006 reduced to three.
 
-Next actionable step: 0006's remaining client/insurer conversation
-(task doc now has the exact three-item list): waiver retention window
-(insurer), minimum rider age + parental consent handling (client),
-and hosting/email provider names + EU/EEA location (client).
+[[0045-remove-rider-membership-module]] is **done** (closed 2026-07-11,
+same session): client clarified that facility use is covered by a paper
+contract signed off-site — staff activate a rider's account only after
+the paper contract is signed, so account activation = contract signed.
+This makes `shh_rider_membership` (and the `shh_rider_waiver` webform)
+entirely redundant: the account-approval flow in `shh_rider_registration`
+already implements the correct model. Removed: the module and its entity
+type, the webform (2 live membership records deleted first), the
+booking-form validate gate, the dashboard membership section, the
+`waiver_submissions` and `membership_records` retention categories from
+`shh_data_retention`, and the corresponding privacy policy bullets. The
+`shh_data_retention` module's active category list is now just
+`contact_messages` (365 days, confirmed), `closed_accounts`, and
+`booking_log`. Task 0006 open items reduced to two: minimum rider age
+and hosting/email provider names + EU/EEA location. phpcs clean;
+config exported.
+
+Next actionable step: 0006's remaining client conversation (two items:
+minimum rider age + parental consent handling, and hosting/email
+provider names + EU/EEA location for the privacy policy transfers
+statement) — then publish node 1 and close task 0006.
 Client items outstanding: real photos for products (0039) and facilities
 (0040), 0038's stock-tracking and per-bale-unit answers, the wrap-2026
 price rise during 2027, and the real social URLs from 0032. Also worth a

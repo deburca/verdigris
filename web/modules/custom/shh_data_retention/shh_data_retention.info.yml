@@ -1,10 +1,9 @@
 name: 'SHH Data Retention'
 type: module
-description: 'Implements docs/project-management/tasks/0006-gdpr-data-retention-policy.md: per-category GDPR retention purges (waivers, contact messages, membership records, closed accounts, booking log), each disabled until its window is confirmed and configured.'
+description: 'Implements docs/project-management/tasks/0006-gdpr-data-retention-policy.md: per-category GDPR retention purges (contact messages, closed accounts, booking log), each disabled until its window is confirmed and configured.'
 core_version_requirement: ^10.2 || ^11
 package: Custom
 dependencies:
   - webform:webform
-  - shh_rider_membership:shh_rider_membership
   - shh_booking_log:shh_booking_log
   - commerce_order:commerce_order

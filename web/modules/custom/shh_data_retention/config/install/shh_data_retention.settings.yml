@@ -8,8 +8,6 @@
 # Bookkeeping Act's 5-year retention is a keep-rule owned by the
 # accountant, not an automated purge.
 categories:
-  waiver_submissions: null
   contact_messages: null
-  membership_records: null
   closed_accounts: null
   booking_log: null

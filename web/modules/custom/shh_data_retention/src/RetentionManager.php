@@ -44,17 +44,9 @@ class RetentionManager {
    */
   public function categories(): array {
     return [
-      'waiver_submissions' => [
-        'label' => $this->t('Signed liability waivers'),
-        'anchor' => $this->t("days after the rider's last visit (latest booked slot, falling back to latest facility order, then the waiver's own date)"),
-      ],
       'contact_messages' => [
         'label' => $this->t('Contact-form messages'),
         'anchor' => $this->t('days after the message was sent'),
-      ],
-      'membership_records' => [
-        'label' => $this->t('Expired/revoked membership records'),
-        'anchor' => $this->t('days after the membership expired or was revoked'),
       ],
       'closed_accounts' => [
         'label' => $this->t('Blocked rider accounts'),
@@ -110,9 +102,7 @@ class RetentionManager {
   public function purge(string $category, int $days): int {
     $cutoff = $this->time->getRequestTime() - $days * 86400;
     return match ($category) {
-      'waiver_submissions' => $this->purgeWaiverSubmissions($cutoff),
       'contact_messages' => $this->purgeContactMessages($cutoff),
-      'membership_records' => $this->purgeMembershipRecords($cutoff),
       'closed_accounts' => $this->purgeClosedAccounts($cutoff),
       'booking_log' => $this->purgeBookingLog($cutoff),
       default => throw new \InvalidArgumentException("Unknown retention category: $category"),
@@ -132,69 +122,11 @@ class RetentionManager {
     }
     $cutoff = $this->time->getRequestTime() - $days * 86400;
     return match ($category) {
-      'waiver_submissions' => count($this->eligibleWaiverSubmissions($cutoff)),
       'contact_messages' => count($this->submissionIds('contact', $cutoff)),
-      'membership_records' => count($this->eligibleMembershipIds($cutoff)),
       'closed_accounts' => count($this->eligibleAccountIds($cutoff)),
       'booking_log' => count($this->eligibleLogIds($cutoff)),
       default => NULL,
     };
-  }
-
-  /**
-   * Waivers: anchored to the rider's last visit, not the signature date.
-   *
-   * Claims exposure runs from the last time the rider actually rode —
-   * the insurer question in the task/privacy draft. Last visit = the
-   * rider's latest booked slot end (0002's log), falling back to their
-   * latest placed facility order, then the submission's own created
-   * date (a rider who signed but never booked).
-   */
-  protected function purgeWaiverSubmissions(int $cutoff): int {
-    return $this->deleteEntities('webform_submission', $this->eligibleWaiverSubmissions($cutoff));
-  }
-
-  /**
-   * Waiver submissions whose owner's last visit predates the cutoff.
-   */
-  protected function eligibleWaiverSubmissions(int $cutoff): array {
-    $storage = $this->entityTypeManager->getStorage('webform_submission');
-    $ids = $storage->getQuery()
-      ->condition('webform_id', 'shh_rider_waiver')
-      ->accessCheck(FALSE)
-      ->execute();
-    $eligible = [];
-    foreach ($storage->loadMultiple($ids) as $submission) {
-      $uid = (int) $submission->getOwnerId();
-      $last_visit = $this->lastVisit($uid) ?? (int) $submission->getCreatedTime();
-      if ($last_visit < $cutoff) {
-        $eligible[] = $submission->id();
-      }
-    }
-    return $eligible;
-  }
-
-  /**
-   * The rider's last visit as a timestamp, or NULL if none is on file.
-   */
-  protected function lastVisit(int $uid): ?int {
-    if ($uid) {
-      $slot_end = $this->database->query(
-        'SELECT MAX(slot_end) FROM {shh_booking_log} WHERE actor = :uid',
-        [':uid' => $uid],
-      )->fetchField();
-      if ($slot_end) {
-        return (int) $slot_end;
-      }
-      $placed = $this->database->query(
-        'SELECT MAX(placed) FROM {commerce_order} WHERE uid = :uid AND placed IS NOT NULL',
-        [':uid' => $uid],
-      )->fetchField();
-      if ($placed) {
-        return (int) $placed;
-      }
-    }
-    return NULL;
   }
 
   /**
@@ -213,36 +145,6 @@ class RetentionManager {
       ->condition('created', $cutoff, '<')
       ->accessCheck(FALSE)
       ->execute());
-  }
-
-  /**
-   * Membership records: expired/revoked ones past the window.
-   *
-   * Anchored to the expiry timestamp when there is one, else the
-   * record's creation (a revoked membership that never had an expiry).
-   * Pending/active memberships are never touched.
-   */
-  protected function purgeMembershipRecords(int $cutoff): int {
-    return $this->deleteEntities('shh_rider_membership', $this->eligibleMembershipIds($cutoff));
-  }
-
-  /**
-   * Expired/revoked membership ids past the cutoff.
-   */
-  protected function eligibleMembershipIds(int $cutoff): array {
-    $storage = $this->entityTypeManager->getStorage('shh_rider_membership');
-    $ids = $storage->getQuery()
-      ->condition('status', ['expired', 'revoked'], 'IN')
-      ->accessCheck(FALSE)
-      ->execute();
-    $eligible = [];
-    foreach ($storage->loadMultiple($ids) as $membership) {
-      $anchor = (int) ($membership->get('expires')->value ?: $membership->get('created')->value);
-      if ($anchor && $anchor < $cutoff) {
-        $eligible[] = $membership->id();
-      }
-    }
-    return $eligible;
   }
 
   /**

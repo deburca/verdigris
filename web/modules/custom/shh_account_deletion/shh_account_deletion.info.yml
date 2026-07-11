@@ -6,7 +6,6 @@ core_version_requirement: ^10 || ^11
 dependencies:
   - drupal:user
   - drupal:commerce_order
-  - shh_rider_membership:shh_rider_membership
   - shh_facility_credits:shh_facility_credits
   - shh_booking_log:shh_booking_log
   - webform:webform
