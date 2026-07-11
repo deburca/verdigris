@@ -44,7 +44,23 @@ class BookingLogListBuilder extends EntityListBuilder {
     $facility = $entity->get('facility')->entity;
     $slot_start = $entity->get('slot_start')->value;
     $slot_end = $entity->get('slot_end')->value;
+    $actor_uid = $entity->get('actor')->target_id;
     $actor = $entity->get('actor')->entity;
+
+    // A NULL target_id means the actor was anonymised on account deletion
+    // (task 0044). A non-zero uid whose user entity no longer exists is
+    // treated the same way — should not normally occur but defended against.
+    // System entries (actor_kind = 'system') store uid = 0 and get no
+    // parenthetical suffix, matching the original behaviour.
+    if ($actor_uid === NULL || ($actor_uid > 0 && $actor === NULL)) {
+      $actor_suffix = ' (' . $this->t('Deleted user') . ')';
+    }
+    elseif ($actor !== NULL && $actor->id()) {
+      $actor_suffix = ' (' . $actor->getAccountName() . ')';
+    }
+    else {
+      $actor_suffix = '';
+    }
 
     return [
       'created' => $date_formatter->format($entity->get('created')->value, 'short'),
@@ -53,7 +69,7 @@ class BookingLogListBuilder extends EntityListBuilder {
         ? $date_formatter->format($slot_start, 'short') . ' – ' . $date_formatter->format($slot_end, 'custom', 'H:i')
         : '-',
       'transition' => ($entity->get('state_from')->value ?: '(new)') . ' → ' . $entity->get('state_to')->value,
-      'actor' => $entity->get('actor_kind')->value . ($actor ? ' (' . $actor->getAccountName() . ')' : ''),
+      'actor' => $entity->get('actor_kind')->value . $actor_suffix,
       'order_id' => $entity->get('order_id')->value ?: '-',
       'notification' => $entity->get('notification')->value ?: '-',
     ];

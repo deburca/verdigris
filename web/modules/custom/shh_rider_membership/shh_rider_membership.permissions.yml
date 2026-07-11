@@ -1,4 +1,0 @@
-administer rider memberships:
-  title: 'Administer rider memberships'
-  description: 'Review waiver submissions, approve/revoke rider memberships, and view expiry dates.'
-  restrict access: true

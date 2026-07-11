@@ -1,0 +1,5 @@
+shh_data_retention.status:
+  title: 'Data retention'
+  description: 'Per-category GDPR retention windows and purge status.'
+  route_name: shh_data_retention.status
+  parent: system.admin_reports

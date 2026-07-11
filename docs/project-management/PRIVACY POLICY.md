@@ -1,18 +1,6 @@
 # Privacy Policy — Stutteri Hestehøj
 
-**Last updated: 7 July 2026**
-
-> **DRAFT — do not publish until the bracketed `[TO CONFIRM: …]`
-> placeholders below are resolved and the text has been checked by
-> someone with authority over the business's legal affairs. This is a
-> working draft produced from a template cleanup, not legal advice.
-> Remove this box before publishing.**
->
-> **Keep in sync with task 0006** (GDPR data retention policy,
-> `docs/project-management/tasks/0006-gdpr-data-retention-policy.md`):
-> section 6 below must state exactly the retention practice 0006
-> decides and implements — resolve the placeholders there and here
-> together, and do not publish either side alone.
+**Last updated: 11 July 2026**
 
 ## 1. Who we are
 
@@ -22,8 +10,8 @@ hestehoj.dk — and our services: the sale of Icelandic horses and the
 hourly rental of our training facilities (Oval Track, Manège, Lunge
 Ring).
 
-- Address: [TO CONFIRM: postal address], Denmark
-- CVR: [TO CONFIRM: CVR number]
+- Address: Tobjergvej 27B, 4300 Holbæk, Denmark
+- CVR: 45592642
 - Email: info@stutteri-hestehoj.dk
 
 ## 2. What information we collect
@@ -32,10 +20,10 @@ We only collect information you give us directly:
 
 - **Account details** — username, email address, and password, when
   you register or we create an account for you.
-- **Rider waiver and membership** — your full name, your emergency
-  contact's name and phone number, and your membership status and
-  dates. *Please make sure your emergency contact is aware you have
-  given us their details.*
+- **Rider membership** — your account status and the date your
+  account was approved. The liability contract and emergency contact
+  details are held on a paper contract managed by our staff, not on
+  this website.
 - **Bookings and orders** — the facilities and times you book, horses
   you purchase or place a deposit on, credit packs you buy, and your
   billing name and address.
@@ -48,11 +36,12 @@ We only collect information you give us directly:
   visited) used for security and troubleshooting.
 
 We do not collect sensitive personal information (such as health,
-ethnicity, or beliefs), we do not buy or receive information about you
-from third parties, and we do not knowingly collect information from
-children. [TO CONFIRM: minimum age for riders/accounts — may riders
-under 18 book with parental consent, and if so how is that consent
-recorded?]
+ethnicity, or beliefs) and we do not buy or receive information about
+you from third parties. Riders must be 18 or over to sign a rider
+contract independently. Riders under 18 may participate if a responsible
+adult (parent or legal guardian) signs the contract on their behalf;
+we do not collect or store the responsible adult's details on this
+website — those are held on the paper contract.
 
 ## 3. Why we process it, and on what legal basis
 
@@ -76,17 +65,16 @@ decision-making.
 We do not sell your information and we do not share it with
 advertising networks. It is shared only with:
 
-- **Service providers** who host our website and deliver our email
-  [TO CONFIRM: name the hosting and email providers and where they are
-  located], acting under our instructions.
+- **Service providers** who host our website (OVHcloud, France) and
+  deliver our email (Open-Xchange GmbH, Germany), acting under our
+  instructions.
 - **Authorities and advisers** where the law requires it — for
   example, our accountant and the tax authorities.
 - **A buyer of the business**, if Stutteri Hestehøj is ever sold or
   merged, in which case this notice continues to apply.
 
-[TO CONFIRM: are the hosting/email providers inside the EU/EEA? If
-yes, state "your information does not leave the EU/EEA"; if not, the
-transfer safeguard (e.g. SCCs) must be named here.]
+Both providers are based within the EU. Your information does not
+leave the EU/EEA.
 
 ## 5. Cookies
 
@@ -100,12 +88,11 @@ via "My privacy settings" in the site footer.
 - **Orders, invoices, and payment records**: 5 years from the end of
   the financial year, as required by the Danish Bookkeeping Act.
 - **Your account, bookings, and membership records**: for as long as
-  you have an account with us, then deleted or anonymised
-  [TO CONFIRM: grace period after account closure, e.g. 12 months?].
-- **Signed waivers**: [TO CONFIRM: waivers document accepted risk —
-  how long after the last visit should they be kept for potential
-  claims? Ask the insurer/adviser.]
-- **Contact messages**: [TO CONFIRM: e.g. deleted after 12 months?]
+  you have an account with us. When you close your account, your
+  personal records are deleted immediately. Operational records that
+  reference your account (such as booking history) are anonymised and
+  no longer linked to you personally.
+- **Contact messages**: deleted 12 months after you send them.
 
 Where a record must be kept for legal reasons after you close your
 account (such as an invoice), we keep only that record, no longer used
@@ -148,6 +135,7 @@ material changes, post a notice on the site or contact you directly.
 ## 10. Contact
 
 Stutteri Hestehøj
-[TO CONFIRM: postal address]
+Tobjergvej 27B
+4300 Holbæk
 Denmark
 info@stutteri-hestehoj.dk

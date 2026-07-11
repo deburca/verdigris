@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Cron hook for shh_data_retention.
+ */
+
+/**
+ * Implements hook_cron().
+ *
+ * Runs the retention purges at most once a day — categories whose
+ * window is still unconfirmed (NULL) are skipped inside the manager.
+ */
+function shh_data_retention_cron() {
+  $state = \Drupal::state();
+  $last = $state->get('shh_data_retention.last_cron', 0);
+  $now = \Drupal::time()->getRequestTime();
+  if ($now - $last < 86400) {
+    return;
+  }
+  $state->set('shh_data_retention.last_cron', $now);
+  \Drupal::service('shh_data_retention.manager')->runAll();
+}

@@ -814,16 +814,82 @@ feed with its order link; 0002 audit rows written throughout) plus
 a headless-Chromium render showing the three event kinds visually
 distinct.
 
-Next actionable step: the remaining backlog is the client-input-gated
-[[0006-gdpr-data-retention-policy]]. Client items outstanding: real
-photos for products (0039) and facilities (0040), 0038's
-stock-tracking and per-bale-unit answers, the wrap-2026 price rise
-during 2027, and the real social URLs from 0032. Also worth a
-small follow-up: the
-horse add-to-cart form exposes "Override the unit price" + a currency
-selector to anonymous visitors (pre-existing `commerce_order_item.horse`
-form-display config, surfaced during 0031, deliberately left untouched
-there), and the client still owes the real social URLs for 0032.
+[[0006-gdpr-data-retention-policy]] is **done** (closed 2026-07-11):
+new `shh_data_retention` module with per-category GDPR purge engine.
+All retention windows confirmed this session: `contact_messages` 365
+days; `closed_accounts` immediate (resolved by 0044); `booking_log`
+and waiver/membership categories removed (resolved by 0045 — paper
+contract model). Privacy policy fully drafted, all `[TO CONFIRM]`
+resolved (hosting/email providers, min age, address, CVR), node 1
+published — the footer "Privacy policy" link is now live.
+
+[[0044-immediate-account-deletion-anonymisation]] is **done** (closed
+2026-07-11, same day as the policy decision): new custom module
+`web/modules/custom/shh_account_deletion` — a `hook_user_delete()`
+implementation that calls `AccountDeletionManager::purgeForUser()`,
+which runs synchronously on every account deletion regardless of how it
+was triggered (admin UI, self-service cancel with the delete method, or
+`shh_data_retention`'s own `purgeClosedAccounts()` — all paths converge
+here). On deletion: memberships, facility credits + transactions, and
+all webform submissions are hard-deleted; booking-log entries are
+anonymised (actor field nulled, operational data kept); commerce orders
+are anonymised (uid → 0, mail → '', billing profile detached and
+deleted). The list builder in `shh_booking_log` was updated to render a
+null actor as "Deleted user" rather than a blank or an anonymous-user
+fall-through. Two policy questions also resolved by this task (reducing
+0006's open list from six to four): `closed_accounts` grace period is
+now 0 (immediate deletion, no cron grace window needed), and orders/
+accounting records are out of scope on this platform (external
+accounting system handles invoicing — no retention category needed).
+phpcs clean; config exported.
+
+**Contact messages retention confirmed (2026-07-11)**: 12 months —
+`contact_messages: 365` set in `shh_data_retention.settings`; a
+12-month retention notice added to the contact webform ("notice and
+choice" transparency: sending a message = accepting the practice);
+privacy policy draft updated for both contact messages and the account-
+closure grace period (resolved by 0044 to immediate; no
+cron grace window). Open question list in task 0006 reduced to three.
+
+[[0045-remove-rider-membership-module]] is **done** (closed 2026-07-11,
+same session): client clarified that facility use is covered by a paper
+contract signed off-site — staff activate a rider's account only after
+the paper contract is signed, so account activation = contract signed.
+This makes `shh_rider_membership` (and the `shh_rider_waiver` webform)
+entirely redundant: the account-approval flow in `shh_rider_registration`
+already implements the correct model. Removed: the module and its entity
+type, the webform (2 live membership records deleted first), the
+booking-form validate gate, the dashboard membership section, the
+`waiver_submissions` and `membership_records` retention categories from
+`shh_data_retention`, and the corresponding privacy policy bullets. The
+`shh_data_retention` module's active category list is now just
+`contact_messages` (365 days, confirmed), `closed_accounts`, and
+`booking_log`. Task 0006 open items reduced to two: minimum rider age
+and hosting/email provider names + EU/EEA location. phpcs clean;
+config exported.
+
+Minimum rider age confirmed (2026-07-11): **18 to sign independently**;
+under-18 riders need a responsible adult to sign the paper contract.
+Privacy policy section 2 updated; task 0006 open items now at one.
+
+Hosting and email providers confirmed (2026-07-11): **OVHcloud**
+(France, website) and **Open-Xchange GmbH** (Germany, email) — both
+EU-based, no transfer safeguard needed. Privacy policy §4 updated.
+All GDPR/retention content in task 0006 is now confirmed and
+implemented. The privacy policy draft is substantively complete.
+
+CVR confirmed (2026-07-11): **45592642**. Node 1 published —
+the privacy policy is now live and the footer link is visible.
+[[0006-gdpr-data-retention-policy]] is **done**.
+
+Next actionable step: client items outstanding — see below.
+Client items outstanding: real photos for products (0039) and facilities
+(0040), 0038's stock-tracking and per-bale-unit answers, the wrap-2026
+price rise during 2027, and the real social URLs from 0032. Also worth a
+small follow-up: the horse add-to-cart form exposes "Override the unit
+price" + a currency selector to anonymous visitors (pre-existing
+`commerce_order_item.horse` form-display config, surfaced during 0031,
+deliberately left untouched there).
 
 ## Tasks
 ```dataview

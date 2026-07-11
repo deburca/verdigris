@@ -1,8 +1,0 @@
-services:
-  shh_rider_membership.manager:
-    class: Drupal\shh_rider_membership\MembershipManager
-    arguments: ['@config.factory', '@datetime.time', '@logger.channel.shh_rider_membership', '@entity_type.manager', '@string_translation']
-
-  logger.channel.shh_rider_membership:
-    parent: logger.channel_base
-    arguments: ['shh_rider_membership']

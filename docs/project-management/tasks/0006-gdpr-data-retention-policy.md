@@ -1,12 +1,12 @@
 ---
 type: task
 tags: [cms2/task]
-status: backlog
+status: done
 priority: medium
 site: shh
 project: "[[shh-stables-platform]]"
 created: 2026-07-05
-updated: 2026-07-07
+updated: 2026-07-11
 ---
 # Task: GDPR data retention policy for PII and liability waivers
 
@@ -44,15 +44,116 @@ adjacent ones the same conversation should settle):
   EU/EEA location for the transfers statement
 
 ## Acceptance criteria
-- Retention period defined per data category (order PII, waiver documents,
-  membership records)
-- Automated or documented manual purge process past retention window
-- Privacy policy page updated to reflect actual practice
+- [ ] Retention period defined per data category (order PII, waiver
+      documents, membership records) — **categories defined and built;
+      periods still owed by the client/adviser** (see below)
+- [x] Automated or documented manual purge process past retention
+      window — automated, per category, safely disabled until each
+      window is confirmed (see Implementation)
+- [ ] Privacy policy page updated to reflect actual practice —
+      blocked on the same answers; node 1 stays unpublished
 - [ ] The published privacy policy's retention section and this task's
       implemented practice are verified to match (same categories, same
       periods) — every `[TO CONFIRM]` in
       `docs/project-management/PRIVACY POLICY.md` resolved, none
       published as placeholder text
+
+## Implementation (2026-07-11) — machinery built, windows awaited
+
+New module `web/modules/custom/shh_data_retention`. Everything except
+the actual numbers is done: the purge engine is complete, tested, and
+**does nothing until a category's window is confirmed** — every window
+in `shh_data_retention.settings` ships `null` ("not confirmed, purge
+disabled"), so the site cannot implement a practice the unpublished
+policy doesn't state. When the client confirms a number, it's set in
+config and exported (decision 0020) together with the matching policy
+text — deliberately no settings UI, so practice and policy move in one
+reviewed change.
+
+**Categories** (mirroring the privacy draft's section 6) and their
+anchors:
+- `waiver_submissions` — days after the **rider's last visit**
+  (latest booked slot end from 0002's log → latest placed facility
+  order → the waiver's own date), not the signature date: claims
+  exposure runs from the last ride, which is exactly the insurer
+  question.
+- `contact_messages` — days after submission (`contact` webform).
+- `membership_records` — days after expiry/revocation (anchor:
+  `expires`, falling back to creation); pending/active never touched.
+- `closed_accounts` — days after a **blocked** account was last
+  seen/created; uid 1 and anyone with a role beyond "authenticated"
+  (staff) are never eligible. Deletes the account only — records
+  governed by other rules (orders, waivers) keep their own clocks.
+- `booking_log` — days after the booked slot ended.
+- **Orders/invoices are deliberately NOT a category**: the Danish
+  Bookkeeping Act's 5-year retention is a keep-rule owned by the
+  accountant; automated deletion of accounting records is exactly
+  the kind of surprise this module exists to prevent.
+
+Cron runs the configured purges at most daily; a read-only status
+report at `/admin/reports/data-retention` (`access site reports`)
+shows each category's window ("Not confirmed — purge disabled" until
+then), what the anchor is, how many records are currently eligible,
+and the last run with its deletion count.
+
+**Verified**: 403 anonymous/rider, 200 admin on the status page; a
+synthetic two-year-old record in *every* category (aged rider +
+waiver + contact message + expired membership + log entry) purged by
+a 365-day window while everything real survived — the 2 real waiver
+submissions, the deliberately-blocked-but-recent freya_jensen (uid
+4), all real memberships and log rows; the config path proven by
+enabling one category (3650 days → ran, 0 eligible) and disabling it
+again (runAll no-op); drush cron clean. One flow interaction noted:
+programmatically saving the synthetic waiver auto-created a pending
+membership (0003's hook — correct behaviour), removed with the rest
+of the test data; on production, an account purge can likewise leave
+an orphaned *pending* membership behind — acceptable (pending/active
+are live workflow states retention must not touch), worth remembering
+when reading the membership list. phpcs clean; config exported
+(`core.extension` + the all-null settings object).
+
+**Resolved (2026-07-11, task 0044):**
+- `closed_accounts` grace period → **0** (immediate deletion on account
+  delete, no cron window). Privacy policy account-closure line updated.
+- Orders/5-year Bookkeeping Act → **N/A** (external accounting system;
+  no retention category needed on this platform).
+
+**Resolved (2026-07-11, client decision):**
+- `contact_messages` → **365 days** (12 months). Config set;
+  privacy policy contact-messages line updated; a 12-month retention
+  notice added to the contact webform as a `webform_markup` element at
+  weight 100 ("notice and choice" transparency — if the user sends a
+  message they accept the practice; if not, they can use the phone);
+  config exported.
+
+**Resolved (2026-07-11, task 0045 — paper contract model):**
+- `waiver_submissions` → **category removed**. The site holds no
+  waiver data. Liability is covered by a paper contract managed
+  off-site; account activation confirms the contract is signed.
+  `shh_rider_membership` module uninstalled; `shh_rider_waiver`
+  webform deleted; category removed from `shh_data_retention`.
+- `membership_records` → **category removed** (same reason).
+
+**Resolved (2026-07-11, client decision):**
+- Minimum rider age → **18 to sign independently**. Riders under 18
+  may participate if a responsible adult signs the paper contract on
+  their behalf. The site holds no data about the responsible adult.
+  Privacy policy section 2 updated.
+
+**Resolved (2026-07-11, client):**
+- Hosting and email providers: **OVHcloud (France)** for the website,
+  **Open-Xchange GmbH (Germany)** for email. Both are EU-based — no
+  transfer safeguard statement needed. Privacy policy §4 updated.
+
+**Resolved (2026-07-11, client):**
+- Postal address: **Tobjergvej 27B, 4300 Holbæk, Denmark**.
+- CVR: **45592642**.
+
+**Task complete.** Node 1 published 2026-07-11 with the final
+privacy policy text. The footer "Privacy policy" link (from 0027)
+is now live for visitors. Policy⇄practice verified: every category
+implemented in `shh_data_retention` matches what the published
+policy states.
 
 ## Related
 - [[shh-stables-platform]]

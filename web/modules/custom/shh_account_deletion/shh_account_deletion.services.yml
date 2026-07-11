@@ -1,0 +1,10 @@
+services:
+  shh_account_deletion.manager:
+    class: Drupal\shh_account_deletion\AccountDeletionManager
+    arguments:
+      - '@entity_type.manager'
+      - '@logger.channel.shh_account_deletion'
+
+  logger.channel.shh_account_deletion:
+    parent: logger.channel_base
+    arguments: ['shh_account_deletion']

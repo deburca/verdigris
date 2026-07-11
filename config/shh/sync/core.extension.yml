@@ -109,10 +109,12 @@ module:
   scheduler: 0
   scheduler_content_moderation_integration: 0
   serialization: 0
+  shh_account_deletion: 0
   shh_booking_hold: 0
   shh_booking_log: 0
   shh_cancellation_policy: 0
   shh_common: 0
+  shh_data_retention: 0
   shh_facilities_overview: 0
   shh_facility_booking_cta: 0
   shh_facility_bundle_discount: 0
@@ -127,7 +129,6 @@ module:
   shh_pricing_comparison: 0
   shh_public_availability: 0
   shh_rider_dashboard: 0
-  shh_rider_membership: 0
   shh_rider_registration: 0
   shh_site_footer: 0
   shh_staff_booking_calendar: 0
