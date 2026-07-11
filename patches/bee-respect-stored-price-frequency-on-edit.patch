@@ -1,0 +1,16 @@
+diff --git a/bee.module b/bee.module
+index 0bb8cbf..fb39c8e 100644
+--- a/bee.module
++++ b/bee.module
+@@ -300,7 +300,10 @@ function bee_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+           $form['field_price']['widget'][0]['#title'] = t('Price');
+ 
+           $form['field_price_frequency']['#group'] = 'payments';
+-          $form['field_price_frequency']['widget']['#default_value'] = 'hour';
++          // Do NOT force a default here: this branch only runs on node *edit*
++          // forms (the node_.*_edit_form route match above), where the widget
++          // already carries the node's stored value - overriding it to 'hour'
++          // silently reverts a 'minute'-priced node on every form save.
+           $form['field_price_frequency']['widget']['#title'] = t('per');
+           unset($form['field_price_frequency']['widget']['#options']['_none']);
+ 

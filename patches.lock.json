@@ -1,5 +1,5 @@
 {
-    "_hash": "a965bbdd545ffd3d238c083a16abde80c5915c505b6cc36ed54bbd7a3ec538c6",
+    "_hash": "e20d0a2091ba99e0998085b71f35438fb68df8a217fe020c2a96b13adcdc7995",
     "patches": {
         "drupal/byte_theme": [
             {
@@ -65,6 +65,16 @@
                 "description": "Attach bat_fullcalendar's standard library instead of the -scheduler variant for hourly types (public node view, staff availability screen, availability form): the scheduler JS hardcodes premium resourceTimeline* toolbar buttons with no schedulerLicenseKey — unlicensed FullCalendar Premium views reachable from every calendar — while every configured view on this platform is the standard dayGridMonth. The standard variant also drops the extra units REST fetch (task 0009)",
                 "url": "patches/bee-use-standard-fullcalendar-not-premium-scheduler.patch",
                 "sha256": "beaef09d0e5b99fbb43c1f6bf65dea05746ec3cf733e74413bbd7850893f7192",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "drupal/bee",
+                "description": "Node edit form alter hardcodes field_price_frequency #default_value to 'hour', silently reverting a 'minute'-priced facility on every staff form save (bee's own hour pricing then computes 0.00 for sub-hour bookings); the branch only runs on edit forms where the widget already has the stored value, so drop the override (task 0043)",
+                "url": "patches/bee-respect-stored-price-frequency-on-edit.patch",
+                "sha256": "04cf8ad1d47ccd34815ba9725c5082b59d5ea3146aa6b78a96d26d3906ef6455",
                 "depth": 1,
                 "extra": {
                     "provenance": "root"

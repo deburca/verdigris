@@ -766,22 +766,29 @@ image-bearing pages and in a real headless Chromium (JS init marker
 in the live DOM + full-page screenshot); the click→dialog step
 itself is native browser API, one human click-through welcome.
 
-**[[0043-bee-price-frequency-form-reset]] (new, HIGH)**: the
-client's live test edit of Lunge Ring during 0041 verification
-exposed that **bee's node-form alter hardcodes
-`field_price_frequency` to `hour` over the stored value**
-(bee.module:303) — so *any* staff save of *any* facility form
-silently reinstates 0020's 0,00-DKK pricing bug (and that's how
-0020's original "drift" happened, mystery finally solved). Lunge
-Ring's data re-fixed immediately; **do not save facility node
-forms until the bee patch lands**. Lunge Ring also now carries a
-Freja photo from that same test edit — a content decision left to
-the client (it also means the zero-image degrade case is no longer
-live on the site, only verified).
+[[0043-bee-price-frequency-form-reset]] is **done** (closed
+2026-07-11, found and fixed the same day): the client's live test
+edit of Lunge Ring during 0041 verification exposed that **bee's
+node-form alter hardcodes `field_price_frequency` to `hour` over
+the stored value** (bee.module:303) — any staff save of any
+facility form silently reinstated 0020's 0,00-DKK pricing bug (and
+that's how 0020's original "drift" happened, mystery finally
+solved). The kicker: the branch only matches *edit* forms, so the
+hardcoded "default" could never do anything except clobber stored
+values — the composer patch simply deletes it (generated as a real
+diff, grep-verified applied, both existing bee patches intact).
+Verified over real HTTP: the edit form now shows `minute`
+selected; a genuine full staff form save left Oval Track
+byte-identical to its field snapshot; and the 0020 regression test
+passed — a real test_rider booking of a 30-minute slot priced at
+50,00 DKK, hold placed and released cleanly per the 0002 booking
+log. All three facilities confirmed `minute` and published. Upstream
+issue text drafted in the task, to file against drupal/bee. Lunge
+Ring still carries a Freja photo from the client's test edit — a
+content decision left to the client (it also means the zero-image
+degrade case is no longer live on the site, only verified).
 
-Next actionable step: [[0043-bee-price-frequency-form-reset]]
-(high — every staff facility edit is a pricing landmine until
-patched); then the remaining backlog is medium/low:
+Next actionable step: the remaining backlog is medium/low:
 [[0004-staff-admin-booking-calendar]] and the client-input-gated
 [[0006-gdpr-data-retention-policy]]. Client items outstanding: real
 photos for products (0039) and facilities (0040), 0038's
