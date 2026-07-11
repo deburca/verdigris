@@ -22,7 +22,7 @@ hestehoj.dk — and our services: the sale of Icelandic horses and the
 hourly rental of our training facilities (Oval Track, Manège, Lunge
 Ring).
 
-- Address: [TO CONFIRM: postal address], Denmark
+- Address: Tobjergvej 27B, 4300 Holbæk, Denmark
 - CVR: [TO CONFIRM: CVR number]
 - Email: info@stutteri-hestehoj.dk
 
@@ -147,6 +147,7 @@ material changes, post a notice on the site or contact you directly.
 ## 10. Contact
 
 Stutteri Hestehøj
-[TO CONFIRM: postal address]
+Tobjergvej 27B
+4300 Holbæk
 Denmark
 info@stutteri-hestehoj.dk
