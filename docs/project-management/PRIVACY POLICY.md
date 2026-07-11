@@ -48,11 +48,12 @@ We only collect information you give us directly:
   visited) used for security and troubleshooting.
 
 We do not collect sensitive personal information (such as health,
-ethnicity, or beliefs), we do not buy or receive information about you
-from third parties, and we do not knowingly collect information from
-children. [TO CONFIRM: minimum age for riders/accounts — may riders
-under 18 book with parental consent, and if so how is that consent
-recorded?]
+ethnicity, or beliefs) and we do not buy or receive information about
+you from third parties. Riders must be 18 or over to sign a rider
+contract independently. Riders under 18 may participate if a responsible
+adult (parent or legal guardian) signs the contract on their behalf;
+we do not collect or store the responsible adult's details on this
+website — those are held on the paper contract.
 
 ## 3. Why we process it, and on what legal basis
 

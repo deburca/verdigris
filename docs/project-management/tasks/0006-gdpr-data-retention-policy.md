@@ -134,13 +134,17 @@ when reading the membership list. phpcs clean; config exported
   webform deleted; category removed from `shh_data_retention`.
 - `membership_records` → **category removed** (same reason).
 
-**Still open — two items remaining:**
-1. Draft §2: minimum rider age; how is parental consent recorded for
-   under-18 riders (if allowed)?
-2. Draft §4: hosting and email provider names + EU/EEA location
+**Resolved (2026-07-11, client decision):**
+- Minimum rider age → **18 to sign independently**. Riders under 18
+  may participate if a responsible adult signs the paper contract on
+  their behalf. The site holds no data about the responsible adult.
+  Privacy policy section 2 updated.
+
+**Still open — one item remaining:**
+1. Draft §4: hosting and email provider names + EU/EEA location
    (for the data-transfers statement).
 
-When answered: resolve the two remaining `[TO CONFIRM]`s in the privacy
+When answered: resolve the one remaining `[TO CONFIRM]` in the privacy
 draft, publish node 1 (which also makes 0027's footer link appear),
 `make shh-export`, and close this task with the policy⇄practice
 match check.

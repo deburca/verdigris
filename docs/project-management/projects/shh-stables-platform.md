@@ -878,10 +878,14 @@ booking-form validate gate, the dashboard membership section, the
 and hosting/email provider names + EU/EEA location. phpcs clean;
 config exported.
 
-Next actionable step: 0006's remaining client conversation (two items:
-minimum rider age + parental consent handling, and hosting/email
-provider names + EU/EEA location for the privacy policy transfers
-statement) — then publish node 1 and close task 0006.
+Minimum rider age confirmed (2026-07-11): **18 to sign independently**;
+under-18 riders need a responsible adult to sign the paper contract.
+Privacy policy section 2 updated; task 0006 open items now at one.
+
+Next actionable step: confirm hosting and email provider names and
+whether they are inside the EU/EEA (one sentence from the client) —
+then resolve the final `[TO CONFIRM]` in the privacy draft, publish
+node 1, and close task 0006.
 Client items outstanding: real photos for products (0039) and facilities
 (0040), 0038's stock-tracking and per-bale-unit answers, the wrap-2026
 price rise during 2027, and the real social URLs from 0032. Also worth a
