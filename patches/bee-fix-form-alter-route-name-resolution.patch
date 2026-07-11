@@ -1,0 +1,14 @@
+diff --git a/bee.module b/bee.module
+--- a/bee.module
++++ b/bee.module
+@@ -122,8 +122,8 @@
+ function bee_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+ 
+   $data = [];
+-  $current_path = \Drupal::service('path.current')->getPath();
+-  $route_name = Url::fromUserInput($current_path)->getRouteName();
++
++  $route_name = \Drupal::routeMatch()->getRouteName();
+ 
+   if ($form_id == 'node_type_edit_form' || $form_id == 'node_type_add_form') {
+ 

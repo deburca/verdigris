@@ -1,5 +1,5 @@
 {
-    "_hash": "b0981d319c972c2dec8bd9f30867d8e5ea3ba1d30e3cc30d2de0089cb839efe4",
+    "_hash": "937d2a52a3caca33fd7b743bb635c26134724b4866a2aeeddce36b953a609428",
     "patches": {
         "drupal/byte_theme": [
             {
@@ -75,6 +75,16 @@
                 "description": "Node edit form alter hardcodes field_price_frequency #default_value to 'hour', silently reverting a 'minute'-priced facility on every staff form save (bee's own hour pricing then computes 0.00 for sub-hour bookings); the branch only runs on edit forms where the widget already has the stored value, so drop the override (task 0043; filed as https://www.drupal.org/project/bee/issues/3610134 - retire this patch when it lands)",
                 "url": "patches/bee-respect-stored-price-frequency-on-edit.patch",
                 "sha256": "04cf8ad1d47ccd34815ba9725c5082b59d5ea3146aa6b78a96d26d3906ef6455",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            },
+            {
+                "package": "drupal/bee",
+                "description": "bee_form_alter() resolves the current route name by calling Url::fromUserInput($current_path)->getRouteName(), which throws UnexpectedValueException for any path whose route only allows non-GET methods (e.g. Canvas component-instance AJAX endpoint, PATCH/POST only). Use \\Drupal::routeMatch()->getRouteName() instead — the route name is already resolved in the request attributes, no re-matching needed, no exception risk.",
+                "url": "patches/bee-fix-form-alter-route-name-resolution.patch",
+                "sha256": "a319e22e073d935774a8ba4e2d88fd677feaaa4e99c7e5baeb1222c8bfedd145",
                 "depth": 1,
                 "extra": {
                     "provenance": "root"
