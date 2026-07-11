@@ -15,8 +15,7 @@ use Drupal\Core\Render\Markup;
  *
  * Replaces the classic field-formatter output (the `variation_*`
  * elements Commerce's ProductViewBuilder injects from the variation's
- * view display, plus the duplicate title element) with hestehoj SDC
- * components. Runs as an *alter* so every hook_ENTITY_TYPE_view()
+ * view display) with hestehoj SDC components. Runs as an *alter* so every hook_ENTITY_TYPE_view()
  * addition is already in $build and survives untouched — notably
  * `variations` (the add-to-cart form, which carries 0024's
  * availability-checker validation and unavailable-horse messaging) and
@@ -33,16 +32,17 @@ function shh_horse_product_display_commerce_product_view_alter(array &$build, En
   }
 
   // Drop the injected variation field formatters — the components below
-  // re-present the same data — and the product display's own title
-  // element (the page-title block already renders the H1; the display
-  // copy was a duplicate).
+  // re-present the same data. The display's `title` element must stay:
+  // commerce products have no other page-title source — core's
+  // EntityViewController::buildTitle() renders exactly this element as
+  // the page H1 and head <title> (and marks it printed, so it never
+  // double-renders in the content). 0031 originally hid it as a
+  // supposed duplicate, which silently blanked the whole page title
+  // (task 0042).
   foreach (array_keys($build) as $key) {
     if (str_starts_with($key, 'variation_')) {
       unset($build[$key]);
     }
-  }
-  if (isset($build['title'])) {
-    $build['title']['#access'] = FALSE;
   }
 
   // The removed formatters carried the variation's cacheability; the

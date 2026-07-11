@@ -738,7 +738,17 @@ committed build's 4.2.1; don't rebuild `build/main.min.css` without
 a proper dependency install first). The client's lightbox question
 is recorded as [[0041-gallery-lightbox]] (assessment: worthwhile,
 modest scope — native `<dialog>`, theme JS component pattern, no
-contrib/CDN), backlog until approved.
+contrib/CDN), backlog until approved. The same review round also
+caught that **product pages have had no title at all since 0031**
+— fixed as [[0042-restore-product-page-title]]: commerce products'
+page H1 comes from core rendering the display's own `title`
+element (`EntityViewController::buildTitle()`), the exact element
+0031 hid as a supposed duplicate, blanking H1 and head `<title>`
+alike; restored, plus a theme
+`field--commerce-product--title.html.twig` (the
+`field--node--title` pattern) so the title renders inline at
+heading size instead of inside the generic field template's
+body-text div.
 
 Next actionable step: the client-requested work is done — remaining
 backlog is medium/low: [[0004-staff-admin-booking-calendar]] and the
