@@ -1,7 +1,7 @@
 ---
 type: task
 tags: [cms2/task]
-status: in-progress
+status: done
 priority: high
 site: shh
 project: "[[shh-stables-platform]]"
