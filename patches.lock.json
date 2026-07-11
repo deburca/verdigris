@@ -1,5 +1,5 @@
 {
-    "_hash": "e20d0a2091ba99e0998085b71f35438fb68df8a217fe020c2a96b13adcdc7995",
+    "_hash": "b0981d319c972c2dec8bd9f30867d8e5ea3ba1d30e3cc30d2de0089cb839efe4",
     "patches": {
         "drupal/byte_theme": [
             {
@@ -72,7 +72,7 @@
             },
             {
                 "package": "drupal/bee",
-                "description": "Node edit form alter hardcodes field_price_frequency #default_value to 'hour', silently reverting a 'minute'-priced facility on every staff form save (bee's own hour pricing then computes 0.00 for sub-hour bookings); the branch only runs on edit forms where the widget already has the stored value, so drop the override (task 0043)",
+                "description": "Node edit form alter hardcodes field_price_frequency #default_value to 'hour', silently reverting a 'minute'-priced facility on every staff form save (bee's own hour pricing then computes 0.00 for sub-hour bookings); the branch only runs on edit forms where the widget already has the stored value, so drop the override (task 0043; filed as https://www.drupal.org/project/bee/issues/3610134 - retire this patch when it lands)",
                 "url": "patches/bee-respect-stored-price-frequency-on-edit.patch",
                 "sha256": "04cf8ad1d47ccd34815ba9725c5082b59d5ea3146aa6b78a96d26d3906ef6455",
                 "depth": 1,

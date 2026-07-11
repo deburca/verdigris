@@ -783,7 +783,10 @@ byte-identical to its field snapshot; and the 0020 regression test
 passed — a real test_rider booking of a 30-minute slot priced at
 50,00 DKK, hold placed and released cleanly per the 0002 booking
 log. All three facilities confirmed `minute` and published. Upstream
-issue text drafted in the task, to file against drupal/bee. Lunge
+issue **filed by Paddy 2026-07-11 as
+[bee #3610134](https://www.drupal.org/project/bee/issues/3610134)**
+(no duplicates in the queue; bug confirmed at bee dev HEAD) — retire
+the composer patch when it lands, check before any bee bump. Lunge
 Ring still carries a Freja photo from the client's test edit — a
 content decision left to the client (it also means the zero-image
 degrade case is no longer live on the site, only verified).

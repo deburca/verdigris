@@ -101,7 +101,15 @@ line is gone, and both existing bee patches (0017's cart fix,
    (system), event 33 — no orphaned hold, test order 48 and the
    temp membership deleted.
 
-**Draft upstream bee issue** (to file against drupal/bee):
+**Upstream issue: FILED by Paddy 2026-07-11 as
+[#3610134](https://www.drupal.org/project/bee/issues/3610134)**
+(drupal.org queue — unlike Drupal CMS's GitLab work items, see
+0035's note). Queue searched for duplicates first
+(`price_frequency`, `price frequency`, `hourly price` — none), and
+the bug confirmed still present at bee dev HEAD before filing.
+**Retire `patches/bee-respect-stored-price-frequency-on-edit.patch`
+when it lands — check before any bee version bump** (the issue URL
+is in the patch's composer.json description). Text as filed:
 > Title: Node edit form alter overrides stored field_price_frequency
 > with 'hour' on every save
 > bee_form_alter()'s `node_.*_edit_form` branch sets
