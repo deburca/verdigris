@@ -17,7 +17,7 @@ id: contact
 title: Contact
 description: 'Basic email contact webform.'
 categories: {  }
-elements: |
+elements: |-
   name:
     '#title': 'Your Name'
     '#type': textfield
@@ -42,6 +42,10 @@ elements: |
     '#type': webform_actions
     '#title': 'Submit button(s)'
     '#submit__label': 'Send message'
+  privacy_notice:
+    '#type': webform_markup
+    '#markup': '<p><small>We keep messages sent through this form for 12 months and then permanently delete them. If you would prefer that we do not store your details, please contact us by phone instead.</small></p>'
+    '#weight': 100
 css: ''
 javascript: ''
 settings:

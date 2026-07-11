@@ -853,9 +853,18 @@ accounting records are out of scope on this platform (external
 accounting system handles invoicing — no retention category needed).
 phpcs clean; config exported.
 
-Next actionable step: 0006's client conversation (the exact question
-list is in the task doc — now reduced to four items: waiver window from
-insurer, contact-message window, minimum rider age, and provider names).
+**Contact messages retention confirmed (2026-07-11)**: 12 months —
+`contact_messages: 365` set in `shh_data_retention.settings`; a
+12-month retention notice added to the contact webform ("notice and
+choice" transparency: sending a message = accepting the practice);
+privacy policy draft updated for both contact messages and the account-
+closure grace period (resolved by 0044 to immediate; no
+cron grace window). Open question list in task 0006 reduced to three.
+
+Next actionable step: 0006's remaining client/insurer conversation
+(task doc now has the exact three-item list): waiver retention window
+(insurer), minimum rider age + parental consent handling (client),
+and hosting/email provider names + EU/EEA location (client).
 Client items outstanding: real photos for products (0039) and facilities
 (0040), 0038's stock-tracking and per-bale-unit answers, the wrap-2026
 price rise during 2027, and the real social URLs from 0032. Also worth a

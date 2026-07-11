@@ -100,12 +100,14 @@ via "My privacy settings" in the site footer.
 - **Orders, invoices, and payment records**: 5 years from the end of
   the financial year, as required by the Danish Bookkeeping Act.
 - **Your account, bookings, and membership records**: for as long as
-  you have an account with us, then deleted or anonymised
-  [TO CONFIRM: grace period after account closure, e.g. 12 months?].
+  you have an account with us. When you close your account, your
+  personal records are deleted immediately. Operational records that
+  reference your account (such as booking history) are anonymised and
+  no longer linked to you personally.
 - **Signed waivers**: [TO CONFIRM: waivers document accepted risk —
   how long after the last visit should they be kept for potential
   claims? Ask the insurer/adviser.]
-- **Contact messages**: [TO CONFIRM: e.g. deleted after 12 months?]
+- **Contact messages**: deleted 12 months after you send them.
 
 Where a record must be kept for legal reasons after you close your
 account (such as an invoice), we keep only that record, no longer used

@@ -2,7 +2,7 @@ _core:
   default_config_hash: seJDFhC-W36ygz3aw0Bm2m181bI9c3a1FmY8z2QMnNA
 categories:
   waiver_submissions: null
-  contact_messages: null
+  contact_messages: 365
   membership_records: null
   closed_accounts: null
   booking_log: null

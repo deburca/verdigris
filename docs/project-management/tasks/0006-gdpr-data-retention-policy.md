@@ -112,20 +112,33 @@ are live workflow states retention must not touch), worth remembering
 when reading the membership list. phpcs clean; config exported
 (`core.extension` + the all-null settings object).
 
-**The open questions, unchanged, now with exact config keys** — one
-conversation with the client/insurer/accountant answers all of them:
-1. `waiver_submissions`: how long after the last visit (insurer)?
-2. `closed_accounts`: grace period (draft suggests 12 months)?
-3. `contact_messages`: purge window (draft suggests 12 months)?
-4. `membership_records` + `booking_log`: same grace as accounts?
-5. Accountant confirms the 5-year order statement as written.
-6. Draft §2/§4: minimum rider age; hosting/email provider names and
-   EU/EEA location.
+**Resolved (2026-07-11, task 0044):**
+- `closed_accounts` grace period → **0** (immediate deletion on account
+  delete, no cron window). Privacy policy account-closure line updated.
+- Orders/5-year Bookkeeping Act → **N/A** (external accounting system;
+  no retention category needed on this platform).
 
-When answered: set the values in `shh_data_retention.settings`,
-resolve the draft's `[TO CONFIRM]`s, publish node 1 (which also makes
-0027's footer link appear), `make shh-export`, and close this task
-with the policy⇄practice match check.
+**Resolved (2026-07-11, client decision):**
+- `contact_messages` → **365 days** (12 months). Config set;
+  privacy policy contact-messages line updated; a 12-month retention
+  notice added to the contact webform as a `webform_markup` element at
+  weight 100 ("notice and choice" transparency — if the user sends a
+  message they accept the practice; if not, they can use the phone);
+  config exported.
+
+**Still open — one conversation closes all three:**
+1. `waiver_submissions`: how long after the last visit (insurer's
+   claims exposure window)?
+2. Draft §2: minimum rider age; how is parental consent recorded for
+   under-18 riders (if allowed)?
+3. Draft §4: hosting and email provider names + EU/EEA location
+   (for the data-transfers statement).
+
+When answered: set `waiver_submissions` in `shh_data_retention.settings`,
+resolve the three remaining `[TO CONFIRM]`s in the privacy draft,
+publish node 1 (which also makes 0027's footer link appear),
+`make shh-export`, and close this task with the policy⇄practice
+match check.
 
 ## Related
 - [[shh-stables-platform]]
