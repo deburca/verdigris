@@ -1,0 +1,11 @@
+name: 'SHH Staff Booking Calendar'
+type: module
+description: 'Implements docs/project-management/tasks/0004-staff-admin-booking-calendar.md: a combined staff calendar across all bookable facilities (bookings, cart holds, staff blocks) with create/remove of orderless staff blocks.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - bee:bee
+  - bat_event:bat_event
+  - bat_fullcalendar:bat_fullcalendar
+  - node:node
+  - commerce_order:commerce_order

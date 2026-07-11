@@ -1,0 +1,6 @@
+shh_staff_booking_calendar.calendar:
+  title: 'Booking calendar'
+  description: 'Combined staff view of facility bookings, cart holds and staff blocks.'
+  route_name: shh_staff_booking_calendar.calendar
+  parent: system.admin_content
+  weight: 10

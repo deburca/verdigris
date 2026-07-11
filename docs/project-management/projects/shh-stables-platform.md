@@ -791,8 +791,30 @@ Ring still carries a Freja photo from the client's test edit — a
 content decision left to the client (it also means the zero-image
 degrade case is no longer live on the site, only verified).
 
-Next actionable step: the remaining backlog is medium/low:
-[[0004-staff-admin-booking-calendar]] and the client-input-gated
+[[0004-staff-admin-booking-calendar]] is **done** (closed
+2026-07-11): new `shh_staff_booking_calendar` module —
+`/admin/booking-calendar` shows every facility's events in one
+FullCalendar view (the 0009 vendored bundle, no CDN), color-coded
+with a legend: customer bookings blue (titled with the order number,
+linking to the Commerce order), cart holds amber, staff blocks grey
+(linking to a remove confirm form). Staff can block facility time
+without touching Commerce (orderless `not_available` BAT events, the
+0012 creation pattern; conflicting bookings/holds are rejected —
+cancelling a customer booking stays in 0015's policy-aware flow) and
+remove blocks (the release route 404s anything that isn't a staff
+block). Gated by bee's own `manage availability` staff permission —
+no new permission, one staff concept. **Deliberate deviation from
+decision 0016 recorded in both docs**: no `event_source` field —
+BAT states + 0002's log already carry the distinction, and staff
+blocks are `not_available` rather than orderless `booked`,
+preserving "booked implies an order". Verified over real HTTP (403s
+for anonymous/rider; real block created and released through the
+forms; a real rider booking's hold→booked lifecycle visible in the
+feed with its order link; 0002 audit rows written throughout) plus
+a headless-Chromium render showing the three event kinds visually
+distinct.
+
+Next actionable step: the remaining backlog is the client-input-gated
 [[0006-gdpr-data-retention-policy]]. Client items outstanding: real
 photos for products (0039) and facilities (0040), 0038's
 stock-tracking and per-bale-unit answers, the wrap-2026 price rise

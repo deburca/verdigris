@@ -53,6 +53,20 @@ Rejected — complicates partial-hour cancellation and per-hour pricing lookups.
 
 See [[shh-stables-platform-model]] for BAT event state detail.
 
+**Implementation outcome (2026-07-11, task
+[[0004-staff-admin-booking-calendar]])**: the staff calendar was
+built **without the `event_source` field** — by the time 0004 was
+implemented, BAT states plus 0002's booking log already carried the
+distinction this decision wanted the field for (`booked` = customer
+via checkout, `not_available` = orderless staff block, and the log
+records the acting party per transition). The "admin events set
+state straight to `booked`" bullet was also deliberately not
+followed: staff blocks are `not_available` (bee's own blocking
+semantic), preserving the platform invariant that `booked` implies
+a Commerce order behind it. The multi-hour granularity half of this
+decision was largely superseded by
+[[0016-facility-fixed-length-slots]]' fixed 30-minute slots.
+
 ## References
 
 - Related decisions: [[0013-bat-bee-booking-framework]], [[0015-cancellation-refund-policy]]

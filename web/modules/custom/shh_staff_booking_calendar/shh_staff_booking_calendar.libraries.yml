@@ -1,0 +1,14 @@
+staff_calendar:
+  version: 1.x
+  js:
+    js/staff-calendar.js: {}
+  css:
+    theme:
+      css/staff-calendar.css: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/drupalSettings
+    # The locally vendored FullCalendar 6 (task 0009) - the library id
+    # keeps bat_fullcalendar's historic "-cdn" name.
+    - bat_fullcalendar/bat-fullcalendar-cdn

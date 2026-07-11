@@ -1,0 +1,28 @@
+/**
+ * Staff booking calendar page furniture (task 0004).
+ */
+
+.shh-staff-calendar-actions {
+  margin-bottom: 1rem;
+}
+
+.shh-staff-calendar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.shh-staff-calendar-legend-item::before {
+  content: "";
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  margin-right: 0.4em;
+  border-radius: 3px;
+  background: var(--shh-legend-color, #999);
+}
+
+#shh-staff-calendar {
+  max-width: 1200px;
+}

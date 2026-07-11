@@ -1,0 +1,41 @@
+shh_staff_booking_calendar.calendar:
+  path: '/admin/booking-calendar'
+  defaults:
+    _controller: '\Drupal\shh_staff_booking_calendar\Controller\StaffCalendarController::calendar'
+    _title: 'Booking calendar'
+  requirements:
+    _permission: 'manage availability for all bookable_facility nodes'
+  options:
+    _admin_route: TRUE
+
+shh_staff_booking_calendar.events:
+  path: '/admin/booking-calendar/events'
+  defaults:
+    _controller: '\Drupal\shh_staff_booking_calendar\Controller\StaffCalendarController::events'
+  requirements:
+    _permission: 'manage availability for all bookable_facility nodes'
+  options:
+    _admin_route: TRUE
+
+shh_staff_booking_calendar.block:
+  path: '/admin/booking-calendar/block'
+  defaults:
+    _form: '\Drupal\shh_staff_booking_calendar\Form\BlockSlotForm'
+    _title: 'Block facility time'
+  requirements:
+    _permission: 'manage availability for all bookable_facility nodes'
+  options:
+    _admin_route: TRUE
+
+shh_staff_booking_calendar.release:
+  path: '/admin/booking-calendar/release/{bat_event}'
+  defaults:
+    _form: '\Drupal\shh_staff_booking_calendar\Form\ReleaseBlockForm'
+    _title: 'Remove staff block'
+  requirements:
+    _permission: 'manage availability for all bookable_facility nodes'
+  options:
+    _admin_route: TRUE
+    parameters:
+      bat_event:
+        type: entity:bat_event
