@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Immediate PII purge and anonymisation on rider account deletion (task 0044).
+ *
+ * Hook_user_delete() fires whenever a user entity is deleted, regardless of
+ * how: an admin deleting the account via /admin/people, a rider cancelling
+ * their own account with the user_cancel_delete method, or the periodic
+ * purge in shh_data_retention deleting a blocked expired-applicant account.
+ * All paths converge here so no deletion path can bypass the anonymisation.
+ */
+
+use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_user_delete().
+ */
+function shh_account_deletion_user_delete(UserInterface $account) {
+  \Drupal::service('shh_account_deletion.manager')->purgeForUser($account);
+}

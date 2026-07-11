@@ -1,0 +1,12 @@
+name: 'SHH Account Deletion'
+type: module
+description: 'Immediately purges PII and anonymises referencing records when a rider account is deleted (task 0044).'
+package: 'Stutteri Hestehøj'
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:user
+  - drupal:commerce_order
+  - shh_rider_membership:shh_rider_membership
+  - shh_facility_credits:shh_facility_credits
+  - shh_booking_log:shh_booking_log
+  - webform:webform

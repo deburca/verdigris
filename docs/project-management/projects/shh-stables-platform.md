@@ -814,16 +814,55 @@ feed with its order link; 0002 audit rows written throughout) plus
 a headless-Chromium render showing the three event kinds visually
 distinct.
 
-Next actionable step: the remaining backlog is the client-input-gated
-[[0006-gdpr-data-retention-policy]]. Client items outstanding: real
-photos for products (0039) and facilities (0040), 0038's
-stock-tracking and per-bale-unit answers, the wrap-2026 price rise
-during 2027, and the real social URLs from 0032. Also worth a
-small follow-up: the
-horse add-to-cart form exposes "Override the unit price" + a currency
-selector to anonymous visitors (pre-existing `commerce_order_item.horse`
-form-display config, surfaced during 0031, deliberately left untouched
-there), and the client still owes the real social URLs for 0032.
+[[0006-gdpr-data-retention-policy]] is **in progress** (machinery
+done 2026-07-11, windows awaited): new `shh_data_retention` module —
+per-category GDPR purges (waiver submissions anchored to the rider's
+*last visit* via 0002's log, contact messages, expired/revoked
+memberships, blocked rider accounts with staff never eligible,
+booking-log entries; orders deliberately excluded — the Bookkeeping
+Act's 5-year keep-rule belongs to the accountant). Every window ships
+`null` = purge disabled, so the site cannot implement a practice the
+unpublished privacy policy doesn't state; values get set in config +
+exported together with the finalized policy text (no settings UI, on
+purpose). Read-only status report at `/admin/reports/data-retention`.
+Verified with synthetic two-year-old records in every category purged
+by a 365-day window while all real data survived, plus the config
+enable/disable path and a clean cron. **Blocked on the same client
+answers as the privacy draft**: insurer's waiver window, account
+grace period, contact purge window, accountant sign-off on the
+5-year line, minimum rider age, hosting/email provider names —
+one conversation closes both halves and publishes node 1.
+
+[[0044-immediate-account-deletion-anonymisation]] is **done** (closed
+2026-07-11, same day as the policy decision): new custom module
+`web/modules/custom/shh_account_deletion` — a `hook_user_delete()`
+implementation that calls `AccountDeletionManager::purgeForUser()`,
+which runs synchronously on every account deletion regardless of how it
+was triggered (admin UI, self-service cancel with the delete method, or
+`shh_data_retention`'s own `purgeClosedAccounts()` — all paths converge
+here). On deletion: memberships, facility credits + transactions, and
+all webform submissions are hard-deleted; booking-log entries are
+anonymised (actor field nulled, operational data kept); commerce orders
+are anonymised (uid → 0, mail → '', billing profile detached and
+deleted). The list builder in `shh_booking_log` was updated to render a
+null actor as "Deleted user" rather than a blank or an anonymous-user
+fall-through. Two policy questions also resolved by this task (reducing
+0006's open list from six to four): `closed_accounts` grace period is
+now 0 (immediate deletion, no cron grace window needed), and orders/
+accounting records are out of scope on this platform (external
+accounting system handles invoicing — no retention category needed).
+phpcs clean; config exported.
+
+Next actionable step: 0006's client conversation (the exact question
+list is in the task doc — now reduced to four items: waiver window from
+insurer, contact-message window, minimum rider age, and provider names).
+Client items outstanding: real photos for products (0039) and facilities
+(0040), 0038's stock-tracking and per-bale-unit answers, the wrap-2026
+price rise during 2027, and the real social URLs from 0032. Also worth a
+small follow-up: the horse add-to-cart form exposes "Override the unit
+price" + a currency selector to anonymous visitors (pre-existing
+`commerce_order_item.horse` form-display config, surfaced during 0031,
+deliberately left untouched there).
 
 ## Tasks
 ```dataview
