@@ -814,24 +814,14 @@ feed with its order link; 0002 audit rows written throughout) plus
 a headless-Chromium render showing the three event kinds visually
 distinct.
 
-[[0006-gdpr-data-retention-policy]] is **in progress** (machinery
-done 2026-07-11, windows awaited): new `shh_data_retention` module —
-per-category GDPR purges (waiver submissions anchored to the rider's
-*last visit* via 0002's log, contact messages, expired/revoked
-memberships, blocked rider accounts with staff never eligible,
-booking-log entries; orders deliberately excluded — the Bookkeeping
-Act's 5-year keep-rule belongs to the accountant). Every window ships
-`null` = purge disabled, so the site cannot implement a practice the
-unpublished privacy policy doesn't state; values get set in config +
-exported together with the finalized policy text (no settings UI, on
-purpose). Read-only status report at `/admin/reports/data-retention`.
-Verified with synthetic two-year-old records in every category purged
-by a 365-day window while all real data survived, plus the config
-enable/disable path and a clean cron. **Blocked on the same client
-answers as the privacy draft**: insurer's waiver window, account
-grace period, contact purge window, accountant sign-off on the
-5-year line, minimum rider age, hosting/email provider names —
-one conversation closes both halves and publishes node 1.
+[[0006-gdpr-data-retention-policy]] is **done** (closed 2026-07-11):
+new `shh_data_retention` module with per-category GDPR purge engine.
+All retention windows confirmed this session: `contact_messages` 365
+days; `closed_accounts` immediate (resolved by 0044); `booking_log`
+and waiver/membership categories removed (resolved by 0045 — paper
+contract model). Privacy policy fully drafted, all `[TO CONFIRM]`
+resolved (hosting/email providers, min age, address, CVR), node 1
+published — the footer "Privacy policy" link is now live.
 
 [[0044-immediate-account-deletion-anonymisation]] is **done** (closed
 2026-07-11, same day as the policy decision): new custom module
@@ -888,11 +878,11 @@ EU-based, no transfer safeguard needed. Privacy policy §4 updated.
 All GDPR/retention content in task 0006 is now confirmed and
 implemented. The privacy policy draft is substantively complete.
 
-Next actionable step: provide the **postal address** and **CVR number**
-for §1 and §10 of the privacy policy. These are the only remaining
-`[TO CONFIRM]` items. When provided: fill them in, remove the DRAFT
-warning box, publish node 1 (making the footer Privacy Policy link
-live), and close task 0006.
+CVR confirmed (2026-07-11): **45592642**. Node 1 published —
+the privacy policy is now live and the footer link is visible.
+[[0006-gdpr-data-retention-policy]] is **done**.
+
+Next actionable step: client items outstanding — see below.
 Client items outstanding: real photos for products (0039) and facilities
 (0040), 0038's stock-tracking and per-bale-unit answers, the wrap-2026
 price rise during 2027, and the real social URLs from 0032. Also worth a

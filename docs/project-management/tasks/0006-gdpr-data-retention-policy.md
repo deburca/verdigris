@@ -1,7 +1,7 @@
 ---
 type: task
 tags: [cms2/task]
-status: in-progress
+status: done
 priority: medium
 site: shh
 project: "[[shh-stables-platform]]"
@@ -145,16 +145,15 @@ when reading the membership list. phpcs clean; config exported
   **Open-Xchange GmbH (Germany)** for email. Both are EU-based — no
   transfer safeguard statement needed. Privacy policy §4 updated.
 
-**All GDPR/retention content is now confirmed and implemented.**
-The privacy policy draft is substantively complete. Two non-GDPR
-business details remain before node 1 can be published:
-1. Postal address (appears in §1 and §10)
-2. CVR number (§1)
+**Resolved (2026-07-11, client):**
+- Postal address: **Tobjergvej 27B, 4300 Holbæk, Denmark**.
+- CVR: **45592642**.
 
-These are content items requiring no implementation work. When
-provided: fill them in, remove the DRAFT warning box, publish
-node 1 (which also makes 0027’s footer Privacy Policy link appear),
-`make shh-export`, and close this task.
+**Task complete.** Node 1 published 2026-07-11 with the final
+privacy policy text. The footer "Privacy policy" link (from 0027)
+is now live for visitors. Policy⇄practice verified: every category
+implemented in `shh_data_retention` matches what the published
+policy states.
 
 ## Related
 - [[shh-stables-platform]]

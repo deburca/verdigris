@@ -1,18 +1,6 @@
 # Privacy Policy — Stutteri Hestehøj
 
-**Last updated: 7 July 2026**
-
-> **DRAFT — do not publish until the bracketed `[TO CONFIRM: …]`
-> placeholders below are resolved and the text has been checked by
-> someone with authority over the business's legal affairs. This is a
-> working draft produced from a template cleanup, not legal advice.
-> Remove this box before publishing.**
->
-> **Keep in sync with task 0006** (GDPR data retention policy,
-> `docs/project-management/tasks/0006-gdpr-data-retention-policy.md`):
-> section 6 below must state exactly the retention practice 0006
-> decides and implements — resolve the placeholders there and here
-> together, and do not publish either side alone.
+**Last updated: 11 July 2026**
 
 ## 1. Who we are
 
@@ -23,7 +11,7 @@ hourly rental of our training facilities (Oval Track, Manège, Lunge
 Ring).
 
 - Address: Tobjergvej 27B, 4300 Holbæk, Denmark
-- CVR: [TO CONFIRM: CVR number]
+- CVR: 45592642
 - Email: info@stutteri-hestehoj.dk
 
 ## 2. What information we collect
