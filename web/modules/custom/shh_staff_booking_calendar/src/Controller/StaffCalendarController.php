@@ -163,29 +163,11 @@ class StaffCalendarController extends ControllerBase {
   /**
    * Maps BAT unit id => ['label' => facility label, 'nid' => node id].
    *
-   * The unit entities' own labels are stale (unit 1 still carries the
-   * pre-rename "Outdoor Arena 1" name), so facility names come from the
-   * owning nodes — the same unit→node resolution 0002's logger uses.
+   * Shared helper since task 0008 (shh_reporting is the second
+   * consumer).
    */
   protected function facilityByUnit(): array {
-    $map = [];
-    $nodes = $this->entityTypeManager()->getStorage('node')->loadByProperties([
-      'type' => 'bookable_facility',
-    ]);
-    foreach ($nodes as $node) {
-      foreach (['field_availability_hourly', 'field_availability_daily'] as $field) {
-        if (!$node->hasField($field)) {
-          continue;
-        }
-        foreach ($node->get($field)->getValue() as $value) {
-          $map[(int) $value['target_id']] = [
-            'label' => $node->label(),
-            'nid' => (int) $node->id(),
-          ];
-        }
-      }
-    }
-    return $map;
+    return shh_common_bat_unit_facility_map();
   }
 
   /**

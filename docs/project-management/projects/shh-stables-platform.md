@@ -4,7 +4,7 @@ tags: [cms2/project]
 status: planning
 site: shh
 created: 2026-07-05
-updated: 2026-07-11
+updated: 2026-07-12
 target:
 ---
 # Project: stutteri-hestehoj.dk — stables platform
@@ -882,14 +882,39 @@ CVR confirmed (2026-07-11): **45592642**. Node 1 published —
 the privacy policy is now live and the footer link is visible.
 [[0006-gdpr-data-retention-policy]] is **done**.
 
-Next actionable step: client items outstanding — see below.
-Client items outstanding: real photos for products (0039) and facilities
-(0040), 0038's stock-tracking and per-bale-unit answers, the wrap-2026
-price rise during 2027, and the real social URLs from 0032. Also worth a
-small follow-up: the horse add-to-cart form exposes "Override the unit
-price" + a currency selector to anonymous visitors (pre-existing
-`commerce_order_item.horse` form-display config, surfaced during 0031,
-deliberately left untouched there).
+**Loose ends converted to tracked items (2026-07-12)**: the horse
+add-to-cart unit-price-override exposure is now
+[[0046-horse-add-to-cart-price-override-leak]] (todo, medium); the two
+still-`null` retention windows are
+[[0047-retention-windows-end-state]] (todo, low — decide "window" vs
+"no auto-purge by design" per category, given 0044's immediate
+deletion); 0030's never-filed bee config-schema finding is
+[[0048-file-bee-config-schema-issue-upstream]] (todo, low); and the
+long-floating per-facility cart-hold TTL question is now decision
+[[0021-per-facility-cart-hold-ttl]] (proposed: keep the platform-wide
+30 minutes until a facility demonstrates need).
+
+[[0008-utilization-revenue-reporting]] is **done** (closed
+2026-07-12): new `shh_reporting` module — two staff reports under
+`/admin/reports/` with CSV exports and preset ranges. Facility
+utilization per ISO week/month (booked ÷ open hours per 0016's
+12-hour day; staff blocks reported separately; capacity-duplicate
+events deduped; sourced from BAT events so 0015 cancellations
+correctly stop counting) and revenue by order item type (placed
+non-canceled orders, gross item lines with order-level adjustments
+as their own lines so the footer always reconciles with Commerce's
+order totals). The unit→facility map moved to
+`shh_common_bat_unit_facility_map()` (0004's calendar refactored
+onto it). Verified over real HTTP against hand-computed truth:
+112,300 DKK across 11 orders reconciled exactly; W28 utilization
+3.6% on Oval Track matched the six booked events in the DB to the
+half hour.
+
+Next actionable step: [[0046-horse-add-to-cart-price-override-leak]]
+(medium), then the low backlog (0047, 0048). Client items
+outstanding: real photos for products (0039) and facilities (0040),
+0038's stock-tracking and per-bale-unit answers, the wrap-2026 price
+rise during 2027, and the real social URLs from 0032.
 
 ## Tasks
 ```dataview
@@ -900,11 +925,11 @@ SORT status asc, priority asc
 ```
 
 ## Open questions
-- Cart-hold TTL value: **resolved at the order-type level** (30 min, the
-  `default`/"Facility booking" order type's `cart_expiration`, decoupled from
-  horse sales by [[0018-separate-order-types-horse-vs-booking]]) — **still
-  open**: whether it should be configurable *per facility* rather than one
-  platform-wide value. See [[0012-cart-hold-concurrency-prototype]]
+- ~~Cart-hold TTL value~~ — resolved at the order-type level (30 min,
+  [[0018-separate-order-types-horse-vs-booking]]); the per-facility
+  question now has a written default: decision
+  [[0021-per-facility-cart-hold-ttl]] (proposed: platform-wide until a
+  facility demonstrates need)
 - ~~Rider eligibility gate: route access check vs cart constraint vs
   both~~ — **resolved**: a `#validate` handler on bee's
   `AddReservationForm` (neither route access nor a cart constraint — see

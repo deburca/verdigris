@@ -1,0 +1,11 @@
+shh_reporting.utilization:
+  title: 'Facility utilization'
+  description: 'Booked and blocked time per facility, per week or month.'
+  route_name: shh_reporting.utilization
+  parent: system.admin_reports
+
+shh_reporting.revenue:
+  title: 'Revenue by order item type'
+  description: 'Horse sales, deposits, bookings, feed and credit packs over a date range.'
+  route_name: shh_reporting.revenue
+  parent: system.admin_reports

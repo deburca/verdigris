@@ -1,0 +1,5 @@
+services:
+  shh_reporting.builder:
+    class: Drupal\shh_reporting\ReportBuilder
+    arguments:
+      - '@entity_type.manager'

@@ -1,0 +1,37 @@
+shh_reporting.utilization:
+  path: '/admin/reports/facility-utilization'
+  defaults:
+    _controller: '\Drupal\shh_reporting\Controller\ReportingController::utilization'
+    _title: 'Facility utilization'
+  requirements:
+    _permission: 'access site reports'
+  options:
+    _admin_route: TRUE
+
+shh_reporting.utilization_csv:
+  path: '/admin/reports/facility-utilization/export'
+  defaults:
+    _controller: '\Drupal\shh_reporting\Controller\ReportingController::utilizationCsv'
+  requirements:
+    _permission: 'access site reports'
+  options:
+    _admin_route: TRUE
+
+shh_reporting.revenue:
+  path: '/admin/reports/revenue'
+  defaults:
+    _controller: '\Drupal\shh_reporting\Controller\ReportingController::revenue'
+    _title: 'Revenue by order item type'
+  requirements:
+    _permission: 'access site reports'
+  options:
+    _admin_route: TRUE
+
+shh_reporting.revenue_csv:
+  path: '/admin/reports/revenue/export'
+  defaults:
+    _controller: '\Drupal\shh_reporting\Controller\ReportingController::revenueCsv'
+  requirements:
+    _permission: 'access site reports'
+  options:
+    _admin_route: TRUE

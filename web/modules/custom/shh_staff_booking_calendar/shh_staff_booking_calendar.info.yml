@@ -4,6 +4,7 @@ description: 'Implements docs/project-management/tasks/0004-staff-admin-booking-
 core_version_requirement: ^10.2 || ^11
 package: Custom
 dependencies:
+  - shh_common:shh_common
   - bee:bee
   - bat_event:bat_event
   - bat_fullcalendar:bat_fullcalendar

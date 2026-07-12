@@ -175,6 +175,40 @@ function shh_common_image_gallery(array $media_list): array {
 }
 
 /**
+ * Maps BAT unit id => ['label' => facility label, 'nid' => node id].
+ *
+ * The unit entities' own labels are stale (unit 1 still carries the
+ * pre-rename "Outdoor Arena 1" name), so facility names come from the
+ * owning bookable_facility nodes — the same unit→node resolution
+ * 0002's logger established. Factored out of
+ * shh_staff_booking_calendar's controller (task 0008, second
+ * consumer).
+ *
+ * @return array[]
+ *   Keyed by BAT unit id.
+ */
+function shh_common_bat_unit_facility_map(): array {
+  $map = [];
+  $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties([
+    'type' => 'bookable_facility',
+  ]);
+  foreach ($nodes as $node) {
+    foreach (['field_availability_hourly', 'field_availability_daily'] as $field) {
+      if (!$node->hasField($field)) {
+        continue;
+      }
+      foreach ($node->get($field)->getValue() as $value) {
+        $map[(int) $value['target_id']] = [
+          'label' => $node->label(),
+          'nid' => (int) $node->id(),
+        ];
+      }
+    }
+  }
+  return $map;
+}
+
+/**
  * Ensures a menu link exists, keyed by menu name + URI.
  *
  * Idempotency contract shared by the shh install hooks (task 0035):
