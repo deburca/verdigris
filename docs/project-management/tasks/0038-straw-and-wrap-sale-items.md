@@ -266,14 +266,27 @@ Consequences, recorded honestly rather than papered over:
   are unaffected (their teaser truncates long before it), so the
   caveat appears where a buyer is actually deciding.
 
-**Remaining open client item**: unit confirmation — prices are
-assumed per bale; the client stated prices without units.
+### Units — answered 2026-07-12: **prices are per bale**
 
-(Two former items are closed: "raise wrap 2026 to 350 DKK during
-2027" was **removed** on 2026-07-12 — price changes are quality- and
-quantity-dependent decisions taken outside the application, not a
-scheduled event, see the pricing bullet above — and stock tracking is
-answered directly above.)
+Confirmed by the client, so the assumption the sample content was
+written on is correct: straw 250 DKK, wrap 350 (2025) / 300 (2026)
+are each **per bale**. Two consequences:
+
+- The product bodies already said "Sold per bale, by harvest year" —
+  now verified accurate rather than assumed.
+- **The `/feed` catalog cards did not state the unit** — they showed a
+  bare "250,00 DKK", which invites exactly the wrong guess on a
+  listing page (per load? per delivery?). Fixed in
+  `FeedCatalogController`: cards now read "250,00 DKK **per bale**"
+  and "From 300,00 DKK **per bale**".
+
+**No open client items remain on this task.**
+
+(Two former items are closed above: "raise wrap 2026 to 350 DKK
+during 2027" was **removed** on 2026-07-12 — price changes are
+quality- and quantity-dependent decisions taken outside the
+application, not a scheduled event — and stock tracking is managed
+outside the application.)
 
 Images for feed (and horses) remain
 [[0039-product-images-featured-and-gallery]] — feed product pages

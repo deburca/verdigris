@@ -987,11 +987,12 @@ staff cancelling on a rider's behalf land on *that rider's* dashboard
 genuine deposit purchase cancelled by the rider and a genuine booking
 cancelled by admin — both redirecting to `/user/2/bookings`.
 
-**The task backlog is now empty** — all 48 tasks are done. Everything
-outstanding is client input: real photos for products (0039) and
-facilities (0040), 0038's per-bale unit confirmation (its
-stock-tracking question was **answered 2026-07-12**: managed outside
-the application, see above), and the real social URLs from 0032.
+**The task backlog is now empty** — all 48 tasks are done, and
+**0038's client questions are all answered** (2026-07-12: pricing and
+stock are managed outside the application; prices are **per bale** —
+the `/feed` cards now say so, rather than showing a bare "250,00
+DKK"). Still outstanding from the client: real photos for products
+(0039) and facilities (0040), and the real social URLs from 0032.
 
 Standing operational reminders: margin scheme before listing a
 bought-in horse ([[0005-tax-classification-horses-vs-bookings]]);

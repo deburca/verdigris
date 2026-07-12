@@ -107,9 +107,12 @@ class FeedCatalogController extends ControllerBase {
         $prices[0]->getNumber(),
         $prices[0]->getCurrencyCode(),
       );
+      // The unit is stated on the card, not just in the product body:
+      // feed prices are per bale (client, 2026-07-12) and a bare
+      // "250,00 DKK" on a listing invites exactly the wrong guess.
       $summary_parts[] = end($prices)->equals($prices[0])
-        ? $formatted
-        : (string) $this->t('From @price', ['@price' => $formatted]);
+        ? (string) $this->t('@price per bale', ['@price' => $formatted])
+        : (string) $this->t('From @price per bale', ['@price' => $formatted]);
     }
 
     $props = [
