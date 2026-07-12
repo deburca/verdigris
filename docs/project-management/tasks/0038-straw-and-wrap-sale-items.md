@@ -251,11 +251,20 @@ Consequences, recorded honestly rather than papered over:
   counter, "only N left" messaging, or back-order flows. Revisit only
   if the client ever wants the web shop to be the authoritative
   channel — which today it explicitly is not.
-- **Worth offering** (not done, would be a small content change):
-  a line of copy on the feed products such as "Availability is
-  confirmed when we contact you — bales are also sold locally", which
-  would make the over-promise risk explicit to buyers rather than
-  leaving it entirely to staff vigilance.
+- **Availability caveat added to the product copy** (2026-07-12, at
+  the client's request): both feed products now carry
+  > **Availability:** we confirm availability when we contact you
+  > about your order — straw and wrap are also sold locally, so stock
+  > can change between your order and our reply.
+
+  This makes the over-promise risk explicit to the buyer instead of
+  resting entirely on staff vigilance, and sets the expectation that
+  a feed order is confirmed rather than instantly fulfilled — the
+  honest description of a shop with no stock tracking and off-platform
+  sales. Content (product bodies), not config, so staff can reword it
+  freely. Verified on both product pages; the `/feed` catalog cards
+  are unaffected (their teaser truncates long before it), so the
+  caveat appears where a buyer is actually deciding.
 
 **Remaining open client item**: unit confirmation — prices are
 assumed per bale; the client stated prices without units.

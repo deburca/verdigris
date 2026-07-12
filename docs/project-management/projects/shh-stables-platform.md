@@ -1017,8 +1017,12 @@ product or year variation. The accepted consequence is that the site
 take payment) — a business risk staff absorb, not a bug to fix with
 inventory code. **Don't build** price schedules, seasonal pricing,
 cost models, `commerce_stock`, "only N left" messaging, or
-back-orders. A standing seasonal chore falls out of this: *when a
-year's bales run out, unpublish that variation.*
+back-orders. Both feed products now carry an **availability caveat**
+in their copy ("we confirm availability when we contact you — straw
+and wrap are also sold locally"), so the risk is disclosed to buyers
+rather than resting purely on staff vigilance. A standing seasonal
+chore still falls out of this: *when a year's bales run out,
+unpublish that variation.*
 
 ## Tasks
 ```dataview
