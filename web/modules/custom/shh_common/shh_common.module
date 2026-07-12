@@ -7,7 +7,9 @@
 
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Url;
 use Drupal\media\MediaInterface;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 /**
  * Resolves a list_string field's values to their human-readable labels.
@@ -172,6 +174,40 @@ function shh_common_image_gallery(array $media_list): array {
       'items' => $items,
     ],
   ];
+}
+
+/**
+ * The post-cancellation landing URL for an order's owner (task 0029).
+ *
+ * The rider dashboard (task 0022) is the natural "my bookings,
+ * deposits and credits" hub and is where a rider realistically clicked
+ * "Cancel" from — 0015's booking cancel and 0001's deposit cancel both
+ * predate it and dumped the rider on the homepage.
+ *
+ * Deliberately keyed on the **order's owner**, not the current user:
+ * when staff cancel on a rider's behalf they land on *that rider's*
+ * dashboard (which they may view — RiderDashboardAccessCheck allows
+ * `administer commerce_order`), not on their own.
+ *
+ * Falls back to the front page when there is no owning account (a
+ * guest horse-deposit order is possible: horse checkout allows guests)
+ * or if the dashboard route is unavailable, so callers can use this
+ * unconditionally.
+ *
+ * @param int $uid
+ *   The order customer's user id; 0 for a guest order.
+ */
+function shh_common_rider_dashboard_url(int $uid): Url {
+  if ($uid > 0) {
+    try {
+      \Drupal::service('router.route_provider')->getRouteByName('shh_rider_dashboard.dashboard');
+      return Url::fromRoute('shh_rider_dashboard.dashboard', ['user' => $uid]);
+    }
+    catch (RouteNotFoundException) {
+      // shh_rider_dashboard not installed — fall through to the front page.
+    }
+  }
+  return Url::fromRoute('<front>');
 }
 
 /**

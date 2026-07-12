@@ -37,7 +37,19 @@ class CancelDepositForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getCancelUrl() {
-    return Url::fromRoute('<front>');
+    return $this->dashboardUrl();
+  }
+
+  /**
+   * The owning rider's dashboard (task 0029), or the front page.
+   *
+   * Keyed on the order's customer, not the current user, so a staff
+   * member cancelling on a rider's behalf lands on that rider's
+   * dashboard. Guest horse orders (uid 0) fall back to the front page.
+   */
+  protected function dashboardUrl(): Url {
+    $order = $this->orderItem->getOrder();
+    return shh_common_rider_dashboard_url($order ? (int) $order->getCustomerId() : 0);
   }
 
   /**
@@ -97,7 +109,7 @@ class CancelDepositForm extends ConfirmFormBase {
       $this->messenger()->addWarning($this->t('Your deposit reservation has been cancelled and the horse released, but per the deposit refund policy your deposit was not refunded.'));
     }
 
-    $form_state->setRedirectUrl(Url::fromRoute('<front>'));
+    $form_state->setRedirectUrl($this->dashboardUrl());
   }
 
 }

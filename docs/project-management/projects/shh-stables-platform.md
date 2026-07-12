@@ -970,13 +970,20 @@ decision 0019 closed the Canvas track, so a schema patch would be
 maintenance burden for zero functional gain (unlike 0043's, which
 was mandatory because the bug corrupted pricing data).
 
-Next actionable step: **[[0029-cancel-flow-dashboard-redirect]]** —
-the sole remaining open task (low, backlog): 0015's `CancelBookingForm`
-and 0001's `CancelDepositForm` still redirect to the homepage after a
-successful cancellation, both predating the 0022 rider dashboard that
-is now the natural landing place.
+[[0029-cancel-flow-dashboard-redirect]] is **done** (closed
+2026-07-12): 0015's booking cancel and 0001's deposit cancel now land
+the rider on `/user/{uid}/bookings` instead of the homepage — via a
+new shared `shh_common_rider_dashboard_url()` used by both the success
+redirect **and** the confirm form's back-out link (which had the same
+wart). It resolves **the order's customer**, not the current user, so
+staff cancelling on a rider's behalf land on *that rider's* dashboard
+(0022's access check permits it), and a guest horse-deposit order
+(uid 0) falls back to the front page. Verified over real HTTP with a
+genuine deposit purchase cancelled by the rider and a genuine booking
+cancelled by admin — both redirecting to `/user/2/bookings`.
 
-Everything else outstanding is client input: real photos for products
+**The task backlog is now empty** — all 48 tasks are done. Everything
+outstanding is client input: real photos for products
 (0039) and facilities (0040), 0038's stock-tracking and per-bale-unit
 answers, the wrap-2026 price rise during 2027, and the real social
 URLs from 0032. Standing operational reminders live in

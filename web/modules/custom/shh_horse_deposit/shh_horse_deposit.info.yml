@@ -4,6 +4,7 @@ description: 'Implements docs/project-management/tasks/0001-horse-deposit-reserv
 core_version_requirement: ^10.2 || ^11
 package: Custom
 dependencies:
+  - shh_common:shh_common
   - commerce_order:commerce_order
   - commerce_payment:commerce_payment
   - commerce_product:commerce_product

@@ -54,7 +54,19 @@ class CancelBookingForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getCancelUrl() {
-    return Url::fromRoute('<front>');
+    return $this->dashboardUrl();
+  }
+
+  /**
+   * The owning rider's dashboard (task 0029), or the front page.
+   *
+   * Keyed on the order's customer, not the current user, so a staff
+   * member cancelling on a rider's behalf lands on that rider's
+   * dashboard rather than their own.
+   */
+  protected function dashboardUrl(): Url {
+    $order = $this->orderItem->getOrder();
+    return shh_common_rider_dashboard_url($order ? (int) $order->getCustomerId() : 0);
   }
 
   /**
@@ -160,7 +172,7 @@ class CancelBookingForm extends ConfirmFormBase {
       $this->messenger()->addWarning($this->t('This booking is inside the cancellation policy\'s no-refund window, so it cannot be self-service cancelled. Contact staff directly if you still need to cancel.'));
     }
 
-    $form_state->setRedirectUrl(Url::fromRoute('<front>'));
+    $form_state->setRedirectUrl($this->dashboardUrl());
   }
 
 }

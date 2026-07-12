@@ -4,6 +4,7 @@ description: 'Implements docs/project-management/decisions/0015-cancellation-ref
 core_version_requirement: ^10.2 || ^11
 package: Custom
 dependencies:
+  - shh_common:shh_common
   - bat:bat_event
   - bat:bat_booking
   - bee:bee
