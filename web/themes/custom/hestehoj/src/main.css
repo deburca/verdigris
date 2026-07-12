@@ -34,6 +34,9 @@
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
+  --color-link: var(--link-color);
+  --color-link-hover: var(--link-color-hover);
+  --color-error-text: var(--error-text);
 
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
@@ -226,7 +229,7 @@
   }
 
   .form-required::after {
-    @apply ml-1 text-destructive;
+    @apply ml-1 text-error-text;
     content: "*";
   }
 
@@ -297,7 +300,7 @@
   }
 
   .form-item--error-message {
-    @apply mt-1 mb-3 basis-full text-sm text-destructive;
+    @apply mt-1 mb-3 basis-full text-sm text-error-text;
   }
 
   .webform-options-display-one-column {

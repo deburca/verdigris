@@ -68,16 +68,25 @@ const colours = {
   // Brand tokens
   "iceland-red (light)":       [0.573, 0.216,  21.1],
   "iceland-blue (light)":      [0.428, 0.146, 256.1],
-  "iceland-red (dark)":        [0.573, 0.216,  21.1],  // fixed: same as light mode
+  "iceland-red (dark)":        [0.573, 0.216,  21.1],  // same as light: task 0005
   "iceland-blue (dark)":       [0.559, 0.196, 256.8],
-  // Foreground tokens (both modes share the same near-white)
+  // Foreground tokens
   "foreground/white":          [0.984, 0.004, 248.2],
-  // Page backgrounds
+  "foreground (dark) ":        [0.984, 0.004, 248.2],  // same near-white
+  // Page & card backgrounds
   "bg-background (light)":     [1.000, 0.000,   0.0],
   "bg-background (dark)":      [0.137, 0.036, 258.3],
+  "bg-card (dark)":            [0.206, 0.039, 265.6],
   // Ring (focus indicator)
   "ring (light)":              [0.428, 0.146, 256.1],  // same as iceland-blue light
   "ring (dark)":               [0.634, 0.196, 254.9],
+  // Muted foreground (informational text)
+  "muted-foreground (dark)":   [0.710, 0.035, 256.8],
+  // Link colour tokens (task 0006) — lightened for dark mode
+  "link-color (dark) ":        [0.680, 0.130, 256.1],
+  "link-hover (dark) ":        [0.680, 0.150,  21.1],
+  // Error text token in dark mode (same lightened red as link-hover)
+  "error-text (dark) ":        [0.680, 0.150,  21.1],
 };
 
 const lum = {};
@@ -140,6 +149,33 @@ const checks = [
   {
     label: "DARK  — focus ring offset (bg) vs red btn surface (3:1 UI, ring-offset fix)",
     fg: "bg-background (dark)", bg: "iceland-red (dark)", mode: "ui",
+  },
+  // ── Dark mode secondary elements ─────────────────────────────────────────
+  // Link colours now use dedicated --link-color / --link-color-hover tokens
+  // in dark mode (oklch 0.680 lightened tints); error text still uses --destructive.
+  {
+    label: "DARK  — link colour (blue tint) on page background",
+    fg: "link-color (dark) ", bg: "bg-background (dark)", mode: "text",
+  },
+  {
+    label: "DARK  — link hover colour (red tint) on page background",
+    fg: "link-hover (dark) ", bg: "bg-background (dark)", mode: "text",
+  },
+  {
+    label: "DARK  — link colour on card background",
+    fg: "link-color (dark) ", bg: "bg-card (dark)", mode: "text",
+  },
+  {
+    label: "DARK  — error text (--error-text, lightened red) on page background",
+    fg: "error-text (dark) ", bg: "bg-background (dark)", mode: "text",
+  },
+  {
+    label: "DARK  — form focus border (blue/accent) vs page background",
+    fg: "iceland-blue (dark)", bg: "bg-background (dark)", mode: "ui",
+  },
+  {
+    label: "DARK  — muted-foreground text on page background",
+    fg: "muted-foreground (dark)", bg: "bg-background (dark)", mode: "text",
   },
 ];
 

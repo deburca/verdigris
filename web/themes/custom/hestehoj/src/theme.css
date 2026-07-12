@@ -32,6 +32,17 @@
   --btn-accent-bg-hover: var(--iceland-red);
   --btn-accent-foreground: var(--iceland-blue-foreground);
 
+  /* Link colour tokens — used as text colour in rich content (text.twig).
+   * Light mode reuses the button hues directly (8.32:1 / 4.93:1 on white).
+   * Dark mode uses lighter tints so text-on-dark passes AA (task 0006). */
+  --link-color: var(--iceland-blue);
+  --link-color-hover: var(--iceland-red);
+
+  /* Error text colour token — for visible error messages and required markers.
+   * Separate from --destructive (button bg) so dark mode can lighten text
+   * without affecting button contrast. Light: 4.93:1 on white. */
+  --error-text: var(--iceland-red);
+
   /* Base */
   --background: oklch(1 0 0);
   --foreground: oklch(0.137 0.036 258.3);
@@ -115,6 +126,15 @@
   --btn-accent-bg: var(--iceland-blue);
   --btn-accent-bg-hover: var(--iceland-red);
   --btn-accent-foreground: var(--iceland-blue-foreground);
+
+  /* Link colour tokens — lightened for dark-bg text legibility.
+   * oklch(0.680 0.130 256.1) blue  → 6.91:1 on dark bg (AAA)
+   * oklch(0.680 0.150  21.1) red   → 6.46:1 on dark bg (AAA) */
+  --link-color: oklch(0.68 0.13 256.1);
+  --link-color-hover: oklch(0.68 0.15 21.1);
+
+  /* Error text: same lightened red as --link-color-hover → 6.46:1 on dark bg. */
+  --error-text: oklch(0.68 0.15 21.1);
 
   --background: oklch(0.137 0.036 258.3);
   --foreground: oklch(0.984 0.004 248.2);
