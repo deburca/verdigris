@@ -9,6 +9,29 @@
  */
 
 :root {
+  /* ------------------------------------------------------------------ *
+   * Icelandic flag brand colours — single source of truth.
+   * Every brand/button colour below derives from these two tokens, so
+   * re-tuning the palette means editing just these values. See ADR
+   * 0001-icelandic-flag-color-system and task 0001.
+   * ------------------------------------------------------------------ */
+  --iceland-red: oklch(0.573 0.216 21.1);
+  --iceland-blue: oklch(0.428 0.146 256.1);
+  /* Near-white label text for both hues (contrast verified in task 0005). */
+  --iceland-red-foreground: oklch(0.984 0.004 248.2);
+  --iceland-blue-foreground: oklch(0.984 0.004 248.2);
+
+  /* Button brand tokens — the hover/focus colour swap (consumed by the
+   * button component in task 0002):
+   *   primary: red at rest  -> blue on hover/focus
+   *   accent:  blue at rest -> red on hover/focus */
+  --btn-primary-bg: var(--iceland-red);
+  --btn-primary-bg-hover: var(--iceland-blue);
+  --btn-primary-foreground: var(--iceland-red-foreground);
+  --btn-accent-bg: var(--iceland-blue);
+  --btn-accent-bg-hover: var(--iceland-red);
+  --btn-accent-foreground: var(--iceland-blue-foreground);
+
   /* Base */
   --background: oklch(1 0 0);
   --foreground: oklch(0.137 0.036 258.3);
@@ -19,9 +42,9 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.137 0.036 258.3);
 
-  /* Icelandic blue as primary */
-  --primary: oklch(0.428 0.146 256.1);
-  --primary-foreground: oklch(0.984 0.004 248.2);
+  /* Icelandic red as primary (D2: primary = red). */
+  --primary: var(--iceland-red);
+  --primary-foreground: var(--iceland-red-foreground);
 
   /* Soft stable-inspired secondary (warm neutral) */
   --secondary: oklch(0.956 0.005 67.5);
@@ -31,13 +54,14 @@
   --muted: oklch(0.961 0.004 248.2);
   --muted-foreground: oklch(0.556 0.04 256.8);
 
-  /* Accented surfaces (for subtle panels) */
-  --accent: oklch(0.932 0.032 255.585);
-  --accent-foreground: var(--foreground);
+  /* Icelandic blue as accent (D2: accent = brand blue). Formerly a muted
+   * light-blue surface; repointed to the brand token. */
+  --accent: var(--iceland-blue);
+  --accent-foreground: var(--iceland-blue-foreground);
 
-  /* Icelandic red as destructive/strong accent */
-  --destructive: oklch(0.573 0.216 21.1);
-  --destructive-foreground: oklch(0.984 0.004 248.2);
+  /* Icelandic red as destructive/strong accent (aliased to the brand token) */
+  --destructive: var(--iceland-red);
+  --destructive-foreground: var(--iceland-red-foreground);
 
   /* Borders & inputs */
   --border: oklch(0.926 0.013 255.1);
@@ -75,6 +99,20 @@
 }
 
 .dark {
+  /* Icelandic flag brand colours — lightness-tuned for dark surfaces
+   * (task 0006). Button swap tokens re-derive automatically. */
+  --iceland-red: oklch(0.635 0.188 15.6);
+  --iceland-blue: oklch(0.559 0.196 256.8);
+  --iceland-red-foreground: oklch(0.984 0.004 248.2);
+  --iceland-blue-foreground: oklch(0.984 0.004 248.2);
+
+  --btn-primary-bg: var(--iceland-red);
+  --btn-primary-bg-hover: var(--iceland-blue);
+  --btn-primary-foreground: var(--iceland-red-foreground);
+  --btn-accent-bg: var(--iceland-blue);
+  --btn-accent-bg-hover: var(--iceland-red);
+  --btn-accent-foreground: var(--iceland-blue-foreground);
+
   --background: oklch(0.137 0.036 258.3);
   --foreground: oklch(0.984 0.004 248.2);
 
@@ -84,9 +122,9 @@
   --popover: oklch(0.206 0.039 265.6);
   --popover-foreground: oklch(0.984 0.004 248.2);
 
-  /* Slightly lighter Icelandic blue */
-  --primary: oklch(0.559 0.196 256.8);
-  --primary-foreground: oklch(0.984 0.004 248.2);
+  /* Icelandic red as primary (D2), lighter on dark surfaces. */
+  --primary: var(--iceland-red);
+  --primary-foreground: var(--iceland-red-foreground);
 
   --secondary: oklch(0.291 0.018 264.2);
   --secondary-foreground: oklch(0.968 0.007 248.1);
@@ -94,15 +132,15 @@
   --muted: oklch(0.291 0.018 264.2);
   --muted-foreground: oklch(0.71 0.035 256.8);
 
-  --destructive: oklch(0.635 0.188 15.6);
-  --destructive-foreground: oklch(0.984 0.004 248.2);
+  --destructive: var(--iceland-red);
+  --destructive-foreground: var(--iceland-red-foreground);
 
   --border: oklch(0.373 0.031 259.733);
   --input: oklch(0.373 0.031 259.733);
   --ring: oklch(0.634 0.196 254.9);
 
-  --accent: oklch(0.932 0.032 255.585);
-  --accent-foreground: oklch(0.13 0.043 265.132);
+  --accent: var(--iceland-blue);
+  --accent-foreground: var(--iceland-blue-foreground);
 
   --font-sans: "Outfit", "Helvetica Neue", Arial, Helvetica, sans-serif;
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
