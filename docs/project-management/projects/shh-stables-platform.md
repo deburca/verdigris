@@ -955,11 +955,35 @@ published privacy policy was reconciled** (0006's invariant): it now
 states the unapproved-application rule and no longer promises
 retention of "membership records", a concept 0045 deleted.
 
-Next actionable step: [[0048-file-bee-config-schema-issue-upstream]]
-(low). Client items outstanding: real photos for products (0039) and
-facilities (0040), 0038's stock-tracking and per-bale-unit answers,
-the wrap-2026 price rise during 2027, and the real social URLs from
-0032.
+[[0048-file-bee-config-schema-issue-upstream]] is **done** (closed
+2026-07-12): 0030's never-filed finding is now
+[bee #3610510](https://www.drupal.org/project/bee/issues/3610510)
+(filed by Paddy). Pre-filing checks: no duplicate in bee's queue, and
+confirmed at dev HEAD that bee ships **no `*.schema.yml` at all** —
+not merely missing for the third-party settings. The mechanism was
+pinned down for the report: with no schema, typed config falls back
+to the node type's *own* definition, so `node.type.bookable_facility`
+fails validation with **12 violations**, including nonsense demands
+like `'uuid' is a required key` *inside* `third_party_settings.bee`.
+**No local patch carried, deliberately** — admin-only noise, and
+decision 0019 closed the Canvas track, so a schema patch would be
+maintenance burden for zero functional gain (unlike 0043's, which
+was mandatory because the bug corrupted pricing data).
+
+Next actionable step: **[[0029-cancel-flow-dashboard-redirect]]** —
+the sole remaining open task (low, backlog): 0015's `CancelBookingForm`
+and 0001's `CancelDepositForm` still redirect to the homepage after a
+successful cancellation, both predating the 0022 rider dashboard that
+is now the natural landing place.
+
+Everything else outstanding is client input: real photos for products
+(0039) and facilities (0040), 0038's stock-tracking and per-bale-unit
+answers, the wrap-2026 price rise during 2027, and the real social
+URLs from 0032. Standing operational reminders live in
+[[0005-tax-classification-horses-vs-bookings]] (margin scheme before
+listing a bought-in horse), the deployment procedure's go-live data
+checks, and the bee patch retirement when
+[#3610134](https://www.drupal.org/project/bee/issues/3610134) lands.
 
 ## Tasks
 ```dataview

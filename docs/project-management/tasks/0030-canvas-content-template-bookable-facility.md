@@ -116,8 +116,19 @@ that reacts to any `canvas.content_template.node.*` save by running a
 `preview_mode: 0` write **still went through** despite the reported
 validation failure (restored to the sync value afterwards). Any real
 adoption for a bee-enabled bundle trips this on every template edit.
-Candidate upstream issue against bee: missing config schema for its
-node-type third-party settings.
+
+**Filed upstream by Paddy 2026-07-12 as
+[bee #3610510](https://www.drupal.org/project/bee/issues/3610510)**
+(see [[0048-file-bee-config-schema-issue-upstream]]): bee ships **no
+`config/schema/` at all** — confirmed at dev HEAD — so
+`node.type.bookable_facility` fails validation with 12 violations,
+and the missing schema makes typed config fall back to the node
+type's *own* definition (hence nonsense demands like `'uuid' is a
+required key` *inside* `third_party_settings.bee`). **No local patch
+is carried**, deliberately: the symptom is admin-only noise and
+decision 0019 closed the Canvas ContentTemplate track for this
+platform, so the interop breakage doesn't affect us — a schema patch
+would be pure maintenance burden across bee upgrades.
 
 **Decision** (recorded in 0019, now accepted): keep the classic
 pipeline + custom-code SDC composition for `bookable_facility` —
