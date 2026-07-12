@@ -910,8 +910,31 @@ onto it). Verified over real HTTP against hand-computed truth:
 3.6% on Oval Track matched the six booked events in the DB to the
 half hour.
 
-Next actionable step: [[0046-horse-add-to-cart-price-override-leak]]
-(medium), then the low backlog (0047, 0048). Client items
+[[0046-horse-add-to-cart-price-override-leak]] is **done** (closed
+2026-07-12) — and it turned out to be **a real, live
+price-manipulation vulnerability, not the cosmetic wart it was filed
+as** (priority raised medium → high on the finding; the task's own
+"verify rather than assume" criterion is what caught it). An
+anonymous forged POST set `unit_price[0][override]=1` and put the
+45.000 DKK Freja in a cart at **1 DKK**, override flag set, order
+total 1 DKK: Commerce's resolvers don't second-guess an explicitly
+overridden price, and 0024's checker validates sale *state*, not
+price — so checkout would have produced a placed 1 DKK order for a
+45.000 DKK horse. Cause: the `horse` order item type had no
+`add_to_cart` form display, so Commerce fell back to an
+auto-generated default exposing every widget, override checkbox
+included. Fixed with explicit displays for all four bundles that
+lacked one (`horse` — the exploited one — plus `horse_deposit`,
+`facility_credit_pack` and `bee`, which use custom forms today but
+inherited the same permissive fallback), each exposing only
+`purchased_entity`; `feed`'s display (0038) was the template.
+Verified over real HTTP both directions: the identical forged POST
+now prices the horse at its true 45.000 DKK, while normal add-to-cart,
+the deposit CTA and feed's quantity field are untouched. **Carried
+into the production checklist**: before go-live, check placed
+`horse_sale` orders for overridden unit prices.
+
+Next actionable step: the low backlog (0047, 0048). Client items
 outstanding: real photos for products (0039) and facilities (0040),
 0038's stock-tracking and per-bale-unit answers, the wrap-2026 price
 rise during 2027, and the real social URLs from 0032.

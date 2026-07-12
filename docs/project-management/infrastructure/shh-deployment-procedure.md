@@ -83,6 +83,43 @@ database and the sync store are already in agreement), but running
 `make shh` is still the correct step — it ensures any stale caches are
 rebuilt and any deploy hooks fire.
 
+### Go-live data checks (run once, after the DB copy)
+
+The DB copied to production carries dev's data, so check it for the
+traces of bugs that were live before they were fixed:
+
+```bash
+# 1. Horse items with an overridden unit price (task 0046: until
+#    2026-07-12 an anonymous forged POST could set any price on a
+#    horse — a 45.000 DKK horse for 1 DKK). Any hit is a suspect
+#    order, not a real sale.
+#    NB: restrict to type = 'horse'. Do NOT check overridden_unit_price
+#    across all types — bee bookings, deposits and credit packs set
+#    overridden prices legitimately from their own forms (they compute
+#    prices in code), so an unrestricted query is all false positives.
+ddev drush -l https://hestehoj.ddev.site sql:query \
+  "SELECT order_id, order_item_id, title, unit_price__number \
+   FROM commerce_order_item WHERE type = 'horse' AND overridden_unit_price = 1"
+# Verified empty on dev 2026-07-12 (no real horse order was ever
+# exploited — only this task's own test carts, since deleted).
+
+# 2. Facility price frequency (task 0043: bee's form alter silently
+#    reset 'minute' → 'hour' on every staff node save, which makes
+#    sub-hour bookings compute 0,00 DKK). All three must read 'minute'.
+ddev drush -l https://hestehoj.ddev.site sql:query \
+  "SELECT entity_id, field_price_frequency_value FROM node__field_price_frequency"
+
+# 3. Zero-priced facility bookings (the symptom of #2, if it ever ran):
+ddev drush -l https://hestehoj.ddev.site sql:query \
+  "SELECT order_id, title, total_price__number FROM commerce_order_item \
+   WHERE type = 'bee' AND total_price__number = 0"
+```
+
+Also delete any leftover test content before go-live: test accounts
+(`test_rider`, `shh_test_rider`, `soren_holm`, `freya_jensen`), test
+orders, and the GD-generated placeholder product/facility photos
+(tasks 0039/0040) once the client's real photos are in.
+
 ---
 
 ## Subsequent deployments (code-only, no DB copy)
