@@ -226,7 +226,7 @@
   }
 
   .form-required::after {
-    @apply ml-1 text-red-500;
+    @apply ml-1 text-destructive;
     content: "*";
   }
 
@@ -287,17 +287,17 @@
   .form-item--error input,
   .form-item--error textarea,
   .form-item--error select {
-    @apply border-red-500;
+    @apply border-destructive;
   }
 
   .form-item--error input:focus,
   .form-item--error textarea:focus,
   .form-item--error select:focus {
-    @apply border-red-500 shadow-sm;
+    @apply border-destructive shadow-sm;
   }
 
   .form-item--error-message {
-    @apply mt-1 mb-3 basis-full text-sm text-red-500;
+    @apply mt-1 mb-3 basis-full text-sm text-destructive;
   }
 
   .webform-options-display-one-column {
