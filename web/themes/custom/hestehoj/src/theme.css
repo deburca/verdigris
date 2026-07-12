@@ -99,9 +99,12 @@
 }
 
 .dark {
-  /* Icelandic flag brand colours — lightness-tuned for dark surfaces
-   * (task 0006). Button swap tokens re-derive automatically. */
-  --iceland-red: oklch(0.635 0.188 15.6);
+  /* Icelandic flag brand colours for dark surfaces.
+   * Red: same value as light mode — lightening it beyond L≈0.573 drops white-text
+   * contrast below AA (4.5:1). Still gives 4.05:1 button vs dark bg (>3:1 UI).
+   * Blue: slightly lighter for dark-surface visibility; white text = 4.58:1 AA.
+   * (Task 0005 contrast check; task 0006 dark-mode reconciliation.) */
+  --iceland-red: oklch(0.573 0.216 21.1);
   --iceland-blue: oklch(0.559 0.196 256.8);
   --iceland-red-foreground: oklch(0.984 0.004 248.2);
   --iceland-blue-foreground: oklch(0.984 0.004 248.2);
