@@ -17,12 +17,15 @@ props:
         - primary-inverted
         - secondary-inverted
       meta:enum:
-        primary: Primary
-        secondary: Secondary
-        primary-inverted: Primary inverted
-        secondary-inverted: Secondary inverted
+        primary: "Primary (red → blue on hover)"
+        secondary: "Accent (blue → red on hover)"
+        primary-inverted: "Primary inverted (light, red → blue)"
+        secondary-inverted: "Accent inverted (outline, blue → red)"
       examples:
         - primary
+        - secondary
+        - primary-inverted
+        - secondary-inverted
     label:
       type: string
       title: Label

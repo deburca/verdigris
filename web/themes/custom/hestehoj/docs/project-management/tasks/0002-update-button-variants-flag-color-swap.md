@@ -1,7 +1,7 @@
 ---
 type: task
 tags: [hestehoj/task]
-status: backlog
+status: done
 priority: high
 project: "[[icelandic-flag-color-scheme]]"
 area: theme
@@ -22,30 +22,36 @@ darken-on-hover behaviour.
 
 ## Acceptance criteria
 
-- [ ] `primary` variant renders Icelandic red at rest, Icelandic blue on
+- [x] `primary` variant renders Icelandic red at rest, Icelandic blue on
       `hover` and `focus-visible`.
-- [ ] Accent/`secondary` variant renders Icelandic blue at rest, Icelandic red
+- [x] Accent/`secondary` variant renders Icelandic blue at rest, Icelandic red
       on `hover` and `focus-visible`.
-- [ ] Swap driven by the tokens from [[0001-define-icelandic-flag-color-tokens]],
-      not one-off hex values.
-- [ ] Transition remains smooth and honours `prefers-reduced-motion`.
-- [ ] Disabled state stays visually distinct (desaturated) and non-interactive.
-- [ ] `primary-inverted` / `secondary-inverted` **redefined** under the new
-      system (D5), not merely kept/dropped.
-- [ ] Focus ring keeps the blue `--ring` across variants (D7).
+- [x] Swap driven by the `--btn-*` tokens from
+      [[0001-define-icelandic-flag-color-tokens]], not one-off hex values.
+- [x] Transition remains smooth and honours `prefers-reduced-motion`
+      (`motion-reduce:transition-none` on base + icon; icon translate reset).
+- [x] Disabled state stays visually distinct (desaturated) and non-interactive
+      (base `disabled:opacity-50 disabled:pointer-events-none`; disabled always
+      renders as `<button disabled>`).
+- [x] `primary-inverted` / `secondary-inverted` **redefined** (D5): light
+      surface, brand hue swaps red↔blue on hover/focus-visible.
+- [x] Focus ring keeps the blue `--ring` across variants (D7); only the fill /
+      label hue swaps.
 
 ## Implementation notes
 
-- Per D2 (option a), this task also flips the global `--primary` token to red
-  and adds a brand-blue `--accent` in `src/theme.css`, landing **together** with
-  the consumer updates in [[0007-regression-audit-primary-accent-usage]] to
-  avoid a broken intermediate state.
-- Key file: `components/button/button.twig` — CVA `variant` block (L21-26).
-- Follow `AGENTS.md`: CVA with multi-line arrays, `yes`/`no` variant keys, no
-  inline conditionals in `class`.
-- Existing base already sets `focus-visible:*` ring (L12) and
-  `disabled:opacity-50` (L13).
-- Run `npm run format && npm run build`; verify in Storybook.
+- Implemented in `components/button/button.twig` CVA `variant` block using the
+  `--btn-*` swap tokens; both `hover` and `focus-visible` apply the swap.
+- Variant names unchanged (`primary`, `secondary`, `primary-inverted`,
+  `secondary-inverted`), so `button.component.yml` needs no change — Storybook /
+  schema reconciliation remains [[0003-reconcile-button-variant-schema-and-storybook]].
+- The global `--primary`→red / `--accent`→brand-blue flip and CSS consumer
+  updates were already landed in the prior commit; this task builds on them.
+- Rebuilt `build/main.min.css` (new arbitrary `bg-[var(--btn-*)]` /
+  `focus-visible:*` utilities compiled).
+- Follows `AGENTS.md`: CVA multi-line arrays, no inline conditionals.
+- Storybook visual check still recommended (no local browser tooling here);
+  contrast verification tracked in [[0005-accessibility-and-contrast-verification]].
 
 ## Related
 
