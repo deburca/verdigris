@@ -1,7 +1,7 @@
 ---
 type: project
 tags: [hestehoj/project]
-status: active # planning | active | paused | done | dropped
+status: done # planning | active | paused | done | dropped
 site: shh # vdg | kbg | shh | shared
 created: 2026-07-12
 updated: 2026-07-12
