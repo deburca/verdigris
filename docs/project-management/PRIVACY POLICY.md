@@ -87,12 +87,16 @@ via "My privacy settings" in the site footer.
 
 - **Orders, invoices, and payment records**: 5 years from the end of
   the financial year, as required by the Danish Bookkeeping Act.
-- **Your account, bookings, and membership records**: for as long as
-  you have an account with us. When you close your account, your
-  personal records are deleted immediately. Operational records that
-  reference your account (such as booking history) are anonymised and
-  no longer linked to you personally.
+- **Your account and bookings**: for as long as you have an account
+  with us. When you close your account, your personal records are
+  deleted immediately. Operational records that reference your account
+  (such as booking history) are anonymised and no longer linked to you
+  personally.
 - **Contact messages**: deleted 12 months after you send them.
+- **Registration applications we never approve**: if you apply for an
+  account and it is never approved or used, we delete the application
+  — including your name and e-mail address — 12 months after you
+  applied.
 
 Where a record must be kept for legal reasons after you close your
 account (such as an invoice), we keep only that record, no longer used

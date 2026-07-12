@@ -49,7 +49,7 @@ class RetentionStatusController extends ControllerBase {
       $rows[] = [
         $info['label'],
         $days === NULL
-          ? $this->t('Not confirmed — purge disabled')
+          ? $this->t('No window set — purge disabled')
           : $this->formatPlural($days, '1 day', '@count days'),
         $info['anchor'],
         $eligible ?? '—',
@@ -62,9 +62,14 @@ class RetentionStatusController extends ControllerBase {
       ];
     }
 
+    $retained_rows = [];
+    foreach ($this->retentionManager->retainedByDesign() as $retained) {
+      $retained_rows[] = [$retained['label'], $retained['reason']];
+    }
+
     return [
       'intro' => [
-        '#markup' => '<p>' . $this->t('Retention windows come from <code>shh_data_retention.settings</code> and stay disabled until confirmed with the client/adviser — the published privacy policy and this configuration must always match (task 0006). Orders and invoices are deliberately not purged automatically: the Danish Bookkeeping Act’s 5-year retention is the accountant’s call.') . '</p>',
+        '#markup' => '<p>' . $this->t('Retention windows come from <code>shh_data_retention.settings</code>; a category with no window is not purged and says so. The published privacy policy and this configuration must always match (task 0006).') . '</p>',
       ],
       'table' => [
         '#type' => 'table',
@@ -77,6 +82,13 @@ class RetentionStatusController extends ControllerBase {
         ],
         '#rows' => $rows,
         '#empty' => $this->t('No categories defined.'),
+        '#caption' => $this->t('Purged automatically (daily cron)'),
+      ],
+      'retained' => [
+        '#type' => 'table',
+        '#header' => [$this->t('Data'), $this->t('Why it is kept')],
+        '#rows' => $retained_rows,
+        '#caption' => $this->t('Kept with no automatic purge — deliberate decisions (task 0047), not pending items'),
       ],
       '#cache' => ['max-age' => 0],
     ];

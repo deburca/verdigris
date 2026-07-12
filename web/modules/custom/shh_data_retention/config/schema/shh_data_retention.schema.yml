@@ -10,11 +10,7 @@ shh_data_retention.settings:
           type: integer
           label: 'Days after submission'
           nullable: true
-        closed_accounts:
+        stale_registrations:
           type: integer
-          label: 'Days after the account was blocked/last seen'
-          nullable: true
-        booking_log:
-          type: integer
-          label: 'Days after the booked slot ended'
+          label: 'Days after applying (unapproved, never-logged-in registrations)'
           nullable: true

@@ -48,13 +48,35 @@ class RetentionManager {
         'label' => $this->t('Contact-form messages'),
         'anchor' => $this->t('days after the message was sent'),
       ],
-      'closed_accounts' => [
-        'label' => $this->t('Blocked rider accounts'),
-        'anchor' => $this->t('days after the account was blocked / last seen (staff accounts are never purged)'),
+      'stale_registrations' => [
+        'label' => $this->t('Unapproved registration applications'),
+        'anchor' => $this->t('days after applying, for accounts still awaiting approval that have never been used to log in (staff accounts, and any rider who has ever logged in — including suspended ones — are never purged)'),
       ],
-      'booking_log' => [
+    ];
+  }
+
+  /**
+   * Data deliberately kept with no automatic purge, and why.
+   *
+   * Task 0047's decisions, surfaced on the status page so "no purge"
+   * reads as a decision rather than a gap.
+   *
+   * @return array[]
+   *   Rows of 'label' + 'reason'.
+   */
+  public function retainedByDesign(): array {
+    return [
+      [
         'label' => $this->t('Booking audit log entries'),
-        'anchor' => $this->t('days after the booked slot ended'),
+        'reason' => $this->t('Kept indefinitely as an operational audit trail. When a rider account is deleted, its log entries are anonymised in place by shh_account_deletion (task 0044) — the actor is nulled and the entry renders as "Deleted user" — so surviving entries hold no personal data and a time-based purge would only destroy audit value.'),
+      ],
+      [
+        'label' => $this->t('Commerce orders'),
+        'reason' => $this->t('Kept as workflow records; anonymised (uid 0, e-mail blanked, billing profile deleted) when the account is deleted (task 0044). Invoicing and the Danish Bookkeeping Act’s 5-year retention are handled in the external accounting system, not here.'),
+      ],
+      [
+        'label' => $this->t('Active rider accounts and their records'),
+        'reason' => $this->t('Kept for as long as the rider has an account. Deletion is immediate and complete when it happens (task 0044), so there is no “closed account” state to age out — which is why no grace-period purge exists.'),
       ],
     ];
   }
@@ -103,8 +125,7 @@ class RetentionManager {
     $cutoff = $this->time->getRequestTime() - $days * 86400;
     return match ($category) {
       'contact_messages' => $this->purgeContactMessages($cutoff),
-      'closed_accounts' => $this->purgeClosedAccounts($cutoff),
-      'booking_log' => $this->purgeBookingLog($cutoff),
+      'stale_registrations' => $this->purgeStaleRegistrations($cutoff),
       default => throw new \InvalidArgumentException("Unknown retention category: $category"),
     };
   }
@@ -123,8 +144,7 @@ class RetentionManager {
     $cutoff = $this->time->getRequestTime() - $days * 86400;
     return match ($category) {
       'contact_messages' => count($this->submissionIds('contact', $cutoff)),
-      'closed_accounts' => count($this->eligibleAccountIds($cutoff)),
-      'booking_log' => count($this->eligibleLogIds($cutoff)),
+      'stale_registrations' => count($this->eligibleAccountIds($cutoff)),
       default => NULL,
     };
   }
@@ -148,20 +168,41 @@ class RetentionManager {
   }
 
   /**
-   * Blocked rider accounts past the grace period.
+   * Registration applications that were never approved or used.
    *
-   * Rider accounts only: uid 1 and anyone with a role beyond
-   * "authenticated" (staff) are never eligible. Anchor = the latest of
-   * last access and created (a blocked applicant who never logged in
-   * ages from registration). The account entity is deleted; records
-   * governed by other retention rules (orders under the Bookkeeping
-   * Act, waivers under their own window) are deliberately NOT cascaded
-   * here — each category owns its own clock.
+   * Task 0047 reworked this category (it began life as
+   * "closed_accounts", a premise task 0044 voided: account closure is
+   * now immediate and complete, so no closed account ever survives to
+   * age out). What genuinely accumulates PII here is the *blocked*
+   * account: on this site "blocked" is the state 0026's registration
+   * policy puts every new applicant in until staff approve them, plus
+   * the accounts 0034's guard blocks at guest checkout. An application
+   * nobody ever approved would otherwise hold a name and e-mail
+   * forever.
+   *
+   * Two structural guards, both deliberate:
+   * - **Never-logged-in only** (`access == 0`). A *suspended* rider is
+   *   also `status = 0`, and auto-deleting one would be wrong twice
+   *   over: it frees their e-mail to re-register (defeating the
+   *   suspension) and anonymises their orders. A staff block is a
+   *   "keep out" record, not a retention subject.
+   * - Staff (any role beyond authenticated) and uid 1 are never
+   *   eligible.
+   *
+   * Deleting the account runs shh_account_deletion's hook_user_delete
+   * (task 0044), so memberships, credits and webform submissions go
+   * with it and orders/booking-log entries are anonymised in place —
+   * a full, correct cleanup, not an orphaning delete.
    */
-  protected function purgeClosedAccounts(int $cutoff): int {
+  protected function purgeStaleRegistrations(int $cutoff): int {
     $storage = $this->entityTypeManager->getStorage('user');
     $count = 0;
     foreach ($storage->loadMultiple($this->eligibleAccountIds($cutoff)) as $account) {
+      $this->logger->notice('Retention: deleting unapproved registration @name (uid @uid, applied @date, never logged in).', [
+        '@name' => $account->getAccountName(),
+        '@uid' => $account->id(),
+        '@date' => date('Y-m-d', (int) $account->getCreatedTime()),
+      ]);
       $account->delete();
       $count++;
     }
@@ -169,13 +210,15 @@ class RetentionManager {
   }
 
   /**
-   * Blocked, non-staff, past-grace user ids.
+   * Blocked, never-logged-in, non-staff, past-window user ids.
    */
   protected function eligibleAccountIds(int $cutoff): array {
     $storage = $this->entityTypeManager->getStorage('user');
     $ids = $storage->getQuery()
       ->condition('status', 0)
       ->condition('uid', 1, '>')
+      ->condition('access', 0)
+      ->condition('login', 0)
       ->accessCheck(FALSE)
       ->execute();
     $eligible = [];
@@ -183,30 +226,11 @@ class RetentionManager {
       if (array_diff($account->getRoles(), ['authenticated', 'anonymous'])) {
         continue;
       }
-      $anchor = max((int) $account->getLastAccessedTime(), (int) $account->getCreatedTime());
-      if ($anchor < $cutoff) {
+      if ((int) $account->getCreatedTime() < $cutoff) {
         $eligible[] = $account->id();
       }
     }
     return $eligible;
-  }
-
-  /**
-   * Booking-log entries whose slot ended before the cutoff.
-   */
-  protected function purgeBookingLog(int $cutoff): int {
-    return $this->deleteEntities('shh_booking_log', $this->eligibleLogIds($cutoff));
-  }
-
-  /**
-   * Booking-log entry ids past the cutoff.
-   */
-  protected function eligibleLogIds(int $cutoff): array {
-    return array_values($this->entityTypeManager->getStorage('shh_booking_log')->getQuery()
-      ->condition('slot_end', $cutoff, '<')
-      ->condition('slot_end', 0, '>')
-      ->accessCheck(FALSE)
-      ->execute());
   }
 
   /**

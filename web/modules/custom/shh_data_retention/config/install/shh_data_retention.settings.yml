@@ -1,13 +1,20 @@
-# Retention windows in DAYS per data category. NULL means the window
-# has not been confirmed with the client/adviser yet - that category's
-# purge is disabled and the status page says so (task 0006: the site
-# must never implement a practice the privacy policy doesn't state, or
-# state one it doesn't implement).
+# Retention windows in DAYS per purgeable category (task 0006; scope
+# settled by task 0047). NULL disables that category's purge and the
+# status page says so — the site must never implement a practice the
+# published privacy policy doesn't state, or state one it doesn't
+# implement.
 #
-# Orders/invoices are deliberately NOT a category here: the Danish
-# Bookkeeping Act's 5-year retention is a keep-rule owned by the
-# accountant, not an automated purge.
+# Data deliberately kept with NO automatic purge (task 0047) is not
+# listed here — it is declared in RetentionManager::retainedByDesign()
+# and shown on the status page with its reasoning: booking-log entries
+# (anonymised on account deletion by task 0044, then kept as the audit
+# trail), Commerce orders (anonymised likewise; invoicing and the
+# Bookkeeping Act live in the external accounting system), and active
+# accounts (deletion is immediate and complete, so nothing ages out).
 categories:
-  contact_messages: null
-  closed_accounts: null
-  booking_log: null
+  # 12 months, matching the published privacy policy §6.
+  contact_messages: 365
+  # 12 months after applying, for registrations still awaiting approval
+  # that were never used to log in. Suspended riders are structurally
+  # excluded (they have logged in) — see RetentionManager.
+  stale_registrations: 365

@@ -934,10 +934,32 @@ the deposit CTA and feed's quantity field are untouched. **Carried
 into the production checklist**: before go-live, check placed
 `horse_sale` orders for overridden unit prices.
 
-Next actionable step: the low backlog (0047, 0048). Client items
-outstanding: real photos for products (0039) and facilities (0040),
-0038's stock-tracking and per-bale-unit answers, the wrap-2026 price
-rise during 2027, and the real social URLs from 0032.
+[[0047-retention-windows-end-state]] is **done** (closed 2026-07-12)
+and turned into a small rework rather than two config values.
+**`booking_log` → retained by design**: 0044 anonymises entries on
+account deletion, so survivors hold no personal data and a purge
+would only destroy 0002's audit trail. **`closed_accounts` → premise
+void, and a latent bug**: 0044 made closure immediate and complete
+(no closed account can age out), while the code as written selected
+*any* blocked non-staff account — which on this site means both
+0026's not-yet-approved applicants **and suspended riders**, so it
+would eventually have deleted suspensions, freeing their e-mail to
+re-register and anonymising their orders. Reworked into
+`stale_registrations` (365 days): unapproved applications that were
+**never logged in** (structurally excluding suspended riders), with
+the delete cascading correctly through 0044's hook — verified with
+synthetic suspended-vs-stale accounts. The status page now separates
+"purged automatically" from "kept with no automatic purge —
+deliberate decisions", so nothing reads as a pending gap. **The
+published privacy policy was reconciled** (0006's invariant): it now
+states the unapproved-application rule and no longer promises
+retention of "membership records", a concept 0045 deleted.
+
+Next actionable step: [[0048-file-bee-config-schema-issue-upstream]]
+(low). Client items outstanding: real photos for products (0039) and
+facilities (0040), 0038's stock-tracking and per-bale-unit answers,
+the wrap-2026 price rise during 2027, and the real social URLs from
+0032.
 
 ## Tasks
 ```dataview

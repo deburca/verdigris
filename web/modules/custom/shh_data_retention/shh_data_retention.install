@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Install/update hooks for shh_data_retention.
+ */
+
+/**
+ * Task 0047: replace closed_accounts/booking_log with stale_registrations.
+ */
+function shh_data_retention_update_10001() {
+  $config = \Drupal::configFactory()->getEditable('shh_data_retention.settings');
+  $categories = $config->get('categories') ?? [];
+
+  // `closed_accounts` rested on a premise task 0044 voided (closure is
+  // immediate, so no closed account survives to age out) and would have
+  // deleted suspended riders; `booking_log` is now retained by design
+  // (entries are anonymised on account deletion). Both are replaced by
+  // `stale_registrations`.
+  unset($categories['closed_accounts'], $categories['booking_log']);
+  $categories += ['stale_registrations' => 365];
+  $categories['contact_messages'] = $categories['contact_messages'] ?? 365;
+
+  $config->set('categories', $categories)->save();
+
+  // The per-category run state keys move with them.
+  $state = \Drupal::state();
+  $runs = $state->get('shh_data_retention.runs', []);
+  unset($runs['closed_accounts'], $runs['booking_log']);
+  $state->set('shh_data_retention.runs', $runs);
+}
