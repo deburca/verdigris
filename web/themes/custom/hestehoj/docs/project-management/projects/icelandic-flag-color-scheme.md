@@ -5,6 +5,7 @@ status: active # planning | active | paused | done | dropped
 site: shh # vdg | kbg | shh | shared
 created: 2026-07-12
 updated: 2026-07-12
+completed-phase: 2026-07-12
 target:
 ---
 
@@ -35,19 +36,23 @@ interaction.
   - Content/photography changes.
   - Changes to other CMS2 sites (`vdg`, `kbg`) — this is `shh`-only.
 
-## Current state
+## Delivered (phase 1 — 2026-07-12)
 
-The theme **already** leans on the flag colours, but not as an explicit,
-swap-based system:
+Core colour system and button swap shipped and verified on
+https://hestehoj.ddev.site. Pushed to `main` (`d467382`).
 
-- `src/theme.css` defines `--primary` as Icelandic **blue** and `--destructive`
-  as Icelandic **red** (semantically "destructive", not a general accent).
-- `components/button/button.twig` uses `bg-primary` / `bg-accent` and **darkens**
-  on hover (`hover:bg-primary/85`) rather than swapping colours.
-- There is no dedicated Icelandic-red accent token for non-destructive use.
-
-The proposal therefore changes the semantic mapping (primary would become red),
-which is the central decision to resolve — see the ADR below.
+- **`src/theme.css`** — `--iceland-red` / `--iceland-blue` brand tokens;
+  `--btn-*` swap tokens; `--primary` → red, `--accent` → brand blue (light +
+  dark). All semantic consumers aliased to the brand tokens.
+- **`components/button/button.twig`** — CVA variant block wired to `--btn-*`
+  tokens; swap fires on `hover` + `focus-visible`; inverted variants redefined
+  (D5); `motion-reduce:transition-none` on base and icon.
+- **`components/button/button.component.yml`** — `meta:enum` labels describe
+  the swap; `variant.examples` enumerates all four variants.
+- **`src/main.css`** — `.form-submit` / `input.button` (e.g. Commerce Add to
+  Cart) updated with the same swap tokens; darken rule removed.
+- **`components/group/group.twig`** — background variants paired with matching
+  foreground tokens for legibility.
 
 ## Tasks
 
