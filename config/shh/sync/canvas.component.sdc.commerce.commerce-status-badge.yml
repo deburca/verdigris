@@ -18,6 +18,8 @@ versioned_properties:
           field_widget: string_textfield
           default_value: null
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         variant:
           required: false
           field_type: list_string
@@ -27,6 +29,7 @@ versioned_properties:
           field_widget: options_select
           default_value: null
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
     fallback_metadata:
       slot_definitions: {  }
 label: 'Commerce Status Badge'

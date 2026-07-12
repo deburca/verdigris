@@ -1,0 +1,108 @@
+diff --git a/components/badge/badge.component.yml b/components/badge/badge.component.yml
+index d2db7df..6445ac2 100644
+--- a/components/badge/badge.component.yml
++++ b/components/badge/badge.component.yml
+@@ -16,7 +16,6 @@ props:
+     url:
+       type: string
+       title: Link
+-      format: uri-reference
+     style:
+       type: string
+       title: Style
+diff --git a/components/blockquote/blockquote.component.yml b/components/blockquote/blockquote.component.yml
+index 97ba469..a6f8ff4 100644
+--- a/components/blockquote/blockquote.component.yml
++++ b/components/blockquote/blockquote.component.yml
+@@ -22,4 +22,3 @@ props:
+     cite_url:
+       type: string
+       title: Citation link
+-      format: uri-reference
+diff --git a/components/button/button.component.yml b/components/button/button.component.yml
+index 7a923b2..edb5beb 100644
+--- a/components/button/button.component.yml
++++ b/components/button/button.component.yml
+@@ -32,7 +32,6 @@ props:
+     href:
+       type: string
+       title: Link
+-      format: uri-reference
+     size:
+       type: string
+       title: Button size
+diff --git a/components/card/card.component.yml b/components/card/card.component.yml
+index 13e8aec..c0dc8e1 100644
+--- a/components/card/card.component.yml
++++ b/components/card/card.component.yml
+@@ -65,7 +65,6 @@ props:
+     url:
+       type: string
+       title: Link
+-      format: uri-reference
+     media:
+       $ref: json-schema-definitions://canvas.module/image
+       title: Image
+diff --git a/components/card-icon/card-icon.component.yml b/components/card-icon/card-icon.component.yml
+index 7c7d7bc..b3f35ac 100644
+--- a/components/card-icon/card-icon.component.yml
++++ b/components/card-icon/card-icon.component.yml
+@@ -97,7 +97,6 @@ props:
+     url:
+       type: string
+       title: Link
+-      format: uri-reference
+     text:
+       type: string
+       title: Heading
+diff --git a/components/card-logo/card-logo.component.yml b/components/card-logo/card-logo.component.yml
+index 2ec825d..f64da36 100644
+--- a/components/card-logo/card-logo.component.yml
++++ b/components/card-logo/card-logo.component.yml
+@@ -45,4 +45,3 @@ props:
+     url:
+       type: string
+       title: Link
+-      format: uri-reference
+diff --git a/components/card-pricing/card-pricing.component.yml b/components/card-pricing/card-pricing.component.yml
+index 686c056..8ea2dce 100644
+--- a/components/card-pricing/card-pricing.component.yml
++++ b/components/card-pricing/card-pricing.component.yml
+@@ -63,7 +63,6 @@ props:
+     button_url:
+       type: string
+       title: Link
+-      format: uri-reference
+     button_label:
+       type: string
+       title: Button label
+diff --git a/components/card-testimonial/card-testimonial.component.yml b/components/card-testimonial/card-testimonial.component.yml
+index d1dd1ea..072e9b6 100644
+--- a/components/card-testimonial/card-testimonial.component.yml
++++ b/components/card-testimonial/card-testimonial.component.yml
+@@ -26,7 +26,6 @@ props:
+     cite_url:
+       type: string
+       title: Citation link
+-      format: uri-reference
+     align:
+       type: string
+       title: Alignment
+diff --git a/components/heading/heading.component.yml b/components/heading/heading.component.yml
+index 4108367..cd93578 100644
+--- a/components/heading/heading.component.yml
++++ b/components/heading/heading.component.yml
+@@ -81,4 +81,3 @@ props:
+     url:
+       type: string
+       title: Link
+-      format: uri-reference
+diff --git a/components/image/image.component.yml b/components/image/image.component.yml
+index 11f1cd8..e55bdf8 100644
+--- a/components/image/image.component.yml
++++ b/components/image/image.component.yml
+@@ -50,4 +50,3 @@ props:
+     url:
+       type: string
+       title: Link
+-      format: uri-reference

@@ -25,6 +25,7 @@ versioned_properties:
             -
               value: primary
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         label:
           required: false
           field_type: string
@@ -35,6 +36,8 @@ versioned_properties:
             -
               value: 'Button label'
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         href:
           required: false
           field_type: link
@@ -45,6 +48,9 @@ versioned_properties:
           field_widget: link_default
           default_value: null
           expression: ℹ︎link␟url
+          derived_schema_metadata:
+            string_shape:
+              format: uri-reference
         size:
           required: true
           field_type: list_string
@@ -56,6 +62,7 @@ versioned_properties:
             -
               value: medium
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         icon:
           required: false
           field_type: list_string
@@ -67,6 +74,7 @@ versioned_properties:
             -
               value: arrow-right
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         mobile_width:
           required: false
           field_type: boolean
@@ -75,6 +83,7 @@ versioned_properties:
           field_widget: boolean_checkbox
           default_value: null
           expression: ℹ︎boolean␟value
+          derived_schema_metadata: {  }
         icon_first:
           required: false
           field_type: boolean
@@ -85,6 +94,7 @@ versioned_properties:
             -
               value: false
           expression: ℹ︎boolean␟value
+          derived_schema_metadata: {  }
         disabled:
           required: false
           field_type: boolean
@@ -95,6 +105,7 @@ versioned_properties:
             -
               value: false
           expression: ℹ︎boolean␟value
+          derived_schema_metadata: {  }
     fallback_metadata:
       slot_definitions: {  }
   8c253a9827f0ca84:
@@ -111,6 +122,7 @@ versioned_properties:
             -
               value: primary
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         label:
           required: false
           field_type: string
@@ -121,6 +133,7 @@ versioned_properties:
             -
               value: 'Button label'
           expression: ℹ︎string␟value
+          derived_schema_metadata: {  }
         href:
           required: false
           field_type: string
@@ -129,6 +142,7 @@ versioned_properties:
           field_widget: string_textfield
           default_value: null
           expression: ℹ︎string␟value
+          derived_schema_metadata: {  }
         size:
           required: true
           field_type: list_string
@@ -140,6 +154,7 @@ versioned_properties:
             -
               value: medium
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         icon:
           required: false
           field_type: list_string
@@ -151,6 +166,7 @@ versioned_properties:
             -
               value: arrow-right
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         mobile_width:
           required: false
           field_type: boolean
@@ -159,6 +175,7 @@ versioned_properties:
           field_widget: boolean_checkbox
           default_value: null
           expression: ℹ︎boolean␟value
+          derived_schema_metadata: {  }
         icon_first:
           required: false
           field_type: boolean
@@ -169,6 +186,7 @@ versioned_properties:
             -
               value: false
           expression: ℹ︎boolean␟value
+          derived_schema_metadata: {  }
         disabled:
           required: false
           field_type: boolean
@@ -179,6 +197,7 @@ versioned_properties:
             -
               value: false
           expression: ℹ︎boolean␟value
+          derived_schema_metadata: {  }
     fallback_metadata:
       slot_definitions: {  }
   4adbb318c761a200:
@@ -195,6 +214,7 @@ versioned_properties:
             -
               value: primary
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         label:
           required: false
           field_type: string
@@ -205,6 +225,7 @@ versioned_properties:
             -
               value: 'Button Label'
           expression: ℹ︎string␟value
+          derived_schema_metadata: {  }
         href:
           required: false
           field_type: string
@@ -213,6 +234,7 @@ versioned_properties:
           field_widget: string_textfield
           default_value: null
           expression: ℹ︎string␟value
+          derived_schema_metadata: {  }
         size:
           required: true
           field_type: list_string
@@ -224,6 +246,7 @@ versioned_properties:
             -
               value: medium
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         icon:
           required: false
           field_type: list_string
@@ -235,6 +258,7 @@ versioned_properties:
             -
               value: arrow-right
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         mobile_width:
           required: false
           field_type: boolean
@@ -243,6 +267,7 @@ versioned_properties:
           field_widget: boolean_checkbox
           default_value: null
           expression: ℹ︎boolean␟value
+          derived_schema_metadata: {  }
         icon_first:
           required: false
           field_type: boolean
@@ -253,6 +278,7 @@ versioned_properties:
             -
               value: false
           expression: ℹ︎boolean␟value
+          derived_schema_metadata: {  }
         disabled:
           required: false
           field_type: boolean
@@ -263,6 +289,7 @@ versioned_properties:
             -
               value: false
           expression: ℹ︎boolean␟value
+          derived_schema_metadata: {  }
     fallback_metadata:
       slot_definitions: {  }
 label: Button

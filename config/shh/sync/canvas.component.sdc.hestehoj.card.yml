@@ -31,6 +31,7 @@ versioned_properties:
             -
               value: default
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         style:
           required: true
           field_type: list_string
@@ -42,6 +43,7 @@ versioned_properties:
             -
               value: framed
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         orientation:
           required: true
           field_type: list_string
@@ -53,6 +55,7 @@ versioned_properties:
             -
               value: vertical
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         heading_text:
           required: true
           field_type: string
@@ -63,6 +66,8 @@ versioned_properties:
             -
               value: 'This is your card title'
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         level:
           required: false
           field_type: list_float
@@ -74,6 +79,7 @@ versioned_properties:
             -
               value: '3'
           expression: ℹ︎list_float␟value
+          derived_schema_metadata: {  }
         url:
           required: false
           field_type: string
@@ -82,6 +88,8 @@ versioned_properties:
           field_widget: string_textfield
           default_value: null
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         media:
           required: false
           field_type: entity_reference
@@ -96,6 +104,7 @@ versioned_properties:
           field_widget: media_library_widget
           default_value: {  }
           expression: 'ℹ︎entity_reference␟entity␜[␜entity:media:image␝field_media_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}][␜entity:media:svg_image␝field_media_svg_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}]'
+          derived_schema_metadata: {  }
         text:
           required: false
           field_type: string_long
@@ -106,6 +115,9 @@ versioned_properties:
             -
               value: 'Quaerat laborum rerum dolores dolores dolor qui.'
           expression: ℹ︎string_long␟value
+          derived_schema_metadata:
+            string_shape:
+              pattern: '(.|\r?\n)*'
         is_text_centered:
           required: false
           field_type: boolean
@@ -116,6 +128,7 @@ versioned_properties:
             -
               value: false
           expression: ℹ︎boolean␟value
+          derived_schema_metadata: {  }
     fallback_metadata:
       slot_definitions: {  }
 label: 'Image card'

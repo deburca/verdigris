@@ -33,6 +33,7 @@ versioned_properties:
             -
               value: full
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         flex_position:
           required: true
           field_type: list_string
@@ -44,6 +45,7 @@ versioned_properties:
             -
               value: center-left
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         overlay_opacity:
           required: true
           field_type: list_string
@@ -55,6 +57,7 @@ versioned_properties:
             -
               value: 0%
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         object_position:
           required: true
           field_type: list_string
@@ -66,6 +69,7 @@ versioned_properties:
             -
               value: center
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         media:
           required: false
           field_type: entity_reference
@@ -80,6 +84,7 @@ versioned_properties:
           field_widget: media_library_widget
           default_value: {  }
           expression: 'ℹ︎entity_reference␟entity␜[␜entity:media:image␝field_media_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}][␜entity:media:svg_image␝field_media_svg_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}]'
+          derived_schema_metadata: {  }
         overlap_navbar:
           required: false
           field_type: boolean
@@ -90,6 +95,7 @@ versioned_properties:
             -
               value: false
           expression: ℹ︎boolean␟value
+          derived_schema_metadata: {  }
     fallback_metadata:
       slot_definitions:
         hero_slot:
@@ -108,6 +114,7 @@ versioned_properties:
             -
               value: full
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         flex_position:
           required: true
           field_type: list_string
@@ -119,6 +126,7 @@ versioned_properties:
             -
               value: center-left
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         overlay_opacity:
           required: true
           field_type: list_string
@@ -130,6 +138,7 @@ versioned_properties:
             -
               value: 0%
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         object_position:
           required: true
           field_type: list_string
@@ -141,6 +150,7 @@ versioned_properties:
             -
               value: center
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         media:
           required: false
           field_type: entity_reference
@@ -155,6 +165,7 @@ versioned_properties:
           field_widget: media_library_widget
           default_value: {  }
           expression: 'ℹ︎entity_reference␟entity␜[␜entity:media:image␝field_media_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}][␜entity:media:svg_image␝field_media_svg_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}]'
+          derived_schema_metadata: {  }
         overlap_navbar:
           required: false
           field_type: boolean
@@ -165,6 +176,7 @@ versioned_properties:
             -
               value: false
           expression: ℹ︎boolean␟value
+          derived_schema_metadata: {  }
     fallback_metadata:
       slot_definitions:
         hero_slot:

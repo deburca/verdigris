@@ -23,6 +23,8 @@ versioned_properties:
             -
               value: '“To confine our attention to terrestrial matters would be to limit the human spirit.”'
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         cite_name:
           required: false
           field_type: string
@@ -33,6 +35,8 @@ versioned_properties:
             -
               value: 'Isiah Julio'
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         cite_text:
           required: false
           field_type: string
@@ -43,6 +47,8 @@ versioned_properties:
             -
               value: 'Engineer, Technical Services'
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         cite_url:
           required: false
           field_type: link
@@ -53,6 +59,9 @@ versioned_properties:
           field_widget: link_default
           default_value: null
           expression: ℹ︎link␟url
+          derived_schema_metadata:
+            string_shape:
+              format: uri-reference
     fallback_metadata:
       slot_definitions: {  }
   f8798ead1e51ce02:
@@ -68,6 +77,7 @@ versioned_properties:
             -
               value: '“To confine our attention to terrestrial matters would be to limit the human spirit.”'
           expression: ℹ︎string␟value
+          derived_schema_metadata: {  }
         cite_name:
           required: false
           field_type: string
@@ -78,6 +88,7 @@ versioned_properties:
             -
               value: 'Isiah Julio'
           expression: ℹ︎string␟value
+          derived_schema_metadata: {  }
         cite_text:
           required: false
           field_type: string
@@ -88,6 +99,7 @@ versioned_properties:
             -
               value: 'Engineer, Technical Services'
           expression: ℹ︎string␟value
+          derived_schema_metadata: {  }
         cite_url:
           required: false
           field_type: string
@@ -96,6 +108,7 @@ versioned_properties:
           field_widget: string_textfield
           default_value: null
           expression: ℹ︎string␟value
+          derived_schema_metadata: {  }
     fallback_metadata:
       slot_definitions: {  }
 label: Blockquote

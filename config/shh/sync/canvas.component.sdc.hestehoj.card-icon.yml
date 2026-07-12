@@ -25,6 +25,7 @@ versioned_properties:
             -
               value: square
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         background_color:
           required: false
           field_type: list_string
@@ -34,6 +35,7 @@ versioned_properties:
           field_widget: options_select
           default_value: null
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         border_radius:
           required: false
           field_type: list_string
@@ -45,6 +47,7 @@ versioned_properties:
             -
               value: medium
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         icon:
           required: false
           field_type: string
@@ -55,6 +58,8 @@ versioned_properties:
             -
               value: rocket
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         icon_size:
           required: false
           field_type: list_string
@@ -66,6 +71,7 @@ versioned_properties:
             -
               value: large
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         icon_align:
           required: true
           field_type: list_string
@@ -77,6 +83,7 @@ versioned_properties:
             -
               value: center
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         url:
           required: false
           field_type: string
@@ -85,6 +92,8 @@ versioned_properties:
           field_widget: string_textfield
           default_value: null
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         text:
           required: false
           field_type: string
@@ -95,6 +104,8 @@ versioned_properties:
             -
               value: 'Your heading here'
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         description:
           required: false
           field_type: text_long
@@ -108,6 +119,10 @@ versioned_properties:
               value: '<p>This is placeholder text.</p>'
               format: canvas_html_block
           expression: ℹ︎text_long␟processed
+          derived_schema_metadata:
+            string_shape:
+              contentMediaType: text/html
+              x-formatting-context: block
         text_align:
           required: true
           field_type: list_string
@@ -119,6 +134,7 @@ versioned_properties:
             -
               value: center
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
     fallback_metadata:
       slot_definitions: {  }
 label: 'Icon card'

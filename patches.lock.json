@@ -1,5 +1,5 @@
 {
-    "_hash": "937d2a52a3caca33fd7b743bb635c26134724b4866a2aeeddce36b953a609428",
+    "_hash": "8318edb68afab472d7a06aafc0c47fe97d5426ac1dd35d8276cf3efc62f96cc6",
     "patches": {
         "drupal/byte_theme": [
             {
@@ -31,18 +31,6 @@
                 "description": "form_user_register_form_alter sets the admin-only notify checkbox's #default_value to TRUE unconditionally; on anonymous self-registration that element is #access FALSE, so Form API resolves it to the default and RegisterForm::save() treats every self-registration as admin-created — wrong welcome email (an unusable one-time login link on a blocked pending-approval account) and no pending-approval notification to the admin. Scope the whole alter to the admin-create form",
                 "url": "patches/drupal_cms_helper-scope-register-form-alter-to-admin-create.patch",
                 "sha256": "295c30f1299441778646ff1746e338c56a1da33db8a8582ce411ad5203999868",
-                "depth": 1,
-                "extra": {
-                    "provenance": "root"
-                }
-            }
-        ],
-        "drupal/mercury": [
-            {
-                "package": "drupal/mercury",
-                "description": "Preserve custom component prop schema (overlay_opacity on cta; relax overly strict uri-reference format on url/href/cite_url/button_url props that breaks the site-wide 'No URL' sentinel convention and causes Canvas component-version hash drift/OutOfRangeException)",
-                "url": "patches/mercury-component-schema-customizations.patch",
-                "sha256": "145ba17296bcd530de43d75dd2ec41c042c61fe1d0eed6c2a63d99487de2e5a3",
                 "depth": 1,
                 "extra": {
                     "provenance": "root"

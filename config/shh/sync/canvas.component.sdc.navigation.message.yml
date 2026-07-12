@@ -20,6 +20,7 @@ versioned_properties:
           field_widget: options_select
           default_value: null
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         url:
           required: false
           field_type: link
@@ -30,6 +31,9 @@ versioned_properties:
           field_widget: link_default
           default_value: null
           expression: ℹ︎link␟url
+          derived_schema_metadata:
+            string_shape:
+              format: iri-reference
         content:
           required: false
           field_type: string
@@ -38,6 +42,8 @@ versioned_properties:
           field_widget: string_textfield
           default_value: null
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
     fallback_metadata:
       slot_definitions: {  }
 label: Message

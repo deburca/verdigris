@@ -21,6 +21,8 @@ versioned_properties:
             -
               value: 'Badge text'
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         url:
           required: false
           field_type: string
@@ -29,6 +31,8 @@ versioned_properties:
           field_widget: string_textfield
           default_value: null
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         style:
           required: true
           field_type: list_string
@@ -40,6 +44,7 @@ versioned_properties:
             -
               value: primary
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         icon:
           required: false
           field_type: string
@@ -50,6 +55,8 @@ versioned_properties:
             -
               value: rocket
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         icon_first:
           required: false
           field_type: boolean
@@ -60,6 +67,7 @@ versioned_properties:
             -
               value: true
           expression: ℹ︎boolean␟value
+          derived_schema_metadata: {  }
     fallback_metadata:
       slot_definitions: {  }
 label: Badge

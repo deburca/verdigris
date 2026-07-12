@@ -449,9 +449,6 @@
             "drupal/drupal_cms_helper": {
                 "form_user_register_form_alter sets the admin-only notify checkbox's #default_value to TRUE unconditionally; on anonymous self-registration that element is #access FALSE, so Form API resolves it to the default and RegisterForm::save() treats every self-registration as admin-created — wrong welcome email (an unusable one-time login link on a blocked pending-approval account) and no pending-approval notification to the admin. Scope the whole alter to the admin-create form": "patches/drupal_cms_helper-scope-register-form-alter-to-admin-create.patch"
             },
-            "drupal/mercury": {
-                "Preserve custom component prop schema (overlay_opacity on cta; relax overly strict uri-reference format on url/href/cite_url/button_url props that breaks the site-wide 'No URL' sentinel convention and causes Canvas component-version hash drift/OutOfRangeException)": "patches/mercury-component-schema-customizations.patch"
-            },
             "drupal/bee": {
                 "AddReservationForm empties an existing cart on every new reservation submission, so a customer can never have more than one booking in a cart at a time — stop that, let bookings accumulate like a normal cart (needed for the shh multi-facility package discount)": "patches/bee-accumulate-cart-instead-of-emptying.patch",
                 "Attach bat_fullcalendar's standard library instead of the -scheduler variant for hourly types (public node view, staff availability screen, availability form): the scheduler JS hardcodes premium resourceTimeline* toolbar buttons with no schedulerLicenseKey — unlicensed FullCalendar Premium views reachable from every calendar — while every configured view on this platform is the standard dayGridMonth. The standard variant also drops the extra units REST fetch (task 0009)": "patches/bee-use-standard-fullcalendar-not-premium-scheduler.patch",

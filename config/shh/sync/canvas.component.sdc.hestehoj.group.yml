@@ -22,6 +22,7 @@ versioned_properties:
             -
               value: column
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         flex_gap:
           required: false
           field_type: list_string
@@ -33,6 +34,7 @@ versioned_properties:
             -
               value: md
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         items_align:
           required: true
           field_type: list_string
@@ -44,6 +46,7 @@ versioned_properties:
             -
               value: start
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         flex_align:
           required: true
           field_type: list_string
@@ -55,6 +58,7 @@ versioned_properties:
             -
               value: center
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         radius:
           required: false
           field_type: list_string
@@ -66,6 +70,7 @@ versioned_properties:
             -
               value: sm
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         padding:
           required: false
           field_type: list_string
@@ -77,6 +82,7 @@ versioned_properties:
             -
               value: sm
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         background:
           required: false
           field_type: list_string
@@ -86,6 +92,7 @@ versioned_properties:
           field_widget: options_select
           default_value: null
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
     fallback_metadata:
       slot_definitions:
         group_slot:

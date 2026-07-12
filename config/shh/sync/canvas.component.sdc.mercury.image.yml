@@ -37,6 +37,7 @@ versioned_properties:
           field_widget: media_library_widget
           default_value: {  }
           expression: 'ℹ︎entity_reference␟entity␜[␜entity:media:image␝field_media_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}][␜entity:media:svg_image␝field_media_svg_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}]'
+          derived_schema_metadata: {  }
         size:
           required: false
           field_type: list_string
@@ -48,6 +49,7 @@ versioned_properties:
             -
               value: '4:3'
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         radius:
           required: false
           field_type: list_string
@@ -59,6 +61,7 @@ versioned_properties:
             -
               value: small
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         caption:
           required: false
           field_type: string
@@ -67,6 +70,8 @@ versioned_properties:
           field_widget: string_textfield
           default_value: null
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         url:
           required: false
           field_type: link
@@ -77,6 +82,9 @@ versioned_properties:
           field_widget: link_default
           default_value: null
           expression: ℹ︎link␟url
+          derived_schema_metadata:
+            string_shape:
+              format: uri-reference
     fallback_metadata:
       slot_definitions: {  }
   8185d7ac26d59949:
@@ -96,6 +104,7 @@ versioned_properties:
           field_widget: media_library_widget
           default_value: {  }
           expression: 'ℹ︎entity_reference␟entity␜[␜entity:media:image␝field_media_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}][␜entity:media:svg_image␝field_media_svg_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}]'
+          derived_schema_metadata: {  }
         size:
           required: false
           field_type: list_string
@@ -107,6 +116,7 @@ versioned_properties:
             -
               value: '4:3'
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         radius:
           required: false
           field_type: list_string
@@ -118,6 +128,7 @@ versioned_properties:
             -
               value: small
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         caption:
           required: false
           field_type: string
@@ -126,6 +137,7 @@ versioned_properties:
           field_widget: string_textfield
           default_value: null
           expression: ℹ︎string␟value
+          derived_schema_metadata: {  }
         url:
           required: false
           field_type: string
@@ -134,6 +146,7 @@ versioned_properties:
           field_widget: string_textfield
           default_value: null
           expression: ℹ︎string␟value
+          derived_schema_metadata: {  }
     fallback_metadata:
       slot_definitions: {  }
 label: Image

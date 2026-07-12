@@ -30,6 +30,9 @@ versioned_properties:
             -
               value: 'My career’s guidance was crucial in helping me understand the tech industry landscape and ultimately secure my role.'
           expression: ℹ︎string_long␟value
+          derived_schema_metadata:
+            string_shape:
+              pattern: '(.|\r?\n)*'
         cite_name:
           required: false
           field_type: string
@@ -40,6 +43,8 @@ versioned_properties:
             -
               value: 'Isiah Julio'
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         cite_text:
           required: false
           field_type: string
@@ -50,6 +55,8 @@ versioned_properties:
             -
               value: 'Engineer, Technical Services'
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         cite_url:
           required: false
           field_type: string
@@ -58,6 +65,8 @@ versioned_properties:
           field_widget: string_textfield
           default_value: null
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         align:
           required: true
           field_type: list_string
@@ -69,6 +78,7 @@ versioned_properties:
             -
               value: center
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         style:
           required: true
           field_type: list_string
@@ -80,6 +90,7 @@ versioned_properties:
             -
               value: default
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
         media:
           required: false
           field_type: entity_reference
@@ -94,6 +105,7 @@ versioned_properties:
           field_widget: media_library_widget
           default_value: {  }
           expression: 'ℹ︎entity_reference␟entity␜[␜entity:media:image␝field_media_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}][␜entity:media:svg_image␝field_media_svg_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}]'
+          derived_schema_metadata: {  }
     fallback_metadata:
       slot_definitions: {  }
 label: 'Testimonial card'

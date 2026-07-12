@@ -23,6 +23,8 @@ versioned_properties:
             -
               value: rocket
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         icon_size:
           required: true
           field_type: list_string
@@ -34,6 +36,7 @@ versioned_properties:
             -
               value: small
           expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
     fallback_metadata:
       slot_definitions: {  }
 label: Icon

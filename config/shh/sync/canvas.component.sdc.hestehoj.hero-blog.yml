@@ -30,6 +30,8 @@ versioned_properties:
             -
               value: 'Vivamus curae metus neque mollis orci ipsum sapien velit cursus'
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         level:
           required: false
           field_type: list_integer
@@ -41,6 +43,7 @@ versioned_properties:
             -
               value: 1
           expression: ℹ︎list_integer␟value
+          derived_schema_metadata: {  }
         date:
           required: false
           field_type: integer
@@ -51,6 +54,7 @@ versioned_properties:
             -
               value: 1770856866
           expression: ℹ︎integer␟value
+          derived_schema_metadata: {  }
         author:
           required: false
           field_type: string
@@ -61,6 +65,8 @@ versioned_properties:
             -
               value: 'John Smith'
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         author_url:
           required: false
           field_type: string
@@ -69,6 +75,8 @@ versioned_properties:
           field_widget: string_textfield
           default_value: null
           expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
         media:
           required: false
           field_type: entity_reference
@@ -83,6 +91,7 @@ versioned_properties:
           field_widget: media_library_widget
           default_value: {  }
           expression: 'ℹ︎entity_reference␟entity␜[␜entity:media:image␝field_media_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}][␜entity:media:svg_image␝field_media_svg_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}]'
+          derived_schema_metadata: {  }
     fallback_metadata:
       slot_definitions: {  }
 label: 'Hero blog'
