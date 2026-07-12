@@ -672,9 +672,14 @@ real Commerce `year` attribute on the feed variation type, so the
 add-to-cart form grew a year selector for free), confirmed
 VAT-inclusive prices — straw 2025 at 250 DKK, wrap 2025 at 350,
 wrap 2026 at 300 — and **pickup only** (delivery is never offered
-online, both product bodies say so). ⚠ Standing operational
-reminder: **wrap 2026 (variation 8) rises to 350 DKK during 2027**
-— a manual price edit, deliberately not automated. Catalog cards
+online, both product bodies say so). **Pricing is staff-managed
+content, with nothing scheduled or automated** (client, 2026-07-12,
+correcting an earlier reading of "300 now, 350 next year" as a
+diarised price rise): wrap prices depend on **quality** (weather-
+dependent) and **quantity** (only wrap surplus to the stable's own
+needs is sold), so changes are business decisions made outside the
+application, whenever they're called for — no price-schedule or
+cost-model feature belongs here. Catalog cards
 show the cheapest variation price ("From 300,00 DKK"). Verified
 over real HTTP as test_rider twice: straw ×3 + wrap ×1 → 495,00 DKK
 / 99,00 VAT → order `HS-9`; then post-answers, wrap **2026** ×2 +
@@ -983,14 +988,22 @@ genuine deposit purchase cancelled by the rider and a genuine booking
 cancelled by admin — both redirecting to `/user/2/bookings`.
 
 **The task backlog is now empty** — all 48 tasks are done. Everything
-outstanding is client input: real photos for products
-(0039) and facilities (0040), 0038's stock-tracking and per-bale-unit
-answers, the wrap-2026 price rise during 2027, and the real social
-URLs from 0032. Standing operational reminders live in
-[[0005-tax-classification-horses-vs-bookings]] (margin scheme before
-listing a bought-in horse), the deployment procedure's go-live data
-checks, and the bee patch retirement when
+outstanding is client input: real photos for products (0039) and
+facilities (0040), 0038's stock-tracking and per-bale-unit answers,
+and the real social URLs from 0032. Standing operational reminders
+live in [[0005-tax-classification-horses-vs-bookings]] (margin scheme
+before listing a bought-in horse), the deployment procedure's go-live
+data checks, and the bee patch retirement when
 [#3610134](https://www.drupal.org/project/bee/issues/3610134) lands.
+
+**Feed pricing is explicitly out of scope for automation** (client,
+2026-07-12): wrap prices track quality (weather-dependent) and
+quantity (only surplus to the stable's own needs is sold), so changes
+are multi-factor business decisions taken outside the application and
+applied by staff in the admin UI whenever needed. The former
+"raise wrap 2026 to 350 DKK during 2027" reminder has been **removed**
+— it was never a scheduled event. Don't build price schedules,
+seasonal pricing, or cost models here.
 
 ## Tasks
 ```dataview

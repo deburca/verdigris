@@ -171,10 +171,19 @@ committed, so the changes are folded in here:
 - **Confirmed prices, VAT-inclusive** (no longer placeholders):
   straw 2025 **250 DKK** (variation 6, `FEED-STRAW-2025`); wrap
   2025 **350 DKK** (variation 7, `FEED-WRAP-2025`); wrap 2026
-  **300 DKK** now (new variation 8, `FEED-WRAP-2026`).
-  ⚠ **Operational reminder: wrap 2026 rises to 350 DKK "next
-  year"** (i.e. during 2027) — a manual price edit on variation 8;
-  nothing automates it and nothing should.
+  **300 DKK** (new variation 8, `FEED-WRAP-2026`).
+- **Pricing is staff-managed content, not a platform concern**
+  (clarified by the client 2026-07-12, superseding an earlier note
+  here that read the "300 now, 350 next year" remark as a scheduled
+  price rise to diarise — it isn't). Wrap pricing depends on
+  **quality**, which is weather-dependent, and on **quantity**: only
+  wrap surplus to the stable's own needs is ever sold, so how much
+  is available varies year to year. Those dependencies live outside
+  the application; staff change prices in the admin UI whenever the
+  business calls for it. **No scheduled change, no reminder, and
+  nothing to automate** — and deliberately no price-schedule or
+  cost-model feature: the platform's job is to price a purchase at
+  whatever the current variation says.
 - **Pickup only.** Delivery is not offered through the shop and is
   only discussed directly with the stable — both product bodies now
   say "Collected at the stable; delivery is not available through
@@ -220,11 +229,17 @@ payment deleted afterwards.
 **Remaining open client items** (prices and pickup/delivery were
 answered same day, see "Client answers" above):
 1. Stock tracking — currently none: items are always listed while
-   published; unpublishing is the only "out of stock" lever.
+   published; unpublishing is the only "out of stock" lever. Worth
+   revisiting in light of the client's 2026-07-12 clarification that
+   only *surplus* wrap is sold: availability is inherently variable,
+   so "published = for sale" may need staff attention each season.
 2. Unit confirmation — prices are assumed per bale; the client
    stated prices without units.
-3. During 2027: raise wrap 2026 (variation 8) to 350 DKK — the
-   operational reminder from the client answers.
+
+(A third item — "raise wrap 2026 to 350 DKK during 2027" — was
+removed on 2026-07-12: the client clarified that price changes are
+quality- and quantity-dependent decisions made outside the
+application, not a scheduled event. See the pricing bullet above.)
 
 Images for feed (and horses) remain
 [[0039-product-images-featured-and-gallery]] — feed product pages
