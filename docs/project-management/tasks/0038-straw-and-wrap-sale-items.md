@@ -226,20 +226,45 @@ payment deleted afterwards.
    anonymous draft 46 and payment 21 deleted. Products 6/7 stay as
    the sample feed catalog.
 
-**Remaining open client items** (prices and pickup/delivery were
-answered same day, see "Client answers" above):
-1. Stock tracking — currently none: items are always listed while
-   published; unpublishing is the only "out of stock" lever. Worth
-   revisiting in light of the client's 2026-07-12 clarification that
-   only *surplus* wrap is sold: availability is inherently variable,
-   so "published = for sale" may need staff attention each season.
-2. Unit confirmation — prices are assumed per bale; the client
-   stated prices without units.
+### Stock tracking — answered 2026-07-12: **out of scope, manual**
 
-(A third item — "raise wrap 2026 to 350 DKK during 2027" — was
-removed on 2026-07-12: the client clarified that price changes are
-quality- and quantity-dependent decisions made outside the
-application, not a scheduled event. See the pricing bullet above.)
+The client settled this: **stock is managed outside the
+application.** Straw and wrap are also sold through other channels —
+word of mouth, Instagram — so the web shop is never the full picture
+of what's left, and no in-app stock counter could be authoritative
+without becoming a second, lying source of truth. Staff will
+**manually check that the site doesn't over-promise** on the number
+of bales still available.
+
+Consequences, recorded honestly rather than papered over:
+
+- **The site can oversell.** Nothing stops a rider ordering wrap that
+  was sold off-platform an hour earlier; the order will complete and
+  take payment. That is an accepted business risk, absorbed by staff
+  (contact the buyer, refund or substitute) — not a bug to fix with
+  inventory code.
+- **The only lever is publish/unpublish** (per product, or per year
+  variation via its `status`). Unpublishing a sold-out year keeps the
+  other year on sale. This wants a place in the seasonal routine:
+  *when a year's bales run out, unpublish that variation.*
+- **Deliberately not built**: `commerce_stock` or any quantity
+  counter, "only N left" messaging, or back-order flows. Revisit only
+  if the client ever wants the web shop to be the authoritative
+  channel — which today it explicitly is not.
+- **Worth offering** (not done, would be a small content change):
+  a line of copy on the feed products such as "Availability is
+  confirmed when we contact you — bales are also sold locally", which
+  would make the over-promise risk explicit to buyers rather than
+  leaving it entirely to staff vigilance.
+
+**Remaining open client item**: unit confirmation — prices are
+assumed per bale; the client stated prices without units.
+
+(Two former items are closed: "raise wrap 2026 to 350 DKK during
+2027" was **removed** on 2026-07-12 — price changes are quality- and
+quantity-dependent decisions taken outside the application, not a
+scheduled event, see the pricing bullet above — and stock tracking is
+answered directly above.)
 
 Images for feed (and horses) remain
 [[0039-product-images-featured-and-gallery]] — feed product pages

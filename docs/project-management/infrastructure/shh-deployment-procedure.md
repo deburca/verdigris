@@ -174,6 +174,30 @@ or uninstalls modules silently.
 
 ---
 
+## Standing operational chores (staff, not deployment)
+
+Things the platform deliberately does **not** automate, so a human has
+to. Recorded here because "nothing enforces it" is exactly why they get
+forgotten.
+
+- **Unpublish a sold-out feed variation.** The platform tracks **no
+  stock** (client decision, 2026-07-12, [[0038-straw-and-wrap-sale-items]]):
+  straw and wrap are also sold word-of-mouth and via Instagram, so the
+  web shop is never the full picture. Publish/unpublish is the only
+  availability lever — per product, or per **year variation**, so a
+  sold-out 2025 can be taken down while 2026 stays on sale. **The site
+  will otherwise happily sell bales that no longer exist** and take
+  payment for them.
+- **Feed prices are staff-managed content.** No schedules, no seasonal
+  automation — edit the variation when the business decides
+  (quality/quantity dependent; see 0038).
+- **Never list a bought-in horse** (not bred in-house) until the
+  accountant confirms margin-scheme (brugtmoms) treatment —
+  [[0005-tax-classification-horses-vs-bookings]]; Commerce has no
+  margin-invoicing support, so it would need custom development.
+
+---
+
 ## Rollback
 
 Drupal has no built-in rollback. Standard procedure:

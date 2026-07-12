@@ -989,21 +989,36 @@ cancelled by admin — both redirecting to `/user/2/bookings`.
 
 **The task backlog is now empty** — all 48 tasks are done. Everything
 outstanding is client input: real photos for products (0039) and
-facilities (0040), 0038's stock-tracking and per-bale-unit answers,
-and the real social URLs from 0032. Standing operational reminders
-live in [[0005-tax-classification-horses-vs-bookings]] (margin scheme
-before listing a bought-in horse), the deployment procedure's go-live
-data checks, and the bee patch retirement when
-[#3610134](https://www.drupal.org/project/bee/issues/3610134) lands.
+facilities (0040), 0038's per-bale unit confirmation (its
+stock-tracking question was **answered 2026-07-12**: managed outside
+the application, see above), and the real social URLs from 0032.
 
-**Feed pricing is explicitly out of scope for automation** (client,
-2026-07-12): wrap prices track quality (weather-dependent) and
-quantity (only surplus to the stable's own needs is sold), so changes
-are multi-factor business decisions taken outside the application and
-applied by staff in the admin UI whenever needed. The former
-"raise wrap 2026 to 350 DKK during 2027" reminder has been **removed**
-— it was never a scheduled event. Don't build price schedules,
-seasonal pricing, or cost models here.
+Standing operational reminders: margin scheme before listing a
+bought-in horse ([[0005-tax-classification-horses-vs-bookings]]);
+the deployment procedure's go-live data checks; the bee patch
+retirement when
+[#3610134](https://www.drupal.org/project/bee/issues/3610134) lands;
+and — new — **unpublish a feed variation when its year's bales run
+out**, since nothing in the platform tracks stock.
+
+**Feed pricing AND stock are explicitly out of scope for automation**
+(client, 2026-07-12). *Pricing*: wrap prices track quality
+(weather-dependent) and quantity (only surplus to the stable's own
+needs is sold), so changes are multi-factor business decisions taken
+outside the application and applied by staff in the admin UI whenever
+needed — the former "raise wrap 2026 to 350 DKK during 2027" reminder
+has been **removed**, it was never a scheduled event. *Stock*: straw
+and wrap are also sold word-of-mouth and via Instagram, so the web
+shop is never the full picture and an in-app counter would just be a
+second, lying source of truth; **staff manually ensure the site
+doesn't over-promise**, and the only lever is unpublishing a sold-out
+product or year variation. The accepted consequence is that the site
+**can oversell** (an order for already-sold bales will complete and
+take payment) — a business risk staff absorb, not a bug to fix with
+inventory code. **Don't build** price schedules, seasonal pricing,
+cost models, `commerce_stock`, "only N left" messaging, or
+back-orders. A standing seasonal chore falls out of this: *when a
+year's bales run out, unpublish that variation.*
 
 ## Tasks
 ```dataview
