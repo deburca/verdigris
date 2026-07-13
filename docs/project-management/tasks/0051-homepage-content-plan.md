@@ -40,7 +40,7 @@ static Canvas section cannot do.
 
 | # | Section | Notes | Status |
 |---|---|---|---|
-| 1 | **Hero** (exists, sharpen) | Today it lists what we have; it should give one clear promise and one primary action. | todo |
+| 1 | **Hero** (sharpened) | One promise, one action — and the page's first `h1`. | **done** 2026-07-13 |
 | 2 | **What we offer — three-way split** ⭐ | The site serves three distinct audiences who must self-select at once: **Buy a horse** → `/horses`, **Book a facility** → `/facilities`, **Buy feed & bedding** → `/feed`. Three `card-icon`s. | **done** 2026-07-13 |
 
 ### Band B — The offers (teasers, not full pages)
@@ -72,6 +72,31 @@ static Canvas section cannot do.
 **Deliberately deferred**: a News/blog section. A homepage carrying
 three-year-old "latest news" is worse than none — revisit only if
 someone will own it.
+
+## Section 1 — done (2026-07-13)
+
+Three changes to the existing hero (`cta` component):
+
+1. **It is now the page's `h1`.** The homepage previously had **no `h1`
+   at all** — the hero was an `h2` — which is both an SEO defect and a
+   screen-reader one (no top-level landmark for the page). Heading level
+   raised to 1; section 2's heading sits below it as an `h2`, so the
+   document outline is now correct.
+2. **The headline is a promise, not a label.** It said *"Stutteri
+   Hestehøj"* — which the navbar wordmark already says two inches above
+   it, and which tells a visitor nothing. Now: **"Icelandic horses, bred
+   in Holbæk"**, with the client's own evocative line kept as the
+   supporting text (*"Five-gaited and four-gaited horses from our own
+   breeding — and a stable you can ride at. Oval track, manège and lunge
+   ring. Fields with a view."*).
+3. **One action, not three.** The three hero buttons duplicated the
+   "What we offer" split now sitting directly beneath them. A hero
+   should ask for one thing: **"See horses for sale"** → `/horses`, the
+   stud's primary conversion. Facilities and feed are one scroll away in
+   section 2.
+
+Copy is the client's voice — expect them to tweak the wording; the
+structure is the point.
 
 ## Section 2 — done (2026-07-13)
 
