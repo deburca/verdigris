@@ -56,7 +56,7 @@ static Canvas section cannot do.
 | # | Section | Notes | Status |
 |---|---|---|---|
 | 6 | **About the stud** | The story, breeding philosophy, how long, the mares/stallions behind the herd. What a buyer actually reads before spending 45.000 DKK. **Client content needed.** | todo |
-| 7 | **Why Icelandic horses / the gaits** | Tölt and flying pace; four- vs five-gaited. Makes the per-horse `field_gaits` badges (task 0014) meaningful to a novice buyer, and quietly signals expertise. | todo |
+| 7 | **Why Icelandic horses / the gaits** | Explainer + accordion per gait. | **done** 2026-07-13 |
 | 8 | **Testimonials** | One buyer, one rider (`card-testimonial`). Two is plenty. **Client content needed.** | todo |
 
 ### Band D — Practicalities
@@ -72,6 +72,33 @@ static Canvas section cannot do.
 **Deliberately deferred**: a News/blog section. A homepage carrying
 three-year-old "latest news" is worse than none — revisit only if
 someone will own it.
+
+## Section 7 — done (2026-07-13)
+
+**"Why an Icelandic horse?"** — an intro plus **one accordion per
+gait**, in the same words and the same order as the badges on a horse
+listing (task 0014's `field_gaits`: Walk, Trot, Canter/gallop, Tölt,
+Flying pace (skeið)).
+
+That mapping is the whole point. Every horse we sell shows gait badges,
+and a novice buyer has no idea what tölt is or why "five-gaited" costs
+more. This section makes those badges *mean* something — and the copy
+says plainly that four-gaited and five-gaited are not better or worse,
+they suit different riders, which is honest and protects the
+four-gaited horses in the catalogue.
+
+**Tölt is open by default**, the other four collapsed: it is the gait
+the breed is loved for and the one a newcomer most needs explained ("no
+moment of suspension — you can carry a full glass at speed, and riders
+with bad backs can ride for hours"). Flying pace is written as the thing
+that distinguishes a five-gaited horse, since that is exactly the
+distinction a buyer is paying for.
+
+Accordions rather than a wall of prose: five short definitions a reader
+can dip into, and the section stays short enough not to push the trust
+content (about, testimonials) below the fold.
+
+Pure Canvas content — no code.
 
 ## Section 5 — done (2026-07-13) — Band B complete
 
