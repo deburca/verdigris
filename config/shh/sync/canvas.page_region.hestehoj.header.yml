@@ -1,0 +1,19 @@
+uuid: 2ac661fe-a432-4c1a-a1f9-206fa948b44d
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.shh_navbar
+  theme:
+    - hestehoj
+id: hestehoj.header
+region: header
+theme: hestehoj
+component_tree:
+  '0:f9a21d51-794e-4e67-9f1e-1d304da8d913':
+    uuid: f9a21d51-794e-4e67-9f1e-1d304da8d913
+    component_id: block.shh_navbar
+    component_version: 4f64dab8c8617e55
+    inputs:
+      label: 'SHH navbar'
+      label_display: '0'

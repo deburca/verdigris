@@ -1,0 +1,19 @@
+uuid: cad02b61-65db-48b7-af1f-bdbd8a1bef69
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.shh_footer
+  theme:
+    - hestehoj
+id: hestehoj.footer
+region: footer
+theme: hestehoj
+component_tree:
+  '0:657f46fb-63fe-4711-b3d8-1cb7dff6661c':
+    uuid: 657f46fb-63fe-4711-b3d8-1cb7dff6661c
+    component_id: block.shh_footer
+    component_version: 6626018d1fcd2728
+    inputs:
+      label: 'SHH footer'
+      label_display: '0'

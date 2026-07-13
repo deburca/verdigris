@@ -93,13 +93,15 @@ each card a grid item whose *automatic minimum width is derived from its
 content height* — with tall text on a narrow screen the card demands
 ~490 px. Text cards must size to their content, so no aspect ratio.
 
-**Discovered while verifying at phone width**: the site has a
-**pre-existing, site-wide horizontal overflow on mobile** — every page,
-including plain-text ones, is clipped below ~480 px, and the navbar's
-hamburger sits in the clipped region. Not caused by this section (it
-reproduces on pages untouched today). Recorded as
-[[0052-mobile-horizontal-overflow]] (**high** — arguably a launch
-blocker) and deliberately **not** fixed inside this content task.
+**A mobile-overflow scare, retracted the same day.** Verifying at phone
+width appeared to show every page clipped below ~480 px — raised as
+[[0052-mobile-horizontal-overflow]], then **dropped: it was not a bug.**
+Headless Chromium **clamps its window to 500 px**, so a
+`--window-size=390` screenshot is the left-hand 390 px of a 500 px
+render — cropped, not clipped. Measured properly in-browser, every page
+has `scrollWidth == viewport`, zero overflowing elements, and nothing
+wider than 390 px when the layout is squeezed to a phone box. The site
+is fine on mobile; see 0052 for the full post-mortem.
 
 **Note for the next section**: with the three-way split now doing the
 orientation job properly, the hero's three buttons are redundant —

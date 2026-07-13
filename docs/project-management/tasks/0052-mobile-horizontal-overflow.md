@@ -1,97 +1,90 @@
 ---
 type: task
 tags: [cms2/task]
-status: todo
+status: dropped
 priority: high
 site: shh
 project: "[[shh-stables-platform]]"
 created: 2026-07-13
 updated: 2026-07-13
 ---
-# Task: Site-wide horizontal overflow on mobile — content is clipped
+# Task: Site-wide horizontal overflow on mobile — NOT A BUG (measurement artefact)
 
-## Description
-Found while building [[0051-homepage-content-plan]]'s section 2, by
-screenshotting the result at phone width.
+> **DROPPED 2026-07-13 — the bug does not exist.** It was an artefact of
+> how I was measuring, not a fault in the site. Kept, rather than
+> deleted, so the false alarm and the technique that produced it are on
+> the record.
 
-**Every page on the site overflows horizontally below ~480 px viewport
-width.** The document's layout is wider than the screen, so content is
-cut off on the right and the page scrolls sideways.
+## What I originally claimed
+That every page overflowed horizontally below ~480 px, clipping content
+and hiding the navbar's hamburger — "arguably a launch blocker". The
+evidence was a series of headless-browser screenshots taken with
+`--window-size=390,…`, in which body copy visibly ran off the right
+edge, even on plain-text pages.
 
-Evidence (headless Chromium, real HTTP, no device emulation — the
-window size *is* the viewport):
+## Why it was wrong
 
-| Viewport | Content clipped at right edge? |
-|---|---|
-| 390 px (iPhone) | **yes** |
-| 420 px | **yes** |
-| 450 px | **yes** |
-| 480 px | no |
-| 512 px+ | no |
+**Headless Chromium/Brave clamps its window to a 500 px minimum.** Ask
+for 390, and it renders the page at a **500 px viewport** — then writes
+a 390-px-wide screenshot, which is simply the left-hand 390 px of a
+500 px render. Everything past 390 px looks "clipped" because the image
+was cropped, not because the page overflowed. Every mobile screenshot I
+took was lying in exactly this way, and consistently enough across pages
+to look like a real, systemic bug.
 
-So the layout has an effective **minimum width of ~460–480 px**.
+## What the site actually does
 
-**It is not caused by the new homepage section.** It reproduces on
-pages untouched today, including ones with no cards and no images at
-all:
+Measured in-browser (a throwaway `tmp_overflow_probe` module that
+attached a script reading real geometry, then removed):
 
-- `/privacy-policy` — plain text: body copy runs off the right edge
-  mid-sentence (it does not wrap, because its containing block is wider
-  than the viewport)
-- `/horses`, `/feed`, `/facilities`, `/product/1` — all clipped
-- The homepage, before and after section 2
+| Page | Viewport | `scrollWidth` | Elements wider than viewport |
+|---|---|---|---|
+| `/privacy-policy` | 500 | 500 | **0** |
+| `/horses` | 500 | 500 | **0** |
+| `/` (with the new section 2) | 500 | 500 | **0** |
 
-**Severity is higher than "cosmetic".** The navbar's hamburger button
-(`navbar--hamburger-container … md:hidden`) sits at the **right-hand
-edge** of the header — precisely the region being clipped. In the
-390 px render it is not visible, which means **mobile visitors may have
-no way to open the menu at all**. For a stable whose buyers and riders
-will overwhelmingly browse on phones, that is a launch blocker.
+And with the layout **squeezed to a 390 px box** — which is the decisive
+test, because **Tailwind's smallest breakpoint is 640 px, so the CSS at
+390 px and at 500 px is identical**; the only way the site could break
+narrower is an element with a hard minimum width:
 
-## What has been ruled out
-- **Not `.container` / `.region-content`**: both compile correctly —
-  `width: 100%` with max-widths only inside `min-width` media queries.
-- **Not a `min-w-*` utility in the markup**: the only width-forcing
-  classes present are `min-w-0`, `min-w-[44px]`, `w-[44px]` (the
-  44 px hamburger tap target) — nothing near 460 px.
-- **Not the cards or images**: a text-only page overflows identically.
-- **Not `aspect-4/3` on the new icon cards**: removing it (correctly —
-  see below) did not change the overflow.
+| Page | `body.scrollWidth` when squeezed to 390 | Elements wider than 390 |
+|---|---|---|
+| `/privacy-policy` | 390 | **0** |
+| `/horses` | 390 | **0** |
+| `/` | 390 | **0** |
 
-## What is still suspected
-Page furniture present on every page: the **navbar**, the breadcrumb,
-or the **footer** (its bottom bar uses
-`md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]`, and the theme's `.cq-full`
-container-query breakout utility is in play site-wide — the same
-utility that caused the image-overflow bug in
-[[0040-facility-images-featured-and-gallery]], where
-`hestehoj:image` broke out of its grid cell).
+Nothing overflows. Nothing has a minimum width that would break a phone
+layout.
 
-`.cq-full` is the strongest lead: `width: 100cqw; margin-inline:
-calc(50% - 50cqw)` depends on an ancestor with
-`container-type: inline-size` (`.layout-content`). If any element
-carrying it renders **outside** that container context, `cqw` resolves
-against the viewport, and the negative margins can push the layout
-wider than the screen.
+## The client's Safari observation, explained
 
-## Acceptance criteria
-- [ ] Root cause identified with browser devtools (not screenshot
-      forensics) — find the element whose box exceeds the viewport
-- [ ] No horizontal scrolling / clipping at 320 px, 390 px and 430 px
-      on: home, `/horses`, `/feed`, `/facilities`, a product page, a
-      facility page, `/pricing`, `/privacy-policy`, the rider dashboard
-      and the cart/checkout
-- [ ] The navbar hamburger is visible and operable at 390 px, and the
-      menu opens
-- [ ] A regression guard: at minimum, note the check in the go-live
-      list; ideally assert `document.scrollWidth <= innerWidth` in a
-      simple browser check
-- [ ] Fixed in the theme (shared) — verify the other sites in the repo
-      are not made worse, since they use the same components
+> "In Safari I cannot reduce the width of the page below 540 px."
+
+That is **Safari's own minimum window width** — a limit of the browser
+window, not of the page. It corroborated my false finding by coincidence
+(a browser that won't go narrow, and a headless browser that silently
+refuses to go narrow, look identical from the outside).
+
+**To actually test phone widths**, use Safari's **Develop → Enter
+Responsive Design Mode** (or Chrome's device toolbar), which emulates a
+true device viewport instead of resizing the window — or open the site
+on a real phone.
+
+## Lessons worth keeping
+
+1. **Verify the tool before trusting its output.** The screenshot said
+   "clipped"; the browser never rendered the width I asked for. A single
+   check of `document.documentElement.clientWidth` would have caught it
+   immediately — and eventually did.
+2. **Screenshots prove rendering, not geometry.** For layout questions,
+   measure (`scrollWidth`, `getBoundingClientRect`), don't eyeball.
+3. The instinct that *did* pay off in the same session: I removed
+   `tile_size: 4:3` from the section 2 cards because a fixed aspect
+   ratio makes a grid item derive its minimum width from its content
+   height. That reasoning stands on its own and the change is correct —
+   it just wasn't fixing an overflow, because there wasn't one.
 
 ## Related
 - [[shh-stables-platform]]
-- [[0051-homepage-content-plan]] (surfaced it)
-- [[0040-facility-images-featured-and-gallery]] (the `.cq-full` /
-  `bleed` precedent — same class of bug, contained to one component)
-- [[0032-adopt-footer-navbar-sdc-components]] (navbar/footer furniture)
+- [[0051-homepage-content-plan]] (where the false alarm was raised)
