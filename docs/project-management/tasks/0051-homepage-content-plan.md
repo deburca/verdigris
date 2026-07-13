@@ -41,7 +41,7 @@ static Canvas section cannot do.
 | # | Section | Notes | Status |
 |---|---|---|---|
 | 1 | **Hero** (exists, sharpen) | Today it lists what we have; it should give one clear promise and one primary action. | todo |
-| 2 | **What we offer — three-way split** ⭐ | The site serves three distinct audiences who must self-select at once: **Buy a horse** → `/horses`, **Book a facility** → `/facilities`, **Buy feed & bedding** → `/feed`. Three `card-icon`s. Currently done weakly by hero links. | todo |
+| 2 | **What we offer — three-way split** ⭐ | The site serves three distinct audiences who must self-select at once: **Buy a horse** → `/horses`, **Book a facility** → `/facilities`, **Buy feed & bedding** → `/feed`. Three `card-icon`s. | **done** 2026-07-13 |
 
 ### Band B — The offers (teasers, not full pages)
 
@@ -72,6 +72,39 @@ static Canvas section cannot do.
 **Deliberately deferred**: a News/blog section. A homepage carrying
 three-year-old "latest news" is worse than none — revisit only if
 someone will own it.
+
+## Section 2 — done (2026-07-13)
+
+A `section` (three equal columns on desktop, one on mobile) with a
+`heading` in its header slot and three linked `card-icon`s: **Icelandic
+horses for sale** → `/horses` (Phosphor `horse` icon), **Book a riding
+facility** → `/facilities` (`calendar-check`), **Feed & bedding** →
+`/feed` (`stack`). Written straight into the Canvas page's component
+tree — content, not code — by an idempotent one-shot script (re-running
+replaces the section rather than appending a second copy).
+
+**Fixed a live bug in passing**: the hero's third button pointed at
+**`/facilites`** — a typo, and a **404**. Now `/facilities`, and the
+first two buttons were relabelled ("Horses for sale", "Book a
+facility") to match the language used everywhere else.
+
+**Rejected `tile_size: 4:3` on the cards.** A fixed aspect ratio makes
+each card a grid item whose *automatic minimum width is derived from its
+content height* — with tall text on a narrow screen the card demands
+~490 px. Text cards must size to their content, so no aspect ratio.
+
+**Discovered while verifying at phone width**: the site has a
+**pre-existing, site-wide horizontal overflow on mobile** — every page,
+including plain-text ones, is clipped below ~480 px, and the navbar's
+hamburger sits in the clipped region. Not caused by this section (it
+reproduces on pages untouched today). Recorded as
+[[0052-mobile-horizontal-overflow]] (**high** — arguably a launch
+blocker) and deliberately **not** fixed inside this content task.
+
+**Note for the next section**: with the three-way split now doing the
+orientation job properly, the hero's three buttons are redundant —
+which is exactly what section 1 ("sharpen the hero to one promise, one
+action") should resolve.
 
 ## Journey gap surfaced by this planning (needs a decision)
 
