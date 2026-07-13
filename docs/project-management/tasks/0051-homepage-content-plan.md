@@ -1,0 +1,104 @@
+---
+type: task
+tags: [cms2/task]
+status: in-progress
+priority: high
+site: shh
+project: "[[shh-stables-platform]]"
+created: 2026-07-13
+updated: 2026-07-13
+---
+# Task: Homepage content plan — build out the sections
+
+## Description
+With the platform functionally complete (all 50 prior tasks done), the
+work turns to **content**. The homepage today is Canvas page 1
+("Home"): a hero billboard plus three links (Horses, Feed & Bedding,
+Oval track/Manege). It states what the stable *has*; it does not yet
+orient a first-time visitor, sell a horse, or explain how to become a
+rider.
+
+This task holds the agreed structure and tracks the sections as they
+are built, one at a time.
+
+## Where content goes
+
+The homepage is a **Canvas page** (`canvas_page` 1), composed from the
+`hestehoj` SDC component library — so most sections are **content, not
+code**: `hero-billboard`, `hero-side-by-side`, `card`, `card-icon`,
+`card-pricing`, `card-testimonial`, `cta`, `accordion(-container)`,
+`section`, `group`, `image`, `gallery`, `blockquote`, `badge`,
+`button`, `text`, `heading`.
+
+Exceptions needing code are flagged **[code]** below — chiefly anything
+that must pull live data (e.g. featured horses from Commerce), which a
+static Canvas section cannot do.
+
+## The plan (agreed 2026-07-13)
+
+### Band A — Orientation
+
+| # | Section | Notes | Status |
+|---|---|---|---|
+| 1 | **Hero** (exists, sharpen) | Today it lists what we have; it should give one clear promise and one primary action. | todo |
+| 2 | **What we offer — three-way split** ⭐ | The site serves three distinct audiences who must self-select at once: **Buy a horse** → `/horses`, **Book a facility** → `/facilities`, **Buy feed & bedding** → `/feed`. Three `card-icon`s. Currently done weakly by hero links. | todo |
+
+### Band B — The offers (teasers, not full pages)
+
+| # | Section | Notes | Status |
+|---|---|---|---|
+| 3 | **Horses for sale** ⭐ **[code]** | 2–3 featured horses: photo, name, gaits, price, "See all horses". The money content for a stud, so highest of the three. Needs a block that pulls live `available` horses — a static section would go stale the moment one sells. | todo |
+| 4 | **The facilities** | Oval Track, Manège, Lunge Ring: photo + one line each; 30-minute slots, 08:00–20:00; link to booking. | todo |
+| 5 | **Feed & bedding** | Straw and wrap, per bale, collected at the stable. Short — secondary business, and the availability caveat already lives on the product pages (task 0038). | todo |
+
+### Band C — Trust
+
+| # | Section | Notes | Status |
+|---|---|---|---|
+| 6 | **About the stud** | The story, breeding philosophy, how long, the mares/stallions behind the herd. What a buyer actually reads before spending 45.000 DKK. **Client content needed.** | todo |
+| 7 | **Why Icelandic horses / the gaits** | Tölt and flying pace; four- vs five-gaited. Makes the per-horse `field_gaits` badges (task 0014) meaningful to a novice buyer, and quietly signals expertise. | todo |
+| 8 | **Testimonials** | One buyer, one rider (`card-testimonial`). Two is plenty. **Client content needed.** | todo |
+
+### Band D — Practicalities
+
+| # | Section | Notes | Status |
+|---|---|---|---|
+| 9 | **How booking works** ⭐ | Riders hit a real wall: register → **wait for staff approval** → sign the waiver → **wait for membership approval** → book. Two human checkpoints (tasks 0026, 0003). Unexplained, people assume the site is broken. A 3–4 step `card-icon` row fixes it. | todo |
+| 10 | **Pricing at a glance** | Single slot vs 10-session pack vs multi-facility bundle → `/pricing`. `card-pricing` exists for exactly this. | todo |
+| 11 | **Where we are & visiting** | Address, map, opening hours, and how to arrange a horse viewing (see the gap below). Address/email already render in the footer live from the Commerce store (task 0032); a leaflet map is a recorded 0032 enhancement. | todo |
+| 12 | **FAQ** (`accordion`) | Deposits and refund windows, VAT, transport, can I try a horse, what to bring. | todo |
+| 13 | **Closing CTA** | "Come and see us" → contact. | todo |
+
+**Deliberately deferred**: a News/blog section. A homepage carrying
+three-year-old "latest news" is worse than none — revisit only if
+someone will own it.
+
+## Journey gap surfaced by this planning (needs a decision)
+
+**There is no way to arrange a viewing or trial ride of a horse.** A
+buyer can pay a 20% deposit to reserve one
+([[0001-horse-deposit-reservation-flow]]) — but almost nobody wires
+9.000 DKK for a horse they have never sat on. That step is entirely
+offline today, and nothing on the site says so. At minimum the horse
+pages and section 11 should say *"viewings by appointment — contact
+us"*. Whether it stays a phone call or becomes a request flow is a
+client decision; if the latter, it gets its own task.
+
+## Acceptance criteria
+- [ ] Sections built in the agreed order, each reviewed before the next
+- [ ] Live-data sections implemented as code, not static copy that rots
+      (featured horses)
+- [ ] Client content gathered where flagged (story, testimonials, photos,
+      opening hours, viewing policy)
+- [ ] The viewing/trial-ride gap decided (copy-only vs request flow)
+- [ ] Verified over real HTTP as an anonymous visitor; responsive at
+      mobile and desktop
+
+## Related
+- [[shh-stables-platform]]
+- [[0019-horse-catalog-page]], [[0020-facilities-overview-page]],
+  [[0023-pricing-comparison-page]] (the pages these sections tease)
+- [[0026-rider-account-access-policy]], [[0003-rider-membership-eligibility-workflow]]
+  (the approval checkpoints section 9 must explain)
+- [[0038-straw-and-wrap-sale-items]], [[0014-icelandic-horse-gaits-field]]
+- [[0032-adopt-footer-navbar-sdc-components]] (store-driven address; map enhancement)

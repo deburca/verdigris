@@ -1009,7 +1009,21 @@ resolved with `@source not "../docs"` (theme vault task 0008), which
 also retires the "don't rebuild the CSS" caution, since the committed
 build now matches the local toolchain again.
 
-**The task backlog is now empty** — all 49 tasks are done, and
+**The work has turned to content.** With the platform functionally
+complete, [[0051-homepage-content-plan]] (in progress, high) holds the
+agreed homepage structure — 13 sections in four bands (orientation →
+the three offers → trust → practicalities) — to be built one at a time.
+The homepage is Canvas page 1, so most sections are content composed
+from the `hestehoj` SDC library rather than code; the featured-horses
+teaser is the notable exception (it must pull live `available` horses,
+or it goes stale the moment one sells). The planning also surfaced a
+real journey gap: **there is no way to arrange a viewing or trial ride
+of a horse** — a buyer can pay a 20% deposit to reserve one, but almost
+nobody wires 9.000 DKK for a horse they have never sat on, and nothing
+on the site says viewings are arranged offline. Recorded in 0051 as a
+decision the client owes.
+
+**The pre-content task backlog is empty** — all 50 tasks are done, and
 **0038's client questions are all answered** (2026-07-12: pricing and
 stock are managed outside the application; prices are **per bale** —
 the `/feed` cards now say so, rather than showing a bare "250,00
