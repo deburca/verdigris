@@ -63,15 +63,56 @@ static Canvas section cannot do.
 
 | # | Section | Notes | Status |
 |---|---|---|---|
-| 9 | **How booking works** ⭐ | Riders hit a real wall: register → **wait for staff approval** → sign the waiver → **wait for membership approval** → book. Two human checkpoints (tasks 0026, 0003). Unexplained, people assume the site is broken. A 3–4 step `card-icon` row fixes it. | todo |
-| 10 | **Pricing at a glance** | Single slot vs 10-session pack vs multi-facility bundle → `/pricing`. `card-pricing` exists for exactly this. | todo |
-| 11 | **Where we are & visiting** | Address, map, opening hours, and how to arrange a horse viewing (see the gap below). Address/email already render in the footer live from the Commerce store (task 0032); a leaflet map is a recorded 0032 enhancement. | todo |
-| 12 | **FAQ** (`accordion`) | Deposits and refund windows, VAT, transport, can I try a horse, what to bring. | todo |
-| 13 | **Closing CTA** | "Come and see us" → contact. | todo |
+| 9 | **How booking works** ⭐ | Three steps — and the plan's own description of them was **stale**, see below. | **done** 2026-07-13 |
+| 10 | **Pricing at a glance** | Live block; every number computed. | **done** 2026-07-13 |
+| 11 | **Where we are & visiting** | Address, hours, **viewings by appointment**. | **done** 2026-07-13 |
+| 12 | **FAQ** (`accordion`) | Six questions, including the two that actually block a sale. | **done** 2026-07-13 |
+| 13 | **Closing CTA** | "Come and meet the horses" → contact. | **done** 2026-07-13 |
 
 **Deliberately deferred**: a News/blog section. A homepage carrying
 three-year-old "latest news" is worse than none — revisit only if
 someone will own it.
+
+## Band D — done (2026-07-13): sections 9–13
+
+**Section 9, "How booking works" — and the plan was wrong.** This
+task's own description of the section (written in the morning) said
+riders face *two* human checkpoints: staff approval, then a waiver, then
+membership approval. **Task 0045 deleted the membership module and the
+waiver webform**, and the client's clarification behind it is that
+**facility use is covered by a paper contract signed off-site — staff
+activate the account only once it is signed**. Writing the plan's
+version would have published a journey the site does not have. The three
+steps now shown are the real ones: *create an account* → *sign the
+riding contract (we get in touch; your account is activated the moment
+it is signed)* → *book and ride*. Checked against
+`user.settings.register` (`visitors_admin_approval`) and the
+`create bee reservation` permission, not against the plan.
+
+**Section 10, "What it costs" — a live block** (`shh_pricing_summary`,
+in `shh_pricing_comparison`): cheapest slot, the 10-session pack, and the
+multi-facility bundle discount. **Every number is computed from config**,
+never typed — the rule tasks 0020 and 0023 set, and task 0020 is exactly
+why: the facilities' price frequency had silently drifted and real
+bookings were costing 0,00 DKK. A homepage with "50 DKK" baked in would
+have gone on lying about it. (One bug caught: `BlockBase` has no
+`configFactory()` helper — the block white-screened until the config
+factory was injected properly.)
+
+**Section 11, "Come and see us"** — address, the 08:00–20:00 booking
+day, feed collection… and, at last, **the viewing gap this task
+surfaced**: *"Viewings and trial rides are arranged by appointment — get
+in touch and we will find a time. We would rather you sat on the horse
+than took our word for it."* A buyer could previously pay a 9.000 DKK
+deposit on a horse they had never sat on, with nothing on the site saying
+a viewing was even possible.
+
+**Section 12, FAQ** — six questions, led by the two that actually block a
+sale: *can I try a horse before I buy?* and *how do I reserve one while I
+decide?* Plus VAT (all prices include 25%), why registration is not
+instant, cancellations, and no feed delivery.
+
+**Section 13, closing CTA** — "Come and meet the horses" → contact.
 
 ## Section 7 — done (2026-07-13)
 
