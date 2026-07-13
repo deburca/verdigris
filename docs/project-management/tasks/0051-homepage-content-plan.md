@@ -48,7 +48,7 @@ static Canvas section cannot do.
 | # | Section | Notes | Status |
 |---|---|---|---|
 | 3 | **Horses for sale** ⭐ **[code]** | Live featured horses + "See all". | **done** 2026-07-13 |
-| 4 | **The facilities** | Oval Track, Manège, Lunge Ring: photo + one line each; 30-minute slots, 08:00–20:00; link to booking. | todo |
+| 4 | **The facilities** | Live cards + booking-hours line. | **done** 2026-07-13 |
 | 5 | **Feed & bedding** | Straw and wrap, per bale, collected at the stable. Short — secondary business, and the availability caveat already lives on the product pages (task 0038). | todo |
 
 ### Band C — Trust
@@ -72,6 +72,34 @@ static Canvas section cannot do.
 **Deliberately deferred**: a News/blog section. A homepage carrying
 three-year-old "latest news" is worse than none — revisit only if
 someone will own it.
+
+## Section 4 — done (2026-07-13)
+
+**New block plugin `shh_featured_facilities`** (in
+`shh_facilities_overview`), rendering all three facilities with photo,
+kind, indoor/outdoor, capacity and **live slot price**, under the
+heading *"Ride with us"* and an intro line: *"Book by the half hour,
+from 08:00 to 20:00. Ride one, or book several for the same slot and
+pay less."*
+
+**Live data, not static copy** — the same judgement as section 3, and
+the history backs it: the facilities have been **renamed** before
+("Outdoor Arena 1" → "Oval Track"), their photos only arrived in task
+0040, and their prices are computed from config — the very numbers that
+silently drifted in task 0020 and made bookings cost 0,00 DKK.
+Hardcoded homepage copy would have drifted from all three.
+
+**Query and card shared, not duplicated**: both were factored out of
+`FacilitiesOverviewController` into a new `FacilityCardBuilder` service,
+now used by the homepage block *and* `/facilities` — the same pattern as
+`HorseCardBuilder`. The controller's own `buildCard()` is deleted, not
+left as a second copy.
+
+**Section order corrected.** Section 3 had been inserted *above* "What
+we offer", contradicting the agreed plan (Band A orientation first, then
+Band B offers). The page now reads, top to bottom:
+
+> hero → What we offer → Horses for sale → Ride with us
 
 ## Section 3 — done (2026-07-13)
 

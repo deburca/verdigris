@@ -1,0 +1,11 @@
+uuid: aa24848e-335a-4d92-84de-963ab74df253
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.shh_featured_facilities
+name: 'SHH Facilities Overview'
+configEntityTypeId: component
+weight: 0
+items:
+  - block.shh_featured_facilities

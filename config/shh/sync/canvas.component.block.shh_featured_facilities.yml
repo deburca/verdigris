@@ -1,0 +1,22 @@
+uuid: 27c4c309-f411-4355-982b-7f2f4b8f55e0
+langcode: en
+status: true
+dependencies:
+  module:
+    - shh_facilities_overview
+active_version: 2551636056357b0a
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: shh_featured_facilities
+        label: 'SHH facilities'
+        label_display: '0'
+        provider: shh_facilities_overview
+    fallback_metadata:
+      slot_definitions: null
+label: 'SHH facilities'
+id: block.shh_featured_facilities
+provider: shh_facilities_overview
+source: block
+source_local_id: shh_featured_facilities

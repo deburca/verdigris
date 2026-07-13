@@ -7,7 +7,7 @@ use Drupal\commerce_price\Price;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Url;
-use Drupal\node\NodeInterface;
+use Drupal\shh_facilities_overview\FacilityCardBuilder;
 use Drupal\shh_facility_credits\FacilityPricingHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -26,6 +26,7 @@ class FacilitiesOverviewController extends ControllerBase {
   public function __construct(
     protected CurrencyFormatterInterface $currencyFormatter,
     protected FacilityPricingHelper $pricingHelper,
+    protected FacilityCardBuilder $cardBuilder,
   ) {}
 
   /**
@@ -35,6 +36,7 @@ class FacilitiesOverviewController extends ControllerBase {
     return new static(
       $container->get('commerce_price.currency_formatter'),
       $container->get('shh_facility_credits.pricing_helper'),
+      $container->get('shh_facilities_overview.card_builder'),
     );
   }
 
@@ -45,28 +47,23 @@ class FacilitiesOverviewController extends ControllerBase {
    * credit packs.
    */
   public function overview(): array {
-    $node_storage = $this->entityTypeManager()->getStorage('node');
-    $ids = $node_storage->getQuery()
-      ->condition('type', 'bookable_facility')
-      ->condition('status', TRUE)
-      ->sort('title', 'ASC')
-      ->accessCheck(TRUE)
-      ->execute();
+    // Query and cards come from the shared builder (task 0051 section 4),
+    // so this page and the homepage's facilities section can never
+    // disagree about what a facility is or how it is presented.
+    $nodes = $this->cardBuilder->facilities();
 
     $build = [];
 
-    if (!$ids) {
+    if (!$nodes) {
       $build['empty'] = [
         '#markup' => '<p>' . $this->t('No facilities are available to book right now.') . '</p>',
       ];
       return $build;
     }
 
-    /** @var \Drupal\node\NodeInterface[] $nodes */
-    $nodes = $node_storage->loadMultiple($ids);
     $cards = [];
     foreach ($nodes as $node) {
-      $cards[] = $this->buildCard($node);
+      $cards[] = $this->cardBuilder->buildCard($node);
     }
 
     $build['grid'] = [
@@ -98,62 +95,6 @@ class FacilitiesOverviewController extends ControllerBase {
     ];
 
     return $build;
-  }
-
-  /**
-   * Builds a single hestehoj:card render array for one facility.
-   */
-  protected function buildCard(NodeInterface $node): array {
-    $summary_parts = [];
-
-    if ($node->hasField('field_facility_kind') && !$node->get('field_facility_kind')->isEmpty()) {
-      $allowed_values = $node->get('field_facility_kind')->getFieldDefinition()
-        ->getFieldStorageDefinition()->getSetting('allowed_values');
-      $value = $node->get('field_facility_kind')->value;
-      $summary_parts[] = $allowed_values[$value] ?? $value;
-    }
-
-    if ($node->hasField('field_indoor') && !$node->get('field_indoor')->isEmpty()) {
-      $summary_parts[] = $node->get('field_indoor')->value ? $this->t('Indoor') : $this->t('Outdoor');
-    }
-
-    if ($node->hasField('field_capacity') && !$node->get('field_capacity')->isEmpty()) {
-      $summary_parts[] = $this->formatPlural(
-        (int) $node->get('field_capacity')->value,
-        '1 rider',
-        '@count riders',
-      );
-    }
-
-    $slot_price = $this->pricingHelper->getSlotPrice($node);
-    if ($slot_price) {
-      $slot_minutes = (int) $node->get('field_slot_duration_minutes')->value;
-      $summary_parts[] = $this->t('@price / @minutes min', [
-        '@price' => $this->currencyFormatter->format($slot_price->getNumber(), $slot_price->getCurrencyCode()),
-        '@minutes' => $slot_minutes,
-      ]);
-    }
-
-    $props = [
-      'heading_text' => $node->label(),
-      'orientation' => 'vertical',
-      'style' => 'framed',
-      'url' => $node->toUrl()->toString(),
-      'text' => implode(' · ', array_filter($summary_parts)),
-    ];
-
-    // Featured image (task 0040, the 0039 model): first image item in
-    // field delta order.
-    $media_props = shh_common_image_media_props($node, 'field_media');
-    if ($media_props) {
-      $props['media'] = $media_props;
-    }
-
-    return [
-      '#type' => 'component',
-      '#component' => 'hestehoj:card',
-      '#props' => $props,
-    ];
   }
 
   /**

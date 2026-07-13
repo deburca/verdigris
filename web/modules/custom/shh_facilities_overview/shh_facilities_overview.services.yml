@@ -1,0 +1,7 @@
+services:
+  shh_facilities_overview.card_builder:
+    class: Drupal\shh_facilities_overview\FacilityCardBuilder
+    arguments:
+      - '@entity_type.manager'
+      - '@commerce_price.currency_formatter'
+      - '@shh_facility_credits.pricing_helper'
