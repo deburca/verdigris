@@ -1,0 +1,6 @@
+services:
+  shh_feed_catalog.card_builder:
+    class: Drupal\shh_feed_catalog\FeedCardBuilder
+    arguments:
+      - '@entity_type.manager'
+      - '@commerce_price.currency_formatter'

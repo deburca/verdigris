@@ -2,9 +2,8 @@
 
 namespace Drupal\shh_feed_catalog\Controller;
 
-use CommerceGuys\Intl\Formatter\CurrencyFormatterInterface;
-use Drupal\commerce_product\Entity\ProductInterface;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\shh_feed_catalog\FeedCardBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -15,11 +14,14 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * products are commodity quantity goods with no field_sale_state
  * lifecycle, so this lists every published feed product rather than
  * filtering variations by sale state.
+ *
+ * The query and the card live in FeedCardBuilder (task 0051 section 5),
+ * shared with the homepage's feed teaser so the two cannot drift apart.
  */
 class FeedCatalogController extends ControllerBase {
 
   public function __construct(
-    protected CurrencyFormatterInterface $currencyFormatter,
+    protected FeedCardBuilder $cardBuilder,
   ) {}
 
   /**
@@ -27,7 +29,7 @@ class FeedCatalogController extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('commerce_price.currency_formatter'),
+      $container->get('shh_feed_catalog.card_builder'),
     );
   }
 
@@ -35,21 +37,20 @@ class FeedCatalogController extends ControllerBase {
    * Builds the catalog page: one card per feed product.
    */
   public function catalog(): array {
-    $product_storage = $this->entityTypeManager()->getStorage('commerce_product');
-    $ids = $product_storage->getQuery()
-      ->condition('type', 'feed')
-      ->condition('status', TRUE)
-      ->sort('title')
-      ->accessCheck(TRUE)
-      ->execute();
+    $products = $this->cardBuilder->feedProducts();
 
+    // Both list tags: publish/unpublish is task 0038's only stock lever,
+    // and it is applied per harvest-year VARIATION as often as per
+    // product — a variation save does not invalidate the product list
+    // tag, so without the variation tag this page would keep listing a
+    // sold-out year.
     $build = [
       '#cache' => [
-        'tags' => ['commerce_product_list'],
+        'tags' => ['commerce_product_list', 'commerce_product_variation_list'],
       ],
     ];
 
-    if (!$ids) {
+    if (!$products) {
       $build['empty'] = [
         '#markup' => '<p>' . $this->t('There are no feed or bedding products for sale right now — please check back soon.') . '</p>',
       ];
@@ -57,9 +58,8 @@ class FeedCatalogController extends ControllerBase {
     }
 
     $cards = [];
-    /** @var \Drupal\commerce_product\Entity\ProductInterface $product */
-    foreach ($product_storage->loadMultiple($ids) as $product) {
-      $cards[] = $this->buildCard($product);
+    foreach ($products as $product) {
+      $cards[] = $this->cardBuilder->buildCard($product);
     }
 
     $build['grid'] = [
@@ -71,75 +71,6 @@ class FeedCatalogController extends ControllerBase {
     ];
 
     return $build;
-  }
-
-  /**
-   * Builds a single hestehoj:card render array for one feed product.
-   */
-  protected function buildCard(ProductInterface $product): array {
-    $summary_parts = [];
-
-    // A short plain-text teaser from the body: the summary when one was
-    // written, otherwise the trimmed body text itself.
-    if ($product->hasField('body') && !$product->get('body')->isEmpty()) {
-      $body = $product->get('body')->first();
-      $teaser = trim(strip_tags($body->summary ?: $body->value));
-      if ($teaser !== '') {
-        if (mb_strlen($teaser) > 120) {
-          $teaser = mb_substr($teaser, 0, 119) . '…';
-        }
-        $summary_parts[] = $teaser;
-      }
-    }
-
-    // Feed products carry one variation per harvest year (task 0038's
-    // client answers), so prices can differ within a product: show the
-    // cheapest, prefixed "From" when they aren't all the same.
-    $prices = [];
-    foreach ($product->getVariations() as $variation) {
-      if ($variation->isPublished() && $variation->getPrice()) {
-        $prices[] = $variation->getPrice();
-      }
-    }
-    if ($prices) {
-      usort($prices, fn ($a, $b) => $a->compareTo($b));
-      $formatted = $this->currencyFormatter->format(
-        $prices[0]->getNumber(),
-        $prices[0]->getCurrencyCode(),
-      );
-      // The unit is stated on the card, not just in the product body:
-      // feed prices are per bale (client, 2026-07-12) and a bare
-      // "250,00 DKK" on a listing invites exactly the wrong guess.
-      $summary_parts[] = end($prices)->equals($prices[0])
-        ? (string) $this->t('@price per bale', ['@price' => $formatted])
-        : (string) $this->t('From @price per bale', ['@price' => $formatted]);
-    }
-
-    $props = [
-      'heading_text' => $product->label(),
-      'orientation' => 'vertical',
-      'style' => 'framed',
-      'url' => $product->toUrl()->toString(),
-      'text' => implode(' · ', $summary_parts),
-    ];
-
-    // Featured image (task 0039): first image found walking the
-    // variations in order — with per-year variations the photos
-    // usually sit on the current year, so don't stop at the default
-    // variation.
-    foreach ($product->getVariations() as $variation) {
-      $media_props = shh_common_image_media_props($variation, 'field_media');
-      if ($media_props) {
-        $props['media'] = $media_props;
-        break;
-      }
-    }
-
-    return [
-      '#type' => 'component',
-      '#component' => 'hestehoj:card',
-      '#props' => $props,
-    ];
   }
 
 }

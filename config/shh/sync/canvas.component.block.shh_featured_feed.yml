@@ -1,0 +1,22 @@
+uuid: 67be40e1-bd92-47c3-8417-7035bc0c09bb
+langcode: en
+status: true
+dependencies:
+  module:
+    - shh_feed_catalog
+active_version: 04cbfb19b8f564a0
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: shh_featured_feed
+        label: 'SHH feed & bedding'
+        label_display: '0'
+        provider: shh_feed_catalog
+    fallback_metadata:
+      slot_definitions: null
+label: 'SHH feed & bedding'
+id: block.shh_featured_feed
+provider: shh_feed_catalog
+source: block
+source_local_id: shh_featured_feed

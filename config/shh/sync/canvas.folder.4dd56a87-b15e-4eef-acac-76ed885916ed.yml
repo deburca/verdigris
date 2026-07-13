@@ -1,0 +1,11 @@
+uuid: 4dd56a87-b15e-4eef-acac-76ed885916ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.shh_featured_feed
+name: 'SHH Feed Catalog'
+configEntityTypeId: component
+weight: 0
+items:
+  - block.shh_featured_feed

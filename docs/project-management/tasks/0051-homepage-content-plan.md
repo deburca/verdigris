@@ -49,7 +49,7 @@ static Canvas section cannot do.
 |---|---|---|---|
 | 3 | **Horses for sale** ⭐ **[code]** | Live featured horses + "See all". | **done** 2026-07-13 |
 | 4 | **The facilities** | Live cards + booking-hours line. | **done** 2026-07-13 |
-| 5 | **Feed & bedding** | Straw and wrap, per bale, collected at the stable. Short — secondary business, and the availability caveat already lives on the product pages (task 0038). | todo |
+| 5 | **Feed & bedding** | Live teaser, per-bale prices, availability caveat. | **done** 2026-07-13 |
 
 ### Band C — Trust
 
@@ -72,6 +72,35 @@ static Canvas section cannot do.
 **Deliberately deferred**: a News/blog section. A homepage carrying
 three-year-old "latest news" is worse than none — revisit only if
 someone will own it.
+
+## Section 5 — done (2026-07-13) — Band B complete
+
+**New block plugin `shh_featured_feed`** (in `shh_feed_catalog`): both
+products with photo, teaser and **per-bale price** (cheapest published
+year, prefixed "From" when the years differ), under an intro carrying
+the two facts a buyer needs up front — *collected at the stable*, and
+*availability is confirmed when we contact you* (task 0038's
+over-promise caveat, now on the homepage rather than only the product
+pages).
+
+**Live data matters most here.** Task 0038's stock decision is that
+**publish/unpublish is the only availability lever** — applied per
+product *or per harvest-year variation*. A hardcoded teaser would keep
+advertising a year of wrap that staff unpublished the day it ran out.
+**Verified exactly that**: unpublishing wrap 2026 flipped the homepage
+from *"From 300,00 DKK per bale"* to *"350,00 DKK per bale"* (only 2025
+left, so no "From") — immediately, no cache clear. Both list cache tags
+are set, per section 3's lesson.
+
+Query and card shared via a new `FeedCardBuilder`, used by the block and
+`/feed` alike — the third and last of the pattern
+(`HorseCardBuilder`, `FacilityCardBuilder`, `FeedCardBuilder`).
+
+**Band B is complete**: the homepage now reads
+hero → What we offer → Horses for sale → Ride with us → Feed & bedding.
+Next is Band C (trust), which **needs client content**: the stud's story
+(section 6) and testimonials (section 8). Section 7 (the gaits
+explainer) can be written without them.
 
 ## Section 4 — done (2026-07-13)
 
