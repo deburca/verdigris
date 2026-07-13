@@ -148,21 +148,22 @@ class ShhFooterBlock extends BlockBase implements ContainerFactoryPluginInterfac
         // into its own column) and the icons must not be block-level —
         // hence core's `icon` element, which emits the bare <svg>,
         // rather than the theme's icon SDC, which wraps it in a div.
-        // The heart is `text-primary` — the theme's Icelandic-flag red,
-        // which is defined in both the light and dark palettes, so it
-        // stays correct in dark mode and follows the site's own colour
-        // system rather than a hardcoded red. The sparkle keeps
-        // currentColor (the footer's text colour) so it reads as
-        // punctuation, not a second focal point.
-        '#template' => '{{ "Made with"|t }} <span class="inline-block align-text-bottom text-primary">{{ heart }}</span><span class="visually-hidden">{{ "love"|t }}</span> {{ "by"|t }} <a href="{{ url }}" class="underline underline-offset-2">verdigris.nu</a> {{ "with a sprinkle of"|t }} <span class="inline-block align-text-bottom">{{ sparkle }}</span><span class="visually-hidden">{{ "AI"|t }}</span>',
+        // The two marks carry the Icelandic flag colours the site is built
+        // on: the heart is `text-primary` (--iceland-red) and the sparkle
+        // `text-accent` (--iceland-blue). Both tokens are defined in the
+        // light *and* dark palettes, so the pair stays correct in dark
+        // mode — and the credit is coloured by the site's own system
+        // rather than by hardcoded values.
+        '#template' => '{{ "Made with"|t }} <span class="inline-block align-text-bottom text-primary">{{ heart }}</span><span class="visually-hidden">{{ "love"|t }}</span> {{ "by"|t }} <a href="{{ url }}" class="underline underline-offset-2">verdigris.nu</a> {{ "with a sprinkle of"|t }} <span class="inline-block align-text-bottom text-accent">{{ sparkle }}</span><span class="visually-hidden">{{ "AI"|t }}</span>',
         '#context' => [
           'url' => 'https://verdigris.nu/',
-          // Filled heart (client, 2026-07-13). The theme's Phosphor pack
-          // ships regular weight only, so the `fill` variant was vendored
-          // into icons/phosphor/ from phosphor-icons/core (MIT, the same
-          // pack and licence the theme already declares).
+          // Filled variants (client, 2026-07-13). The theme's Phosphor
+          // pack ships regular weight only, so `heart-fill` and
+          // `sparkle-fill` were vendored into icons/phosphor/ from
+          // phosphor-icons/core (MIT — the same pack and licence the
+          // theme already declares).
           'heart' => $this->buildIcon('heart-fill'),
-          'sparkle' => $this->buildIcon('sparkle'),
+          'sparkle' => $this->buildIcon('sparkle-fill'),
         ],
       ],
     ];

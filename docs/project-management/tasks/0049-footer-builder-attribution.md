@@ -107,8 +107,36 @@ and stays correct in dark mode. The wrapping span sets the text colour
 and the SVG's `fill="currentColor"` does the rest. The sparkle keeps
 the footer's text colour deliberately — one focal point, not two.
 
-No CSS rebuild was needed: `text-primary` is already compiled.
-Verified in the browser — solid red heart, outline path gone.
+### Flag-coloured pair (client, 2026-07-13)
+
+Follow-up: since the site is built on the Icelandic flag scheme and the
+heart is now red, the AI mark should be **Icelandic blue** to match. So
+both marks are now **filled** variants in the **flag's two colours**:
+
+| Mark | Icon | Class | Token |
+|---|---|---|---|
+| Heart | `heart-fill` | `text-primary` | `--iceland-red` |
+| Sparkle | `sparkle-fill` | `text-accent` | `--iceland-blue` |
+
+`sparkle-fill.svg` was vendored alongside `heart-fill.svg` from the same
+MIT Phosphor source. Both tokens are defined in the **light and dark**
+palettes, so the pair stays correct in dark mode, and the credit is
+coloured by the site's own system rather than hardcoded values.
+
+**A Tailwind gotcha worth remembering**: `text-accent` did **not**
+work at first — the sparkle rendered near-black. Tailwind v4 only
+compiles the utilities it *finds in source*, and no file had ever used
+`text-accent`, so the class simply did not exist in
+`build/main.min.css` (`.text-accent-foreground` did, which is what an
+over-eager `grep -c ".text-accent"` matched — a false positive that
+briefly hid the cause). A `npm run build` generated
+`.text-accent{color:var(--accent)}` and the sparkle went blue. Lesson:
+when a Tailwind class "does nothing", check it was actually *compiled*
+before debugging the markup — and grep for the exact rule, not a
+substring.
+
+Verified in the browser: solid red heart, solid blue sparkle, outline
+paths gone.
 
 ## Also in this change (theme-side)
 
