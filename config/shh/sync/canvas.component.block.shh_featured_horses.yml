@@ -1,0 +1,22 @@
+uuid: d9881447-70eb-4b88-8b11-7db889129aae
+langcode: en
+status: true
+dependencies:
+  module:
+    - shh_horse_catalog
+active_version: c4f39b19f345ca59
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: shh_featured_horses
+        label: 'SHH featured horses'
+        label_display: '0'
+        provider: shh_horse_catalog
+    fallback_metadata:
+      slot_definitions: null
+label: 'SHH featured horses'
+id: block.shh_featured_horses
+provider: shh_horse_catalog
+source: block
+source_local_id: shh_featured_horses

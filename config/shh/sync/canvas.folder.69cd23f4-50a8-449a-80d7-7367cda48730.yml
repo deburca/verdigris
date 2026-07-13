@@ -1,0 +1,11 @@
+uuid: 69cd23f4-50a8-449a-80d7-7367cda48730
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.shh_featured_horses
+name: 'SHH Horse Catalog'
+configEntityTypeId: component
+weight: 0
+items:
+  - block.shh_featured_horses

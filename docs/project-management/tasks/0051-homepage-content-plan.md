@@ -47,7 +47,7 @@ static Canvas section cannot do.
 
 | # | Section | Notes | Status |
 |---|---|---|---|
-| 3 | **Horses for sale** ⭐ **[code]** | 2–3 featured horses: photo, name, gaits, price, "See all horses". The money content for a stud, so highest of the three. Needs a block that pulls live `available` horses — a static section would go stale the moment one sells. | todo |
+| 3 | **Horses for sale** ⭐ **[code]** | Live featured horses + "See all". | **done** 2026-07-13 |
 | 4 | **The facilities** | Oval Track, Manège, Lunge Ring: photo + one line each; 30-minute slots, 08:00–20:00; link to booking. | todo |
 | 5 | **Feed & bedding** | Straw and wrap, per bale, collected at the stable. Short — secondary business, and the availability caveat already lives on the product pages (task 0038). | todo |
 
@@ -72,6 +72,49 @@ static Canvas section cannot do.
 **Deliberately deferred**: a News/blog section. A homepage carrying
 three-year-old "latest news" is worse than none — revisit only if
 someone will own it.
+
+## Section 3 — done (2026-07-13)
+
+**New block plugin `shh_featured_horses`** (in `shh_horse_catalog`),
+placed on the Canvas homepage directly under the hero — the stud's money
+content, above the three-way split. Canvas derives a component from any
+block plugin, so code and Canvas content compose cleanly.
+
+**The query and the card are shared, not duplicated.** Both were factored
+out of `HorseCatalogController` into a new `HorseCardBuilder` service,
+now used by the homepage block *and* `/horses`. One definition of "a
+horse that is for sale" — `field_sale_state: available` on a published
+variation, the same rule 0024 enforces at add-to-cart — so the two
+surfaces can never drift apart and the catalog can never advertise a
+horse the checkout would refuse.
+
+**Renders nothing when nothing is for sale**, so the homepage loses the
+section rather than showing an empty shelf. And the grid **fits the
+number of horses** (1 → a single centred card; 2 → a centred pair; 3+ →
+the three-column grid): a stud often has one or two, and a lone card
+stranded at the left of a three-column grid reads as "something failed to
+load" rather than "we have one lovely mare".
+
+**Two bugs caught while verifying**, both worth knowing:
+
+1. **A stale-cache bug that defeated the entire point of the section.**
+   The block tagged `commerce_product_list` — but `field_sale_state`,
+   the field that decides whether a horse appears at all, lives on the
+   **variation**, and saving a variation does **not** invalidate the
+   *product* list tag. Relisting a sold horse changed nothing on the
+   page. **A horse could stay advertised on the homepage after it sold**
+   until some unrelated cache clear. Fixed by tagging
+   `commerce_product_variation_list` as well — in the block *and* in the
+   `/horses` catalog, which had inherited the same flaw. Verified: sale
+   state now flips both surfaces immediately, both ways.
+2. **A contrast regression**: the section's `muted` background rendered
+   the heading and card text in the muted foreground, visibly washing
+   them out beside the crisp section below — the sort of thing the
+   theme's WCAG work (hestehoj task 0005) exists to prevent. Dropped.
+
+Also re-learned the Tailwind lesson from the footer sparkle: `max-w-sm`
+was not in the compiled CSS because nothing had ever used it. A theme
+rebuild generated it.
 
 ## Section 1 — done (2026-07-13)
 
