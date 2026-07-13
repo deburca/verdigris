@@ -86,10 +86,29 @@ a real headless browser at 1280px (both lines flush right, one line
 each) and 390px (left-aligned, no overflow). phpcs clean. No config
 change — the block plugin is code.
 
-**Open (client)**: the Phosphor pack ships outline-only icons, so the
-heart is ♡ rather than a solid ❤. A filled heart would need a filled
-variant added to the icon pack, or a fallback to the emoji glyph.
-Left as-is pending the client's preference.
+### Filled red heart (client, 2026-07-13)
+
+The client asked for a **filled heart, in red**. The theme's Phosphor
+pack ships **regular weight only** — no `-fill` variants at all — so
+`heart-fill.svg` was **vendored** into
+`web/themes/custom/hestehoj/icons/phosphor/` from
+[phosphor-icons/core](https://github.com/phosphor-icons/core)
+(`assets/fill/heart-fill.svg`, MIT — the same pack and licence the
+theme's `hestehoj.icons.yml` already declares, so no new licence
+obligation and no CDN, per [[0009-vendor-fullcalendar-library]]).
+Identical format to the existing icons (`viewBox="0 0 256 256"`,
+`fill="currentColor"`, single path), so the pack's `{icon_id}.svg`
+source pattern picks it up with no config change.
+
+**Red via `text-primary`, not a hardcoded colour.** The theme's
+`--primary` is `--iceland-red` in **both** the light and dark palettes
+(the Icelandic-flag colour scheme), so the heart is the site's own red
+and stays correct in dark mode. The wrapping span sets the text colour
+and the SVG's `fill="currentColor"` does the rest. The sparkle keeps
+the footer's text colour deliberately — one focal point, not two.
+
+No CSS rebuild was needed: `text-primary` is already compiled.
+Verified in the browser — solid red heart, outline path gone.
 
 ## Also in this change (theme-side)
 

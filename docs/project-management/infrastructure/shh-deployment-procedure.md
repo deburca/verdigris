@@ -115,6 +115,16 @@ ddev drush -l https://hestehoj.ddev.site sql:query \
    WHERE type = 'bee' AND total_price__number = 0"
 ```
 
+```bash
+# 4. Theme icon pack present? Icons are vendored files with no build
+#    step, and their absence degrades SILENTLY (no error — icons just
+#    don't render). They were excluded from git until 2026-07-13 by a
+#    macOS .gitignore trap (task 0050), so verify the deployed checkout
+#    actually has them.
+ls web/themes/custom/hestehoj/icons/phosphor/heart-fill.svg   # must exist
+ls web/themes/custom/hestehoj/icons/phosphor/ | wc -l          # expect ~1513
+```
+
 Also delete any leftover test content before go-live: test accounts
 (`test_rider`, `shh_test_rider`, `soren_holm`, `freya_jensen`), test
 orders, and the GD-generated placeholder product/facility photos

@@ -297,7 +297,14 @@ nbproject/
 .DS_Store
 .AppleDouble
 .LSOverride
-Icon?
+# NOTE: the macOS template's classic `Icon?` pattern (for Finder's custom-
+# folder-icon file, literally named "Icon\r") is DELIBERATELY REMOVED. On a
+# case-insensitive filesystem with core.ignorecase=true it also matches any
+# directory named `icons` -- which silently excluded every custom theme's
+# 1,500-file Phosphor icon pack from git, so a fresh clone or a production
+# deploy would have shipped with NO icons at all (found 2026-07-13). Git also
+# strips a trailing CR when parsing this file, so the name cannot be matched
+# safely; .DS_Store and ._* below cover the macOS cruft that actually turns up.
 ._*
 .DocumentRevisions-V100
 .fseventsd
