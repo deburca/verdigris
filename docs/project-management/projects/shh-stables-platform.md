@@ -987,7 +987,29 @@ staff cancelling on a rider's behalf land on *that rider's* dashboard
 genuine deposit purchase cancelled by the rider and a genuine booking
 cancelled by admin — both redirecting to `/user/2/bookings`.
 
-**The task backlog is now empty** — all 48 tasks are done, and
+[[0049-footer-builder-attribution]] is **done** (closed 2026-07-13,
+client request): every SHH page's footer now carries "Made with ♡ by
+**verdigris.nu** with a sprinkle of ✦" under the copyright, linking to
+`https://verdigris.nu/`. Phosphor icons (`heart` + `sparkle` — the
+client's choice over `robot`) rather than emoji, so the marks inherit
+`currentColor` and work in light and dark; rendered with core's
+`#type => 'icon'` element rather than the theme's icon SDC, whose
+block-level wrapper breaks an inline sentence. **SHH-only by
+construction** — it lives in `shh_site_footer`'s block plugin, not the
+shared `hestehoj:footer` SDC, so the sites that compose footers via SDC
+configuration are untouched. Both lines are `md:text-right` (client
+nitpick), leaving mobile's single column left-aligned. Two layout bugs
+were caught only by screenshotting (the markup looked right both
+times): a flex container that split the sentence into ragged columns,
+and the attribution landing *beside* the copyright because the slot
+wrapper lays children in a row. Also ships a theme fix: `npm run build`
+was warning on an invalid `var(--btn-*)` rule, because Tailwind v4
+scans Markdown too and a task doc *quoted* that class in prose —
+resolved with `@source not "../docs"` (theme vault task 0008), which
+also retires the "don't rebuild the CSS" caution, since the committed
+build now matches the local toolchain again.
+
+**The task backlog is now empty** — all 49 tasks are done, and
 **0038's client questions are all answered** (2026-07-12: pricing and
 stock are managed outside the application; prices are **per bale** —
 the `/feed` cards now say so, rather than showing a bare "250,00

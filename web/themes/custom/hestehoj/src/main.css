@@ -13,6 +13,26 @@
  */
 @source "../../../../modules/custom";
 
+/*
+ * ...but do NOT scan this theme's own documentation. Tailwind v4's
+ * automatic detection treats every file under the theme as a source of
+ * class candidates, Markdown included, so prose that *quotes* a class
+ * name becomes a real utility. `docs/.../0002-update-button-variants-
+ * flag-color-swap.md` mentions the arbitrary utility `bg-[var(--btn-*)]`
+ * — with the `*` wildcard standing for "any of the --btn tokens" — and
+ * Tailwind duly compiled `background-color: var(--btn-*)`, which is not
+ * valid CSS:
+ *
+ *   Found 1 warning while optimizing generated CSS:
+ *   .bg-\[var\(--btn-\*\)\] { background-color: var(--btn-*);
+ *                                                        ^ Unexpected token Delim('*')
+ *
+ * Excluding the docs fixes it at the root, rather than contorting the
+ * prose to dodge the scanner — and stops any future doc that names a
+ * class from silently injecting junk utilities into the build.
+ */
+@source not "../docs";
+
 @import "../components/hero-blog/hero-blog.tailwind.css";
 @import "../components/navbar/navbar.tailwind.css";
 @import "../components/anchor/anchor.tailwind.css";

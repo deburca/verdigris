@@ -115,6 +115,47 @@ Verification over real HTTP:
 - All discovery pages + both product pages 200; phpcs clean; no new
   watchdog errors.
 
+## Addendum (2026-07-13): builder attribution in the footer
+
+Client request: a "Made with ♥ by verdigris.nu with a sprinkle of ✦"
+line. Added to `ShhFooterBlock`'s `footer_utility_last` slot, as a
+second line under the copyright (right-aligned on desktop, stacked on
+mobile), linking to `https://verdigris.nu/`. The copyright line above
+it carries `md:text-right` for the same treatment (client nitpick,
+2026-07-13) — `md:`-prefixed on both, so mobile keeps its natural
+left alignment.
+
+Decisions worth knowing:
+
+- **Phosphor icons, not emoji** (`heart` + `sparkle` — the client
+  chose sparkle over robot for the AI mark). The theme already vendors
+  the Phosphor pack (MIT, local — no CDN, per task 0009), and icons
+  inherit `currentColor`, so they take the footer's own text colour in
+  light and dark alike. Emoji glyphs render differently on every OS and
+  cannot be recoloured.
+- **Core's `#type => 'icon'` render element, not the theme's
+  `hestehoj:icon` SDC.** The SDC wraps its SVG in a `<div
+  class="min-w:…">` — block-level, which shatters an inline sentence.
+  The core element emits the bare `<svg>`, so the icons sit between
+  words as intended. (Two layout bugs were caught by screenshotting
+  rather than trusting the markup: the first attempt made the
+  attribution a flex container, which turned every phrase into its own
+  wrapping column, and put it *beside* the copyright rather than under
+  it, because the slot's own wrapper is `md:flex md:justify-end` and
+  therefore lays its children in a row. Fixed by giving that slot a
+  single `flex-col` child.)
+- **Accessibility**: the SVGs are decorative (`aria-hidden`), each
+  followed by a `visually-hidden` word, so a screen reader hears "Made
+  with **love** by verdigris.nu with a sprinkle of **AI**" rather than
+  silence or "heart sparkle".
+- **SHH only, by construction**: it lives in the `shh_site_footer`
+  block plugin, not in the theme's footer SDC — the other sites compose
+  their footers through SDC configuration and are untouched.
+
+Verified over real HTTP and in a real browser at desktop (1280px) and
+mobile (390px) widths. phpcs clean; no config change (the block plugin
+is code).
+
 **Deliberately not done** (recorded for follow-up, not blocking):
 - Real social URLs — pending client (placeholders live meanwhile).
 - The leaflet/OpenStreetMap map embed for the address the task

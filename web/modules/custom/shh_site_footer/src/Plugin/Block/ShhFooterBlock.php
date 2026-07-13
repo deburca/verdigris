@@ -98,13 +98,75 @@ class ShhFooterBlock extends BlockBase implements ContainerFactoryPluginInterfac
         'footer_first' => $footer_first,
         'footer_last' => ['#plain_text' => ''],
         'footer_utility_first' => $this->buildMenu('footer'),
+        // The slot's own wrapper is `md:flex md:justify-end`, so give it a
+        // single child and stack inside it — two children would sit side
+        // by side on the same row.
         'footer_utility_last' => [
           '#type' => 'html_tag',
           '#tag' => 'div',
-          '#value' => '© ' . date('Y') . ' ' . $site_name,
+          '#attributes' => ['class' => ['flex', 'flex-col', 'gap-1', 'md:items-end']],
+          'copyright' => [
+            '#type' => 'html_tag',
+            '#tag' => 'div',
+            '#attributes' => ['class' => ['md:text-right']],
+            '#value' => '© ' . date('Y') . ' ' . $site_name,
+          ],
+          'attribution' => $this->buildAttribution(),
         ],
       ],
       '#cache' => ['tags' => ['config:system.site']],
+    ];
+  }
+
+  /**
+   * Builds the "Made with ♥ by verdigris.nu with a sprinkle of ✦" line.
+   *
+   * Phosphor icons (the pack the theme already vendors — no CDN, per
+   * task 0009) rather than emoji: they inherit `currentColor`, so they
+   * take the footer's own text colour in both light and dark mode,
+   * where emoji glyphs render differently on every platform and cannot
+   * be recoloured.
+   *
+   * Accessibility: the SVGs are decorative (the icon component sets
+   * `aria-hidden` when no alt is given), so each carries a
+   * visually-hidden word — a screen reader hears "Made with love by
+   * verdigris.nu with a sprinkle of AI", not "heart … sparkle".
+   *
+   * SHH-only by construction: this lives in the shh_site_footer block
+   * plugin, not in the theme's footer SDC, so the other sites — which
+   * compose their footers through SDC configuration — are untouched.
+   */
+  protected function buildAttribution(): array {
+    return [
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+      '#attributes' => ['class' => ['shh-attribution', 'md:text-right']],
+      'text' => [
+        '#type' => 'inline_template',
+        // One flowing sentence: the icons sit inline between words, so
+        // this must NOT be a flex container (that turns every phrase
+        // into its own column) and the icons must not be block-level —
+        // hence core's `icon` element, which emits the bare <svg>,
+        // rather than the theme's icon SDC, which wraps it in a div.
+        '#template' => '{{ "Made with"|t }} <span class="inline-block align-text-bottom">{{ heart }}</span><span class="visually-hidden">{{ "love"|t }}</span> {{ "by"|t }} <a href="{{ url }}" class="underline underline-offset-2">verdigris.nu</a> {{ "with a sprinkle of"|t }} <span class="inline-block align-text-bottom">{{ sparkle }}</span><span class="visually-hidden">{{ "AI"|t }}</span>',
+        '#context' => [
+          'url' => 'https://verdigris.nu/',
+          'heart' => $this->buildIcon('heart'),
+          'sparkle' => $this->buildIcon('sparkle'),
+        ],
+      ],
+    ];
+  }
+
+  /**
+   * One inline Phosphor icon, sized to the footer's small type.
+   */
+  protected function buildIcon(string $icon): array {
+    return [
+      '#type' => 'icon',
+      '#pack_id' => 'phosphor',
+      '#icon_id' => $icon,
+      '#settings' => ['size' => 16],
     ];
   }
 
