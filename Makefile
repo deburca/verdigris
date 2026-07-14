@@ -1,62 +1,135 @@
-# ---------------------------------------------------------------------
-# Environment/deploy targets (kbg / vdg / shh): run ON the target
-# environment (testing or production) after `git pull` + `composer
-# install`, using that host's drush directly.
+# =====================================================================
+# Multisite push/pull workflow — vdg (verdigris.nu), kbg
+# (kragebaekgaard.dk), shh (stutteri-hestehoj.dk / hestehoj.dk).
 #
-# kbg and vdg have no tracked config store yet (decision 0020 is
-# shh-only), so their targets stay updb + cr. shh's tracked store
-# (config/shh/sync) is authoritative, so its target is `drush deploy`
-# = updb -> config:import -> cache:rebuild -> deploy:hook, in that
-# order. On import, the config_split "local" split stays inactive
-# (stored status: false), so dev-only modules (Field UI, Views UI)
-# are uninstalled on testing/production by construction.
+# <site>-push — run LOCALLY (dev, via ddev), in this order:
+#   update-database -> clear-cache -> <site>-commit (= export-config ->
+#   git add config/<site> -> git commit; editor opens; house style:
+#   feat(<site>): subject + "Site: <domain> (<site>)" body line) ->
+#   git push
+# Aborting the commit editor stops the chain, so nothing is pushed.
+# Review `git diff config/<site>` before the commit — every changed
+# line should be explained by the change you just made (decision 0020).
 #
-# The target host's settings.php must carry the block documented in
-# docs/project-management/decisions/0020-shh-config-export-strategy.md
-# (settings files are gitignored and cannot come from git).
-# ---------------------------------------------------------------------
+# <site>-pull — run ON the target environment (testing or production),
+# the same steps in reverse: fetch what push published, then apply it:
+#   git pull -> composer install --no-dev ->
+#   update-database -> import-config -> clear-cache -> deploy hooks
+# (the `drush deploy` order: updb before config:import so imports never
+# run against a stale schema). config:import is skipped while the
+# site's sync store (config/<site>/sync) has no *.yml yet, so a pull
+# cannot wipe a site whose config was never exported.
+#
+# Production URIs are the defaults; on a testing instance override:
+#   make shh-pull SHH_URI=test.hestehoj.dk
+#
+# Each target host needs (settings files are gitignored and cannot
+# come from git):
+#   $settings['config_sync_directory'] = '../config/<site>/sync';
+#   in web/sites/<site>/settings.php — shh additionally carries the
+#   config_split block from
+#   docs/project-management/decisions/0020-shh-config-export-strategy.md
+#   (its dev-only "local" split stays inactive on import, so Field UI /
+#   Views UI are uninstalled on testing/production by construction).
+# =====================================================================
 
-kbg:
-	vendor/bin/drush --uri=kragebaekgaard.dk updb
-	vendor/bin/drush --uri=kragebaekgaard.dk cr
-
-vdg:
-	vendor/bin/drush --uri=verdigris.nu updb
-	vendor/bin/drush --uri=verdigris.nu cr
-
-# For a testing environment, override the URI:
-#   make shh SHH_URI=test.hestehoj.dk
+VDG_URI ?= verdigris.nu
+KBG_URI ?= kragebaekgaard.dk
 SHH_URI ?= hestehoj.dk
-shh:
-	vendor/bin/drush --uri=$(SHH_URI) deploy -y
 
-# ---------------------------------------------------------------------
-# shh config commit workflow (decision 0020, task 0033): run LOCALLY
-# (dev, via ddev). A config-affecting change is only complete when the
-# exported config diff is committed together with the code — a stale
-# export means the next import on any environment reverts values or
-# uninstalls modules.
-#
-# Order:
-#   1. make shh-export      export active config (config_split-aware:
-#                           base -> config/shh/sync, dev-only modules
-#                           -> config/shh/local)
-#   2. review `git diff config/shh` — every changed line should be
-#      explained by the change you just made
-#   3. `git add` your code changes
-#   4. make shh-commit      re-exports, stages config/shh, and opens
-#                           the commit editor (house style: feat(shh):
-#                           subject + "Site: stutteri-hestehoj.dk (shh)"
-#                           line in the body)
-#   5. push, then roll forward per environment: testing first, then
-#      production — on each: git pull, composer install, make shh
-# ---------------------------------------------------------------------
+VDG_DDEV = https://verdigris.ddev.site
+KBG_DDEV = https://kragebaekgaard.ddev.site
+SHH_DDEV = https://hestehoj.ddev.site
+
+DRUSH = vendor/bin/drush
+
+# ------------------------------------------------------------------ vdg
+
+vdg-export:
+	ddev drush -l $(VDG_DDEV) config:export -y
+
+vdg-commit: vdg-export
+	git add config/vdg
+	git commit
+
+vdg-push:
+	ddev drush -l $(VDG_DDEV) updb -y
+	ddev drush -l $(VDG_DDEV) cache:rebuild
+	$(MAKE) vdg-commit
+	git push
+
+vdg-pull:
+	git pull
+	composer install --no-dev
+	$(DRUSH) --uri=$(VDG_URI) updb -y
+	@if ls config/vdg/sync/*.yml >/dev/null 2>&1; then \
+		$(DRUSH) --uri=$(VDG_URI) config:import -y; \
+	else \
+		echo "config/vdg/sync has no exported config yet — skipping config:import"; \
+	fi
+	$(DRUSH) --uri=$(VDG_URI) cache:rebuild
+	$(DRUSH) --uri=$(VDG_URI) deploy:hook -y
+
+# ------------------------------------------------------------------ kbg
+
+kbg-export:
+	ddev drush -l $(KBG_DDEV) config:export -y
+
+kbg-commit: kbg-export
+	git add config/kbg
+	git commit
+
+kbg-push:
+	ddev drush -l $(KBG_DDEV) updb -y
+	ddev drush -l $(KBG_DDEV) cache:rebuild
+	$(MAKE) kbg-commit
+	git push
+
+kbg-pull:
+	git pull
+	composer install --no-dev
+	$(DRUSH) --uri=$(KBG_URI) updb -y
+	@if ls config/kbg/sync/*.yml >/dev/null 2>&1; then \
+		$(DRUSH) --uri=$(KBG_URI) config:import -y; \
+	else \
+		echo "config/kbg/sync has no exported config yet — skipping config:import"; \
+	fi
+	$(DRUSH) --uri=$(KBG_URI) cache:rebuild
+	$(DRUSH) --uri=$(KBG_URI) deploy:hook -y
+
+# ------------------------------------------------------------------ shh
 
 shh-export:
-	ddev drush -l https://hestehoj.ddev.site config:export -y
+	ddev drush -l $(SHH_DDEV) config:export -y
 
 shh-commit: shh-export
 	git add config/shh
 	git commit
 
-.PHONY: kbg vdg shh shh-export shh-commit
+shh-push:
+	ddev drush -l $(SHH_DDEV) updb -y
+	ddev drush -l $(SHH_DDEV) cache:rebuild
+	$(MAKE) shh-commit
+	git push
+
+shh-pull:
+	git pull
+	composer install --no-dev
+	$(DRUSH) --uri=$(SHH_URI) updb -y
+	@if ls config/shh/sync/*.yml >/dev/null 2>&1; then \
+		$(DRUSH) --uri=$(SHH_URI) config:import -y; \
+	else \
+		echo "config/shh/sync has no exported config yet — skipping config:import"; \
+	fi
+	$(DRUSH) --uri=$(SHH_URI) cache:rebuild
+	$(DRUSH) --uri=$(SHH_URI) deploy:hook -y
+
+# Back-compat aliases for the old per-site deploy targets.
+vdg: vdg-pull
+kbg: kbg-pull
+shh: shh-pull
+
+.PHONY: vdg kbg shh \
+	vdg-export vdg-commit vdg-push vdg-pull \
+	kbg-export kbg-commit kbg-push kbg-pull \
+	shh-export shh-commit shh-push shh-pull
