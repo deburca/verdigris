@@ -13,9 +13,12 @@
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.18",
-    "@zackad/prettier-plugin-twig": "^0.16.3",
+    "@zackad/prettier-plugin-twig": "^0.17",
     "prettier": "^3.7.4",
-    "prettier-plugin-tailwindcss": "^0.7.2",
+    "prettier-plugin-tailwindcss": "^0.8",
     "tailwindcss": "^4.1.18"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.5.1": true
   }
 }

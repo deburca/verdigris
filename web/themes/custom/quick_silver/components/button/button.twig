@@ -6,10 +6,10 @@
 {% set button_variants =
   html_cva(
     base: [
-      'group flex items-center justify-center transition duration-300 ease-in-out',
+      'group flex items-center justify-center transition duration-300 ease-in-out motion-reduce:transition-none',
       'rounded-lg leading-tight font-medium',
       'cursor-pointer no-underline outline-none hover:no-underline',
-      'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',
+      'focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:ring-offset-2 focus-visible:ring-offset-background',
       'disabled:pointer-events-none disabled:opacity-50'
     ],
     variants: {
@@ -44,7 +44,7 @@
 
 {% set button_width = mobile_width|default(false) ? 'full' : 'fit' %}
 {% set icon_position = icon_first|default(false) ? 'first' : 'last' %}
-{% set icon_classes = 'transition duration-300 ease-in-out group-hover:translate-x-1' %}
+{% set icon_classes = 'transition duration-300 ease-in-out group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0' %}
 
 {# Normalize btn_classes - handle both array and string formats #}
 {% set additional_classes = btn_classes|default('') %}
