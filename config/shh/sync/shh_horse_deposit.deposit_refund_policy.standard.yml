@@ -1,7 +1,0 @@
-uuid: 3585178f-fa58-4023-8c3a-d64af4ce4a74
-langcode: en
-status: true
-dependencies: {  }
-id: standard
-label: 'Standard (7 days)'
-refund_window_days: 7

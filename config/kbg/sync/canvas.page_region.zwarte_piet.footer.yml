@@ -1,0 +1,10 @@
+uuid: 48e100cf-f199-444a-80c4-68a5a8f2b2a8
+langcode: en
+status: true
+dependencies:
+  theme:
+    - zwarte_piet
+id: zwarte_piet.footer
+region: footer
+theme: zwarte_piet
+component_tree: {  }

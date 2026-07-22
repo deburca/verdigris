@@ -1,0 +1,14 @@
+uuid: 9062757b-862e-48e4-8fd7-72c40cb88cf9
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.aipary_owner
+  module:
+    - user
+id: user_add_role_action.aipary_owner
+label: 'Add the Aipary Owner role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: aipary_owner

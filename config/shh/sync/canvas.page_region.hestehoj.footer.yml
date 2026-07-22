@@ -15,5 +15,5 @@ component_tree:
     component_id: block.shh_footer
     component_version: 6626018d1fcd2728
     inputs:
-      label: 'SHH footer'
+      label: 'SHH footer (hestehoj:footer)'
       label_display: '0'

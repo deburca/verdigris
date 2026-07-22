@@ -1,0 +1,10 @@
+uuid: 3f4787ea-755d-4286-9f89-36967c6c847d
+langcode: en
+status: true
+dependencies:
+  theme:
+    - quick_silver
+id: quick_silver.footer
+region: footer
+theme: quick_silver
+component_tree: {  }

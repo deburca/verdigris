@@ -6,7 +6,6 @@ dependencies:
     - rest.resource.bat_api_events_resource
   module:
     - bee
-    - commerce_checkout
     - commerce_product
     - klaro
     - media
@@ -19,7 +18,6 @@ label: 'Anonymous user'
 weight: 0
 is_admin: false
 permissions:
-  - 'access checkout'
   - 'access content'
   - 'restful get bat_api_events_resource'
   - 'use klaro'

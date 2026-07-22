@@ -1,0 +1,14 @@
+uuid: b528b95d-c6ca-4f2f-9b41-b114efb324a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.aipary_owner
+  module:
+    - user
+id: user_remove_role_action.aipary_owner
+label: 'Remove the Aipary Owner role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: aipary_owner

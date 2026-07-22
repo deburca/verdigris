@@ -15,5 +15,5 @@ component_tree:
     component_id: block.shh_navbar
     component_version: 4f64dab8c8617e55
     inputs:
-      label: 'SHH navbar'
+      label: 'SHH navbar (hestehoj:navbar)'
       label_display: '0'

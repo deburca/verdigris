@@ -1,0 +1,15 @@
+_core:
+  default_config_hash: HlN7eAN2N4JIHsYv56V4E7sqC9bS609KwvGFjyD_mgk
+langcode: en
+uuid: a962b6df-154c-4b12-863d-74d6cd468e1c
+name: Verdigris
+mail: info@verdigris.nu
+slogan: ''
+page:
+  403: /user/login
+  404: /404
+  front: /page/7
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: en
+mail_notification: null

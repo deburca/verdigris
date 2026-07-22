@@ -1,0 +1,21 @@
+uuid: ba5ac8b8-eb04-4444-b1bd-6f02605236f4
+langcode: en
+status: true
+dependencies:
+  theme:
+    - hestehoj
+active_version: 6d6367123c15a82a
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions: {  }
+    fallback_metadata:
+      slot_definitions:
+        accordion_content:
+          title: 'Accordion content'
+          description: 'Only one of collapsible sections added can be open at a time.'
+label: 'Accordion container'
+id: sdc.hestehoj.accordion-container
+provider: hestehoj
+source: sdc
+source_local_id: 'hestehoj:accordion-container'

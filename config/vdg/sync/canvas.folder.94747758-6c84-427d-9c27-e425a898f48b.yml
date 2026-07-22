@@ -1,0 +1,33 @@
+uuid: 94747758-6c84-427d-9c27-e425a898f48b
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.byte_theme.cta
+    - canvas.component.sdc.byte_theme.hero-billboard
+    - canvas.component.sdc.byte_theme.hero-blog
+    - canvas.component.sdc.byte_theme.hero-side-by-side
+    - canvas.component.sdc.hestehoj.cta
+    - canvas.component.sdc.hestehoj.hero-billboard
+    - canvas.component.sdc.hestehoj.hero-blog
+    - canvas.component.sdc.hestehoj.hero-side-by-side
+    - canvas.component.sdc.quick_silver.cta
+    - canvas.component.sdc.quick_silver.hero-billboard
+    - canvas.component.sdc.quick_silver.hero-blog
+    - canvas.component.sdc.quick_silver.hero-side-by-side
+name: Hero
+configEntityTypeId: component
+weight: 0
+items:
+  - sdc.byte_theme.cta
+  - sdc.byte_theme.hero-billboard
+  - sdc.byte_theme.hero-blog
+  - sdc.byte_theme.hero-side-by-side
+  - sdc.hestehoj.cta
+  - sdc.hestehoj.hero-billboard
+  - sdc.hestehoj.hero-blog
+  - sdc.hestehoj.hero-side-by-side
+  - sdc.quick_silver.cta
+  - sdc.quick_silver.hero-billboard
+  - sdc.quick_silver.hero-blog
+  - sdc.quick_silver.hero-side-by-side

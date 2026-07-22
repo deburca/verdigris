@@ -1,0 +1,14 @@
+uuid: 6eeef4a8-bac8-42a0-a729-a4eda9aa9060
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.bee_keeper
+  module:
+    - user
+id: user_add_role_action.bee_keeper
+label: 'Add the Bee Keeper role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: bee_keeper

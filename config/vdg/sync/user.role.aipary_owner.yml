@@ -1,0 +1,9 @@
+uuid: b8b06350-18b6-42b6-a7d1-d4cbd93bf561
+langcode: en
+status: true
+dependencies: {  }
+id: aipary_owner
+label: 'Aipary Owner'
+weight: 5
+is_admin: false
+permissions: {  }

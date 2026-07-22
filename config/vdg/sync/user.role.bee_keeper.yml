@@ -1,0 +1,9 @@
+uuid: 90813d45-7586-4afe-b314-1d563df197f9
+langcode: en
+status: true
+dependencies: {  }
+id: bee_keeper
+label: 'Bee Keeper'
+weight: 4
+is_admin: false
+permissions: {  }

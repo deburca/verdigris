@@ -1,0 +1,30 @@
+uuid: 15f81a95-ee22-4cbd-a433-36ca0c080f85
+langcode: en
+status: true
+dependencies:
+  theme:
+    - quick_silver
+active_version: '5524813695409257'
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        id:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: anchor-id
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: Anchor
+id: sdc.quick_silver.anchor
+provider: quick_silver
+source: sdc
+source_local_id: 'quick_silver:anchor'

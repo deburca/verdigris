@@ -1,0 +1,43 @@
+uuid: 5a447adb-803a-4873-a1df-b6e339a4ae0e
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.mercury.anchor
+    - canvas.component.sdc.mercury.badge
+    - canvas.component.sdc.mercury.blockquote
+    - canvas.component.sdc.mercury.button
+    - canvas.component.sdc.mercury.heading
+    - canvas.component.sdc.mercury.icon
+    - canvas.component.sdc.mercury.image
+    - canvas.component.sdc.mercury.text
+    - canvas.component.sdc.mercury.video
+    - canvas.component.sdc.zwarte_piet.anchor
+    - canvas.component.sdc.zwarte_piet.badge
+    - canvas.component.sdc.zwarte_piet.blockquote
+    - canvas.component.sdc.zwarte_piet.button
+    - canvas.component.sdc.zwarte_piet.heading
+    - canvas.component.sdc.zwarte_piet.icon
+    - canvas.component.sdc.zwarte_piet.image
+    - canvas.component.sdc.zwarte_piet.text
+name: Base
+configEntityTypeId: component
+weight: 0
+items:
+  - sdc.mercury.anchor
+  - sdc.mercury.badge
+  - sdc.mercury.blockquote
+  - sdc.mercury.button
+  - sdc.mercury.heading
+  - sdc.mercury.icon
+  - sdc.mercury.image
+  - sdc.mercury.text
+  - sdc.mercury.video
+  - sdc.zwarte_piet.anchor
+  - sdc.zwarte_piet.badge
+  - sdc.zwarte_piet.blockquote
+  - sdc.zwarte_piet.button
+  - sdc.zwarte_piet.heading
+  - sdc.zwarte_piet.icon
+  - sdc.zwarte_piet.image
+  - sdc.zwarte_piet.text

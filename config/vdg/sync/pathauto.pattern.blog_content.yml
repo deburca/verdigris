@@ -1,0 +1,28 @@
+uuid: 5d778509-5dc4-4502-a024-2299ddf58bf2
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.blog
+  module:
+    - node
+  enforced:
+    config:
+      - node.type.blog
+_core:
+  default_config_hash: Vhz5UVeo6sbVDMsmzmy_z1vKj3vXme_Hfv8lpcA1W5c
+id: blog_content
+label: 'Blog content'
+type: 'canonical_entities:node'
+pattern: '/blog/[node:created:html_month]/[node:title]'
+selection_criteria:
+  484783df-5ed0-4f01-bff4-c6497c0d6751:
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      blog: blog
+selection_logic: and
+weight: -5
+relationships: {  }

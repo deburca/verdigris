@@ -1,7 +1,23 @@
 uuid: 9355ca87-1f33-4855-97ee-91b7e627a779
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - scheduler
+third_party_settings:
+  scheduler:
+    expand_fieldset: when_required
+    fields_display_mode: vertical_tab
+    publish_enable: false
+    publish_past_date: error
+    publish_past_date_created: false
+    publish_required: false
+    publish_revision: null
+    publish_touch: false
+    show_message_after_update: true
+    unpublish_enable: false
+    unpublish_required: false
+    unpublish_revision: null
 id: horse
 label: Horse
 traits: {  }
@@ -9,5 +25,5 @@ locked: false
 description: ''
 variationTypes:
   - horse
-multipleVariations: false
+multipleVariations: true
 injectVariationFields: true

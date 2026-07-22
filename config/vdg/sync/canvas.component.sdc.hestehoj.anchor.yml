@@ -1,0 +1,30 @@
+uuid: 8b45dd5e-60e5-4e8f-87f1-42df60764ed4
+langcode: en
+status: true
+dependencies:
+  theme:
+    - hestehoj
+active_version: '5524813695409257'
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        id:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: anchor-id
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: Anchor
+id: sdc.hestehoj.anchor
+provider: hestehoj
+source: sdc
+source_local_id: 'hestehoj:anchor'

@@ -1,15 +1,7 @@
 uuid: 2bf623b8-a07d-4535-a0e3-63256837f470
 langcode: en
 status: true
-dependencies:
-  module:
-    - commerce_cart
-third_party_settings:
-  commerce_cart:
-    cart_expiration:
-      number: 30
-      unit: minute
-      anonymous_only: false
+dependencies: {  }
 _core:
   default_config_hash: jn2Hj-04qG6O3dTtK8EaBB13jVPplONDb9L0Fat-0pI
 id: default

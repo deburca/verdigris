@@ -1,0 +1,41 @@
+uuid: f8c613b8-f00b-4b5c-a802-3fa44ec49e4f
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.social
+  module:
+    - system
+_core:
+  default_config_hash: gqyZ3-Ks9ilw4L8OrclGvHOGQUmmA8XWKFTffMR258c
+active_version: e861cf0cf3260605
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'system_menu_block:social'
+        label: Social
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
+  61f1f0168c94b6b6:
+    settings:
+      default_settings:
+        id: 'system_menu_block:social'
+        label: Social
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
+label: Social
+id: block.system_menu_block.social
+provider: system
+source: block
+source_local_id: 'system_menu_block:social'

@@ -1,0 +1,39 @@
+uuid: 44704838-2b64-4f17-bb1f-f37276ddaa20
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.byte_theme.card
+    - canvas.component.sdc.byte_theme.card-icon
+    - canvas.component.sdc.byte_theme.card-logo
+    - canvas.component.sdc.byte_theme.card-pricing
+    - canvas.component.sdc.byte_theme.card-testimonial
+    - canvas.component.sdc.hestehoj.card
+    - canvas.component.sdc.hestehoj.card-icon
+    - canvas.component.sdc.hestehoj.card-logo
+    - canvas.component.sdc.hestehoj.card-pricing
+    - canvas.component.sdc.hestehoj.card-testimonial
+    - canvas.component.sdc.quick_silver.card
+    - canvas.component.sdc.quick_silver.card-icon
+    - canvas.component.sdc.quick_silver.card-logo
+    - canvas.component.sdc.quick_silver.card-pricing
+    - canvas.component.sdc.quick_silver.card-testimonial
+name: Card
+configEntityTypeId: component
+weight: 0
+items:
+  - sdc.byte_theme.card
+  - sdc.byte_theme.card-icon
+  - sdc.byte_theme.card-logo
+  - sdc.byte_theme.card-pricing
+  - sdc.byte_theme.card-testimonial
+  - sdc.hestehoj.card
+  - sdc.hestehoj.card-icon
+  - sdc.hestehoj.card-logo
+  - sdc.hestehoj.card-pricing
+  - sdc.hestehoj.card-testimonial
+  - sdc.quick_silver.card
+  - sdc.quick_silver.card-icon
+  - sdc.quick_silver.card-logo
+  - sdc.quick_silver.card-pricing
+  - sdc.quick_silver.card-testimonial

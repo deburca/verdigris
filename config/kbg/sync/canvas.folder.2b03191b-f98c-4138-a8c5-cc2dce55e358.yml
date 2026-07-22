@@ -1,0 +1,13 @@
+uuid: 2b03191b-f98c-4138-a8c5-cc2dce55e358
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.navigation.message
+    - canvas.component.sdc.navigation.title
+name: Other
+configEntityTypeId: component
+weight: 0
+items:
+  - sdc.navigation.message
+  - sdc.navigation.title

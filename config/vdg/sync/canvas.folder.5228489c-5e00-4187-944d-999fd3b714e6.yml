@@ -1,0 +1,45 @@
+uuid: 5228489c-5e00-4187-944d-999fd3b714e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.byte_theme.accordion
+    - canvas.component.sdc.byte_theme.accordion-container
+    - canvas.component.sdc.byte_theme.footer
+    - canvas.component.sdc.byte_theme.group
+    - canvas.component.sdc.byte_theme.navbar
+    - canvas.component.sdc.byte_theme.section
+    - canvas.component.sdc.hestehoj.accordion
+    - canvas.component.sdc.hestehoj.accordion-container
+    - canvas.component.sdc.hestehoj.footer
+    - canvas.component.sdc.hestehoj.group
+    - canvas.component.sdc.hestehoj.navbar
+    - canvas.component.sdc.hestehoj.section
+    - canvas.component.sdc.quick_silver.accordion
+    - canvas.component.sdc.quick_silver.accordion-container
+    - canvas.component.sdc.quick_silver.footer
+    - canvas.component.sdc.quick_silver.group
+    - canvas.component.sdc.quick_silver.navbar
+    - canvas.component.sdc.quick_silver.section
+name: Layout
+configEntityTypeId: component
+weight: 0
+items:
+  - sdc.byte_theme.accordion
+  - sdc.byte_theme.accordion-container
+  - sdc.byte_theme.footer
+  - sdc.byte_theme.group
+  - sdc.byte_theme.navbar
+  - sdc.byte_theme.section
+  - sdc.hestehoj.accordion
+  - sdc.hestehoj.accordion-container
+  - sdc.hestehoj.footer
+  - sdc.hestehoj.group
+  - sdc.hestehoj.navbar
+  - sdc.hestehoj.section
+  - sdc.quick_silver.accordion
+  - sdc.quick_silver.accordion-container
+  - sdc.quick_silver.footer
+  - sdc.quick_silver.group
+  - sdc.quick_silver.navbar
+  - sdc.quick_silver.section

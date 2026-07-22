@@ -1,0 +1,21 @@
+uuid: 84c950aa-b893-4fbe-8053-3d23b1dbbeb9
+langcode: en
+status: true
+dependencies:
+  theme:
+    - zwarte_piet
+active_version: 6d6367123c15a82a
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions: {  }
+    fallback_metadata:
+      slot_definitions:
+        accordion_content:
+          title: 'Accordion content'
+          description: 'Only one of collapsible sections added can be open at a time.'
+label: 'Accordion container'
+id: sdc.zwarte_piet.accordion-container
+provider: zwarte_piet
+source: sdc
+source_local_id: 'zwarte_piet:accordion-container'

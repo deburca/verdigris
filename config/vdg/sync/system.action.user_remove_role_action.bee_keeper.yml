@@ -1,0 +1,14 @@
+uuid: b003406a-377a-48c3-a499-78ea0c9d2643
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.bee_keeper
+  module:
+    - user
+id: user_remove_role_action.bee_keeper
+label: 'Remove the Bee Keeper role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: bee_keeper

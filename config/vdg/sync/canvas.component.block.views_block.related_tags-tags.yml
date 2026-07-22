@@ -1,0 +1,37 @@
+uuid: e2728171-267a-4029-b02a-24e76f2bb24b
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.related_tags
+  module:
+    - views
+active_version: 7825983c0257260e
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'views_block:related_tags-tags'
+        label: 'Related tags'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+  4615de48dbc05936:
+    settings:
+      default_settings:
+        id: 'views_block:related_tags-tags'
+        label: 'Related tags'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+label: 'Related tags'
+id: block.views_block.related_tags-tags
+provider: views
+source: block
+source_local_id: 'views_block:related_tags-tags'

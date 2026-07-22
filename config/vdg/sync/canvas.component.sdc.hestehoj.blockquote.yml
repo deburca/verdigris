@@ -1,0 +1,64 @@
+uuid: 01fa6e50-2a15-4e4c-bf70-4ef3a131ecf9
+langcode: en
+status: true
+dependencies:
+  theme:
+    - hestehoj
+active_version: f8798ead1e51ce02
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        text:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: '“To confine our attention to terrestrial matters would be to limit the human spirit.”'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        cite_name:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Isiah Julio'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        cite_text:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Engineer, Technical Services'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+        cite_url:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value: null
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: Blockquote
+id: sdc.hestehoj.blockquote
+provider: hestehoj
+source: sdc
+source_local_id: 'hestehoj:blockquote'

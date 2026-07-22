@@ -1,0 +1,59 @@
+uuid: 79a13f57-0964-4a49-b57f-ae13ff162695
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.byte_theme.anchor
+    - canvas.component.sdc.byte_theme.badge
+    - canvas.component.sdc.byte_theme.blockquote
+    - canvas.component.sdc.byte_theme.button
+    - canvas.component.sdc.byte_theme.heading
+    - canvas.component.sdc.byte_theme.icon
+    - canvas.component.sdc.byte_theme.image
+    - canvas.component.sdc.byte_theme.text
+    - canvas.component.sdc.byte_theme.video
+    - canvas.component.sdc.hestehoj.anchor
+    - canvas.component.sdc.hestehoj.badge
+    - canvas.component.sdc.hestehoj.blockquote
+    - canvas.component.sdc.hestehoj.button
+    - canvas.component.sdc.hestehoj.heading
+    - canvas.component.sdc.hestehoj.icon
+    - canvas.component.sdc.hestehoj.image
+    - canvas.component.sdc.hestehoj.text
+    - canvas.component.sdc.quick_silver.anchor
+    - canvas.component.sdc.quick_silver.badge
+    - canvas.component.sdc.quick_silver.blockquote
+    - canvas.component.sdc.quick_silver.button
+    - canvas.component.sdc.quick_silver.heading
+    - canvas.component.sdc.quick_silver.icon
+    - canvas.component.sdc.quick_silver.image
+    - canvas.component.sdc.quick_silver.text
+name: Base
+configEntityTypeId: component
+weight: 0
+items:
+  - sdc.byte_theme.anchor
+  - sdc.byte_theme.badge
+  - sdc.byte_theme.blockquote
+  - sdc.byte_theme.button
+  - sdc.byte_theme.heading
+  - sdc.byte_theme.icon
+  - sdc.byte_theme.image
+  - sdc.byte_theme.text
+  - sdc.byte_theme.video
+  - sdc.hestehoj.anchor
+  - sdc.hestehoj.badge
+  - sdc.hestehoj.blockquote
+  - sdc.hestehoj.button
+  - sdc.hestehoj.heading
+  - sdc.hestehoj.icon
+  - sdc.hestehoj.image
+  - sdc.hestehoj.text
+  - sdc.quick_silver.anchor
+  - sdc.quick_silver.badge
+  - sdc.quick_silver.blockquote
+  - sdc.quick_silver.button
+  - sdc.quick_silver.heading
+  - sdc.quick_silver.icon
+  - sdc.quick_silver.image
+  - sdc.quick_silver.text

@@ -6,7 +6,6 @@ dependencies:
     - commerce_product.commerce_product_variation_type.horse
     - field.field.commerce_product_variation.horse.field_breed
     - field.field.commerce_product_variation.horse.field_date_of_birth
-    - field.field.commerce_product_variation.horse.field_deposit_policy
     - field.field.commerce_product_variation.horse.field_discipline
     - field.field.commerce_product_variation.horse.field_gaits
     - field.field.commerce_product_variation.horse.field_health_notes
@@ -37,12 +36,6 @@ content:
   field_date_of_birth:
     type: datetime_default
     weight: 12
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_deposit_policy:
-    type: options_select
-    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }

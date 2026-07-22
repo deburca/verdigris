@@ -1,0 +1,29 @@
+uuid: 38b9eed8-7bfb-4534-a6ed-69fdea749bc4
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.mercury.card
+    - canvas.component.sdc.mercury.card-icon
+    - canvas.component.sdc.mercury.card-logo
+    - canvas.component.sdc.mercury.card-pricing
+    - canvas.component.sdc.mercury.card-testimonial
+    - canvas.component.sdc.zwarte_piet.card
+    - canvas.component.sdc.zwarte_piet.card-icon
+    - canvas.component.sdc.zwarte_piet.card-logo
+    - canvas.component.sdc.zwarte_piet.card-pricing
+    - canvas.component.sdc.zwarte_piet.card-testimonial
+name: Card
+configEntityTypeId: component
+weight: 0
+items:
+  - sdc.mercury.card
+  - sdc.mercury.card-icon
+  - sdc.mercury.card-logo
+  - sdc.mercury.card-pricing
+  - sdc.mercury.card-testimonial
+  - sdc.zwarte_piet.card
+  - sdc.zwarte_piet.card-icon
+  - sdc.zwarte_piet.card-logo
+  - sdc.zwarte_piet.card-pricing
+  - sdc.zwarte_piet.card-testimonial
