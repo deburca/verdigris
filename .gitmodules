@@ -1,0 +1,3 @@
+[submodule "web/themes/custom/quick_silver"]
+	path = web/themes/custom/quick_silver
+	url = https://github.com/deburca/quick_silver
