@@ -81,6 +81,9 @@ docroot/themes/contrib/
 docroot/profiles/contrib/
 docroot/profiles/varbase/
 
+# Ignore custom modules, themes, and profiles (managed via Github)
+web/themes/custom/quick_silver/
+
 # Ignore libraries directory (managed via Composer)
 web/libraries/
 libraries/
