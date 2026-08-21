@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "654a7851c8cce8ad3bb1eb41f627c5d4",
+    "content-hash": "aa99521ea39a8371f741443416644cad",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1950,16 +1950,16 @@
         },
         {
             "name": "drops/drops",
-            "version": "v1.6.0",
+            "version": "v1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deburca/drops.git",
-                "reference": "71b71ffb3332cc52276b82ec5b8e8a58726bbced"
+                "reference": "4015cda83895bf91ed312987b63679363e219727"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deburca/drops/zipball/71b71ffb3332cc52276b82ec5b8e8a58726bbced",
-                "reference": "71b71ffb3332cc52276b82ec5b8e8a58726bbced",
+                "url": "https://api.github.com/repos/deburca/drops/zipball/4015cda83895bf91ed312987b63679363e219727",
+                "reference": "4015cda83895bf91ed312987b63679363e219727",
                 "shasum": ""
             },
             "require": {
@@ -1994,9 +1994,9 @@
             "description": "DROPS — Drupal Remote Operations and Pipeline System",
             "support": {
                 "issues": "https://github.com/deburca/drops/issues",
-                "source": "https://github.com/deburca/drops/tree/v1.6.0"
+                "source": "https://github.com/deburca/drops/tree/v1.6.1"
             },
-            "time": "2026-05-30T19:59:09+00:00"
+            "time": "2026-08-21T15:28:12+00:00"
         },
         {
             "name": "drupal/address",
