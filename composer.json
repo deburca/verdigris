@@ -440,6 +440,9 @@
         },
         "enable-patching-from-dependencies": true,
         "patches": {
+            "drops/drops": {
+                "FilesExportStep resolves the multi-site sites/<dir> path from EnvironmentConfig::getSiteDir(), which only reads the environment-level uri and ignores the application-level uri override that drushCommand() correctly applies — so on a shared multi-site environment, file exports silently pull from the wrong site's files directory (e.g. sites/default instead of sites/shh) while the database/config exports target the right site. Also: DatabaseImportStep, FilesImportStep and ConfigImportStep run gunzip/rsync/mysql against the package's local extraction path via environment->execute(), which runs those commands on the target environment — for SSH targets that path never existed there, so every import against a remote server failed. Stage the relevant package contents onto the target via environment->upload() first, then reference the staged path.": "patches/drops-fix-multisite-file-path-and-ssh-transfer.patch"
+            },
             "drupal/byte_theme": {
                 "Custom Byte Theme main.css": "patches/byte_theme_main.patch"
             },
