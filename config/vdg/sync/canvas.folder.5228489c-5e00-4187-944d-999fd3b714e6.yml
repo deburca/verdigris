@@ -18,6 +18,7 @@ dependencies:
     - canvas.component.sdc.quick_silver.accordion
     - canvas.component.sdc.quick_silver.accordion-container
     - canvas.component.sdc.quick_silver.footer
+    - canvas.component.sdc.quick_silver.grid
     - canvas.component.sdc.quick_silver.group
     - canvas.component.sdc.quick_silver.navbar
     - canvas.component.sdc.quick_silver.section
@@ -40,6 +41,7 @@ items:
   - sdc.quick_silver.accordion
   - sdc.quick_silver.accordion-container
   - sdc.quick_silver.footer
+  - sdc.quick_silver.grid
   - sdc.quick_silver.group
   - sdc.quick_silver.navbar
   - sdc.quick_silver.section

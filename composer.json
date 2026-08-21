@@ -331,7 +331,7 @@
         "drupal/yoast_seo": "^2.1",
         "drush/drush": "^13.7",
         "fullcalendar/fullcalendar": "6.1.21",
-        "hivelog/hivelog": "^1.3",
+        "hivelog/hivelog": "^1.6",
         "jquery/inputmask": "*",
         "jquery/intl-tel-input": "*",
         "jquery/rateit": "*",

@@ -28,6 +28,7 @@ dependencies:
     - canvas.component.sdc.quick_silver.icon
     - canvas.component.sdc.quick_silver.image
     - canvas.component.sdc.quick_silver.text
+    - canvas.component.sdc.quick_silver.video
 name: Base
 configEntityTypeId: component
 weight: 0
@@ -57,3 +58,4 @@ items:
   - sdc.quick_silver.icon
   - sdc.quick_silver.image
   - sdc.quick_silver.text
+  - sdc.quick_silver.video
