@@ -21,7 +21,6 @@ dependencies:
     - node.type.bookable_facility
   module:
     - office_hours
-    - options
     - text
     - user
 id: node.bookable_facility.default
@@ -63,13 +62,6 @@ content:
       link_rel: canonical
     third_party_settings: {  }
     weight: 12
-    region: content
-  field_facility_kind:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 10
     region: content
   field_indoor:
     type: boolean
@@ -148,6 +140,7 @@ content:
     weight: 100
     region: content
 hidden:
+  field_facility_kind: true
   field_media: true
   field_price: true
   field_price_frequency: true
