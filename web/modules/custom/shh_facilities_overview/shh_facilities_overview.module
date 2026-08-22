@@ -11,11 +11,11 @@ use Drupal\Core\Entity\EntityInterface;
 /**
  * Implements hook_ENTITY_TYPE_view() for node.
  *
- * Adds the all-images photo gallery to bookable facility pages (task
- * 0040, reusing task 0039's shared helpers and presentation). A plain
- * sibling view hook — the facility page keeps its classic
- * field-formatter display (decision 0030) and the booking CTA and
- * availability calendar render untouched alongside.
+ * Adds the hero image carousel to bookable facility pages, as the very
+ * first content element — supersedes task 0040's "Photos" grid section,
+ * reusing task 0039's shared media-list helper. Weighted below every
+ * other element added here so it renders first regardless of what else
+ * the display or other modules contribute.
  */
 function shh_facilities_overview_node_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode) {
   /** @var \Drupal\node\NodeInterface $node */
@@ -23,28 +23,102 @@ function shh_facilities_overview_node_view(array &$build, EntityInterface $node,
     return;
   }
 
-  $gallery = shh_common_image_gallery(shh_common_image_media_list($node, 'field_media'));
-  if (!$gallery) {
+  $items = [];
+  foreach (shh_common_image_media_list($node, 'field_media') as $media) {
+    $items[] = shh_common_image_media_props_from_media($media);
+  }
+  if (!$items) {
     return;
   }
 
-  // Between the facility facts fields (weights 10-25) and the links /
-  // open hours / availability calendar block (100+).
-  $build['shh_photos'] = [
+  $build['shh_hero'] = [
+    '#type' => 'component',
+    '#component' => 'hestehoj:image-carousel',
+    '#props' => ['items' => $items],
+    '#weight' => -100,
+  ];
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter() for node.
+ *
+ * Regroups the facility facts (name/kind/surface/etc.) and the
+ * booking-related elements (book now / buy credit pack / open hours) —
+ * contributed independently by the display's field formatters and by
+ * shh_facility_booking_cta / shh_facility_credits — into one side-by-side
+ * row, with the availability calendar left as its own full-width element
+ * underneath. Runs as an _alter hook (not _view) specifically so it fires
+ * after every module's own hook_ENTITY_TYPE_view() has already added its
+ * piece to $build, regardless of module weight.
+ */
+function shh_facilities_overview_node_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+  if ($entity->bundle() !== 'bookable_facility' || !in_array($display->getMode(), ['default', 'full'], TRUE)) {
+    return;
+  }
+
+  $info_keys = [
+    'field_facility_kind',
+    'field_surface',
+    'field_dimensions',
+    'field_indoor',
+    'field_capacity',
+    'field_peak_pricing_notes',
+    'field_cancellation_policy',
+    'field_slot_duration_minutes',
+  ];
+  $booking_keys = [
+    'shh_book_now_link',
+    'shh_buy_credit_pack_link',
+    'field_open_hours',
+  ];
+
+  $info = [
     '#type' => 'container',
-    '#attributes' => ['class' => ['flex', 'flex-col', 'gap-3', 'mb-8']],
-    '#weight' => 50,
+    '#attributes' => ['class' => ['flex', 'flex-col', 'gap-3', 'flex-1']],
     'heading' => [
       '#type' => 'component',
       '#component' => 'hestehoj:heading',
       '#props' => [
-        'heading_text' => (string) t('Photos'),
+        'heading_text' => $entity->label(),
         'level' => 2,
-        'text_size' => 'heading-responsive-2xl',
+        'text_size' => 'heading-responsive-3xl',
         'text_color' => 'default',
         'align' => 'left',
       ],
+      '#weight' => -10,
     ],
-    'grid' => $gallery,
+  ];
+  $booking = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['flex', 'flex-col', 'gap-3', 'flex-1']],
+  ];
+
+  $found = FALSE;
+  foreach ($info_keys as $key) {
+    if (isset($build[$key])) {
+      $info[$key] = $build[$key];
+      unset($build[$key]);
+      $found = TRUE;
+    }
+  }
+  foreach ($booking_keys as $key) {
+    if (isset($build[$key])) {
+      $booking[$key] = $build[$key];
+      unset($build[$key]);
+      $found = TRUE;
+    }
+  }
+  if (!$found) {
+    // Nothing to regroup (shouldn't normally happen for a real facility
+    // node) — leave $build untouched rather than add an empty row.
+    return;
+  }
+
+  $build['shh_facility_summary'] = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['flex', 'flex-col', 'gap-8', 'md:flex-row', 'md:items-start', 'mb-8']],
+    '#weight' => 10,
+    'info' => $info,
+    'booking' => $booking,
   ];
 }
