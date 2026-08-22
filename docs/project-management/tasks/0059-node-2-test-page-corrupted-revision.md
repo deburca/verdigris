@@ -1,40 +1,48 @@
 ---
 type: task
 tags: [cms2/task]
-status: backlog
+status: done
 priority: medium
 site: shh
 project: "[[shh-stables-platform]]"
 created: 2026-08-22
 updated: 2026-08-22
 ---
-# Task: node/2 ("Test Page") has a corrupted revision and 404s
+# Task: node/2 ("Test Page") 404s — not corruption, already-trashed content
 
 ## Description
 First noted incidentally in [[shh-account-access-gap-analysis]]
-(2026-07-06) and confirmed still present (2026-08-22, `curl
-/node/2` → real `404`): node 2, the stock `page`-type sample content,
-has **two rows both flagged `revision_default = 1`** in its
-`node_revision` table. Entity storage can't resolve a single default
-revision, so
-`\Drupal::entityTypeManager()->getStorage('node')->load(2)` returns
-`NULL` and both `/node/2` and its alias `/test-page` 404.
+(2026-07-06), diagnosed there as **corruption**: node 2, the stock
+`page`-type sample content, appeared to have two rows both flagged
+`revision_default = 1` in its `node_revision` table, which was assumed
+to be why entity storage returned `NULL` and both `/node/2` and its
+alias `/test-page` 404'd.
 
-Not shh-specific business logic and the node isn't linked from
-anywhere on the site, which is why it was left untracked when first
-found — but it's genuine data corruption sitting in the database, and
-worth fixing properly (or deleting the node outright, since it's stock
-sample content) rather than leaving stale for whoever next touches
-that content type.
+## Resolution (2026-08-22) — the original diagnosis was wrong
+The duplicate `revision_default` flag was real (fixed: cleared on the
+stale revision, vid 3 — matching both the `node` base table and
+`node_field_data` — left as the sole default) but **was never the
+actual cause of the 404**. The real cause: `node_field_data.deleted`
+held a real timestamp. This site has the **Trash** module (3.0.32)
+enabled, and node 2 had already been soft-deleted through it at some
+point — 404ing trashed content is Trash's correct, intended behaviour,
+not a bug.
+
+Confirmed disposable (stock Drupal CMS demo content, title literally
+"Test Page", not linked from any menu or content on the site) and
+purged permanently: `drush trash:purge node 2`. Verified all traces
+gone (`node`, `node_revision`, `path_alias` all zero rows for nid 2),
+`/node/2` and `/test-page` correctly 404 (genuinely gone now, not
+corrupted), and the sitemap ([[0058-xml-sitemap-missing]]) still
+generates cleanly.
 
 ## Acceptance criteria
-- [ ] Inspect the two `revision_default = 1` rows for node 2 and
-      determine the correct one (or confirm the content is disposable
-      sample data)
-- [ ] Either repair the revision table (clear the incorrect
-      `revision_default` flag) or delete the node outright
-- [ ] `/node/2` loads (or is confirmed intentionally gone) over real
-      HTTP
+- [x] Inspected the two `revision_default = 1` rows — real but a red
+      herring, not the actual cause
+- [x] Root cause found: intentional Trash-module soft-deletion, not
+      corruption
+- [x] Confirmed disposable and purged via `trash:purge`
+- [x] `/node/2` confirmed intentionally gone over real HTTP
 
 ## Related
 - [[shh-stables-platform]]
