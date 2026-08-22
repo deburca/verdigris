@@ -1,0 +1,5 @@
+services:
+  shh_news.card_builder:
+    class: Drupal\shh_news\NewsCardBuilder
+    arguments:
+      - '@entity_type.manager'

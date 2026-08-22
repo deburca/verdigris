@@ -1,0 +1,11 @@
+uuid: 712bf5b9-a7d4-451a-8287-f79f4561c7c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.shh_featured_news
+name: 'SHH News'
+configEntityTypeId: component
+weight: 0
+items:
+  - block.shh_featured_news

@@ -1,0 +1,22 @@
+uuid: ce141233-98c6-4ea2-b2a5-ad670216fa89
+langcode: en
+status: true
+dependencies:
+  module:
+    - shh_news
+active_version: 2750651d8eca7582
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: shh_featured_news
+        label: 'SHH news'
+        label_display: '0'
+        provider: shh_news
+    fallback_metadata:
+      slot_definitions: null
+label: 'SHH news'
+id: block.shh_featured_news
+provider: shh_news
+source: block
+source_local_id: shh_featured_news

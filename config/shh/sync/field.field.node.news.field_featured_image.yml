@@ -1,0 +1,24 @@
+uuid: 71deb68f-5fbe-4e6f-808a-1a11fee8a293
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_featured_image
+    - media.type.image
+    - node.type.news
+id: node.news.field_featured_image
+field_name: field_featured_image
+entity_type: node
+bundle: news
+label: 'Featured image'
+description: 'Shown on the listing page and at the top of the post.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+field_type: entity_reference

@@ -25,3 +25,7 @@ links:
     path: /feed
     priority: '0.8'
     changefreq: daily
+  -
+    path: /news
+    priority: '0.6'
+    changefreq: weekly

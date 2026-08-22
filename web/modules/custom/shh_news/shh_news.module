@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * @file
+ * Hooks for shh_news.
+ */
+
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_view() for node.
+ *
+ * Adds a meta description and Open Graph tags to a news post's own page
+ * (task 0054's pattern) — the one page in this family with a real,
+ * author-written `field_description` to use directly, rather than a
+ * summary computed from structured fields like the horse/facility/feed
+ * pages need.
+ */
+function shh_news_node_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode) {
+  /** @var \Drupal\node\NodeInterface $node */
+  if ($node->bundle() !== 'news' || !in_array($display->getMode(), ['default', 'full'], TRUE)) {
+    return;
+  }
+  if (!$node->hasField('field_description') || $node->get('field_description')->isEmpty()) {
+    return;
+  }
+
+  $image_url = NULL;
+  $image_alt = NULL;
+  if ($node->hasField('field_featured_image') && !$node->get('field_featured_image')->isEmpty()) {
+    $media = $node->get('field_featured_image')->entity;
+    if ($media) {
+      $image_url = shh_common_absolute_image_url($media);
+      $image_alt = shh_common_image_media_props_from_media($media)['alt'] ?? NULL;
+    }
+  }
+
+  $build['#attached'] ??= [];
+  shh_common_attach_meta_tags(
+    $build['#attached'],
+    $node->label(),
+    (string) $node->get('field_description')->value,
+    $image_url,
+    $image_alt,
+    'article',
+  );
+}

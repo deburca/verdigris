@@ -1,0 +1,7 @@
+shh_news.catalog:
+  path: '/news'
+  defaults:
+    _controller: '\Drupal\shh_news\Controller\NewsController::catalog'
+    _title: 'News'
+  requirements:
+    _permission: 'access content'

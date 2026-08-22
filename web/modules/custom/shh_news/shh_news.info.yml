@@ -1,0 +1,8 @@
+name: 'SHH News'
+type: module
+description: 'Implements docs/project-management/tasks/0066-news-blog-section-deferred.md: a public /news page listing news posts, plus a homepage teaser section.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - shh_common:shh_common
+  - node:node

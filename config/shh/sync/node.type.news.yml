@@ -1,0 +1,11 @@
+uuid: 1efe964b-2d60-4496-9f84-c154bf03b1ce
+langcode: en
+status: true
+dependencies: {  }
+name: News
+type: news
+description: 'A news/blog post for the stud farm.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false
