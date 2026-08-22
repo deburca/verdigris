@@ -15,6 +15,7 @@ dependencies:
     - commerce_product
     - contextual
     - dashboard
+    - editoria11y
     - file
     - filter
     - honeypot
@@ -40,6 +41,7 @@ permissions:
   - 'create bee reservation'
   - 'delete own files'
   - 'manage own commerce_payment_method'
+  - 'mark as hidden in editoria11y'
   - 'restful get bat_api_events_resource'
   - 'skip CAPTCHA'
   - 'use klaro'
@@ -47,6 +49,7 @@ permissions:
   - 'view calendar data for any availability_daily event'
   - 'view calendar data for any availability_hourly event'
   - 'view commerce_product'
+  - 'view editoria11y checker'
   - 'view media'
   - 'view own commerce_order'
   - 'view own unpublished content'
