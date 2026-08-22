@@ -47,7 +47,13 @@ class HorseCatalogController extends ControllerBase {
       '#cache' => [
         'tags' => ['commerce_product_list', 'commerce_product_variation_list'],
       ],
+      '#attached' => [],
     ];
+    shh_common_attach_meta_tags(
+      $build['#attached'],
+      (string) $this->t('Icelandic horses for sale'),
+      (string) $this->t('Browse Icelandic horses for sale at Stutteri Hestehøj — five-gaited and four-gaited horses, bred in Holbæk.'),
+    );
 
     if (!$horses) {
       $build['empty'] = [

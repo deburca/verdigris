@@ -48,7 +48,13 @@ class FeedCatalogController extends ControllerBase {
       '#cache' => [
         'tags' => ['commerce_product_list', 'commerce_product_variation_list'],
       ],
+      '#attached' => [],
     ];
+    shh_common_attach_meta_tags(
+      $build['#attached'],
+      (string) $this->t('Feed & bedding'),
+      (string) $this->t('Straw and wrap for sale at Stutteri Hestehøj, priced per bale — pickup only.'),
+    );
 
     if (!$products) {
       $build['empty'] = [

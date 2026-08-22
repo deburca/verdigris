@@ -121,4 +121,67 @@ function shh_facilities_overview_node_view_alter(array &$build, EntityInterface 
     'info' => $info,
     'booking' => $booking,
   ];
+
+  shh_facilities_overview_attach_meta_tags($build, $entity);
+}
+
+/**
+ * Attaches a meta description (task 0054) for one facility's own page.
+ *
+ * Composed the same way FacilityCardBuilder::buildCard() builds its
+ * card summary — kind, indoor/outdoor, capacity, per-slot price — but
+ * inline here rather than sharing that method, since the card's summary
+ * is Commerce-price-formatted for a compact card string and this needs
+ * a full sentence; duplicating three field reads is simpler than
+ * awkwardly reusing the card's shorter string.
+ */
+function shh_facilities_overview_attach_meta_tags(array &$build, EntityInterface $node): void {
+  $parts = [];
+  if ($node->hasField('field_facility_kind') && !$node->get('field_facility_kind')->isEmpty()) {
+    $allowed_values = $node->get('field_facility_kind')->getFieldDefinition()
+      ->getFieldStorageDefinition()->getSetting('allowed_values');
+    $value = $node->get('field_facility_kind')->value;
+    $parts[] = $allowed_values[$value] ?? $value;
+  }
+  if ($node->hasField('field_indoor') && !$node->get('field_indoor')->isEmpty()) {
+    $parts[] = $node->get('field_indoor')->value ? t('indoor') : t('outdoor');
+  }
+  if ($node->hasField('field_capacity') && !$node->get('field_capacity')->isEmpty()) {
+    $parts[] = \Drupal::translation()->formatPlural(
+      (int) $node->get('field_capacity')->value,
+      'capacity 1 rider',
+      'capacity @count riders',
+    );
+  }
+
+  $pricing_helper = \Drupal::service('shh_facility_credits.pricing_helper');
+  $slot_price = $pricing_helper->getSlotPrice($node);
+  if ($slot_price && $node->hasField('field_slot_duration_minutes')) {
+    $formatted_price = \Drupal::service('commerce_price.currency_formatter')
+      ->format($slot_price->getNumber(), $slot_price->getCurrencyCode());
+    $parts[] = t('@price per @minutes-minute slot', [
+      '@price' => $formatted_price,
+      '@minutes' => (int) $node->get('field_slot_duration_minutes')->value,
+    ]);
+  }
+
+  if (!$parts) {
+    return;
+  }
+  $description = (string) t('Book the @name at Stutteri Hestehøj — @facts. Book online, pay as you ride.', [
+    '@name' => $node->label(),
+    '@facts' => implode(', ', $parts),
+  ]);
+
+  $image_url = NULL;
+  $image_alt = NULL;
+  $media_list = shh_common_image_media_list($node, 'field_media');
+  if ($media_list) {
+    $media = reset($media_list);
+    $image_url = shh_common_absolute_image_url($media);
+    $image_alt = shh_common_image_media_props_from_media($media)['alt'] ?? NULL;
+  }
+
+  $build['#attached'] ??= [];
+  shh_common_attach_meta_tags($build['#attached'], $node->label(), $description, $image_url, $image_alt);
 }

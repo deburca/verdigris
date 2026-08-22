@@ -65,6 +65,13 @@ class PricingComparisonController extends ControllerBase {
     /** @var \Drupal\node\NodeInterface[] $nodes */
     $nodes = $node_storage->loadMultiple($ids);
 
+    $build['#attached'] = [];
+    shh_common_attach_meta_tags(
+      $build['#attached'],
+      (string) $this->t('Pricing comparison'),
+      (string) $this->t('Compare facility booking prices at Stutteri Hestehøj — single slot, 10-session credit pack, or the same-slot multi-facility bundle, side by side.'),
+    );
+
     $build['table'] = $this->buildTable($nodes);
     $build['bundle_example'] = $this->buildBundleExample($nodes);
 

@@ -281,3 +281,107 @@ function shh_common_ensure_menu_link(string $menu, string $uri, string $title, i
     'enabled' => TRUE,
   ])->save();
 }
+
+/**
+ * Attaches a meta description and basic Open Graph tags.
+ *
+ * A hand-rolled attachment rather than the Metatag module (task 0054):
+ * Metatag is present in the codebase and already configured on vdg, but
+ * only via `field_seo_*` fields none of shh's bundles have, generating
+ * descriptions through token chains — and Metatag's token resolution
+ * across the commerce_product → commerce_product_variation boundary
+ * (where shh's actual sellable data lives) is a known-awkward path.
+ * Every page needing a description here already has the exact summary
+ * text computed in PHP for its card (HorseCardBuilder,
+ * FacilityCardBuilder, FeedCardBuilder) or is simple enough to write by
+ * hand (the four catalog pages, the homepage) — attaching it directly is
+ * both simpler and more consistent with this project's "compute from
+ * live data, don't hand-author copy that rots" pattern than fighting a
+ * token chain for a handful of pages.
+ *
+ * @param array $attachments
+ *   A `#attached`-shaped array (or the `$attachments` array
+ *   `hook_page_attachments()` receives directly) to append `html_head`
+ *   entries to, by reference.
+ * @param string $title
+ *   Used for `og:title` only — the `<title>` tag itself is untouched,
+ *   core's own title handling already covers it correctly for every
+ *   page this is called from.
+ * @param string $description
+ *   Plain text, no markup. A no-op if empty, so a caller can pass a
+ *   possibly-blank computed string unconditionally.
+ * @param string|null $image_url
+ *   An absolute image URL (see shh_common_absolute_image_url()), or
+ *   NULL to omit `og:image` — every page this is used on either has a
+ *   real photo or reasonably has none yet (the zero-photo degrade case
+ *   the image components already handle).
+ */
+function shh_common_attach_meta_tags(array &$attachments, string $title, string $description, ?string $image_url = NULL, ?string $image_alt = NULL, string $og_type = 'website'): void {
+  $description = trim($description);
+  if ($description === '') {
+    return;
+  }
+
+  $tags = [
+    'shh_meta_description' => ['name' => 'description', 'content' => $description],
+    'shh_meta_og_title' => ['property' => 'og:title', 'content' => $title],
+    'shh_meta_og_description' => ['property' => 'og:description', 'content' => $description],
+    'shh_meta_og_type' => ['property' => 'og:type', 'content' => $og_type],
+  ];
+  if ($image_url) {
+    $tags['shh_meta_og_image'] = ['property' => 'og:image', 'content' => $image_url];
+    if ($image_alt) {
+      $tags['shh_meta_og_image_alt'] = ['property' => 'og:image:alt', 'content' => $image_alt];
+    }
+  }
+
+  foreach ($tags as $key => $tag_attributes) {
+    $attachments['html_head'][] = [
+      ['#tag' => 'meta', '#attributes' => $tag_attributes],
+      $key,
+    ];
+  }
+}
+
+/**
+ * An absolute URL for a media entity's image file, for use as og:image.
+ *
+ * Deliberately the original file, not a cropped social-share derivative
+ * (vdg's `social_media_facebook`/`social_media_x` image styles use the
+ * `focal_point` module, a dependency shh has no other reason to add) —
+ * every consuming platform still fetches and displays the image fine
+ * without a purpose-cropped size.
+ */
+function shh_common_absolute_image_url(?MediaInterface $media): ?string {
+  if (!$media || !$media->hasField('field_media_image') || $media->get('field_media_image')->isEmpty()) {
+    return NULL;
+  }
+  $file = $media->get('field_media_image')->entity;
+  if (!$file) {
+    return NULL;
+  }
+  return \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+}
+
+/**
+ * Implements hook_page_attachments().
+ *
+ * The only page-level hook that reaches the front page regardless of
+ * how it's rendered — the homepage is a Canvas page (task 0051), and
+ * Canvas's page-building pipeline has no per-page hook_ENTITY_TYPE_view()
+ * equivalent to hang a meta description off instead.
+ */
+function shh_common_page_attachments(array &$attachments): void {
+  if (!\Drupal::service('path.matcher')->isFrontPage()) {
+    return;
+  }
+  // hook_page_attachments() only permits '#attached' and '#cache' keys
+  // on $attachments itself — unlike a render array, 'html_head' can't go
+  // directly on it, only nested under '#attached'.
+  $attachments['#attached'] ??= [];
+  shh_common_attach_meta_tags(
+    $attachments['#attached'],
+    (string) t('Stutteri Hestehøj — Icelandic horses, riding facilities & feed'),
+    (string) t('Icelandic horses for sale, hourly riding facility bookings, and feed & bedding at Stutteri Hestehøj in Holbæk — five-gaited and four-gaited horses, bred in-house.'),
+  );
+}

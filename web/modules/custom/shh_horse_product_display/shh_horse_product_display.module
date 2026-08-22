@@ -148,6 +148,8 @@ function shh_horse_product_display_commerce_product_view_alter(array &$build, En
   }
   $build['shh_hero'] = $hero + ['#weight' => -10];
 
+  _shh_horse_product_display_attach_meta_tags($build, $product, $variation, $formatted_price);
+
   // --- Gallery: every image after the featured one (task 0039). The
   // hero already shows delta 0, so a single-image horse gets no
   // gallery furniture at all.
@@ -256,4 +258,42 @@ function _shh_horse_product_display_facts_html($variation): string {
       . '</dt><dd>' . htmlspecialchars((string) $value, ENT_QUOTES) . '</dd></div>';
   }
   return '<dl class="m-0">' . $rows . '</dl>';
+}
+
+/**
+ * Attaches a meta description/Open Graph tags for a horse product page.
+ *
+ * See shh_common_attach_meta_tags() (task 0054) for why this is
+ * hand-composed rather than via Metatag tokens — breed, gaits, and price
+ * are already computed right here for the on-page summary, so building
+ * the description from the same values is the path of least resistance,
+ * not a new computation.
+ */
+function _shh_horse_product_display_attach_meta_tags(array &$build, $product, $variation, string $formatted_price): void {
+  $parts = [];
+  if (!$variation->get('field_breed')->isEmpty()) {
+    $parts[] = $variation->get('field_breed')->value;
+  }
+  $gait_labels = $variation->hasField('field_gaits') ? shh_common_list_string_labels($variation->get('field_gaits')) : [];
+  if ($gait_labels) {
+    $parts[] = implode(', ', $gait_labels);
+  }
+  $parts[] = $formatted_price;
+
+  $description = (string) t('@name for sale at Stutteri Hestehøj — @facts.', [
+    '@name' => $product->label(),
+    '@facts' => implode(', ', $parts),
+  ]);
+
+  $image_url = NULL;
+  $image_alt = NULL;
+  $media_list = shh_common_image_media_list($variation, 'field_media');
+  if ($media_list) {
+    $media = reset($media_list);
+    $image_url = shh_common_absolute_image_url($media);
+    $image_alt = shh_common_image_media_props_from_media($media)['alt'] ?? NULL;
+  }
+
+  $build['#attached'] ??= [];
+  shh_common_attach_meta_tags($build['#attached'], $product->label(), $description, $image_url, $image_alt);
 }

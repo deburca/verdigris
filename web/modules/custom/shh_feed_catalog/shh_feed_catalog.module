@@ -64,4 +64,61 @@ function shh_feed_catalog_commerce_product_view(array &$build, EntityInterface $
       'grid' => $gallery,
     ];
   }
+
+  _shh_feed_catalog_attach_meta_tags($build, $product, array_values($media_by_id));
+}
+
+/**
+ * Attaches a meta description/Open Graph tags for a feed product page.
+ *
+ * See shh_common_attach_meta_tags() (task 0054) for why this is
+ * hand-composed rather than via Metatag tokens. Mirrors
+ * FeedCardBuilder::buildCard()'s summary (body teaser + cheapest
+ * published price) rather than sharing it directly — that method
+ * returns a full card render array, not just the text, and a full
+ * sentence description reads differently than a compact card string.
+ */
+function _shh_feed_catalog_attach_meta_tags(array &$build, EntityInterface $product, array $media_list): void {
+  $parts = [];
+  if ($product->hasField('body') && !$product->get('body')->isEmpty()) {
+    $body = $product->get('body')->first();
+    $teaser = trim(preg_replace('/\s+/', ' ', strip_tags($body->summary ?: $body->value)));
+    if ($teaser !== '') {
+      $parts[] = mb_strlen($teaser) > 150 ? mb_substr($teaser, 0, 149) . '…' : $teaser;
+    }
+  }
+
+  $prices = [];
+  foreach ($product->getVariations() as $variation) {
+    if ($variation->isPublished() && $variation->getPrice()) {
+      $prices[] = $variation->getPrice();
+    }
+  }
+  if ($prices) {
+    usort($prices, fn ($a, $b) => $a->compareTo($b));
+    $formatted = \Drupal::service('commerce_price.currency_formatter')
+      ->format($prices[0]->getNumber(), $prices[0]->getCurrencyCode());
+    $parts[] = end($prices)->equals($prices[0])
+      ? (string) t('@price per bale', ['@price' => $formatted])
+      : (string) t('From @price per bale', ['@price' => $formatted]);
+  }
+
+  if (!$parts) {
+    return;
+  }
+  $description = (string) t('@name at Stutteri Hestehøj — @facts. Pickup only.', [
+    '@name' => $product->label(),
+    '@facts' => implode(', ', $parts),
+  ]);
+
+  $image_url = NULL;
+  $image_alt = NULL;
+  if ($media_list) {
+    $media = reset($media_list);
+    $image_url = shh_common_absolute_image_url($media);
+    $image_alt = shh_common_image_media_props_from_media($media)['alt'] ?? NULL;
+  }
+
+  $build['#attached'] ??= [];
+  shh_common_attach_meta_tags($build['#attached'], $product->label(), $description, $image_url, $image_alt);
 }

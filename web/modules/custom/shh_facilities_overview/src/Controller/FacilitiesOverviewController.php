@@ -52,7 +52,12 @@ class FacilitiesOverviewController extends ControllerBase {
     // disagree about what a facility is or how it is presented.
     $nodes = $this->cardBuilder->facilities();
 
-    $build = [];
+    $build = ['#attached' => []];
+    shh_common_attach_meta_tags(
+      $build['#attached'],
+      (string) $this->t('Book a riding facility'),
+      (string) $this->t('Book the oval track, manège or lunge ring by the half hour at Stutteri Hestehøj — 08:00 to 20:00, book several facilities for the same slot and save.'),
+    );
 
     if (!$nodes) {
       $build['empty'] = [

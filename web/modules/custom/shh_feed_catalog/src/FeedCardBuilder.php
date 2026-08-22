@@ -57,7 +57,7 @@ class FeedCardBuilder {
     // written, otherwise the trimmed body itself.
     if ($product->hasField('body') && !$product->get('body')->isEmpty()) {
       $body = $product->get('body')->first();
-      $teaser = trim(strip_tags($body->summary ?: $body->value));
+      $teaser = trim(preg_replace('/\s+/', ' ', strip_tags($body->summary ?: $body->value)));
       if ($teaser !== '') {
         if (mb_strlen($teaser) > 120) {
           $teaser = mb_substr($teaser, 0, 119) . '…';
