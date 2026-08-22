@@ -24,9 +24,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class BuyCreditPackForm extends ConfirmFormBase {
 
-  const PACK_SIZE = FacilityPricingHelper::PACK_SIZE;
-  const DISCOUNT_PERCENTAGE = FacilityPricingHelper::DISCOUNT_PERCENTAGE;
-
   protected NodeInterface $node;
 
   public function __construct(
@@ -60,7 +57,7 @@ class BuyCreditPackForm extends ConfirmFormBase {
    */
   public function getQuestion() {
     return $this->t('Buy a %count-session credit pack for %title?', [
-      '%count' => self::PACK_SIZE,
+      '%count' => $this->pricingHelper->getPackSize(),
       '%title' => $this->node->label(),
     ]);
   }
@@ -97,14 +94,14 @@ class BuyCreditPackForm extends ConfirmFormBase {
     }
 
     $pack_price = $this->pricingHelper->getPackPrice($slot_price);
-    $full_price = $slot_price->multiply((string) self::PACK_SIZE);
+    $full_price = $slot_price->multiply((string) $this->pricingHelper->getPackSize());
     $form['summary'] = [
       '#markup' => '<p>' . $this->t('@count reservations for %title, normally @full, now @pack (@discount%% off). No expiry — use them anytime this season.', [
-        '@count' => self::PACK_SIZE,
+        '@count' => $this->pricingHelper->getPackSize(),
         '%title' => $this->node->label(),
         '@full' => $full_price,
         '@pack' => $pack_price,
-        '@discount' => self::DISCOUNT_PERCENTAGE,
+        '@discount' => $this->pricingHelper->getDiscountPercentage(),
       ]) . '</p>',
     ];
 
@@ -126,7 +123,7 @@ class BuyCreditPackForm extends ConfirmFormBase {
 
     $order_item = OrderItem::create([
       'title' => $this->t('@count-session credit pack — @title', [
-        '@count' => self::PACK_SIZE,
+        '@count' => $this->pricingHelper->getPackSize(),
         '@title' => $this->node->label(),
       ])->render(),
       'type' => 'facility_credit_pack',

@@ -146,8 +146,8 @@ class FacilitiesOverviewController extends ControllerBase {
 
     $credits_text = Markup::create(
       '<h3>' . $this->t('Save with a credit pack') . '</h3><p>' . $this->t('Buy @count reservations for one facility at once, at @discount% off, and redeem them one at a time whenever you like — they never expire.', [
-        '@count' => FacilityPricingHelper::PACK_SIZE,
-        '@discount' => FacilityPricingHelper::DISCOUNT_PERCENTAGE,
+        '@count' => $this->pricingHelper->getPackSize(),
+        '@discount' => $this->pricingHelper->getDiscountPercentage(),
       ]) . '</p>',
     );
     $build['credits'] = [

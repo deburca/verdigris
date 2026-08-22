@@ -3,6 +3,7 @@
 namespace Drupal\shh_facility_credits\EventSubscriber;
 
 use Drupal\shh_facility_credits\FacilityCreditManager;
+use Drupal\shh_facility_credits\FacilityPricingHelper;
 use Drupal\state_machine\Event\WorkflowTransitionEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -11,9 +12,10 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class CreditPackCheckoutCompletionSubscriber implements EventSubscriberInterface {
 
-  const PACK_SIZE = 10;
-
-  public function __construct(protected FacilityCreditManager $creditManager) {}
+  public function __construct(
+    protected FacilityCreditManager $creditManager,
+    protected FacilityPricingHelper $pricingHelper,
+  ) {}
 
   /**
    * {@inheritdoc}
@@ -41,7 +43,7 @@ class CreditPackCheckoutCompletionSubscriber implements EventSubscriberInterface
         // BuyCreditPackForm) — defensive, shouldn't happen.
         continue;
       }
-      $this->creditManager->grantCredits($uid, (int) $facility_nid, self::PACK_SIZE, $order_item);
+      $this->creditManager->grantCredits($uid, (int) $facility_nid, $this->pricingHelper->getPackSize(), $order_item);
     }
   }
 

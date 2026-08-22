@@ -1,0 +1,5 @@
+# Credit pack size and discount, previously hardcoded constants on
+# FacilityPricingHelper (tasks 0018/0043). Exposed as config so a future
+# settings form can change them without a code deploy.
+pack_size: 10
+discount_percentage: 20

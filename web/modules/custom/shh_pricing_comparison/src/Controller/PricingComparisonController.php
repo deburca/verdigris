@@ -81,7 +81,7 @@ class PricingComparisonController extends ControllerBase {
     $header = [
       $this->t('Facility'),
       $this->t('Single slot'),
-      $this->t('@count-session pack', ['@count' => FacilityPricingHelper::PACK_SIZE]),
+      $this->t('@count-session pack', ['@count' => $this->pricingHelper->getPackSize()]),
       $this->t('Effective price/slot in a pack'),
     ];
 
@@ -96,12 +96,12 @@ class PricingComparisonController extends ControllerBase {
         continue;
       }
       $pack_price = $this->pricingHelper->getPackPrice($slot_price);
-      $effective_per_slot = $this->rounder->round($pack_price->divide((string) FacilityPricingHelper::PACK_SIZE));
+      $effective_per_slot = $this->rounder->round($pack_price->divide((string) $this->pricingHelper->getPackSize()));
 
       $rows[] = [
         $node->label(),
         $this->formatPrice($slot_price),
-        $this->formatPrice($pack_price) . ' ' . $this->t('(@discount% off)', ['@discount' => FacilityPricingHelper::DISCOUNT_PERCENTAGE]),
+        $this->formatPrice($pack_price) . ' ' . $this->t('(@discount% off)', ['@discount' => $this->pricingHelper->getDiscountPercentage()]),
         $this->formatPrice($effective_per_slot),
       ];
     }

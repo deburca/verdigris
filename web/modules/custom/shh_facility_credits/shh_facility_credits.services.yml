@@ -5,7 +5,7 @@ services:
 
   shh_facility_credits.pricing_helper:
     class: Drupal\shh_facility_credits\FacilityPricingHelper
-    arguments: ['@commerce_price.rounder']
+    arguments: ['@commerce_price.rounder', '@config.factory']
 
   logger.channel.shh_facility_credits:
     parent: logger.channel_base
@@ -13,6 +13,6 @@ services:
 
   shh_facility_credits.checkout_completion_subscriber:
     class: Drupal\shh_facility_credits\EventSubscriber\CreditPackCheckoutCompletionSubscriber
-    arguments: ['@shh_facility_credits.manager']
+    arguments: ['@shh_facility_credits.manager', '@shh_facility_credits.pricing_helper']
     tags:
       - { name: event_subscriber }

@@ -38,3 +38,20 @@ function shh_facility_credits_install() {
     \Drupal::logger('shh_facility_credits')->info('Created order item type: facility_credit_pack');
   }
 }
+
+/**
+ * Introduces shh_facility_credits.settings.
+ *
+ * pack_size/discount_percentage were hardcoded constants on
+ * FacilityPricingHelper (and, separately, a second hardcoded PACK_SIZE on
+ * CreditPackCheckoutCompletionSubscriber that had already drifted into its
+ * own copy) - moved to config so they can be changed without a code
+ * deploy. Values here match the constants' current values, so this is a
+ * no-op change in behaviour, just in how the numbers are sourced.
+ */
+function shh_facility_credits_update_10001() {
+  \Drupal::configFactory()->getEditable('shh_facility_credits.settings')
+    ->set('pack_size', 10)
+    ->set('discount_percentage', 20)
+    ->save();
+}

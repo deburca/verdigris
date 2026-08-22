@@ -70,8 +70,11 @@ class PricingSummaryBlock extends BlockBase implements ContainerFactoryPluginInt
     }
 
     // The cheapest slot on offer, so "from X" is true rather than
-    // flattering.
+    // flattering. Its facility name is surfaced as a caption — otherwise
+    // "from 20 DKK" reads as if it applied to every facility, when it's
+    // really only true of whichever one happens to be cheapest.
     $cheapest = NULL;
+    $cheapest_name = '';
     $slot_minutes = 30;
     foreach ($nodes as $node) {
       $price = $this->pricingHelper->getSlotPrice($node);
@@ -80,6 +83,7 @@ class PricingSummaryBlock extends BlockBase implements ContainerFactoryPluginInt
       }
       if (!$cheapest || $price->lessThan($cheapest)) {
         $cheapest = $price;
+        $cheapest_name = $node->label();
         $slot_minutes = (int) $node->get('field_slot_duration_minutes')->value;
       }
     }
@@ -89,28 +93,32 @@ class PricingSummaryBlock extends BlockBase implements ContainerFactoryPluginInt
 
     $pack_price = $this->pricingHelper->getPackPrice($cheapest);
 
-    $bundle_settings = $this->configFactory->get('shh_facility_bundle_discount.settings');
-    $discount = $bundle_settings->get('discount_amount');
-
     $cards = [
       [
         'title' => $this->t('One slot at a time'),
         'price' => $this->format($cheapest),
+        'caption' => $cheapest_name,
         'note' => $this->t('From, per @minutes-minute slot. Pay as you ride, no commitment.', ['@minutes' => $slot_minutes]),
       ],
       [
-        'title' => $this->t('@count-session credit pack', ['@count' => FacilityPricingHelper::PACK_SIZE]),
+        'title' => $this->t('@count-session credit pack', ['@count' => $this->pricingHelper->getPackSize()]),
         'price' => $this->format($pack_price),
+        'caption' => $cheapest_name,
         'note' => $this->t('@discount% off, for one facility. Credits never expire — redeem them whenever you ride.', [
-          '@discount' => FacilityPricingHelper::DISCOUNT_PERCENTAGE,
+          '@discount' => $this->pricingHelper->getDiscountPercentage(),
         ]),
       ],
-      [
-        'title' => $this->t('All three, same slot'),
-        'price' => $this->t('−@amount', ['@amount' => $this->format($this->price($discount))]),
-        'note' => $this->t('Book the oval track, manège and lunge ring for the same time and the discount comes off automatically at checkout.'),
-      ],
     ];
+
+    $bundle = $this->getBundleInfo($nodes);
+    if ($bundle) {
+      $cards[] = [
+        'title' => $this->t('All three, same slot'),
+        'price' => $this->format($bundle['price']),
+        'caption' => implode(' + ', $bundle['facility_names']),
+        'note' => $this->t('Book all three for the same time and the discount comes off automatically at checkout.'),
+      ];
+    }
 
     $rendered = [];
     foreach ($cards as $card) {
@@ -142,6 +150,15 @@ class PricingSummaryBlock extends BlockBase implements ContainerFactoryPluginInt
             'text_size' => 'heading-responsive-3xl',
             'text_color' => 'primary',
             'align' => 'center',
+          ],
+        ],
+        'caption' => [
+          '#type' => 'component',
+          '#component' => 'hestehoj:text',
+          '#props' => [
+            'text' => (string) $card['caption'],
+            'text_size' => 'text-xs',
+            'text_color' => 'default',
           ],
         ],
         'note' => [
@@ -190,6 +207,56 @@ class PricingSummaryBlock extends BlockBase implements ContainerFactoryPluginInt
   }
 
   /**
+   * The bundle's total price and facility names, from live config.
+   *
+   * Price is the sum of each configured facility's own slot price, minus
+   * the bundle discount — the same total the
+   * FacilityBundleDiscountOrderProcessor produces at checkout (task 0017),
+   * not the bare discount amount. Facility names come from the nodes
+   * themselves, in `product_ids` order, so the card never has to name the
+   * facilities by hand and drift out of sync with which ones are actually
+   * configured. Returns NULL if the bundle isn't fully configured or
+   * priced, so the card is skipped rather than showing a wrong or
+   * incomplete number.
+   *
+   * @return array{price: \Drupal\commerce_price\Price, facility_names: string[]}|null
+   */
+  protected function getBundleInfo(array $nodes): ?array {
+    $bundle_settings = $this->configFactory->get('shh_facility_bundle_discount.settings');
+    $discount_data = $bundle_settings->get('discount_amount');
+    $product_ids = array_map('intval', $bundle_settings->get('product_ids') ?? []);
+    if (!$product_ids || empty($discount_data['number'])) {
+      return NULL;
+    }
+
+    $nodes_by_product = [];
+    foreach ($nodes as $node) {
+      if ($node->hasField('field_product') && !$node->get('field_product')->isEmpty()) {
+        $nodes_by_product[(int) $node->get('field_product')->target_id] = $node;
+      }
+    }
+
+    $sum = NULL;
+    $facility_names = [];
+    foreach ($product_ids as $product_id) {
+      if (!isset($nodes_by_product[$product_id])) {
+        return NULL;
+      }
+      $slot_price = $this->pricingHelper->getSlotPrice($nodes_by_product[$product_id]);
+      if (!$slot_price) {
+        return NULL;
+      }
+      $sum = $sum ? $sum->add($slot_price) : $slot_price;
+      $facility_names[] = $nodes_by_product[$product_id]->label();
+    }
+
+    return [
+      'price' => $sum->subtract($this->price($discount_data)),
+      'facility_names' => $facility_names,
+    ];
+  }
+
+  /**
    * Formats a price for display.
    */
   protected function format($price): string {
@@ -197,7 +264,7 @@ class PricingSummaryBlock extends BlockBase implements ContainerFactoryPluginInt
   }
 
   /**
-   * The bundle discount as a Price, from its config array.
+   * A Price from a config price array (number + currency_code).
    */
   protected function price(array $data): Price {
     return new Price((string) $data['number'], $data['currency_code']);

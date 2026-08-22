@@ -4,6 +4,7 @@ namespace Drupal\shh_facility_credits;
 
 use Drupal\commerce_price\Price;
 use Drupal\commerce_price\RounderInterface;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\node\NodeInterface;
 
 /**
@@ -15,13 +16,31 @@ use Drupal\node\NodeInterface;
  * numbers and must not silently drift out of sync with each other or with
  * the actual checkout flow (0023's own acceptance criteria says this
  * explicitly).
+ *
+ * Pack size and discount percentage live in `shh_facility_credits.settings`
+ * (not class constants) so they can be changed via config — e.g. from a
+ * future settings form — without a code deploy.
  */
 class FacilityPricingHelper {
 
-  const PACK_SIZE = 10;
-  const DISCOUNT_PERCENTAGE = 75;
+  public function __construct(
+    protected RounderInterface $rounder,
+    protected ConfigFactoryInterface $configFactory,
+  ) {}
 
-  public function __construct(protected RounderInterface $rounder) {}
+  /**
+   * The number of reservations in one credit pack.
+   */
+  public function getPackSize(): int {
+    return (int) $this->configFactory->get('shh_facility_credits.settings')->get('pack_size');
+  }
+
+  /**
+   * The credit pack discount, as a percentage off the full per-slot price.
+   */
+  public function getDiscountPercentage(): int {
+    return (int) $this->configFactory->get('shh_facility_credits.settings')->get('discount_percentage');
+  }
 
   /**
    * Computes the per-slot price for a facility, or NULL if not set up.
@@ -50,11 +69,11 @@ class FacilityPricingHelper {
   }
 
   /**
-   * Computes the 10-session credit pack price for a given slot price.
+   * Computes the credit pack price for a given slot price.
    */
   public function getPackPrice(Price $slot_price): Price {
-    $full_price = $slot_price->multiply((string) self::PACK_SIZE);
-    $multiplier = bcdiv((string) (100 - self::DISCOUNT_PERCENTAGE), '100', 6);
+    $full_price = $slot_price->multiply((string) $this->getPackSize());
+    $multiplier = bcdiv((string) (100 - $this->getDiscountPercentage()), '100', 6);
     return $this->rounder->round($full_price->multiply($multiplier));
   }
 
