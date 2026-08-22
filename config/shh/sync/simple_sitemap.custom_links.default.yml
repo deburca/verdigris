@@ -1,0 +1,27 @@
+_core:
+  default_config_hash: 25hWeYa4sasuJtHqKKcEN_nYiuEC1lMPYHsn5dawJEw
+links:
+  -
+    path: /
+    priority: '1.0'
+    changefreq: weekly
+  -
+    path: /horses
+    priority: '0.8'
+    changefreq: daily
+  -
+    path: /our-horses
+    priority: '0.6'
+    changefreq: weekly
+  -
+    path: /facilities
+    priority: '0.8'
+    changefreq: weekly
+  -
+    path: /pricing
+    priority: '0.5'
+    changefreq: weekly
+  -
+    path: /feed
+    priority: '0.8'
+    changefreq: daily

@@ -128,6 +128,7 @@ module:
   shh_rider_registration: 0
   shh_site_footer: 0
   shh_staff_booking_calendar: 0
+  simple_sitemap: 0
   state_machine: 0
   svg_image: 0
   symfony_mailer_lite: 0
