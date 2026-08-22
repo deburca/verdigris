@@ -58,22 +58,33 @@ function shh_horse_product_display_commerce_product_view_alter(array &$build, En
   // --- Hero row: image beside price/status/gaits/key facts. ---
   $summary = [];
 
-  $summary['price'] = [
-    '#type' => 'component',
-    '#component' => 'hestehoj:heading',
-    '#props' => [
-      'heading_text' => $formatted_price,
-      'level' => 2,
-      'text_size' => 'heading-responsive-3xl',
-      'text_color' => 'primary',
-      'align' => 'left',
-    ],
-  ];
-
   $sale_state = $variation->hasField('field_sale_state')
     ? $variation->get('field_sale_state')->value
     : NULL;
-  if ($sale_state && $sale_state !== 'available') {
+
+  // A horse with no sale_state at all (task 0057 — the herd roster: a
+  // horse never promoted into the sale pipeline) has no meaningful
+  // price to show; the variation's price field still holds *some*
+  // value (Commerce requires one to exist), but displaying it would
+  // misrepresent a horse that was never actually priced for a buyer.
+  // Every other state (for_sale and its downstream
+  // reserved/sold/reserved-deposit/withdrawn) genuinely was priced, so
+  // the price stays visible for those.
+  if ($sale_state !== NULL) {
+    $summary['price'] = [
+      '#type' => 'component',
+      '#component' => 'hestehoj:heading',
+      '#props' => [
+        'heading_text' => $formatted_price,
+        'level' => 2,
+        'text_size' => 'heading-responsive-3xl',
+        'text_color' => 'primary',
+        'align' => 'left',
+      ],
+    ];
+  }
+
+  if ($sale_state && $sale_state !== 'for_sale') {
     $state_labels = shh_common_list_string_labels($variation->get('field_sale_state'));
     $summary['sale_state'] = [
       '#type' => 'component',
@@ -270,6 +281,8 @@ function _shh_horse_product_display_facts_html($variation): string {
  * not a new computation.
  */
 function _shh_horse_product_display_attach_meta_tags(array &$build, $product, $variation, string $formatted_price): void {
+  $sale_state = $variation->hasField('field_sale_state') ? $variation->get('field_sale_state')->value : NULL;
+
   $parts = [];
   if (!$variation->get('field_breed')->isEmpty()) {
     $parts[] = $variation->get('field_breed')->value;
@@ -278,12 +291,19 @@ function _shh_horse_product_display_attach_meta_tags(array &$build, $product, $v
   if ($gait_labels) {
     $parts[] = implode(', ', $gait_labels);
   }
-  $parts[] = $formatted_price;
-
-  $description = (string) t('@name for sale at Stutteri Hestehøj — @facts.', [
-    '@name' => $product->label(),
-    '@facts' => implode(', ', $parts),
-  ]);
+  // A horse with no sale_state at all (task 0057's herd roster) has no
+  // meaningful price to advertise, and isn't actually for sale — both
+  // the price and the sentence's "for sale" framing would misrepresent
+  // it.
+  $description = $sale_state === NULL
+    ? (string) t('@name, part of the herd at Stutteri Hestehøj — @facts.', [
+      '@name' => $product->label(),
+      '@facts' => implode(', ', $parts),
+    ])
+    : (string) t('@name for sale at Stutteri Hestehøj — @facts.', [
+      '@name' => $product->label(),
+      '@facts' => implode(', ', array_merge($parts, [$formatted_price])),
+    ]);
 
   $image_url = NULL;
   $image_alt = NULL;

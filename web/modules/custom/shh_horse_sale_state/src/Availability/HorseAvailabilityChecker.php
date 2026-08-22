@@ -11,7 +11,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
 
 /**
- * Blocks purchase of a horse variation whose field_sale_state isn't available.
+ * Blocks purchase of a horse variation whose field_sale_state isn't for_sale.
  *
  * See docs/project-management/tasks/0024-horse-sale-state-enforcement.md.
  *
@@ -61,7 +61,7 @@ class HorseAvailabilityChecker implements AvailabilityCheckerInterface {
   use StringTranslationTrait;
 
   /**
-   * Human-readable descriptions for each non-available sale state.
+   * Human-readable descriptions for each non-for_sale sale state.
    */
   protected const STATE_LABELS = [
     'reserved' => 'reserved',
@@ -91,12 +91,16 @@ class HorseAvailabilityChecker implements AvailabilityCheckerInterface {
     $variation = $order_item->getPurchasedEntity();
     $sale_state = $variation->get('field_sale_state')->value;
 
-    if ($sale_state === NULL || $sale_state === 'available') {
+    if ($sale_state === 'for_sale') {
       return AvailabilityResult::neutral();
     }
 
-    $label = self::STATE_LABELS[$sale_state] ?? $sale_state;
-    return AvailabilityResult::unavailable($this->t('This horse is @state and is no longer available for purchase.', [
+    // A NULL sale_state (task 0057 — the herd roster) is deliberately
+    // blocked here, not neutral: it means this horse has never been
+    // promoted into the sale pipeline at all, not that its state is
+    // simply unset by accident.
+    $label = $sale_state !== NULL ? (self::STATE_LABELS[$sale_state] ?? $sale_state) : 'not for sale';
+    return AvailabilityResult::unavailable($this->t('This horse is @state and cannot be purchased.', [
       '@state' => $label,
     ]));
   }

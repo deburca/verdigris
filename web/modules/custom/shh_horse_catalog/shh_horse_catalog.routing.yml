@@ -5,3 +5,11 @@ shh_horse_catalog.catalog:
     _title: 'Horses for sale'
   requirements:
     _permission: 'view commerce_product'
+
+shh_horse_catalog.our_horses:
+  path: '/our-horses'
+  defaults:
+    _controller: '\Drupal\shh_horse_catalog\Controller\HorseCatalogController::ourHorses'
+    _title: 'Our horses'
+  requirements:
+    _permission: 'view commerce_product'

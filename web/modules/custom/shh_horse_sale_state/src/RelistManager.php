@@ -62,7 +62,7 @@ class RelistManager {
   }
 
   /**
-   * Relists a sold horse: sold → available, money untouched.
+   * Relists a sold horse: sold → for_sale, money untouched.
    *
    * @return array{relisted: bool, order_id: int|string|null, reason: string}
    *   Whether the horse was relisted, the originating sale order's id
@@ -75,11 +75,11 @@ class RelistManager {
 
     $order = $this->findOriginatingSaleOrder($variation);
 
-    $variation->set('field_sale_state', 'available');
+    $variation->set('field_sale_state', 'for_sale');
     $variation->save();
 
     if ($order) {
-      $this->logger->notice('Horse variation @id relisted (sold → available) by user @uid; originating sale order @order and its payments left untouched — any refund is a manual staff decision through Commerce.', [
+      $this->logger->notice('Horse variation @id relisted (sold → for_sale) by user @uid; originating sale order @order and its payments left untouched — any refund is a manual staff decision through Commerce.', [
         '@id' => $variation->id(),
         '@uid' => $this->currentUser->id(),
         '@order' => $order->id(),
@@ -87,7 +87,7 @@ class RelistManager {
       return ['relisted' => TRUE, 'order_id' => $order->id(), 'reason' => 'relisted'];
     }
 
-    $this->logger->warning('Horse variation @id relisted (sold → available) by user @uid with no placed sale order found — the sold state had no valid backing order.', [
+    $this->logger->warning('Horse variation @id relisted (sold → for_sale) by user @uid with no placed sale order found — the sold state had no valid backing order.', [
       '@id' => $variation->id(),
       '@uid' => $this->currentUser->id(),
     ]);

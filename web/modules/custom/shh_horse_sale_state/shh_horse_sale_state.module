@@ -15,7 +15,9 @@ use Drupal\Core\Url;
  * Implements hook_form_BASE_FORM_ID_alter() for commerce_order_item_add_to_cart_form.
  *
  * Disables the add-to-cart submit button and shows a plain-language notice
- * when the underlying horse variation's field_sale_state isn't "available".
+ * when the underlying horse variation's field_sale_state isn't "for_sale"
+ * (including NULL — a horse never promoted into the sale pipeline at all,
+ * task 0057's herd roster).
  * This is a UX complement to the hard validation block already enforced
  * regardless of this hook by
  * \Drupal\shh_horse_sale_state\Availability\HorseAvailabilityChecker (a
@@ -32,7 +34,7 @@ function shh_horse_sale_state_form_commerce_order_item_add_to_cart_form_alter(ar
   }
 
   $sale_state = $variation->get('field_sale_state')->value;
-  if ($sale_state === NULL || $sale_state === 'available') {
+  if ($sale_state === 'for_sale') {
     return;
   }
 

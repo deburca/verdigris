@@ -45,7 +45,7 @@ class DepositManager {
     if (!$variation->hasField('field_sale_state')) {
       return FALSE;
     }
-    return $variation->get('field_sale_state')->value === 'available';
+    return $variation->get('field_sale_state')->value === 'for_sale';
   }
 
   /**
@@ -108,7 +108,7 @@ class DepositManager {
     }
     // No policy configured: no refund path, but the horse is still
     // released — same "fail closed on refund, not on release" logic.
-    $variation->set('field_sale_state', 'available');
+    $variation->set('field_sale_state', 'for_sale');
     $variation->save();
 
     $this->logger->info('Deposit cancelled for order item @item: released (refunded: @refunded).', [
@@ -133,7 +133,7 @@ class DepositManager {
    *   nothing).
    * - If nothing valid backs it (an abandoned-cart draft, an orphaned
    *   state, or a value set out-of-band), the horse is still released
-   *   directly to `available`. There is no payment to refund in that
+   *   directly to `for_sale`. There is no payment to refund in that
    *   case by definition.
    *
    * @return array{released: bool, via: string, refunded: bool, reason: string}
@@ -169,7 +169,7 @@ class DepositManager {
     }
 
     // Nothing valid backs the reservation — release the horse directly.
-    $variation->set('field_sale_state', 'available');
+    $variation->set('field_sale_state', 'for_sale');
     $variation->save();
     $this->logger->warning('Horse variation @id force-released from reserved-deposit by staff: no placed deposit order to cancel through.', ['@id' => $variation->id()]);
     return ['released' => TRUE, 'via' => 'direct', 'refunded' => FALSE, 'reason' => 'direct_release'];

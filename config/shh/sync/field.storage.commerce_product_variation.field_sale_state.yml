@@ -12,17 +12,17 @@ type: list_string
 settings:
   allowed_values:
     -
-      value: available
-      label: Available
+      value: for_sale
+      label: 'For sale'
     -
       value: reserved
       label: Reserved
     -
-      value: sold
-      label: Sold
-    -
       value: reserved-deposit
       label: 'Reserved (deposit paid)'
+    -
+      value: sold
+      label: Sold
     -
       value: withdrawn
       label: Withdrawn
