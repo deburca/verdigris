@@ -1,7 +1,7 @@
 ---
 type: task
 tags: [cms2/task]
-status: backlog
+status: done
 priority: medium
 site: shh
 project: "[[shh-stables-platform]]"
@@ -38,12 +38,29 @@ a screen reader doesn't already have. Confirmed nothing in the theme's
 CSS or JS references `#system-breadcrumb`, so it's safe to change
 freely.
 
+## Resolution (2026-08-22)
+Removed the `<h2 id="system-breadcrumb">` line outright rather than
+swap it for a `<span>` — `aria-label="breadcrumb"` on the `<nav>`
+already fully covers the accessible-name requirement, so there was
+nothing left for a replacement element to do. Left a comment in the
+template explaining why, so it isn't reintroduced as a "missing label"
+fix later.
+
+Confirmed the same pattern exists verbatim in the `zwarte_piet` and
+`quick_silver` theme starter kits (vdg/kbg) — out of scope here (this
+task is shh-only), not fixed.
+
+Verified over real HTTP across all eleven pages the original finding
+covered — homepage, every discovery/listing page, a facility page, a
+horse product page, a news post — every one now has `<h1>` as its
+first heading in DOM order. Breadcrumb nav itself renders unchanged.
+No config change (theme template only).
+
 ## Acceptance criteria
-- [ ] `breadcrumb.html.twig`'s `<h2 id="system-breadcrumb">` replaced
-      with a non-heading sr-only element (e.g. a plain `<span
-      class="sr-only">`), or removed outright — `aria-label="breadcrumb"`
-      on the `<nav>` already covers the accessible-name requirement
-- [ ] Verified over real HTTP: every page's first heading in DOM order
+- [x] `breadcrumb.html.twig`'s `<h2 id="system-breadcrumb">` removed
+      — `aria-label="breadcrumb"` on the `<nav>` already covers the
+      accessible-name requirement
+- [x] Verified over real HTTP: every page's first heading in DOM order
       is its own `<h1>`, not the breadcrumb label
 
 ## Related

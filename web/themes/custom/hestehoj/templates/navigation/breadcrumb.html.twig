@@ -13,8 +13,16 @@
 
   {% set item_classes = 'flex items-center text-sm md:text-md' %}
 
+  {#
+    No nested heading here (deliberately, task 0068): this nav already
+    has its own accessible name via aria-label="breadcrumb" below. An
+    <h2> here would render before the page's own <h1> in DOM order —
+    every page's real title sits inside <main>, after this block — so
+    it broke the page's heading outline for screen-reader users
+    navigating by heading, for no benefit over the aria-label already
+    present.
+  #}
   <nav aria-label="breadcrumb" class="container mx-auto my-2 w-full md:my-3 2xl:my-4">
-    <h2 id="system-breadcrumb" class="sr-only">{{ 'Breadcrumb' }}</h2>
     <ol class="m-0 flex list-none flex-row items-center gap-1 p-0 leading-none text-foreground md:gap-2">
       {% for item in breadcrumb %}
         {% set is_first = loop.first %}
