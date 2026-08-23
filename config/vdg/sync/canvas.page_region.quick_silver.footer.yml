@@ -2,9 +2,86 @@ uuid: 3f4787ea-755d-4286-9f89-36967c6c847d
 langcode: en
 status: true
 dependencies:
+  config:
+    - canvas.component.block.system_branding_block
+    - canvas.component.block.system_menu_block.footer
+    - canvas.component.block.system_menu_block.secondary
+    - canvas.component.block.system_menu_block.social
+    - canvas.component.sdc.quick_silver.footer
+    - canvas.component.sdc.quick_silver.text
+    - filter.format.canvas_html_block
+  module:
+    - options
+    - text
   theme:
     - quick_silver
 id: quick_silver.footer
 region: footer
 theme: quick_silver
-component_tree: {  }
+component_tree:
+  '0:e3bd0ad5-d0f6-4db9-942c-c8dea77813ca':
+    uuid: e3bd0ad5-d0f6-4db9-942c-c8dea77813ca
+    component_id: sdc.quick_silver.footer
+    component_version: d696cea1796b650e
+    inputs:
+      align: true
+  '0:footer_first:0:6779a3df-5554-423c-83e6-99b503666943':
+    parent_uuid: e3bd0ad5-d0f6-4db9-942c-c8dea77813ca
+    slot: footer_first
+    uuid: 6779a3df-5554-423c-83e6-99b503666943
+    component_id: block.system_branding_block
+    component_version: 7d528e00f56b3abf
+    inputs:
+      label: 'Site branding'
+      label_display: '0'
+      use_site_logo: true
+      use_site_name: false
+      use_site_slogan: false
+  '0:footer_first:1:bdce76e4-56e7-4aaa-afc6-f2661b85df48':
+    parent_uuid: e3bd0ad5-d0f6-4db9-942c-c8dea77813ca
+    slot: footer_first
+    uuid: bdce76e4-56e7-4aaa-afc6-f2661b85df48
+    component_id: block.system_menu_block.secondary
+    component_version: 06c94e2cbbcdbd80
+    inputs:
+      label: Secondary
+      label_display: '0'
+      level: 1
+      depth: null
+      expand_all_items: false
+  '0:footer_first:2:eeb248e6-0a23-4943-8516-636324e3a618':
+    parent_uuid: e3bd0ad5-d0f6-4db9-942c-c8dea77813ca
+    slot: footer_first
+    uuid: eeb248e6-0a23-4943-8516-636324e3a618
+    component_id: block.system_menu_block.social
+    component_version: e861cf0cf3260605
+    inputs:
+      label: Social
+      label_display: '0'
+      level: 1
+      depth: null
+      expand_all_items: false
+  '0:footer_utility_first:0:bdf7103f-9b8e-44db-af03-6897877b6a7a':
+    parent_uuid: e3bd0ad5-d0f6-4db9-942c-c8dea77813ca
+    slot: footer_utility_first
+    uuid: bdf7103f-9b8e-44db-af03-6897877b6a7a
+    component_id: block.system_menu_block.footer
+    component_version: 075503dbc228a45c
+    inputs:
+      label: Footer
+      label_display: '0'
+      level: 1
+      depth: null
+      expand_all_items: false
+  '0:footer_utility_last:0:af068f82-d434-4c96-9558-c1c80c1ed112':
+    parent_uuid: e3bd0ad5-d0f6-4db9-942c-c8dea77813ca
+    slot: footer_utility_last
+    uuid: af068f82-d434-4c96-9558-c1c80c1ed112
+    component_id: sdc.quick_silver.text
+    component_version: 16c79c28a4108f9b
+    inputs:
+      text:
+        value: '<p>© Copyright 2026</p>'
+        format: canvas_html_block
+      text_size: text-sm
+      text_color: default

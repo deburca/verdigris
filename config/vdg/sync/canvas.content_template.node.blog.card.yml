@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - canvas.component.sdc.byte_theme.card
+    - canvas.component.sdc.quick_silver.card
     - core.entity_view_mode.node.card
     - field.field.media.image.field_media_image
     - field.field.node.blog.field_description
@@ -24,10 +24,15 @@ content_entity_type_bundle: blog
 content_entity_type_view_mode: card
 component_tree:
   '0:c8e8a6d9-6b30-4cf0-a8df-299f290da17d':
+    parent_uuid: null
+    slot: null
     uuid: c8e8a6d9-6b30-4cf0-a8df-299f290da17d
-    component_id: sdc.byte_theme.card
-    component_version: c2df9c05dfd64ddf
+    component_id: sdc.quick_silver.card
+    component_version: c313844ff80fde7d
     inputs:
+      background: default
+      style: framed
+      orientation: vertical
       heading_text:
         sourceType: entity-field
         expression: 'ℹ︎␜entity:node:blog␝title␞␟value'
@@ -41,7 +46,6 @@ component_tree:
       text:
         sourceType: entity-field
         expression: 'ℹ︎␜entity:node:blog␝field_description␞␟value'
-      orientation: vertical
-      style: framed
-      background: default
+    label: null
+    inputs_resolved: null
 exposed_slots: {  }
