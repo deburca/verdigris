@@ -202,7 +202,8 @@ component_tree:
     component_version: a917d5c9be8f2830
     inputs:
       width: 100%
-      columns: 33-33-33
+      columns: '100'
+      views_columns: 33-33-33
       mobile_columns: '1'
       margin_block_start: '0'
       margin_block_end: '0'
@@ -214,7 +215,8 @@ component_tree:
     label: null
     inputs_resolved:
       width: 100%
-      columns: 33-33-33
+      columns: '100'
+      views_columns: 33-33-33
       mobile_columns: '1'
       margin_block_start: '0'
       margin_block_end: '0'
