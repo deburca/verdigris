@@ -4,9 +4,18 @@ status: false
 dependencies:
   module:
     - system
-active_version: b789a990528fd1b0
+active_version: e9f8c6ffe1dab0fb
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: system_clear_cache_block
+        label: 'Ryd cache'
+        label_display: '0'
+        provider: system
+    fallback_metadata:
+      slot_definitions: null
+  3643243024517316:
     settings:
       default_settings:
         id: system_clear_cache_block
@@ -15,7 +24,16 @@ versioned_properties:
         provider: system
     fallback_metadata:
       slot_definitions: null
-label: 'Clear cache'
+  b789a990528fd1b0:
+    settings:
+      default_settings:
+        id: system_clear_cache_block
+        label: 'Clear cache'
+        label_display: '0'
+        provider: system
+    fallback_metadata:
+      slot_definitions: null
+label: 'Ryd cache'
 id: block.system_clear_cache_block
 provider: system
 source: block

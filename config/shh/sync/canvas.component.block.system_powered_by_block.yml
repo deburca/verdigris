@@ -4,9 +4,18 @@ status: true
 dependencies:
   module:
     - system
-active_version: 5d275553b2355691
+active_version: 25ac93970d6e7c9d
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: system_powered_by_block
+        label: 'Drives af Drupal'
+        label_display: '0'
+        provider: system
+    fallback_metadata:
+      slot_definitions: null
+  065fc349f8809d76:
     settings:
       default_settings:
         id: system_powered_by_block
@@ -15,7 +24,16 @@ versioned_properties:
         provider: system
     fallback_metadata:
       slot_definitions: null
-label: 'Powered by Drupal'
+  5d275553b2355691:
+    settings:
+      default_settings:
+        id: system_powered_by_block
+        label: 'Powered by Drupal'
+        label_display: '0'
+        provider: system
+    fallback_metadata:
+      slot_definitions: null
+label: 'Drives af Drupal'
 id: block.system_powered_by_block
 provider: system
 source: block

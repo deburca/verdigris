@@ -4,9 +4,18 @@ status: true
 dependencies:
   module:
     - shh_horse_catalog
-active_version: c4f39b19f345ca59
+active_version: f823288260969d42
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: shh_featured_horses
+        label: 'SHH featured horses'
+        label_display: '0'
+        provider: shh_horse_catalog
+    fallback_metadata:
+      slot_definitions: null
+  c4f39b19f345ca59:
     settings:
       default_settings:
         id: shh_featured_horses

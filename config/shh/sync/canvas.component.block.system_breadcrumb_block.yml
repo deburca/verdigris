@@ -4,9 +4,18 @@ status: true
 dependencies:
   module:
     - system
-active_version: 0d7e961dd03aa710
+active_version: 735c831c351a8a16
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: system_breadcrumb_block
+        label: Brødkrummer
+        label_display: '0'
+        provider: system
+    fallback_metadata:
+      slot_definitions: null
+  86a25cdac9ce0ae8:
     settings:
       default_settings:
         id: system_breadcrumb_block
@@ -15,7 +24,16 @@ versioned_properties:
         provider: system
     fallback_metadata:
       slot_definitions: null
-label: Breadcrumbs
+  0d7e961dd03aa710:
+    settings:
+      default_settings:
+        id: system_breadcrumb_block
+        label: Breadcrumbs
+        label_display: '0'
+        provider: system
+    fallback_metadata:
+      slot_definitions: null
+label: Brødkrummer
 id: block.system_breadcrumb_block
 provider: system
 source: block

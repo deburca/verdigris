@@ -621,6 +621,58 @@ links). The `zwarte_piet` language switcher is shipped in
 `deburca/zwarte_piet` but not placed in a region (go-live gate) and
 the theme is not yet wired into `composer.json`.
 
+### shh — 2026-08-27, Phases 1 + 4
+
+**Danish is the site default** (`hestehoj` / stutteri-hestehoj.dk).
+Enabled the four modules; `language:add da` imported 8,771 interface
+strings; `system.site` `default_langcode`/`langcode` → `da`;
+`language.negotiation` prefixes `da: ''` / `en: en`;
+`language.types` interface negotiation **`language-url →
+language-selected`** (the corrected two-method order from the
+start — no `language-user`).
+
+Content translation enabled on: `node.page` / `node.news`
+(`field_content` + `field_description` translatable; image + tags
+shared), `node.bookable_facility` (only `field_cancellation_policy` +
+`field_peak_pricing_notes` translatable; price / capacity / slot /
+media / product ref / open-hours / surface / kind all shared —
+facility data is structured, not prose), `canvas_page`,
+`commerce_product` ×4 types (`body` translatable), and
+`commerce_product_variation` default/feed/horse (title only; horse
+fields — breed, gaits, health notes, pedigree — left **shared**,
+same call as hivelog: an individual animal's data is factual, not
+per-language). The disabled modules
+([[shh-phased-launch-disabled-modules]]) are untouched.
+
+**Export diff: 330 files (+3381 / −89)** — notably **smaller than
+kbg's 485**. shh keeps its base config in English with Danish in
+`language/da/*` overrides (150) — the *vdg* model — rather than kbg's
+in-place base rewrite (that was triggered on kbg by a `locale:update`
+that pulled hivelog's bundled `.po`; shh has no such custom-module
+`.po`, so `locale:update` was a no-op and no base rewrite fired).
+Only 3 `language/en/*` + 6 `language/{und,zxx}/*` (commerce
+currencies). The other 148 modified files are the usual mechanical
+churn (59 `core.entity_view_display` langcode, 49 `canvas.component`
+re-versioning, 22 `core.entity_form_display` widget, 15 `field.field`
+flags). The `config_split` `local` store (`config/shh/local`) is
+untouched — field_ui/views_ui stayed split off, as intended
+([[0020-shh-config-export-strategy]]). `config:status` clean,
+re-export stable. `/` → `<html lang="da">`, `/en` → English, Danish
+login form.
+
+**The kbg/shh base-config inconsistency** (kbg base = Danish, shh
+base = English; both da-default) is invisible to visitors — the
+default language is set by `system.site` + negotiation, not by which
+language the base YAML holds — and not worth reconciling.
+
+**Not yet done for shh:** Phase 2 (`shh_multilingual` `.po` module),
+Phase 5 (config strings — big: 34 webforms, 32 views, 29 klaro apps,
+10 easy_email, commerce), Phase 6 (switcher in `hestehoj` — tracked
+*inside* cms2, no repo hassle; mind the theme build rules —
+[[shh-task-workflow]]), Phase 7 (existing content — 5 nodes, 1
+canvas_page, 7 products, 17 menu links, all `en`), Phases 8–9
+(rollout uses `make shh-pull`; run `cim` twice; config_split).
+
 ## Acceptance criteria
 Per site (`vdg`, then `kbg`, then `shh`):
 - [ ] `language`, `locale`, `content_translation`, `config_translation`

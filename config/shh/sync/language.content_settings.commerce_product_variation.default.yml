@@ -1,0 +1,16 @@
+uuid: ea778fb1-ae1d-443a-a2b0-7717a4f7baf7
+langcode: da
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.default
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: commerce_product_variation.default
+target_entity_type_id: commerce_product_variation
+target_bundle: default
+default_langcode: site_default
+language_alterable: true

@@ -131,6 +131,7 @@ content:
     weight: 0
     region: content
 hidden:
+  langcode: true
   product_id: true
   sku: true
   title: true

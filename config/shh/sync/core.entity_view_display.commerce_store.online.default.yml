@@ -25,7 +25,10 @@ hidden:
   created: true
   default_currency: true
   is_default: true
+  langcode: true
   mail: true
   name: true
+  prices_include_tax: true
+  tax_registrations: true
   timezone: true
   uid: true

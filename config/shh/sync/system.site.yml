@@ -1,6 +1,6 @@
 _core:
   default_config_hash: HlN7eAN2N4JIHsYv56V4E7sqC9bS609KwvGFjyD_mgk
-langcode: en
+langcode: da
 uuid: 977dfe15-44fc-487a-b844-24ad55325971
 name: 'Stutteri Hestehøj'
 mail: admin@example.com
@@ -11,5 +11,5 @@ page:
   front: /page/1
 admin_compact_mode: false
 weight_select_max: 100
-default_langcode: en
+default_langcode: da
 mail_notification: null

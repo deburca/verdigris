@@ -6,6 +6,7 @@ dependencies:
     - commerce_order.commerce_order_type.default
   module:
     - commerce_order
+    - commerce_payment
     - commerce_price
     - state_machine
     - user

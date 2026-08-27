@@ -12,7 +12,7 @@ bundle: bookable_facility
 label: 'Fixed slot duration (minutes)'
 description: 'If set, bookings for this facility must be exactly this many minutes long, aligned to a slot boundary (e.g. 30 minutes → 08:00, 08:30, 09:00, ...). Leave empty to allow BEEs default flexible-duration bookings.'
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:

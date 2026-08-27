@@ -4,9 +4,22 @@ status: true
 dependencies:
   module:
     - webform
-active_version: b5dca6ca0519bf1b
+active_version: b790ab66ddd5000a
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: webform_block
+        label: Webformular
+        label_display: '0'
+        provider: webform
+        webform_id: ''
+        default_data: ''
+        redirect: false
+        lazy: false
+    fallback_metadata:
+      slot_definitions: null
+  7b80cf2c7bac74c9:
     settings:
       default_settings:
         id: webform_block
@@ -19,7 +32,20 @@ versioned_properties:
         lazy: false
     fallback_metadata:
       slot_definitions: null
-label: Webform
+  b5dca6ca0519bf1b:
+    settings:
+      default_settings:
+        id: webform_block
+        label: Webform
+        label_display: '0'
+        provider: webform
+        webform_id: ''
+        default_data: ''
+        redirect: false
+        lazy: false
+    fallback_metadata:
+      slot_definitions: null
+label: Webformular
 id: block.webform_block
 provider: webform
 source: block

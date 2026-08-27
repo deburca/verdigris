@@ -4,9 +4,18 @@ status: true
 dependencies:
   module:
     - shh_feed_catalog
-active_version: 04cbfb19b8f564a0
+active_version: 1cc3fd6646a2408a
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: shh_featured_feed
+        label: 'SHH feed & bedding'
+        label_display: '0'
+        provider: shh_feed_catalog
+    fallback_metadata:
+      slot_definitions: null
+  04cbfb19b8f564a0:
     settings:
       default_settings:
         id: shh_featured_feed

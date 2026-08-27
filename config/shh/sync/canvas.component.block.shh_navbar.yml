@@ -4,9 +4,18 @@ status: true
 dependencies:
   module:
     - shh_main_navigation
-active_version: 4f64dab8c8617e55
+active_version: 4a49d9ec458f4a38
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: shh_navbar
+        label: 'SHH navbar (hestehoj:navbar)'
+        label_display: '0'
+        provider: shh_main_navigation
+    fallback_metadata:
+      slot_definitions: null
+  4f64dab8c8617e55:
     settings:
       default_settings:
         id: shh_navbar

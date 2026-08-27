@@ -4,9 +4,18 @@ status: true
 dependencies:
   module:
     - shh_site_footer
-active_version: 6626018d1fcd2728
+active_version: 3fa4d18a3814ae39
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: shh_footer
+        label: 'SHH footer (hestehoj:footer)'
+        label_display: '0'
+        provider: shh_site_footer
+    fallback_metadata:
+      slot_definitions: null
+  6626018d1fcd2728:
     settings:
       default_settings:
         id: shh_footer

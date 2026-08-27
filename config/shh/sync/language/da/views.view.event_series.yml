@@ -1,0 +1,42 @@
+display:
+  default:
+    display_title: Master
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Udfør
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
+      pager:
+        options:
+          expose:
+            items_per_page_label: 'Antal elementer'
+            items_per_page_options_all_label: '- Alle -'
+            offset_label: Forskydning
+          tags:
+            previous: '‹ Forrige'
+            next: 'Næste ›'
+            first: '« Første'
+            last: 'Sidste »'
+      fields:
+        id:
+          label: ID
+          separator: ', '
+        event_dates:
+          label: Datoer
+          separator: ', '
+      filters:
+        event_dates_value:
+          group_info:
+            group_items:
+              1:
+                title: 'Kommende begivenheder'
+      title: Begivenheder
+      arguments:
+        id:
+          exception:
+            title: Alle
+  events:
+    display_title: Blok

@@ -4,9 +4,18 @@ status: true
 dependencies:
   module:
     - shh_pricing_comparison
-active_version: 5424b53cd571b7a8
+active_version: 0332f468d6c59db3
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: shh_pricing_summary
+        label: 'SHH pricing at a glance'
+        label_display: '0'
+        provider: shh_pricing_comparison
+    fallback_metadata:
+      slot_definitions: null
+  5424b53cd571b7a8:
     settings:
       default_settings:
         id: shh_pricing_summary

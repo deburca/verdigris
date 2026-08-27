@@ -1,0 +1,16 @@
+uuid: e0603f6d-5627-4ce9-a02b-7effd63e6f5a
+langcode: da
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.feed
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: commerce_product_variation.feed
+target_entity_type_id: commerce_product_variation
+target_bundle: feed
+default_langcode: site_default
+language_alterable: true

@@ -1,0 +1,16 @@
+uuid: 84c72b85-26ce-4bd5-b4a2-0ddac449be52
+langcode: da
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.horse
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: commerce_product_variation.horse
+target_entity_type_id: commerce_product_variation
+target_bundle: horse
+default_langcode: site_default
+language_alterable: true

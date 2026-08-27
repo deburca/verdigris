@@ -1,0 +1,8 @@
+title: Kontakt
+settings:
+  confirmation_message: 'Din besked er blevet sendt.'
+handlers:
+  email_confirmation:
+    label: E-mail-bekræftelse
+  email_notification:
+    label: E-mail-notifikation

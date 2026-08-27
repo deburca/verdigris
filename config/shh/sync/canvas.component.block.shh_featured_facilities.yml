@@ -4,9 +4,18 @@ status: true
 dependencies:
   module:
     - shh_facilities_overview
-active_version: 2551636056357b0a
+active_version: b39181ae3ad27558
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: shh_featured_facilities
+        label: 'SHH facilities'
+        label_display: '0'
+        provider: shh_facilities_overview
+    fallback_metadata:
+      slot_definitions: null
+  2551636056357b0a:
     settings:
       default_settings:
         id: shh_featured_facilities

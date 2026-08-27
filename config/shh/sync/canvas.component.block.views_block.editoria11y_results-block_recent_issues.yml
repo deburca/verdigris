@@ -6,9 +6,20 @@ dependencies:
     - views.view.editoria11y_results
   module:
     - views
-active_version: 49056abe27da4b2b
+active_version: e318128a74aa1fe1
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: 'views_block:editoria11y_results-block_recent_issues'
+        label: 'Editoria11y - Recent alerts'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+  49056abe27da4b2b:
     settings:
       default_settings:
         id: 'views_block:editoria11y_results-block_recent_issues'

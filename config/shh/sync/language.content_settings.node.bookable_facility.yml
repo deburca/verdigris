@@ -1,0 +1,16 @@
+uuid: 2a030a57-de5f-4778-b1d7-8eb97fc34330
+langcode: da
+status: true
+dependencies:
+  config:
+    - node.type.bookable_facility
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: node.bookable_facility
+target_entity_type_id: node
+target_bundle: bookable_facility
+default_langcode: site_default
+language_alterable: true

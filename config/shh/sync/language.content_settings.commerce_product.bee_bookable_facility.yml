@@ -1,0 +1,16 @@
+uuid: a81d5207-82fc-4530-881f-da301f12e49f
+langcode: da
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.bee_bookable_facility
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: commerce_product.bee_bookable_facility
+target_entity_type_id: commerce_product
+target_bundle: bee_bookable_facility
+default_langcode: site_default
+language_alterable: true

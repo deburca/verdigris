@@ -19,7 +19,6 @@ dependencies:
     - field.field.node.bookable_facility.field_surface
     - field.field.node.bookable_facility.field_use_open_hours
     - node.type.bookable_facility
-    - workflows.workflow.basic_editorial
   module:
     - commerce_price
     - content_moderation
@@ -128,6 +127,13 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   moderation_state:
     type: moderation_state_default
     weight: 100
@@ -137,6 +143,11 @@ content:
   path:
     type: path
     weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  simple_sitemap:
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }

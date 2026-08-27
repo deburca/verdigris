@@ -13,7 +13,7 @@ bundle: news
 label: 'Featured image'
 description: 'Shown on the listing page and at the top of the post.'
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:

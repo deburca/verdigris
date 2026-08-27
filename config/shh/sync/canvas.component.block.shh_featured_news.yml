@@ -4,9 +4,18 @@ status: true
 dependencies:
   module:
     - shh_news
-active_version: 2750651d8eca7582
+active_version: f733b53a82be8a34
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: shh_featured_news
+        label: 'SHH news'
+        label_display: '0'
+        provider: shh_news
+    fallback_metadata:
+      slot_definitions: null
+  2750651d8eca7582:
     settings:
       default_settings:
         id: shh_featured_news

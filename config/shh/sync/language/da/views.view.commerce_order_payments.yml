@@ -1,0 +1,47 @@
+label: Betalinger
+display:
+  default:
+    display_title: Standard
+    display_options:
+      title: Betalinger
+      fields:
+        amount__number:
+          label: Betaling
+          separator: ', '
+        refunded_amount__number:
+          separator: ', '
+        avs_response_code_label:
+          separator: ', '
+        avs_response_code:
+          separator: ', '
+        state:
+          label: Status
+          separator: ', '
+        payment_gateway:
+          separator: ', '
+        authorized:
+          separator: ', '
+        completed:
+          label: Gennemført
+          separator: ', '
+        remote_id:
+          label: 'Remote ID'
+          separator: ', '
+        operations:
+          label: Handlinger
+      exposed_form:
+        options:
+          submit_button: Udfør
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
+      arguments:
+        order_id:
+          exception:
+            title: Alle
+  page_1:
+    display_title: Side
+    display_options:
+      menu:
+        title: Betalinger

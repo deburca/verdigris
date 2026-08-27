@@ -14,7 +14,7 @@ bundle: bookable_facility
 label: Price
 description: ''
 required: true
-translatable: true
+translatable: false
 default_value:
   number: 0
   currency_code: DKK

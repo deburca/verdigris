@@ -146,3 +146,4 @@ hidden:
   field_price_frequency: true
   field_product: true
   field_use_open_hours: true
+  langcode: true
