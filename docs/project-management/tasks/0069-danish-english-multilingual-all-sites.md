@@ -7,7 +7,7 @@ site: vdg, kbg, shh
 project:
 created: 2026-08-27
 updated: 2026-08-27
-progress: vdg DONE (live). kbg Phases 1–8 done (1+4 = 7123566, 2+5 = 3b4fefc, hivelog 1.7.2, switcher in deburca/zwarte_piet 9ecb8a9); only Phase 9 rollout left. shh not started.
+progress: vdg DONE (live). kbg DONE — all phases through rollout (make kbg-pull succeeded after fix 138cd63); Danish content + editorial hand-off outstanding. shh not started.
 branch: feature/0069-danish-english-multilingual
 ---
 # Task: Add Danish + English translation to all three sites
@@ -558,8 +558,30 @@ work is small; no code/config change.
 - `/admin` + `/en/admin` → 403 (localised login redirect).
 - `config:status` clean; re-export stable.
 
-**Not yet done for kbg:** Phase 9 (rollout — `make kbg-pull`).
-Editorial hand-off list above.
+### kbg — 2026-08-27, Phase 9 (rollout)
+
+**`make kbg-pull` succeeded** after one fix: `config:import` first
+failed on `quick_silver.settings` (a config that requires the
+`quick_silver` theme, which kbg's `core.extension.yml` does not
+install — kbg is a `zwarte_piet` site). The file kept coming back
+across `config:export` because an orphaned `quick_silver.settings`
+object still lived in the kbg DB from a past theme install; commit
+`138cd63` deletes both the file and the DB object so it can't recur.
+Pushed, re-pulled, `cim` completed.
+
+hivelog `1.7.2` came in with `composer install --no-dev`;
+`kbg_multilingual` imported the `.po` on first `cim` via its
+`configurable_language_insert` hook (no "No pending deploy hooks" gap
+— that fix is built into the module from the start, unlike vdg's
+retrofit).
+
+**kbg: task 0069 done bar editorial content.** Remaining is the
+Danish content itself and the editorial hand-off (`easy_email`
+bodies, `klaro.klaro_app` descriptions, slogan; the homepage
+`canvas_page`, the draft privacy-policy node, the 3 visitor menu
+links). The `zwarte_piet` language switcher is shipped in
+`deburca/zwarte_piet` but not placed in a region (go-live gate) and
+the theme is not yet wired into `composer.json`.
 
 ## Acceptance criteria
 Per site (`vdg`, then `kbg`, then `shh`):
