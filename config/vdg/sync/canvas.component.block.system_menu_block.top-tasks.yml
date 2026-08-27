@@ -6,9 +6,21 @@ dependencies:
     - system.menu.top-tasks
   module:
     - system
-active_version: 075a4459e81a9a3b
+active_version: c000dd48de2eacd3
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: 'system_menu_block:top-tasks'
+        label: 'Top tasks'
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
+  075a4459e81a9a3b:
     settings:
       default_settings:
         id: 'system_menu_block:top-tasks'

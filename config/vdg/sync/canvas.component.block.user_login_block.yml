@@ -4,9 +4,18 @@ status: false
 dependencies:
   module:
     - user
-active_version: 888aba0d384b6b7c
+active_version: d04497f93a2e2a15
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: user_login_block
+        label: 'User login'
+        label_display: '0'
+        provider: user
+    fallback_metadata:
+      slot_definitions: null
+  888aba0d384b6b7c:
     settings:
       default_settings:
         id: user_login_block

@@ -4,9 +4,18 @@ status: false
 dependencies:
   module:
     - navigation
-active_version: a2ddb9f467280871
+active_version: e380286bda149edf
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: navigation_shortcuts
+        label: 'Navigation Shortcuts'
+        label_display: '0'
+        provider: navigation
+    fallback_metadata:
+      slot_definitions: null
+  a2ddb9f467280871:
     settings:
       default_settings:
         id: navigation_shortcuts

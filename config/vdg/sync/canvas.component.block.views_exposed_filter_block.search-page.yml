@@ -6,9 +6,19 @@ dependencies:
     - views.view.search
   module:
     - views
-active_version: f0ca33cbfe79a9ef
+active_version: 672d454f9d5f3bca
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: 'views_exposed_filter_block:search-page'
+        label: 'Exposed form: search-page'
+        label_display: '0'
+        provider: views
+        views_label: ''
+    fallback_metadata:
+      slot_definitions: null
+  f0ca33cbfe79a9ef:
     settings:
       default_settings:
         id: 'views_exposed_filter_block:search-page'

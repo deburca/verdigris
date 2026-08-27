@@ -8,9 +8,20 @@ dependencies:
     - views
 _core:
   default_config_hash: ILkg2mMN2FNgwIQUtFPAPy5D_7MLKBXVcoeMbQkJ0Co
-active_version: f11baa2e2e8838bc
+active_version: d8cba5d9bdcda65d
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: 'views_block:blog-all'
+        label: 'Blog: All blog posts'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+  f11baa2e2e8838bc:
     settings:
       default_settings:
         id: 'views_block:blog-all'

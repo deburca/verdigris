@@ -8,9 +8,21 @@ dependencies:
     - system
 _core:
   default_config_hash: X6uODG7DvzG3J24YoCSM1Tdw1KPfaTXd1w7TX5zfGEU
-active_version: 06c94e2cbbcdbd80
+active_version: eb81ee0f2aa8e77a
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: 'system_menu_block:secondary'
+        label: 'Secondary navigation'
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
+  06c94e2cbbcdbd80:
     settings:
       default_settings:
         id: 'system_menu_block:secondary'

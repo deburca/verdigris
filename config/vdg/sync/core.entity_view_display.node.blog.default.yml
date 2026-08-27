@@ -64,5 +64,6 @@ hidden:
   field_seo_description: true
   field_seo_image: true
   field_seo_title: true
+  langcode: true
   links: true
   search_api_excerpt: true

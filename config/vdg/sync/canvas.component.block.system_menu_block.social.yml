@@ -8,9 +8,21 @@ dependencies:
     - system
 _core:
   default_config_hash: gqyZ3-Ks9ilw4L8OrclGvHOGQUmmA8XWKFTffMR258c
-active_version: e861cf0cf3260605
+active_version: 5b26a09e988c1191
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: 'system_menu_block:social'
+        label: Social
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
+  e861cf0cf3260605:
     settings:
       default_settings:
         id: 'system_menu_block:social'

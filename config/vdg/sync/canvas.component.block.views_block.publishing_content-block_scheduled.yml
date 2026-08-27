@@ -6,9 +6,20 @@ dependencies:
     - views.view.publishing_content
   module:
     - views
-active_version: 3ddcc9429928c501
+active_version: 14dbb9c88b8be54b
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: 'views_block:publishing_content-block_scheduled'
+        label: Scheduled
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+  3ddcc9429928c501:
     settings:
       default_settings:
         id: 'views_block:publishing_content-block_scheduled'

@@ -4,9 +4,22 @@ status: false
 dependencies:
   module:
     - webform
-active_version: b5dca6ca0519bf1b
+active_version: 7b80cf2c7bac74c9
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: webform_block
+        label: Webform
+        label_display: '0'
+        provider: webform
+        webform_id: ''
+        default_data: ''
+        redirect: false
+        lazy: false
+    fallback_metadata:
+      slot_definitions: null
+  b5dca6ca0519bf1b:
     settings:
       default_settings:
         id: webform_block

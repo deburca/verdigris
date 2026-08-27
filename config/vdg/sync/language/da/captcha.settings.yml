@@ -1,0 +1,3 @@
+description: 'Dette spørgsmål afgør, om du er et menneske, for at forhindre automatisk indsendelse af spam.'
+title: CAPTCHA
+wrong_captcha_response_message: 'Det indtastede svar er ikke korrekt.'

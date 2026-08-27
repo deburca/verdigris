@@ -13,7 +13,7 @@ bundle: page
 label: 'SEO image'
 description: 'Upload an image to be used when the page is shared on social media sites.'
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:

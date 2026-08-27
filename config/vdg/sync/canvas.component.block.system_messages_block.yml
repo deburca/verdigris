@@ -4,9 +4,18 @@ status: false
 dependencies:
   module:
     - system
-active_version: 1609d44df6c8b26a
+active_version: 212ffd475dd83684
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: system_messages_block
+        label: Messages
+        label_display: '0'
+        provider: system
+    fallback_metadata:
+      slot_definitions: null
+  1609d44df6c8b26a:
     settings:
       default_settings:
         id: system_messages_block
