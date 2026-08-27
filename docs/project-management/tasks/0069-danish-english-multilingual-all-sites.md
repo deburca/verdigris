@@ -575,6 +575,17 @@ hivelog `1.7.2` came in with `composer install --no-dev`;
 — that fix is built into the module from the start, unlike vdg's
 retrofit).
 
+**Run `config:import` twice on a first multilingual deploy.** After
+the first `cim`, `config:status` still showed `language.negotiation`
+"Different" (production kept the `language` module's install-default
+`prefixes: {da: 'da'}` instead of the committed `{da: ''}`) plus the
+usual `views.view.scheduler_scheduled_content` quirk. The `language`
+module recreates `language.negotiation` during `processExtensions`,
+after the import changelist is computed, so the first `cim` misses
+it. A second `drush config:import -y` picked both up and
+`config:status` went clean — Danish then served from the bare path as
+intended. Fold a second `cim` into the shh rollout.
+
 **kbg: task 0069 done bar editorial content.** Remaining is the
 Danish content itself and the editorial hand-off (`easy_email`
 bodies, `klaro.klaro_app` descriptions, slogan; the homepage
