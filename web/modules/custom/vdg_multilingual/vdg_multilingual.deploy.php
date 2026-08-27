@@ -41,3 +41,11 @@ function vdg_multilingual_deploy_import_danish_translations(): string {
 function vdg_multilingual_deploy_import_danish_translations_2(): string {
   return vdg_multilingual_import_interface_translations();
 }
+
+/**
+ * Task 0069: seed Danish translations of the menu-link titles.
+ */
+function vdg_multilingual_deploy_seed_da_menu_links(): string {
+  return vdg_multilingual_seed_da_menu_links();
+}
+

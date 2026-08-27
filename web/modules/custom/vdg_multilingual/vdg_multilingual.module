@@ -83,3 +83,40 @@ function vdg_multilingual_import_interface_translations(): string {
     $report['deletes'] ?? 0,
   );
 }
+
+/**
+ * Seeds Danish (`da`) translations of the site's menu-link titles (task 0069).
+ *
+ * Menu-link titles are content, not config, so cex/cim does not carry them.
+ * This is the mechanical, high-visibility subset (every page shows the menu);
+ * the map is the source of truth. Idempotent — only adds a `da` translation
+ * where the link's title matches and none exists yet.
+ */
+function vdg_multilingual_seed_da_menu_links(): string {
+  if (!\Drupal::languageManager()->getLanguage('da')) {
+    return "Language 'da' not installed yet — skipped menu seeding.";
+  }
+  $map = [
+    'Privacy policy' => 'Privatlivspolitik',
+    'My privacy settings' => 'Mine privatlivsindstillinger',
+    'Terms of service' => 'Handelsbetingelser',
+    'Features' => 'Funktioner',
+    'Contact' => 'Kontakt',
+    'Resources' => 'Ressourcer',
+    'Pricing' => 'Priser',
+    'Consultancy' => 'Rådgivning',
+    'About' => 'Om os',
+    'Careers' => 'Job',
+  ];
+  $n = 0;
+  $storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
+  foreach ($storage->loadMultiple() as $link) {
+    $title = $link->getTitle();
+    if (!isset($map[$title]) || $link->hasTranslation('da')) {
+      continue;
+    }
+    $link->addTranslation('da', ['title' => $map[$title]])->save();
+    $n++;
+  }
+  return "Seeded $n da menu-link translation(s).";
+}

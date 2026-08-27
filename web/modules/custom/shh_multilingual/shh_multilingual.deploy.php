@@ -25,3 +25,11 @@
 function shh_multilingual_deploy_import_danish_translations(): string {
   return shh_multilingual_import_interface_translations();
 }
+
+/**
+ * Task 0069: seed Danish translations of the menu-link titles.
+ */
+function shh_multilingual_deploy_seed_da_menu_links(): string {
+  return shh_multilingual_seed_da_menu_links();
+}
+

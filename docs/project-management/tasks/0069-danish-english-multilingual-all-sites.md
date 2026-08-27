@@ -715,6 +715,36 @@ sites): `easy_email` bodies, `klaro.klaro_app` descriptions, slogans,
 the Danish page/product content, and a **native review pass** on the
 machine-translated marketing/email copy (hivelog's 703 + shh's 310).
 
+### All three — 2026-08-28, fix: menu-link titles stayed English
+
+**Symptom (reported on hestehoj.dk):** the main menu rendered English
+on every page even though `/facilities` content was Danish.
+
+**Cause:** Phase 4 enabled content translation on nodes / canvas_page
+/ commerce but **not on `menu_link_content`** — so the menu links had
+no `da` translation to fall back to and rendered their `en` title
+everywhere. (The homepage being mostly English is separate and
+expected: its `canvas_page` has no `da` translation yet → English
+fallback — that is Phase 7 content work.)
+
+**Fix (all three sites):**
+- `content_translation` enabled for `menu_link_content` —
+  `config/{vdg,kbg,shh}/sync/language.content_settings.menu_link_content.menu_link_content.yml`.
+- Menu-link titles are *content*, not config, so `cim` can't carry
+  them: each `*_multilingual` module gains a
+  `*_seed_da_menu_links()` helper (an explicit `en → da` title map,
+  idempotent — adds a `da` translation only where the title matches
+  and none exists) and a `*_deploy_seed_da_menu_links()` deploy hook.
+  The hook post-dates the already-deployed modules, so it runs once
+  on the next `make <site>-pull`. Maps: vdg 10 links (Funktioner /
+  Priser / Rådgivning / Om os / Job / …), kbg 3, shh 8 (Forsiden /
+  Book en facilitet / Heste til salg / Foder og strøelse / …).
+- Verified on DDEV: `/` (shh) and `/da` (vdg) menus now render Danish.
+- **Still content work:** the Danish homepage / landing-page content
+  itself — each `canvas_page` needs its `da` translation built (no
+  layout fallback for an *empty* `da` translation; a missing one
+  falls back to English cleanly).
+
 ### shh — 2026-08-27, Phase 5 (config strings, mechanical) + Phase 7
 
 **Phase 5.** shh's mechanical config surface turned out **small**: no
