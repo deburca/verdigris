@@ -83,6 +83,7 @@ docroot/profiles/varbase/
 
 # Ignore custom modules, themes, and profiles (managed via Github)
 web/themes/custom/quick_silver/
+web/themes/custom/zwarte_piet/
 
 # Ignore libraries directory (managed via Composer)
 web/libraries/
