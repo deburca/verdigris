@@ -4,9 +4,18 @@ status: true
 dependencies:
   module:
     - shh_feed_catalog
-active_version: 1cc3fd6646a2408a
+active_version: 5eecf8313203cd8c
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: shh_featured_feed
+        label: 'SHH foder og strøelse'
+        label_display: '0'
+        provider: shh_feed_catalog
+    fallback_metadata:
+      slot_definitions: null
+  1cc3fd6646a2408a:
     settings:
       default_settings:
         id: shh_featured_feed
@@ -24,7 +33,7 @@ versioned_properties:
         provider: shh_feed_catalog
     fallback_metadata:
       slot_definitions: null
-label: 'SHH feed & bedding'
+label: 'SHH foder og strøelse'
 id: block.shh_featured_feed
 provider: shh_feed_catalog
 source: block

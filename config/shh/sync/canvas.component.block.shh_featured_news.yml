@@ -4,9 +4,18 @@ status: true
 dependencies:
   module:
     - shh_news
-active_version: f733b53a82be8a34
+active_version: b3de8c00a0a06f76
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: shh_featured_news
+        label: 'SHH nyheder'
+        label_display: '0'
+        provider: shh_news
+    fallback_metadata:
+      slot_definitions: null
+  f733b53a82be8a34:
     settings:
       default_settings:
         id: shh_featured_news
@@ -24,7 +33,7 @@ versioned_properties:
         provider: shh_news
     fallback_metadata:
       slot_definitions: null
-label: 'SHH news'
+label: 'SHH nyheder'
 id: block.shh_featured_news
 provider: shh_news
 source: block

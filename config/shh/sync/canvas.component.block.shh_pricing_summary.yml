@@ -4,9 +4,18 @@ status: true
 dependencies:
   module:
     - shh_pricing_comparison
-active_version: 0332f468d6c59db3
+active_version: e7e77c71eada3aab
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: shh_pricing_summary
+        label: 'SHH priser i overblik'
+        label_display: '0'
+        provider: shh_pricing_comparison
+    fallback_metadata:
+      slot_definitions: null
+  0332f468d6c59db3:
     settings:
       default_settings:
         id: shh_pricing_summary
@@ -24,7 +33,7 @@ versioned_properties:
         provider: shh_pricing_comparison
     fallback_metadata:
       slot_definitions: null
-label: 'SHH pricing at a glance'
+label: 'SHH priser i overblik'
 id: block.shh_pricing_summary
 provider: shh_pricing_comparison
 source: block

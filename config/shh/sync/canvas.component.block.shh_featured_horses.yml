@@ -4,9 +4,18 @@ status: true
 dependencies:
   module:
     - shh_horse_catalog
-active_version: f823288260969d42
+active_version: 93586bf8a7658d23
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: shh_featured_horses
+        label: 'SHH fremhævede heste'
+        label_display: '0'
+        provider: shh_horse_catalog
+    fallback_metadata:
+      slot_definitions: null
+  f823288260969d42:
     settings:
       default_settings:
         id: shh_featured_horses
@@ -24,7 +33,7 @@ versioned_properties:
         provider: shh_horse_catalog
     fallback_metadata:
       slot_definitions: null
-label: 'SHH featured horses'
+label: 'SHH fremhævede heste'
 id: block.shh_featured_horses
 provider: shh_horse_catalog
 source: block
