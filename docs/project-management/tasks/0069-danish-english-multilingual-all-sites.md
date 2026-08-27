@@ -7,7 +7,7 @@ site: vdg, kbg, shh
 project:
 created: 2026-08-27
 updated: 2026-08-27
-progress: vdg Phases 1 + 4 committed (f997e9b); Phase 2 (.po deploy plumbing) done locally, not committed; Canvas spike findings below
+progress: vdg Phases 1+4 (f997e9b) & 2 (0e053c7) committed; Phase 6 done — switcher in quick_silver repo (0cb9f7e, unpushed), SEO audit clean; next is Phase 5
 branch: feature/0069-danish-english-multilingual
 ---
 # Task: Add Danish + English translation to all three sites
@@ -176,9 +176,61 @@ theme-provided source strings (e.g. "Color scheme") are translatable
 but not on localize.drupal.org; translating them is Phase 5 /
 translation-phase content work.
 
+### vdg — 2026-08-27, Phase 6 (theme + SEO)
+
+**No cms2 config change** — vdg's theme `quick_silver` is its **own
+git repo** (`github.com/deburca/quick_silver`, own `main`), explicitly
+`.gitignore`d by cms2 at `.gitignore:85` (unlike `zwarte_piet` /
+`hestehoj`, which are tracked inside cms2). Theme work for vdg lands
+there, not here.
+
+**Language switcher — committed to the quick_silver repo (`0cb9f7e`),
+not pushed:**
+- `templates/navigation/links--language-block.html.twig` — override of
+  core `links.html.twig` for `links__language_block`: inline
+  horizontal list, 44px targets, `aria-label="Language"`, active
+  language marked. The `<a>` is left to core so the language-prefixed
+  href + `hreflang`/`lang` attributes stay intact. Verified it
+  compiles and is picked up (`✅ links--language-block.html.twig`).
+- `src/theme.css` +~35 lines — scoped `.language-switcher*` rules on
+  existing CSS vars; **no `build/main.min.css` rebuild** (per the
+  hestehoj-era toolchain rule, which applies here too).
+- **Deliberately not placed in a region.** Go-live = drop the
+  `language_block:language_interface` component into the header or
+  footer Canvas page region (open question 4). A raw
+  `block.block` placement in the `header` region was tested and does
+  **not** render — quick_silver's front-end header/footer are owned
+  by `canvas.page_region.quick_silver.{header,footer}`, so the
+  switcher must go into that Canvas tree.
+- Native-name label polish (show "Dansk" not "Danish" in the
+  switcher) deferred — would edit `language.entity.da` label.
+
+**SEO / i18n plumbing audit — all already correct, no change made:**
+- `simple_sitemap.settings`: `skip_untranslated: true`,
+  `disable_language_hreflang: false`, `default_hreflang` sitemap type
+  active — per-language sitemap with hreflang comes for free once
+  translations exist.
+- `pathauto.settings`: `transliterate: true` → Danish å/ø/æ collapse
+  to ASCII in aliases (standard). Keeping native chars in URLs would
+  be a deliberate change; not made.
+- Fonts: quick_silver's `latin` subset (`U+0000–00FF`) already covers
+  å ø æ Å Ø Æ for both Outfit and Inter.
+- `<html lang>` dynamic via `html_attributes` — verified `en`/`da`.
+
+**SEO items that are real but belong to Phase 5 (metatag
+localisation), not the theme:**
+- No `og:locale` / `og:locale:alternate` in `metatag.metatag_defaults.*`.
+- `og:url` not language-aware (renders `…/home` on both `/` and
+  `/da`).
+- Pre-translation, `/da` `rel=canonical` → `/` and only
+  `hreflang="en"` is emitted — correct fallback behaviour,
+  self-corrects when the Danish homepage exists; core never emits
+  `x-default`, add via metatag if wanted.
+
 **Not yet done for vdg:** Phase 5 (config-string translation via
-`config_translation`), Phase 6 (theme language switcher + SEO
-hreflang/canonical review), Phases 7–9.
+`config_translation`, incl. the `og:*` items above), Phases 7–9.
+`quick_silver` commit `0cb9f7e` is local — not pushed to
+`github.com/deburca/quick_silver`.
 
 ## Acceptance criteria
 Per site (`vdg`, then `kbg`, then `shh`):
