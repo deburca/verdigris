@@ -7,7 +7,7 @@ site: vdg, kbg, shh
 project:
 created: 2026-08-27
 updated: 2026-08-27
-progress: vdg + kbg DONE (live). shh Phases 1–8 done (incl. 310 shh_* module strings + hestehoj switcher); only Phase 9 rollout (make shh-pull) left. Editorial hand-off + native review outstanding on all three.
+progress: ENGINEERING DONE — vdg, kbg, shh all live bilingual (da default on kbg/shh, en default on vdg). Outstanding: editorial hand-off (easy_email, klaro app descriptions, slogans), Danish page/product content, native review of machine-translated copy; language switchers built but not placed (go-live gate).
 branch: feature/0069-danish-english-multilingual
 ---
 # Task: Add Danish + English translation to all three sites
@@ -694,12 +694,26 @@ Run on the shh DDEV, anon unless noted. **No config/code change.**
 - Commerce checkout / cart / booking-hold stay disabled
   ([[shh-phased-launch-disabled-modules]]) — untouched.
 
-**shh: task 0069 done bar Phase 9 (rollout — `make shh-pull`; run
-`cim` twice; the `config_split` `local` split stays inactive on
-import so field_ui/views_ui are uninstalled on the target by
-construction).** Editorial hand-off: `easy_email` bodies,
-`klaro.klaro_app` descriptions, slogan, the Danish page content, and
-the native review pass on the 310 `shh_*` translations.
+### shh — 2026-08-27, Phase 9 (rollout)
+
+**`make shh-pull` succeeded — stutteri-hestehoj.dk is live bilingual.**
+`config:status` needed a second `config:import` (the same
+`language.negotiation` first-pass miss) and after that showed only
+`views.view.editoria11y_dismissals` / `_results` "Different" — a
+**pre-existing editoria11y version skew** (prod's DB copy has
+`uuid: null` and lacks the `replace_spaces: false` views option the
+committed YAML carries; editoria11y re-saves its own views after every
+`cim`). Not multilingual, not introduced by 0069 — filed as a
+separate editoria11y housekeeping item (re-export those two views
+from a prod-matching env, or `config:delete` and let the module
+recreate). Confirmed on prod: `language.negotiation` prefixes
+`da: ''` / `en: en`; ~9k `{locales_target}` `da` rows;
+`/` → `<html lang="da">`; `/en/facilities` → English.
+
+**shh: task 0069 engineering done.** Editorial hand-off (all three
+sites): `easy_email` bodies, `klaro.klaro_app` descriptions, slogans,
+the Danish page/product content, and a **native review pass** on the
+machine-translated marketing/email copy (hivelog's 703 + shh's 310).
 
 ### shh — 2026-08-27, Phase 5 (config strings, mechanical) + Phase 7
 
