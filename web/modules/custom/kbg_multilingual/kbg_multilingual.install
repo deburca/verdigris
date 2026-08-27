@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for kbg_multilingual.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Covers the case where `da` already exists when the module is enabled —
+ * local dev, a re-enable, or a second deploy. On a *first* deploy the config
+ * import installs this module before it creates `language.entity.da`, so this
+ * runs too early and the import is a no-op; kbg_multilingual_configurable_
+ * language_insert() then picks it up when `da` is created later in the same
+ * cim. Either way the site never needs outbound access to localize.drupal.org.
+ */
+function kbg_multilingual_install(): void {
+  \Drupal::messenger()->addStatus(kbg_multilingual_import_interface_translations());
+}

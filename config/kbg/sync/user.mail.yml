@@ -81,10 +81,31 @@ register_pending_approval_admin:
     [user:edit-url]
 status_activated:
   subject: 'Kontoinformationer for [user:display-name] på [site:name] (godkendt)'
-  body: "[user:display-name],\r\n\r\nDin konto på [site:name] er blevet aktiveret.\r\n\r\nDu kan logge ind ved at klikke på følgende link eller ved at kopiere og indsætte det i din browser:\r\n\r\n[user:one-time-login-url]\r\n\r\nLinket kan kun bruges én gang, og det fører dig til en side, hvor du kan vælge din adgangskode.\r\n\r\nNår du har valgt en adgangskode kan du fremover logge ind på [site:login-url] med:\r\n\r\nBrugernavn: [user:account-name]\r\nAdgangskode: Din adgangskode\r\n\r\n--  Holdet bag [site:name]"
+  body: |-
+    [user:display-name],
+
+    Din konto på [site:name] er blevet aktiveret.
+
+    Du kan logge ind ved at klikke på følgende link eller ved at kopiere og indsætte det i din browser:
+
+    [user:one-time-login-url]
+
+    Linket kan kun bruges én gang, og det fører dig til en side, hvor du kan vælge din adgangskode.
+
+    Når du har valgt en adgangskode kan du fremover logge ind på [site:login-url] med:
+
+    Brugernavn: [user:account-name]
+    Adgangskode: Din adgangskode
+
+    --  Holdet bag [site:name]
 status_blocked:
   subject: 'Kontoinformationer for [user:display-name] på [site:name] (blokeret)'
-  body: "[user:display-name],\r\n\r\nDin konto på [site:name] er blevet blokeret.\r\n\r\n--  [site:name] team"
+  body: |-
+    [user:display-name],
+
+    Din konto på [site:name] er blevet blokeret.
+
+    --  [site:name] team
 status_canceled:
   subject: 'Kontoinformationer for [user:display-name] på [site:name] (opsagt)'
   body: |-

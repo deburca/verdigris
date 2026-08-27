@@ -7,7 +7,7 @@ site: vdg, kbg, shh
 project:
 created: 2026-08-27
 updated: 2026-08-27
-progress: vdg DONE (live on verdigris.nu). kbg Phases 1+4 done + hivelog 1.7.2 released with full Danish .po; kbg Phases 2/5/6/7/8/9 pending. shh not started.
+progress: vdg DONE (live). kbg Phases 1+4+2+5+7+8 done (uncommitted) + hivelog 1.7.2 released; kbg Phase 6 switcher BLOCKED (zwarte_piet has no repo home), Phase 9 rollout pending. shh not started.
 branch: feature/0069-danish-english-multilingual
 ---
 # Task: Add Danish + English translation to all three sites
@@ -486,13 +486,78 @@ state.
   confirmations and permissions all render Danish; no HTML-filter
   warnings.
 
-**Not yet done for kbg:** Phase 2 (`.po` deploy plumbing — a
-`kbg_multilingual` module like `vdg_multilingual`; hivelog's own
-`.po` rides along via its info.yml pattern on `locale:update`),
-Phase 5 (config-string translation), Phase 6 (language switcher in
-the `zwarte_piet` theme — tracked *inside* cms2, unlike
-`quick_silver`), Phase 7 (existing-content — only 1 node + 1
-`canvas_page` + 10 menu links, all `en`), Phases 8–9.
+### kbg — 2026-08-27, Phases 2 / 5 / 7 / 8 (+ Phase 6 blocked)
+
+**Phase 2 — `.po` deploy plumbing.** New `web/modules/custom/kbg_multilingual`
+(copy of `vdg_multilingual` with the `configurable_language_insert`
+hook baked in from the start, so no `_2` back-fill needed):
+- `translations/da.po` — 860 KB snapshot,
+  `drush locale:export da --types=customized,not-customized`, then
+  `msguniq --use-first` (the raw export had 5 duplicate msgids that
+  `msgfmt -c` rejects) and a `\r` / header cleanup. 8,635 messages,
+  `msgfmt -c` clean. Includes the hivelog strings (they are in
+  `{locales_target}` too), so it is self-contained; hivelog's own
+  bundled `.po` also imports via `locale:update`, harmlessly.
+- `hook_install` + `configurable_language_insert` + one deploy hook,
+  same idempotent `Gettext::fileToDatabase(... NOT_CUSTOMIZED ...)`
+  as vdg.
+- Config delta: `core.extension.yml` (+`kbg_multilingual`) and
+  `user.mail.yml` (two email bodies lose their stray `\r\n` — a
+  direct consequence of the `.po` `\r` cleanup, now consistent with
+  the other bodies' `|-` block scalars).
+
+**Phase 5 — config-string translation (mechanical).** kbg's surface
+is tiny: **no custom front-end views** (only `views.view.recent_pages`,
+admin), **no webforms**, **metatag not installed** (so no `og:locale`
+work). Because `da` is the default, edits go on the **base** config:
+- `klaro.klaro_purpose.*` — filled the 4 still-English base labels
+  (Analyse / Funktionel / Indlejret eksternt indhold / Annoncering
+  og markedsføring; `security`/`styling`/`livechat` were already
+  Danish).
+- `klaro.texts` — filled the consent-banner strings the community
+  `.po` left in English (modal/notice title + description, `ok` /
+  `acceptAll` / `acceptSelected`, the `service.*` toggle labels,
+  `contextualConsent.*`). `poweredBy` left as the Klaro brand
+  credit. The full English is already held in
+  `language/en/klaro.texts.yml`, verified: `/` → "Acceptér" /
+  "Analyse", `/en` → "Accept" / "Analytics".
+- **Editorial hand-off (kbg):** `easy_email.easy_email_type.*` (10)
+  bodies; `klaro.klaro_app.*` (~25) one-line descriptions;
+  `system.site` slogan (empty).
+
+**Phase 6 — language switcher — BLOCKED (not committed anywhere).**
+Built the same `links--language-block.html.twig` override + scoped
+`src/theme.css` block as `quick_silver` (`{{ 'Language'|t }}` renders
+"Sprog" in the `da` context — verified through the theme). **But
+`web/themes/custom/zwarte_piet/` is gitignored
+(`.gitignore:505`, "independent repo, managed via Composer") with no
+`.git`, not in `composer.json`, and no master checkout under
+`/Users/paddy/Development/`.** Changes are staged in
+`scratchpad/zwarte_piet_i18n/` — need a home. (`hestehoj` for shh is
+tracked *inside* cms2, so shh's Phase 6 won't have this problem.)
+
+**Phase 7 — existing content.** All `en`, nothing to reclassify: 1
+node ("Privacy policy", `page`, **unpublished draft** — same as
+vdg's node 1, footer links to it), 1 `canvas_page` ("Kragebækgård"
+homepage, 4 components, `/home`), 3 visitor menu links (main "Home",
+footer "Privacy policy" + "My privacy settings"). Danish content
+work is small; no code/config change.
+
+**Phase 8 — verification (kbg DDEV, anon).**
+- `/` → 200 `<html lang="da">` `content-language: da`, page-cache
+  HIT; `/en` → English. No cross-language cache bleed (3× alternation).
+- `/home` (bare/da) → 404, `/en` front works — aliases are
+  per-language, `/home` exists only for `en`; resolves when the
+  `canvas_page` gets a `da` translation (vdg Phase 8 finding A).
+- `/` `rel=canonical` → `/en/home` and only `hreflang="en"`
+  pre-translation — correct fallback, self-corrects on translation.
+- `/privacy-policy` → 404 both languages — **pre-existing**, node 1
+  is an unpublished draft.
+- `/admin` + `/en/admin` → 403 (localised login redirect).
+- `config:status` clean; re-export stable.
+
+**Not yet done for kbg:** Phase 6 home for the switcher (blocked),
+Phase 9 (rollout — `make kbg-pull`). Editorial hand-off list above.
 
 ## Acceptance criteria
 Per site (`vdg`, then `kbg`, then `shh`):

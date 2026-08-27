@@ -1,0 +1,85 @@
+<?php
+
+/**
+ * @file
+ * Interface-translation deploy plumbing for kragebaekgaard.dk (task 0069).
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\locale\Gettext;
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for configurable_language.
+ *
+ * On a first deploy the multilingual modules and this one are installed during
+ * the config import's `processExtensions` step, which runs to completion
+ * *before* `processConfigurations` creates `language.entity.da`. So
+ * hook_install() runs while `da` still does not exist and skips. This catches
+ * the language the moment it is created — during that same cim, or later via
+ * `drush language:add da` / the UI — and pulls the committed .po in then.
+ * Idempotent; only acts on `da`.
+ */
+function kbg_multilingual_configurable_language_insert(EntityInterface $language): void {
+  if ($language->id() === 'da') {
+    \Drupal::messenger()->addStatus(kbg_multilingual_import_interface_translations());
+  }
+}
+
+/**
+ * Imports the committed Danish .po into {locales_target}.
+ *
+ * Configuration sync (cex/cim) does not carry interface translations, so the
+ * ~8.6k Danish strings that `drush language:add da` fetched from
+ * localize.drupal.org — plus the 703 strings from hivelog's own bundled
+ * translation — only live in this site's database. This ships a snapshot as a
+ * repo artifact and re-applies it on install, on language creation, and on
+ * every `drush deploy` (see the .install / .deploy.php files).
+ *
+ * Imported as LOCALE_NOT_CUSTOMIZED with overwrite limited to not-customized
+ * rows: a translation a human later edits in the UI (customized) is never
+ * clobbered, and a future `drush locale:update` can still pull newer
+ * community strings on top.
+ *
+ * Idempotent — safe to run on every deploy; a no-op if the `da` language or
+ * the .po file is absent.
+ */
+function kbg_multilingual_import_interface_translations(): string {
+  $langcode = 'da';
+
+  if (!\Drupal::languageManager()->getLanguage($langcode)) {
+    return "Language '$langcode' not installed yet — skipped .po import.";
+  }
+
+  $uri = \Drupal::service('extension.list.module')->getPath('kbg_multilingual')
+    . '/translations/' . $langcode . '.po';
+  if (!is_file($uri)) {
+    return "No committed translation file at $uri — skipped.";
+  }
+
+  $file = new \stdClass();
+  $file->filename = basename($uri);
+  $file->uri = $uri;
+  $file->langcode = $langcode;
+
+  $report = Gettext::fileToDatabase($file, [
+    'langcode' => $langcode,
+    'customized' => LOCALE_NOT_CUSTOMIZED,
+    'overwrite_options' => [
+      'not_customized' => TRUE,
+      'customized' => FALSE,
+    ],
+  ]);
+
+  // Regenerate the client-side translation files and drop caches that hold
+  // rendered translated strings.
+  _locale_rebuild_js($langcode);
+  \Drupal\Core\Cache\Cache::invalidateTags(['rendered', 'locale']);
+
+  return sprintf(
+    "Imported kbg_multilingual/translations/%s.po: %d added, %d updated, %d deleted.",
+    $langcode,
+    $report['additions'] ?? 0,
+    $report['updates'] ?? 0,
+    $report['deletes'] ?? 0,
+  );
+}
