@@ -7,7 +7,7 @@ site: vdg, kbg, shh
 project:
 created: 2026-08-27
 updated: 2026-08-27
-progress: vdg DONE — all phases through rollout; live bilingual on verdigris.nu (2026-08-27). kbg + shh not started.
+progress: vdg DONE (live on verdigris.nu). kbg Phases 1+4 done + hivelog 1.7.2 released with full Danish .po; kbg Phases 2/5/6/7/8/9 pending. shh not started.
 branch: feature/0069-danish-english-multilingual
 ---
 # Task: Add Danish + English translation to all three sites
@@ -435,6 +435,64 @@ box, the redeploy worked.
 **vdg: task 0069 done.** Remaining task scope is **kbg** and **shh**
 — both take Danish as the *default* language, so their Phase 7
 (existing-content langcode handling) is real work, unlike vdg's.
+
+### kbg — 2026-08-27, Phases 1 + 4 (+ hivelog i18n)
+
+**Danish is the site default.** Enabled `language` / `locale` /
+`content_translation` / `config_translation`; added `en`; set
+`system.site` `default_langcode: da` + `langcode: da`;
+`language.negotiation` URL prefixes `da: ''` (bare), `en: en`;
+interface detection order url → user → selected. `language:add da`
+imported 7,944 interface strings. Content translation enabled on
+`node.page` (`field_content` / `field_description` translatable;
+image + tags shared) and `canvas_page`.
+
+Verified: `/` → `<html lang="da">`, `/en` → `<html lang="en">`,
+Danish UI strings on `/`, `/en/user/login` English;
+`config:status` clean; re-export stable; kbg homepage (`canvas_page`,
+no `da` translation) falls back cleanly.
+
+**Export diff is 484 files (+4450 / −1106)** — ~2× vdg because
+Danish-as-default makes `locale` rewrite shipped config **in place**:
+base configs get the Danish source string and `langcode: da`
+("Main navigation" → "Primær navigation"), and the English moves
+into **137 new `language/en/*.yml` overrides**; plus 98
+`language/da/*`, plus the same mechanical `core.entity_view_display`
+(50) / `canvas.component` (35, `active_version` re-versioning) /
+`core.entity_form_display` (11, langcode widget) churn as vdg. Paddy
+reviewed the shape and accepted it as the correct Danish-default end
+state.
+
+**hivelog i18n — released as `hivelog/hivelog` 1.7.2**
+(`github.com/deburca/hivelog`, master at
+`/Users/paddy/Development/hivelog`; commits `1bc5d9b` feat(i18n) +
+`d3532f8` release, tag `1.7.2`, pushed):
+- `translations/hivelog.da.po` — full best-effort Danish, **all 703
+  strings** (nav, ~130 permission strings, entity/field labels +
+  help text, list builders, controllers, forms, confirmation
+  messages). Glossary: bigård / bistade / dronning / stadeeftersyn /
+  kalenderhandling / lagervare / høstudbytte. `msgfmt -c` clean.
+  Extracted with `drush potx` (installed then removed).
+- `hivelog.info.yml` — wired `interface translation project: hivelog`
+  + `server pattern: modules/contrib/hivelog/translations/hivelog.%language.po`
+  so `drush locale:update` / module install imports it.
+- **Bug fix** — 3 `HiveInspection` field descriptions had a literal
+  `—` in single-quoted PHP (users saw the six raw characters);
+  replaced with real `—` / `–`.
+- cms2 `composer.lock` bumped 1.7.1 → 1.7.2 (`chore:` commit);
+  constraint `^1.6` unchanged.
+- Verified on kbg: `locale:update` imports 703 strings, "Add Apiary"
+  → "Tilføj bigård", "Queen Cells" → "Dronningceller", delete
+  confirmations and permissions all render Danish; no HTML-filter
+  warnings.
+
+**Not yet done for kbg:** Phase 2 (`.po` deploy plumbing — a
+`kbg_multilingual` module like `vdg_multilingual`; hivelog's own
+`.po` rides along via its info.yml pattern on `locale:update`),
+Phase 5 (config-string translation), Phase 6 (language switcher in
+the `zwarte_piet` theme — tracked *inside* cms2, unlike
+`quick_silver`), Phase 7 (existing-content — only 1 node + 1
+`canvas_page` + 10 menu links, all `en`), Phases 8–9.
 
 ## Acceptance criteria
 Per site (`vdg`, then `kbg`, then `shh`):

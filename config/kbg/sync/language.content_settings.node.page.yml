@@ -1,0 +1,16 @@
+uuid: b44959c6-3c31-41af-aa34-e6b51586cc61
+langcode: da
+status: true
+dependencies:
+  config:
+    - node.type.page
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: node.page
+target_entity_type_id: node
+target_bundle: page
+default_langcode: site_default
+language_alterable: true

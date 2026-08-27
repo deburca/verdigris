@@ -2,9 +2,27 @@ uuid: b287cf4a-5868-4397-89e7-b386d3513c3a
 langcode: en
 status: false
 dependencies: {  }
-active_version: 9eea215a62e33427
+active_version: d4f096ecae476d6e
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: page_title_block
+        label: Sidetitel
+        label_display: '0'
+        provider: core
+    fallback_metadata:
+      slot_definitions: null
+  5605369e3b7553a1:
+    settings:
+      default_settings:
+        id: page_title_block
+        label: 'Page title'
+        label_display: '0'
+        provider: core
+    fallback_metadata:
+      slot_definitions: null
+  9eea215a62e33427:
     settings:
       default_settings:
         id: page_title_block
@@ -22,7 +40,7 @@ versioned_properties:
         provider: core
     fallback_metadata:
       slot_definitions: null
-label: 'Page title'
+label: Sidetitel
 id: block.page_title_block
 provider: core
 source: block

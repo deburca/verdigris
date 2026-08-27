@@ -1,5 +1,5 @@
 uuid: 09c6ab8e-f372-48ff-9d34-59ba3bb9ffde
-langcode: en
+langcode: da
 status: true
 dependencies:
   module:
@@ -7,7 +7,7 @@ dependencies:
 _core:
   default_config_hash: sOb26JSy3fGpWkvR0WYN6_hMqj_6d1rvbvrkzp1yya0
 id: node_make_sticky_action
-label: 'Make content sticky'
+label: 'Gør indhold klæbrigt'
 type: node
 plugin: node_make_sticky_action
 configuration: {  }

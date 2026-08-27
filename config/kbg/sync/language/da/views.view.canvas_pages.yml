@@ -1,0 +1,80 @@
+label: Sider
+display:
+  default:
+    display_title: Standard
+    display_options:
+      title: Sider
+      fields:
+        edit_canvas_page:
+          label: Handlinger
+          text: redigér
+        title:
+          label: Titel
+          separator: ', '
+        status:
+          label: Status
+          settings:
+            format_custom_false: 'Ikke udgivet'
+            format_custom_true: Udgivet
+          separator: ', '
+        owner:
+          label: Forfatter
+          separator: ', '
+        changed:
+          label: Opdateret
+          separator: ', '
+      exposed_form:
+        options:
+          submit_button: Udfør
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
+      filters:
+        title:
+          expose:
+            label: Titel
+        status:
+          expose:
+            label: Udgivet
+          group_info:
+            label: Udgivet
+            group_items:
+              1:
+                title: Udgivet
+              2:
+                title: 'Ikke udgivet'
+  page_1:
+    display_title: Side
+    display_options:
+      fields:
+        title:
+          label: Titel
+          separator: ', '
+        status:
+          label: Status
+          settings:
+            format_custom_false: 'Ikke udgivet'
+            format_custom_true: Udgivet
+          separator: ', '
+        owner:
+          label: Forfatter
+          separator: ', '
+        changed:
+          label: Opdateret
+          separator: ', '
+        operations:
+          label: Handlinger
+      pager:
+        options:
+          tags:
+            next: 'Næste ›'
+            previous: '‹ Forrige'
+            first: '« Første'
+            last: 'Sidste »'
+          expose:
+            items_per_page_label: 'Antal elementer'
+            items_per_page_options_all_label: '- Alle -'
+            offset_label: Forskydning
+      menu:
+        title: Sider

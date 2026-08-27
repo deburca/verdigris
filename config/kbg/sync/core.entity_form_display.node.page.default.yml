@@ -8,7 +8,9 @@ dependencies:
     - field.field.node.page.field_featured_image
     - field.field.node.page.field_tags
     - node.type.page
+    - workflows.workflow.basic_editorial
   module:
+    - content_moderation
     - media_library
     - path
     - scheduler
@@ -62,6 +64,13 @@ content:
       show_entity_id: 0
       show_info_label: 0
       info_label: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
     third_party_settings: {  }
   moderation_state:
     type: moderation_state_default

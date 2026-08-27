@@ -2,9 +2,18 @@ uuid: ff915d9a-d367-4168-9349-6c1696eb4bf9
 langcode: en
 status: false
 dependencies: {  }
-active_version: 3407e482df58ee01
+active_version: aed41745cbe29aab
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: dashboard_placeholder
+        label: Placeholder
+        label_display: '0'
+        provider: dashboard
+    fallback_metadata:
+      slot_definitions: null
+  3407e482df58ee01:
     settings:
       default_settings:
         id: dashboard_placeholder

@@ -6,9 +6,33 @@ dependencies:
     - system.menu.account
   module:
     - system
-active_version: bc0ea0dab4832c55
+active_version: 3fdf10a28f08d824
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: 'system_menu_block:account'
+        label: Brugerkontomenu
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
+  63b0b04489e4b56f:
+    settings:
+      default_settings:
+        id: 'system_menu_block:account'
+        label: 'User account menu'
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
+  bc0ea0dab4832c55:
     settings:
       default_settings:
         id: 'system_menu_block:account'
@@ -32,7 +56,7 @@ versioned_properties:
         expand_all_items: false
     fallback_metadata:
       slot_definitions: null
-label: 'User account menu'
+label: Brugerkontomenu
 id: block.system_menu_block.account
 provider: system
 source: block

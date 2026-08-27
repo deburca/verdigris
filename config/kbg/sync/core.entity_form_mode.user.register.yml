@@ -1,5 +1,5 @@
 uuid: 444eda05-089d-413e-9cb0-25f4a72db546
-langcode: en
+langcode: da
 status: true
 dependencies:
   module:
@@ -7,7 +7,7 @@ dependencies:
 _core:
   default_config_hash: 1TFiplNN7Wmj_DtVLLLP-NLPYpZJdAswKY-vTrYgFyo
 id: user.register
-label: Register
+label: 'Opret konto'
 description: null
 targetEntityType: user
 cache: true

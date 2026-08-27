@@ -1,0 +1,31 @@
+uuid: c96f8b13-a028-401b-84eb-720e52817884
+langcode: en
+status: true
+dependencies:
+  module:
+    - language
+active_version: 0b9b8e72c8a0f8e3
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'language_block:language_interface'
+        label: Sprogvælger
+        label_display: '0'
+        provider: language
+    fallback_metadata:
+      slot_definitions: null
+  fb2494ad75f77da6:
+    settings:
+      default_settings:
+        id: 'language_block:language_interface'
+        label: 'Language switcher'
+        label_display: '0'
+        provider: language
+    fallback_metadata:
+      slot_definitions: null
+label: Sprogvælger
+id: block.language_block.language_interface
+provider: language
+source: block
+source_local_id: 'language_block:language_interface'

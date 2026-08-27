@@ -6,9 +6,33 @@ dependencies:
     - system.menu.tools
   module:
     - system
-active_version: 9236b9ed688a599e
+active_version: 32756b0b37a9322b
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: 'system_menu_block:tools'
+        label: Værktøjer
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
+  ac4b9b56e70be45c:
+    settings:
+      default_settings:
+        id: 'system_menu_block:tools'
+        label: Tools
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
+  9236b9ed688a599e:
     settings:
       default_settings:
         id: 'system_menu_block:tools'
@@ -32,7 +56,7 @@ versioned_properties:
         expand_all_items: false
     fallback_metadata:
       slot_definitions: null
-label: Tools
+label: Værktøjer
 id: block.system_menu_block.tools
 provider: system
 source: block

@@ -1,5 +1,5 @@
 uuid: 3c461fa5-621b-4bfb-9e4b-bdebf90a7eac
-langcode: en
+langcode: da
 status: true
 dependencies:
   enforced:
@@ -8,7 +8,7 @@ dependencies:
 _core:
   default_config_hash: RLU5O05P9vuBxEQjSSs9xRH-Mu8KXEyzUHRIS2R4Lm0
 name: media_library
-label: 'Media Library thumbnail (220×220)'
+label: 'Media Library miniaturebillede (220×220)'
 effects:
   75b076a8-1234-4b42-85db-bf377c4d8d5f:
     uuid: 75b076a8-1234-4b42-85db-bf377c4d8d5f

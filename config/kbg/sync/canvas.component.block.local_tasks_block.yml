@@ -2,9 +2,31 @@ uuid: 71b4217e-7166-43fd-afc7-cf3f2c4bce3f
 langcode: en
 status: false
 dependencies: {  }
-active_version: fbd9367ece78bba5
+active_version: 0d0394eb23f8851c
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: local_tasks_block
+        label: Faner
+        label_display: '0'
+        provider: core
+        primary: true
+        secondary: true
+    fallback_metadata:
+      slot_definitions: null
+  56154bd64a63c66a:
+    settings:
+      default_settings:
+        id: local_tasks_block
+        label: Tabs
+        label_display: '0'
+        provider: core
+        primary: true
+        secondary: true
+    fallback_metadata:
+      slot_definitions: null
+  fbd9367ece78bba5:
     settings:
       default_settings:
         id: local_tasks_block
@@ -26,7 +48,7 @@ versioned_properties:
         secondary: true
     fallback_metadata:
       slot_definitions: null
-label: Tabs
+label: Faner
 id: block.local_tasks_block
 provider: core
 source: block

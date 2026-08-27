@@ -1,10 +1,10 @@
 uuid: 2f15b239-49a1-4a0e-a93f-3604cc60cd4b
-langcode: en
+langcode: da
 status: true
 dependencies: {  }
 _core:
   default_config_hash: SAeixlV7Djy_Ggv_1P95TiqD4KUihA5icvU521tA84Y
 id: short
-label: 'Default short date'
+label: 'Standard kort dato'
 locked: false
 pattern: 'j M Y - H:i'

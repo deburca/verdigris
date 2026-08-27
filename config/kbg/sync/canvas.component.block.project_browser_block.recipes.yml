@@ -4,9 +4,37 @@ status: false
 dependencies:
   module:
     - project_browser
-active_version: f7ae68d8b945a397
+active_version: 357ee444708ecede
 versioned_properties:
   active:
+    settings:
+      default_settings:
+        id: 'project_browser_block:recipes'
+        label: Opskrifter
+        label_display: '0'
+        provider: project_browser
+        paginate: true
+        page_sizes: '12, 24, 36, 48'
+        sort_options: null
+        default_sort: null
+        filters: null
+    fallback_metadata:
+      slot_definitions: null
+  31b9da7a5754aa15:
+    settings:
+      default_settings:
+        id: 'project_browser_block:recipes'
+        label: Recipes
+        label_display: '0'
+        provider: project_browser
+        paginate: true
+        page_sizes: '12, 24, 36, 48'
+        sort_options: null
+        default_sort: null
+        filters: null
+    fallback_metadata:
+      slot_definitions: null
+  f7ae68d8b945a397:
     settings:
       default_settings:
         id: 'project_browser_block:recipes'
@@ -34,7 +62,7 @@ versioned_properties:
         filters: null
     fallback_metadata:
       slot_definitions: null
-label: Recipes
+label: Opskrifter
 id: block.project_browser_block.recipes
 provider: project_browser
 source: block

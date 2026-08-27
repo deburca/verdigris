@@ -1,4 +1,4 @@
-langcode: en
+langcode: da
 consentModal:
   title: 'Use of personal data and cookies'
   description: |
@@ -13,11 +13,11 @@ consentNotice:
   changeDescription: 'There were changes since your last visit, please update your consent.'
   description: |
     We use cookies and process personal data for the following purposes: {purposes}.
-  learnMore: Customize
+  learnMore: Tilpas
 ok: Accept
-save: Save
-decline: Decline
-close: Close
+save: Gem
+decline: Afslå
+close: Luk
 acceptAll: 'Accept all'
 acceptSelected: 'Accept selected'
 service:
@@ -33,7 +33,7 @@ service:
   purposes: Purposes
   purpose: Purpose
 contextualConsent:
-  acceptAlways: Always
+  acceptAlways: Altid
   acceptOnce: 'Yes (this time)'
   description: 'Load external content supplied by {title}?'
 poweredBy: 'Powered by Klaro!'
