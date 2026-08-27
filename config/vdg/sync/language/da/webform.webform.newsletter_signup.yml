@@ -1,0 +1,12 @@
+title: 'Tilmeld nyhedsbrev'
+elements: |-
+  email:
+    '#type': email
+    '#title': E-mail
+    '#title_display': invisible
+    '#placeholder': e-mail
+    '#required': true
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': Tilmeld

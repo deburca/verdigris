@@ -1,0 +1,13 @@
+display:
+  default:
+    display_options:
+      title: Blog
+      empty:
+        area:
+          content: '<p>Der er endnu ingen blogindlæg.</p>'
+  latest:
+    display_options:
+      title: 'Seneste blogindlæg'
+  related:
+    display_options:
+      title: 'Relaterede blogindlæg'

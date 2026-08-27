@@ -1,0 +1,17 @@
+display:
+  default:
+    display_options:
+      title: Søgning
+      exposed_form:
+        options:
+          submit_button: Søg
+      filters:
+        search_api_fulltext:
+          expose:
+            placeholder: 'Indtast søgeord'
+      header:
+        result:
+          content: 'Viser @start – @end af @total resultater'
+      empty:
+        area_text_custom:
+          content: '<p class="text-lg md:text-xl">Der er ingen resultater for din søgning. Prøv en anden søgning.</p>'

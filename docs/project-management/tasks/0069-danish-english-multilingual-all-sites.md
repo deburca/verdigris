@@ -7,7 +7,7 @@ site: vdg, kbg, shh
 project:
 created: 2026-08-27
 updated: 2026-08-27
-progress: vdg Phases 1+4 (f997e9b) & 2 (0e053c7) committed; Phase 6 done — switcher in quick_silver repo (0cb9f7e, unpushed), SEO audit clean; next is Phase 5
+progress: vdg Phases 1+4 (f997e9b), 2 (0e053c7), 6 (qs 0cb9f7e pushed), 5 (mechanical config strings, uncommitted) done; next is Phases 7–9 + client editorial hand-off
 branch: feature/0069-danish-english-multilingual
 ---
 # Task: Add Danish + English translation to all three sites
@@ -227,10 +227,63 @@ localisation), not the theme:**
   self-corrects when the Danish homepage exists; core never emits
   `x-default`, add via metatag if wanted.
 
-**Not yet done for vdg:** Phase 5 (config-string translation via
-`config_translation`, incl. the `og:*` items above), Phases 7–9.
-`quick_silver` commit `0cb9f7e` is local — not pushed to
-`github.com/deburca/quick_silver`.
+### vdg — 2026-08-27, Phase 5 (config-string translation — mechanical + structure only)
+
+Scope agreed with Paddy: translate only the safe/mechanical
+visitor-facing UI strings and add the `og:locale` structure; leave all
+editorial copy for a client / translator hand-off (below). Nothing
+editorial was invented.
+
+**`da` config overrides written** (12 files: 2 modified, 10 new under
+`config/vdg/sync/language/da/`; re-export stable):
+- `klaro.klaro_purpose.*` labels (7): Analyse, Funktionel, Indlejret
+  eksternt indhold, Live chat, Annoncering og markedsføring —
+  `security`/`styling` already carried the community values
+  (Sikkerhed / Styling), left as-is.
+- `views.view.search`: page title "Søgning", submit "Søg",
+  placeholder "Indtast søgeord", result summary "Viser @start – @end
+  af @total resultater", no-results text.
+- `views.view.blog`: "Blog", "Seneste blogindlæg", "Relaterede
+  blogindlæg", empty text.
+- `views.view.related_tags`: "Relaterede tags".
+- `webform.webform.contact_form`: title "Kontakt" + element `#title`s
+  (Navn / E-mail / Besked). `webform.webform.newsletter_signup`:
+  title "Tilmeld nyhedsbrev", email label, submit "Tilmeld".
+- `metatag.metatag_defaults.global`: **base** gains `og_locale:
+  en_US` (a new tag on English pages too — standard, benign); `da`
+  override sets `og_locale: da_DK`. Verified: `/` → `og:locale
+  en_US`, `/da` → `da_DK`.
+
+Note: the exposed-form generic buttons ("Apply", "Reset", "Sort by",
+etc.) are translated by *interface* translation at render, so they
+were not given config overrides. `og:locale:alternate` was attempted
+but `og_locale_alternate` is **not a defined metatag tag** in this
+install — reverted (no dead config); needs a custom tag or another
+module if wanted.
+
+**Editorial Danish still needed — client / translator hand-off:**
+1. `klaro.klaro_app.*` (~25) — one-sentence purpose description each.
+2. `klaro.texts` — any consent-notice body beyond the community
+   button strings already imported.
+3. `easy_email.easy_email_type.*` (10) + `easy_email_override.*` —
+   subject + body of every transactional email (user activation,
+   password recovery, approval flow, cancellation, …).
+4. `webform.webform.contact_form` — `settings.confirmation_title`
+   ("Thank you") + `confirmation_message` ("<h2>Thanks for
+   contacting us!</h2>…"); `newsletter_signup` — `confirmation_title`
+   ("Thanks") + any confirmation body.
+5. `metatag.metatag_defaults.{front,node,global}` — Danish
+   title/description **patterns** (the tokenised templates), plus a
+   decision on `x-default` / `og:url` language-awareness.
+6. `system.site` slogan — currently empty; supply if the site should
+   have a Danish tagline.
+7. Any Canvas/SDC component example strings that surface as real UI
+   (none found in the vdg audit, but re-check once Danish pages are
+   built).
+
+**Not yet done for vdg:** Phases 7–9 (existing-content handling —
+minimal for vdg since English stays default — verification pass,
+rollout). `quick_silver` commit `0cb9f7e` pushed 2026-08-27.
 
 ## Acceptance criteria
 Per site (`vdg`, then `kbg`, then `shh`):

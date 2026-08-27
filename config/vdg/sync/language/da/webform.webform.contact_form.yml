@@ -1,0 +1,16 @@
+title: Kontakt
+elements: |-
+  name:
+    '#type': textfield
+    '#title': Navn
+    '#required': true
+  email:
+    '#type': email
+    '#title': E-mail
+    '#required': true
+  message:
+    '#type': textarea
+    '#title': Besked
+    '#required': true
+  captcha:
+    '#type': captcha
