@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * @file
+ * Interface-translation deploy plumbing for verdigris.nu (task 0069).
+ */
+
+use Drupal\locale\Gettext;
+
+/**
+ * Imports the committed Danish .po into {locales_target}.
+ *
+ * Configuration sync (cex/cim) does not carry interface translations, so the
+ * ~8.6k Danish strings that `drush language:add da` fetched from
+ * localize.drupal.org only live in this site's database. This ships them as a
+ * repo artifact and re-applies them on install and on every `drush deploy`
+ * (see vdg_multilingual.install / vdg_multilingual.deploy.php).
+ *
+ * Imported as LOCALE_NOT_CUSTOMIZED with overwrite limited to not-customized
+ * rows: a translation a human later edits in the UI (customized) is never
+ * clobbered, and a future `drush locale:update` can still pull newer
+ * community strings on top.
+ *
+ * Idempotent — safe to run on every deploy; a no-op if the `da` language or
+ * the .po file is absent.
+ */
+function vdg_multilingual_import_interface_translations(): string {
+  $langcode = 'da';
+
+  if (!\Drupal::languageManager()->getLanguage($langcode)) {
+    return "Language '$langcode' not installed yet — skipped .po import.";
+  }
+
+  $uri = \Drupal::service('extension.list.module')->getPath('vdg_multilingual')
+    . '/translations/' . $langcode . '.po';
+  if (!is_file($uri)) {
+    return "No committed translation file at $uri — skipped.";
+  }
+
+  $file = new \stdClass();
+  $file->filename = basename($uri);
+  $file->uri = $uri;
+  $file->langcode = $langcode;
+
+  $report = Gettext::fileToDatabase($file, [
+    'langcode' => $langcode,
+    'customized' => LOCALE_NOT_CUSTOMIZED,
+    'overwrite_options' => [
+      'not_customized' => TRUE,
+      'customized' => FALSE,
+    ],
+  ]);
+
+  // Regenerate the client-side translation files and drop caches that hold
+  // rendered translated strings.
+  _locale_rebuild_js($langcode);
+  \Drupal\Core\Cache\Cache::invalidateTags(['rendered', 'locale']);
+
+  return sprintf(
+    "Imported %s/translations/%s.po: %d added, %d updated, %d deleted.",
+    'vdg_multilingual',
+    $langcode,
+    $report['additions'] ?? 0,
+    $report['updates'] ?? 0,
+    $report['deletes'] ?? 0,
+  );
+}

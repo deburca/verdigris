@@ -112,6 +112,7 @@ module:
   ui_icons_picker: 0
   update: 0
   user: 0
+  vdg_multilingual: 0
   view_password: 0
   views_infinite_scroll: 0
   views_ui: 0

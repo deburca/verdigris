@@ -7,7 +7,7 @@ site: vdg, kbg, shh
 project:
 created: 2026-08-27
 updated: 2026-08-27
-progress: vdg Phases 1 + 4 done locally (unexported→exported, not committed); Canvas spike findings below
+progress: vdg Phases 1 + 4 committed (f997e9b); Phase 2 (.po deploy plumbing) done locally, not committed; Canvas spike findings below
 branch: feature/0069-danish-english-multilingual
 ---
 # Task: Add Danish + English translation to all three sites
@@ -123,20 +123,62 @@ Phases 1 and 4 done on the DDEV instance
   per-language component text editing (if inputs are synced across
   translations, that setting likely needs flipping).
 
-**Not yet done for vdg:** Phase 2 (`.po` commit + `locale:import`
-deploy hook — the 8,594 Danish strings currently live only in the
-local DB), Phase 5 (config-string translation via
-`config_translation`), Phase 6 (theme language switcher + SEO
-hreflang/canonical review), Phases 7–9. Not committed — awaiting
-Paddy's `git diff config/vdg` review and `make vdg-commit`.
+**Export diff shape — commit `f997e9b`** (234 files, +2316 / −56): 15
+genuine language config files; 104 auto-imported `language/da/*`
+community config translations; 55 `core.entity_view_display`
+(`langcode` hidden + key-sort normalisation); 43 `canvas.component`
+(one-time `active_version` re-versioning); 12
+`core.entity_form_display` (`langcode` select widget); 3
+`field.field`; `core.extension`; `canvas.folder`.
 
-**Export diff shape** (234 files, +2316 / −56): 15 genuine language
-config files; 104 auto-imported `language/da/*` community config
-translations; 55 `core.entity_view_display` (`langcode` hidden +
-key-sort normalisation); 43 `canvas.component` (one-time
-`active_version` re-versioning); 12 `core.entity_form_display`
-(`langcode` select widget); 3 `field.field`; `core.extension`;
-`canvas.folder`.
+### vdg — 2026-08-27, Phase 2 (interface-translation deploy plumbing)
+`cex`/`cim` do not carry `{locales_target}` rows, so the ~8.6k Danish
+UI strings imported by `drush language:add da` had no route to
+testing/production. Fixed with a small vdg-scoped module.
+
+**New module `web/modules/custom/vdg_multilingual`** (`shh_*`-style:
+info.yml + focused hooks, no config/schema of its own; enabled on vdg
+only via `core.extension`):
+- `translations/da.po` — committed snapshot, `drush locale:export da
+  --types=customized,not-customized`, 816 KB / 8,594 strings.
+- `vdg_multilingual_import_interface_translations()` in `.module` —
+  `Gettext::fileToDatabase()` of that file as `LOCALE_NOT_CUSTOMIZED`
+  with `overwrite_options` `not_customized: true / customized: false`
+  (a human-edited string is never clobbered; a later `locale:update`
+  can still layer newer community strings on top), then
+  `_locale_rebuild_js('da')` + invalidate `rendered`/`locale` tags.
+  Idempotent; no-op if `da` or the file is absent.
+- `hook_install()` calls it — covers the module being enabled by
+  `cim` on a fresh target.
+- `vdg_multilingual.deploy.php` →
+  `vdg_multilingual_deploy_import_danish_translations()` for `drush
+  deploy:hook` (last step of the Makefile `vdg-deploy`).
+
+**Run-once semantics confirmed by test:** `drush deploy:hook`
+auto-baselines the deploy hook when the module is first installed
+(same as `hook_post_update_NAME`), so a fresh deploy imports via
+`hook_install()` only — no double import. To push a refreshed
+`da.po` to already-deployed environments you must re-export the file
+**and** add the next numbered function
+(`…_danish_translations_2`, …); editing the `.po` alone re-imports
+nowhere. Documented in the module's file docblocks.
+
+**Verified:** clean uninstall + re-enable imports 8,594 rows via
+`hook_install`; `deploy:hook` run in isolation reports "0 added,
+8594 updated"; `/da/user/login` renders Danish. Export delta is one
+line — `core.extension.yml` gains `vdg_multilingual: 0`.
+
+**Custom-string audit (vdg):** the `quick_silver` theme is the only
+custom user-facing code (no vdg custom modules). All visible strings
+in its templates and `src/Hook/ThemeHooks.php` already go through
+`|t` / `t()` / `{% trans %}` — nothing to fix. The handful of
+theme-provided source strings (e.g. "Color scheme") are translatable
+but not on localize.drupal.org; translating them is Phase 5 /
+translation-phase content work.
+
+**Not yet done for vdg:** Phase 5 (config-string translation via
+`config_translation`), Phase 6 (theme language switcher + SEO
+hreflang/canonical review), Phases 7–9.
 
 ## Acceptance criteria
 Per site (`vdg`, then `kbg`, then `shh`):
