@@ -7,7 +7,7 @@ site: vdg, kbg, shh
 project:
 created: 2026-08-27
 updated: 2026-08-27
-progress: vdg Phases 1+4 (f997e9b), 2 (0e053c7), 6 (qs 0cb9f7e pushed), 5 (mechanical config strings, uncommitted) done; next is Phases 7–9 + client editorial hand-off
+progress: vdg Phases 1+4 (f997e9b), 2 (0e053c7), 6 (qs 0cb9f7e), 5 (fb1b126), 7 (inventory only, no change) done; next is Phase 8 (verification) + Phase 9 (rollout)
 branch: feature/0069-danish-english-multilingual
 ---
 # Task: Add Danish + English translation to all three sites
@@ -281,9 +281,42 @@ module if wanted.
    (none found in the vdg audit, but re-check once Danish pages are
    built).
 
-**Not yet done for vdg:** Phases 7–9 (existing-content handling —
-minimal for vdg since English stays default — verification pass,
-rollout). `quick_silver` commit `0cb9f7e` pushed 2026-08-27.
+### vdg — 2026-08-27, Phase 7 (existing-content handling)
+
+**No langcode rewrite needed and none done** — English stays the vdg
+default, and every content entity is already `en`: 14 nodes, 9
+`canvas_page`, 20 `menu_link_content`, 8 taxonomy terms, 42 media
+(`path_alias` has 8 `und` = language-neutral, correct;
+`block_content` module not installed). Phase 7's "no bulk langcode
+rewrite" is trivially satisfied for vdg. **No config/code change in
+this phase** — the output is the translation inventory + two
+decisions below.
+
+**Danish content inventory (for the client / translator):**
+
+| Set | Count | Route to translate | Notes |
+|---|---|---|---|
+| `canvas_page` | 9 | Canvas UI, per page | **Each needs its full component tree rebuilt in `da`** — no layout fallback (Phase 3 spike). Home (30 comps), Features (32), Pricing (29), Consultancy (28), Contact (11), Careers (11), Resources (9), About (9), "Page not found"/404 (2). |
+| nodes — legal | 2 | standard node translation form | Privacy policy, Terms of service — legal text, translate carefully. |
+| nodes — blog | 12 | standard node translation form | Editorial; decide which posts get a Danish version (probably not all). All are plain `field_content` bodies — no Canvas complexity. |
+| `menu_link_content` | ~9 visitor-facing | translation tab per link | main: Features/Contact/Resources/Pricing/Consultancy; secondary: About/Careers; footer: Privacy policy/Terms of service. `social` links are brand names (no translation); `top-tasks` menu is admin-only. |
+| taxonomy `tags` | 8 | term translation form | compliance, GrapheneOS, digital sovereignty, self hosting, data privacy, linux, AI, mobile phones. |
+
+**Decisions needed before the content work:**
+1. **Per-language image alt text.** `media/*` content translation is
+   OFF and `field_featured_image` / `field_seo_image` are
+   non-translatable, so alt text is currently shared across
+   languages. If Danish pages need Danish alt text, enable content
+   translation on `media/image` (config change) — otherwise the
+   English alt is reused. Recommend: leave off unless the client
+   asks.
+2. **Blog scope.** Which of the 12 posts (if any) get a Danish
+   translation — they're privacy/tech editorial, not core
+   marketing pages.
+
+**Not yet done for vdg:** Phase 8 (verification pass), Phase 9
+(rollout — `make vdg-pull` to testing then production). `quick_silver`
+commit `0cb9f7e` pushed 2026-08-27.
 
 ## Acceptance criteria
 Per site (`vdg`, then `kbg`, then `shh`):
