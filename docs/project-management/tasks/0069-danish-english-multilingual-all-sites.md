@@ -644,34 +644,42 @@ same call as hivelog: an individual animal's data is factual, not
 per-language). The disabled modules
 ([[shh-phased-launch-disabled-modules]]) are untouched.
 
-**Export diff: 330 files (+3381 / −89)** — notably **smaller than
-kbg's 485**. shh keeps its base config in English with Danish in
-`language/da/*` overrides (150) — the *vdg* model — rather than kbg's
-in-place base rewrite (that was triggered on kbg by a `locale:update`
-that pulled hivelog's bundled `.po`; shh has no such custom-module
-`.po`, so `locale:update` was a no-op and no base rewrite fired).
-Only 3 `language/en/*` + 6 `language/{und,zxx}/*` (commerce
-currencies). The other 148 modified files are the usual mechanical
-churn (59 `core.entity_view_display` langcode, 49 `canvas.component`
-re-versioning, 22 `core.entity_form_display` widget, 15 `field.field`
-flags). The `config_split` `local` store (`config/shh/local`) is
-untouched — field_ui/views_ui stayed split off, as intended
+**Export diff after Phase 1+4 alone was 330 files** (commit `f91f405`)
+— at that point base config was still English (only 3 `language/en/*`).
+Phase 2's `.po` import then triggered the same in-place base rewrite
+kbg got, so the **combined 1+4+2 diff is 505 files (+3424 / −1413)**:
+base configs → Danish + `langcode: da`, English into **219
+`language/en/*` overrides**, plus 150 `language/da/*`, plus the
+mechanical churn (59 `core.entity_view_display`, 49
+`canvas.component`, 22 `core.entity_form_display`, 15 `field.field`).
+Comparable to kbg's 485 — the two da-default sites now match. The
+`config_split` `local` store (`config/shh/local`) stayed untouched —
+field_ui/views_ui split off as intended
 ([[0020-shh-config-export-strategy]]). `config:status` clean,
-re-export stable. `/` → `<html lang="da">`, `/en` → English, Danish
-login form.
+re-export stable. `/` → `<html lang="da">` with "Primær navigation";
+`/en` → English; Danish login form.
 
-**The kbg/shh base-config inconsistency** (kbg base = Danish, shh
-base = English; both da-default) is invisible to visitors — the
-default language is set by `system.site` + negotiation, not by which
-language the base YAML holds — and not worth reconciling.
+### shh — 2026-08-27, Phase 2 (`.po` deploy plumbing)
 
-**Not yet done for shh:** Phase 2 (`shh_multilingual` `.po` module),
-Phase 5 (config strings — big: 34 webforms, 32 views, 29 klaro apps,
-10 easy_email, commerce), Phase 6 (switcher in `hestehoj` — tracked
-*inside* cms2, no repo hassle; mind the theme build rules —
-[[shh-task-workflow]]), Phase 7 (existing content — 5 nodes, 1
-canvas_page, 7 products, 17 menu links, all `en`), Phases 8–9
-(rollout uses `make shh-pull`; run `cim` twice; config_split).
+**New `web/modules/custom/shh_multilingual`** — copy of
+`kbg_multilingual` (`configurable_language_insert` hook + `hook_install`
++ one deploy hook, `Gettext::fileToDatabase(... NOT_CUSTOMIZED ...)`).
+`translations/da.po` = 843 KB, `drush locale:export da
+--types=customized,not-customized` then `msguniq --use-first` + a
+Python pass dropping 32 duplicate entries (raw export had singular
+strings that also appear as plural pairs — `"Display"` / `"Display" +
+"Displays"`, `"1 minute"`, pager strings — which `msgfmt -c` rejects).
+8,739 messages, `msgfmt -c` clean. Verified on shh: enable imports
+8,771 `da` rows; deploy hook re-imports; `config:status` clean.
+
+**Not yet done for shh:** Phase 5 (config strings — big: 34 webforms,
+32 views, 29 klaro apps, 10 easy_email, commerce), Phase 6 (switcher
+in `hestehoj` — now its own repo `deburca/hestehoj`, master at
+`/Users/paddy/Development/hestehoj`, cloned into
+`web/themes/custom/hestehoj/` with its own `.git`; mind the theme
+build rules — [[shh-task-workflow]]), Phase 7 (existing content — 5
+nodes, 1 canvas_page, 7 products, 17 menu links, all `en`), Phases
+8–9 (rollout uses `make shh-pull`; run `cim` twice; config_split).
 
 ## Acceptance criteria
 Per site (`vdg`, then `kbg`, then `shh`):

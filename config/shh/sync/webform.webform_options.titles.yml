@@ -1,5 +1,5 @@
 uuid: 86a0a98a-384a-42be-9461-4261fe88aaa7
-langcode: en
+langcode: da
 status: true
 dependencies:
   enforced:
@@ -8,8 +8,8 @@ dependencies:
 _core:
   default_config_hash: PEUoedWrfYEX7oZ8CcOukfBTVxar1cPSROX8534esuU
 id: titles
-label: Titles
-category: Demographic
+label: Titler
+category: Demografi
 likert: false
 options: |
   Miss: Miss

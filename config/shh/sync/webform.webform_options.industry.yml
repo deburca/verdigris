@@ -1,5 +1,5 @@
 uuid: efee164c-3da4-49fe-a670-04c62b111868
-langcode: en
+langcode: da
 status: true
 dependencies:
   enforced:
@@ -9,7 +9,7 @@ _core:
   default_config_hash: s_SXZn2HbRGvTex-TLOCxz2oOnMYqtEZh8HD4_318QI
 id: industry
 label: Industry
-category: Demographic
+category: Demografi
 likert: false
 options: |
   Accounting/Finance: Accounting/Finance

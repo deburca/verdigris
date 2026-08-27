@@ -1,11 +1,11 @@
 uuid: 2515708e-f34f-47f1-94ae-88d50549eb81
-langcode: en
+langcode: da
 status: false
 dependencies: {  }
 _core:
   default_config_hash: MJjsbqXicMVCBcsZutPlhZ3xOEVsra5WjX38rujhwcI
 id: stripe
-label: Stripe
+label: Stribe
 description: 'Stripe payment provider integration.'
 default: true
 purposes:

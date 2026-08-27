@@ -1,5 +1,5 @@
 uuid: af892f71-2532-4723-87f5-38dbfc74aa1d
-langcode: en
+langcode: da
 status: true
 dependencies:
   enforced:
@@ -8,8 +8,8 @@ dependencies:
 _core:
   default_config_hash: YNrKbYrWWjeubUUM8AsQ19KnX7cU1elACR14CZJHmdg
 id: days
-label: Days
-category: 'Date and time'
+label: Dage
+category: 'Dato og tid'
 likert: false
 options: |
   Sunday: Sunday

@@ -1,4 +1,4 @@
-langcode: en
+langcode: da
 sections:
   -
     layout_id: navigation_layout
@@ -10,7 +10,7 @@ sections:
         region: content
         configuration:
           id: navigation_dashboard
-          label: Dashboard
+          label: Genveje
           label_display: '0'
           provider: dashboard
         weight: 0
@@ -20,7 +20,7 @@ sections:
         region: content
         configuration:
           id: 'navigation_menu:content'
-          label: Content
+          label: Indhold
           label_display: '0'
           provider: navigation
           level: 1
@@ -44,7 +44,7 @@ sections:
         region: footer
         configuration:
           id: navigation_user
-          label: User
+          label: Bruger
           label_display: '0'
           provider: navigation
         weight: 0
@@ -54,11 +54,11 @@ sections:
         region: footer
         configuration:
           id: navigation_link
-          label: Help
+          label: Hjælp
           label_display: '0'
           provider: navigation
           context_mapping: {  }
-          title: Help
+          title: Hjælp
           uri: 'internal:/admin/help'
           icon_class: help
         weight: -2

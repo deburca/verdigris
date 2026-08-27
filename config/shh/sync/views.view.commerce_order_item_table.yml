@@ -1,5 +1,5 @@
 uuid: c594488c-55ce-4bd6-ad27-93d330fe1696
-langcode: en
+langcode: da
 status: true
 dependencies:
   module:
@@ -32,7 +32,7 @@ display:
           entity_type: null
           entity_field: title
           plugin_id: field
-          label: Title
+          label: Titel
           exclude: false
           alter:
             alter_text: false
@@ -97,7 +97,7 @@ display:
           entity_type: commerce_order_item
           entity_field: unit_price
           plugin_id: field
-          label: 'Unit price'
+          label: Enhedspris
           exclude: false
           alter:
             alter_text: false
@@ -163,7 +163,7 @@ display:
           entity_type: commerce_order_item
           entity_field: quantity
           plugin_id: field
-          label: Quantity
+          label: Mængde
           exclude: false
           alter:
             alter_text: false
@@ -232,7 +232,7 @@ display:
           entity_type: commerce_order_item
           entity_field: total_price
           plugin_id: field
-          label: 'Total price'
+          label: 'Pris i alt'
           exclude: false
           alter:
             alter_text: false
@@ -295,13 +295,13 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Apply
+          submit_button: Udfør
           reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
       access:
         type: none
         options: {  }
@@ -336,7 +336,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: All
+            title: Alle
           title_enable: false
           title: ''
           default_argument_type: fixed

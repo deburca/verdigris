@@ -1,5 +1,5 @@
 uuid: aeda81b8-404b-4383-be4f-63e38712fc25
-langcode: en
+langcode: da
 status: true
 dependencies:
   module:
@@ -7,7 +7,7 @@ dependencies:
 _core:
   default_config_hash: CsK6TseQ2DatEbZgbd30swOlZ28_HHwAESU2LvEnWq0
 id: media_unpublish_action
-label: 'Unpublish media'
+label: 'Afpublicér medie'
 type: media
 plugin: 'entity:unpublish_action:media'
 configuration: {  }

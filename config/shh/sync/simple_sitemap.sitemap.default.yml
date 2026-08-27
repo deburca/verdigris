@@ -1,5 +1,5 @@
 uuid: fdf9775a-9d67-4f67-a1c8-6ef9c1490166
-langcode: en
+langcode: da
 status: true
 dependencies:
   config:
@@ -7,7 +7,7 @@ dependencies:
 _core:
   default_config_hash: rzLPapRSW-bgTs4MObzlqsqwj5IxPGO9EQZolw2ZzFc
 id: default
-label: Default
+label: Standard
 description: 'The default hreflang sitemap - lists URLs to be indexed by modern search engines.'
 type: default_hreflang
 weight: 0

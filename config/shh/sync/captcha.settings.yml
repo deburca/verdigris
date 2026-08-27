@@ -1,13 +1,13 @@
-langcode: en
+langcode: da
 enable_globally: 0
 enable_globally_on_admin_routes: false
 default_challenge: friendlycaptcha/friendlycaptcha
-description: 'This question is for testing whether or not you are a human visitor and to prevent automated spam submissions.'
+description: 'Dette spørgsmål afgør, om du er et menneske, for at forhindre automatisk indsendelse af spam.'
 title: CAPTCHA
 administration_mode: false
 administration_mode_on_admin_routes: false
 whitelist_ips: ''
-wrong_captcha_response_message: 'The answer you entered for the CAPTCHA was not correct.'
+wrong_captcha_response_message: 'Det indtastede svar er ikke korrekt.'
 default_validation: 1
 persistence: 1
 enable_stats: false

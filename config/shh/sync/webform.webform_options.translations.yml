@@ -1,5 +1,5 @@
 uuid: 8bc843b9-bfee-4f07-9817-d53364d4db9f
-langcode: en
+langcode: da
 status: true
 dependencies:
   enforced:
@@ -8,7 +8,7 @@ dependencies:
 _core:
   default_config_hash: Mb_L3vE-0IBZH5s2rjpk2LNn0QHClQP9AARQdCmVLt4
 id: translations
-label: Translations
-category: Language
+label: Oversættelser
+category: Sprog
 likert: false
 options: ''

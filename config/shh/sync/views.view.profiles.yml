@@ -1,5 +1,5 @@
 uuid: 1c02d15d-97b1-443d-9b19-5e99b72f0783
-langcode: en
+langcode: da
 status: true
 dependencies:
   module:
@@ -7,7 +7,7 @@ dependencies:
 _core:
   default_config_hash: xNZ1q8VAmjQSPC81nqH6taYXfcxsJO5bwHCzv4IMznw
 id: profiles
-label: Profiles
+label: Profiler
 module: views
 description: ''
 tag: ''
@@ -20,7 +20,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Profiles
+      title: Profiler
       fields:
         rendered_entity:
           id: rendered_entity
@@ -131,13 +131,13 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Apply
+          submit_button: Udfør
           reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
       access:
         type: none
         options: {  }
@@ -202,7 +202,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: All
+            title: Alle
           title_enable: false
           title: ''
           default_argument_type: user
@@ -239,7 +239,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: All
+            title: Alle
           title_enable: false
           title: ''
           default_argument_type: fixed
@@ -279,7 +279,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: All
+            title: Alle
           title_enable: false
           title: ''
           default_argument_type: fixed
@@ -341,7 +341,7 @@ display:
       tags: {  }
   user_page:
     id: user_page
-    display_title: 'User page'
+    display_title: Brugerside
     display_plugin: embed
     position: 1
     display_options:

@@ -1,5 +1,5 @@
 uuid: 203b6611-329a-49db-b71d-2c148eda5fb9
-langcode: en
+langcode: da
 status: true
 dependencies:
   enforced:
@@ -11,8 +11,8 @@ third_party_settings:
 _core:
   default_config_hash: I3_fH4tUQVejPgxvJzH1-mGg9A9OaY4Hm5iN2G2Fz20
 id: customer
-label: Customer
-display_label: 'Customer information'
+label: Kunde
+display_label: Kundeoplysninger
 multiple: true
 registration: false
 roles: {  }

@@ -1,5 +1,5 @@
 uuid: 0a97657f-f804-4232-ba8a-a6e59e766cf2
-langcode: en
+langcode: da
 status: true
 dependencies:
   enforced:
@@ -8,8 +8,8 @@ dependencies:
 _core:
   default_config_hash: pZJnuQkh9afNML5IcMuKTUC__vmHMFn66Qr5IWtedZ4
 id: months
-label: Months
-category: 'Date and time'
+label: Måneder
+category: 'Dato og tid'
 likert: false
 options: |
   January: January

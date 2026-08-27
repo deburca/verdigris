@@ -1,11 +1,11 @@
 uuid: 2bf623b8-a07d-4535-a0e3-63256837f470
-langcode: en
+langcode: da
 status: true
 dependencies: {  }
 _core:
   default_config_hash: jn2Hj-04qG6O3dTtK8EaBB13jVPplONDb9L0Fat-0pI
 id: default
-label: 'Facility booking'
+label: Standard
 traits: {  }
 locked: false
 workflow: order_default

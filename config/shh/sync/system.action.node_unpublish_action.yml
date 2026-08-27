@@ -1,5 +1,5 @@
 uuid: 938f0eff-844e-4763-a3e8-a5c5e7a915af
-langcode: en
+langcode: da
 status: true
 dependencies:
   module:
@@ -7,7 +7,7 @@ dependencies:
 _core:
   default_config_hash: C7X8h9FWlwkQ9y5mnU2JzgaZICAdc6HFbPVbhvjlAYE
 id: node_unpublish_action
-label: 'Unpublish content'
+label: 'Afpublicér indhold'
 type: node
 plugin: 'entity:unpublish_action:node'
 configuration: {  }

@@ -1,5 +1,5 @@
 uuid: 4b6271e8-b732-4c50-81cd-9218f67e150e
-langcode: en
+langcode: da
 status: true
 dependencies:
   enforced:
@@ -9,7 +9,7 @@ _core:
   default_config_hash: LkO63Zl2cP_l9YdjzWI8dWoD9uD0pytkPiUiUM2bo9A
 id: phone_types
 label: 'Phone type'
-category: Demographic
+category: Demografi
 likert: false
 options: |
   Home: Home

@@ -1,5 +1,5 @@
 uuid: df24c224-f6fb-4b81-bdd7-96b084eca539
-langcode: en
+langcode: da
 status: true
 dependencies:
   config:
@@ -39,7 +39,7 @@ display:
           admin_label: ''
           entity_type: commerce_product
           plugin_id: bulk_form
-          label: 'Bulk update'
+          label: Masseopdatering
           exclude: false
           alter:
             alter_text: false
@@ -80,7 +80,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          action_title: Action
+          action_title: Handling
           include_exclude: exclude
           selected_actions: {  }
         title:
@@ -93,7 +93,7 @@ display:
           entity_type: commerce_product
           entity_field: title
           plugin_id: field
-          label: Title
+          label: Titel
           exclude: false
           alter:
             alter_text: false
@@ -269,8 +269,8 @@ display:
           type: boolean
           settings:
             format: custom
-            format_custom_false: Unpublished
-            format_custom_true: Published
+            format_custom_false: 'Ikke udgivet'
+            format_custom_true: Udgivet
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -291,7 +291,7 @@ display:
           entity_type: commerce_product
           entity_field: publish_on
           plugin_id: field
-          label: 'Publish on'
+          label: 'Udgiv den'
           exclude: false
           alter:
             alter_text: false
@@ -358,7 +358,7 @@ display:
           entity_type: commerce_product
           entity_field: unpublish_on
           plugin_id: field
-          label: 'Unpublish on'
+          label: 'Afpublicér den'
           exclude: false
           alter:
             alter_text: false
@@ -424,7 +424,7 @@ display:
           admin_label: ''
           entity_type: commerce_product
           plugin_id: entity_operations
-          label: Operations
+          label: Handlinger
           exclude: false
           alter:
             alter_text: false
@@ -539,28 +539,28 @@ display:
           total_pages: null
           id: 0
           tags:
-            next: 'next ›'
-            previous: '‹ previous'
-            first: '« first'
-            last: 'last »'
+            next: 'næste ›'
+            previous: '‹ forrige'
+            first: '« første'
+            last: 'sidste »'
           expose:
             items_per_page: false
-            items_per_page_label: 'Items per page'
+            items_per_page_label: 'Antal elementer'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page_options_all_label: '- Alle -'
             offset: false
-            offset_label: Offset
+            offset_label: Forskydning
       exposed_form:
         type: basic
         options:
           submit_button: Filter
           reset_button: true
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
       access:
         type: perm
         options:
@@ -641,7 +641,7 @@ display:
           exposed: true
           expose:
             operator_id: title_op
-            label: Title
+            label: Titel
             description: ''
             use_operator: false
             operator: title_op
@@ -696,7 +696,7 @@ display:
               authenticated: authenticated
           is_grouped: true
           group_info:
-            label: 'Published status'
+            label: Publiceringsstatus
             description: ''
             identifier: status
             optional: true
@@ -707,11 +707,11 @@ display:
             default_group_multiple: {  }
             group_items:
               1:
-                title: Published
+                title: Udgivet
                 operator: '='
                 value: '1'
               2:
-                title: Unpublished
+                title: 'Ikke udgivet'
                 operator: '='
                 value: '0'
         publish_on:

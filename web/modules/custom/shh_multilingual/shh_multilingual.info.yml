@@ -1,0 +1,8 @@
+name: 'SHH Multilingual'
+type: module
+description: 'Interface-translation deploy plumbing for stutteri-hestehoj.dk (task 0069). cex/cim do not carry {locales_target} rows, so the Danish UI strings that `drush language:add da` pulled from localize.drupal.org would never reach testing/production. This module ships a snapshot (translations/da.po) and (re)imports it on install, when the `da` language is created, and on `drush deploy` — as NOT_CUSTOMIZED, so any in-house customized string still wins and a later `locale:update` can refresh them. Enabled on shh only (per-site core.extension); no config or schema of its own.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - drupal:language
+  - drupal:locale

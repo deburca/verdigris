@@ -1,5 +1,5 @@
 uuid: 45492b04-3768-43b8-b575-7bc60049d1e1
-langcode: en
+langcode: da
 status: false
 dependencies:
   config:
@@ -167,7 +167,7 @@ display:
           entity_type: bat_unit_type
           entity_field: name
           plugin_id: field
-          label: Name
+          label: Navn
           exclude: false
           alter:
             alter_text: false
@@ -232,7 +232,7 @@ display:
           entity_type: bat_unit_type
           entity_field: status
           plugin_id: field
-          label: Published
+          label: Udgivet
           exclude: false
           alter:
             alter_text: false
@@ -277,8 +277,8 @@ display:
           type: boolean
           settings:
             format: custom
-            format_custom_false: Unpublished
-            format_custom_true: Published
+            format_custom_false: 'Ikke udgivet'
+            format_custom_true: Udgivet
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -298,7 +298,7 @@ display:
           admin_label: ''
           entity_type: bat_unit_type
           plugin_id: bat_type_handler_type_calendars_field
-          label: 'Event Management'
+          label: 'Håndtér begivenheder'
           exclude: false
           alter:
             alter_text: false
@@ -349,7 +349,7 @@ display:
           entity_type: null
           entity_field: null
           plugin_id: entity_operations
-          label: 'Operations links'
+          label: Redigeringslinks
           exclude: false
           alter:
             alter_text: false
@@ -401,27 +401,27 @@ display:
           tags:
             next: ››
             previous: ‹‹
-            first: '« First'
-            last: 'Last »'
+            first: '« Første'
+            last: 'Sidste »'
           expose:
             items_per_page: false
-            items_per_page_label: 'Items per page'
+            items_per_page_label: 'Antal elementer'
             items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page_options_all_label: '- Alle -'
             offset: false
-            offset_label: Offset
+            offset_label: Forskydning
           quantity: 9
       exposed_form:
         type: basic
         options:
-          submit_button: Apply
+          submit_button: Udfør
           reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
       access:
         type: role
         options:
@@ -521,7 +521,7 @@ display:
       tags: {  }
   page_1:
     id: page_1
-    display_title: Page
+    display_title: Side
     display_plugin: page
     position: 1
     display_options:
@@ -529,7 +529,7 @@ display:
       path: admin/bat/unit-management
       menu:
         type: normal
-        title: Units
+        title: Enheder
         description: 'List of Units'
         weight: 0
         expanded: false

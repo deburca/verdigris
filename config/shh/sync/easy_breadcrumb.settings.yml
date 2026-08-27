@@ -1,4 +1,4 @@
-langcode: en
+langcode: da
 applies_admin_routes: false
 include_invalid_paths: false
 excluded_paths: ''
@@ -6,7 +6,7 @@ replaced_titles: ''
 custom_paths: ''
 include_home_segment: true
 alternative_title_field: field_breadcrumb_title
-home_segment_title: Home
+home_segment_title: Hjem
 home_segment_keep: false
 include_title_segment: true
 title_from_page_when_available: true
@@ -23,9 +23,9 @@ use_site_title: false
 add_structured_data_json_ld: true
 capitalizator_mode: none
 capitalizator_ignored_words:
-  - of
-  - and
-  - or
+  - af
+  - og
+  - eller
   - de
   - del
   - 'y'

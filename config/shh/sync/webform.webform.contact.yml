@@ -1,5 +1,5 @@
 uuid: b8efd510-d4ac-4a16-8844-c06edbe66e60
-langcode: en
+langcode: da
 status: open
 dependencies:
   enforced:
@@ -14,7 +14,7 @@ uid: null
 template: false
 archive: false
 id: contact
-title: Contact
+title: Kontakt
 description: 'Basic email contact webform.'
 categories: {  }
 elements: |-
@@ -153,7 +153,7 @@ settings:
   confirmation_type: url_message
   confirmation_url: '<front>'
   confirmation_title: ''
-  confirmation_message: 'Your message has been sent.'
+  confirmation_message: 'Din besked er blevet sendt.'
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''
@@ -233,7 +233,7 @@ handlers:
   email_confirmation:
     id: email
     handler_id: email_confirmation
-    label: 'Email confirmation'
+    label: E-mail-bekræftelse
     notes: ''
     status: true
     conditions: {  }
@@ -271,7 +271,7 @@ handlers:
   email_notification:
     id: email
     handler_id: email_notification
-    label: 'Email notification'
+    label: E-mail-notifikation
     notes: ''
     status: true
     conditions: {  }

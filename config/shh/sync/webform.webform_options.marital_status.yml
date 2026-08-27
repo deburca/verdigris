@@ -1,5 +1,5 @@
 uuid: a27a2268-faa2-4a1f-9099-74848ec3449c
-langcode: en
+langcode: da
 status: true
 dependencies:
   enforced:
@@ -9,7 +9,7 @@ _core:
   default_config_hash: cjVDbAE5BlopGrY-tfxsxMoyEibwBBNgdQwDdxOSkow
 id: marital_status
 label: 'Marital status'
-category: Demographic
+category: Demografi
 likert: false
 options: |
   Single: Single

@@ -126,6 +126,7 @@ module:
   shh_horse_product_display: 0
   shh_horse_sale_state: 0
   shh_main_navigation: 0
+  shh_multilingual: 0
   shh_news: 0
   shh_pricing_comparison: 0
   shh_public_availability: 0
