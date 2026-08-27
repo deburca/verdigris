@@ -160,14 +160,31 @@ only via `core.extension`):
   `vdg_multilingual_deploy_import_danish_translations()` for `drush
   deploy:hook` (last step of the Makefile `vdg-deploy`).
 
-**Run-once semantics confirmed by test:** `drush deploy:hook`
-auto-baselines the deploy hook when the module is first installed
-(same as `hook_post_update_NAME`), so a fresh deploy imports via
-`hook_install()` only — no double import. To push a refreshed
-`da.po` to already-deployed environments you must re-export the file
-**and** add the next numbered function
-(`…_danish_translations_2`, …); editing the `.po` alone re-imports
-nowhere. Documented in the module's file docblocks.
+**Run-once semantics:** `drush deploy:hook` auto-baselines a deploy
+hook when the module is first installed (same as
+`hook_post_update_NAME`). To push a refreshed `da.po` to
+already-deployed environments you must re-export the file **and** add
+the next numbered function (`…_danish_translations_3`, …); editing the
+`.po` alone re-imports nowhere.
+
+**First-deploy fix — commit `ec926cd` (2026-08-27).** The first
+`make vdg-pull` imported **nothing**: `config:import` runs
+`processExtensions` (installing all five modules) to completion
+*before* `processConfigurations` creates `language.entity.da`, so
+`hook_install()` ran while `da` did not exist (no-op), and in that
+same step Drush auto-baselined the `…_danish_translations` deploy
+hook → `drush deploy:hook` then reported "No pending deploy hooks".
+Fix:
+- `hook_ENTITY_TYPE_insert()` for `configurable_language` — imports
+  the `.po` the moment `da` is created (during that cim, or later
+  via `language:add da` / the UI). This is the fresh-install path.
+- `hook_install()` still imports for the "`da` already exists" case.
+- `…_danish_translations_2()` — post-dates environments already
+  deployed with the baselined `_1`, so it runs once there on the
+  next `make vdg-pull` to back-fill. Auto-baselined on fresh
+  installs (insert hook covers those). Idempotent everywhere.
+Immediate manual fix for a stuck target:
+`drush ev 'echo vdg_multilingual_import_interface_translations();'`.
 
 **Verified:** clean uninstall + re-enable imports 8,594 rows via
 `hook_install`; `deploy:hook` run in isolation reports "0 added,
