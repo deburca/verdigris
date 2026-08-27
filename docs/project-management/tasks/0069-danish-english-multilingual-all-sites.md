@@ -7,7 +7,7 @@ site: vdg, kbg, shh
 project:
 created: 2026-08-27
 updated: 2026-08-27
-progress: vdg DONE (live). kbg Phases 1+4+2+5+7+8 done (uncommitted) + hivelog 1.7.2 released; kbg Phase 6 switcher BLOCKED (zwarte_piet has no repo home), Phase 9 rollout pending. shh not started.
+progress: vdg DONE (live). kbg Phases 1–8 done (1+4 = 7123566, 2+5 = 3b4fefc, hivelog 1.7.2, switcher in deburca/zwarte_piet 9ecb8a9); only Phase 9 rollout left. shh not started.
 branch: feature/0069-danish-english-multilingual
 ---
 # Task: Add Danish + English translation to all three sites
@@ -525,16 +525,18 @@ work). Because `da` is the default, edits go on the **base** config:
   bodies; `klaro.klaro_app.*` (~25) one-line descriptions;
   `system.site` slogan (empty).
 
-**Phase 6 — language switcher — BLOCKED (not committed anywhere).**
-Built the same `links--language-block.html.twig` override + scoped
+**Phase 6 — language switcher — done, in the `zwarte_piet` repo.**
+Same `links--language-block.html.twig` override + scoped
 `src/theme.css` block as `quick_silver` (`{{ 'Language'|t }}` renders
-"Sprog" in the `da` context — verified through the theme). **But
-`web/themes/custom/zwarte_piet/` is gitignored
-(`.gitignore:505`, "independent repo, managed via Composer") with no
-`.git`, not in `composer.json`, and no master checkout under
-`/Users/paddy/Development/`.** Changes are staged in
-`scratchpad/zwarte_piet_i18n/` — need a home. (`hestehoj` for shh is
-tracked *inside* cms2, so shh's Phase 6 won't have this problem.)
+"Sprog" in the `da` context — verified through the theme). Not placed
+in a region (same go-live gate). `web/themes/custom/zwarte_piet/` is
+gitignored (`.gitignore:505`); its master is
+`github.com/deburca/zwarte_piet` at `/Users/paddy/Development/zwarte_piet`
+— Paddy created that repo from the (already-edited) checkout, so the
+switcher shipped in its `9ecb8a9` initial commit (pushed). The
+`.gitignore` comment says "managed via Composer" but the theme is not
+yet in `composer.json` — a separate setup gap. (`hestehoj` for shh is
+tracked *inside* cms2, so shh's Phase 6 won't need a separate repo.)
 
 **Phase 7 — existing content.** All `en`, nothing to reclassify: 1
 node ("Privacy policy", `page`, **unpublished draft** — same as
@@ -556,8 +558,8 @@ work is small; no code/config change.
 - `/admin` + `/en/admin` → 403 (localised login redirect).
 - `config:status` clean; re-export stable.
 
-**Not yet done for kbg:** Phase 6 home for the switcher (blocked),
-Phase 9 (rollout — `make kbg-pull`). Editorial hand-off list above.
+**Not yet done for kbg:** Phase 9 (rollout — `make kbg-pull`).
+Editorial hand-off list above.
 
 ## Acceptance criteria
 Per site (`vdg`, then `kbg`, then `shh`):
