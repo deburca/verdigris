@@ -681,6 +681,46 @@ build rules — [[shh-task-workflow]]), Phase 7 (existing content — 5
 nodes, 1 canvas_page, 7 products, 17 menu links, all `en`), Phases
 8–9 (rollout uses `make shh-pull`; run `cim` twice; config_split).
 
+### shh — 2026-08-27, Phase 5 (config strings, mechanical) + Phase 7
+
+**Phase 5.** shh's mechanical config surface turned out **small**: no
+custom front-end views (the featured-horses/facilities blocks are
+`shh_*` block plugins + SDC, not views — only `editoria11y_*` and
+`recent_pages` are custom views, both admin); the ~34 webforms are
+almost all webform-library option-set defaults (community-translated),
+only `webform.webform.contact` is real. So Phase 5 = the same klaro
+set as kbg: `klaro.klaro_purpose.{advertising,analytics,cms,
+external_content}` base labels (Analyse / Funktionel / …) and the
+`klaro.texts` consent-banner strings the community `.po` left English.
+`livechat` was already "Live chat". **Watch-out:** saving the `cms`
+klaro *purpose* also rewrote the `cms` klaro *app* label
+("Drupal CMS" → "Funktionel") once — klaro syncs the two on that
+save; set the app label back explicitly and it stuck. Editorial
+hand-off (shh): `easy_email.easy_email_type.*` (10), `klaro.klaro_app.*`
+descriptions, `system.site` slogan.
+
+**Phase 7 — existing content.** All `en`, nothing to reclassify: 5
+nodes (1 page, 3 bookable_facility, 1 news — **all published**,
+unlike vdg/kbg's draft privacy pages), 1 `canvas_page` (homepage), 7
+`commerce_product` + 8 variations (the horse catalog + feed items),
+17 menu links, 12 media. Danish content work: the homepage, the 3
+facility pages, the horse/product descriptions, menu labels.
+
+### shh — 2026-08-27, `shh_*` module UI strings (decision pending)
+
+The 22 enabled `shh_*` modules carry **356 translatable strings**
+(via `drush potx`, potx installed then removed): rider notification
+emails ("Your booking is confirmed: @facility, @slot" + full bodies),
+booking-log / audit entity field labels (admin), facility-booking
+CTAs, pricing-comparison copy, horse/feed catalog, footer, main nav.
+Not on localize.drupal.org — needs authoring, same as hivelog was for
+kbg. Unlike hivelog these modules live *inside* cms2, so their `.po`
+can just be folded into `shh_multilingual/translations/da.po` (re-snap
+after translating in the DB). **Scope decision needed:** best-effort
+translate all 356 now (as with hivelog), or hand off. The disabled
+modules (`shh_booking_hold` / `shh_horse_deposit` /
+`shh_rider_dashboard`) were excluded from the extraction.
+
 ## Acceptance criteria
 Per site (`vdg`, then `kbg`, then `shh`):
 - [ ] `language`, `locale`, `content_translation`, `config_translation`

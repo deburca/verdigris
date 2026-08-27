@@ -1,39 +1,39 @@
 langcode: da
 consentModal:
-  title: 'Use of personal data and cookies'
+  title: 'Brug af persondata og cookies'
   description: |
-    Please choose the services and 3rd party applications we would like to use.
+    Vælg de tjenester og tredjepartsapplikationer, vi må bruge.
   privacyPolicy:
-    name: 'privacy policy'
+    name: privatlivspolitik
     text: |
-      To learn more, please read our {privacyPolicy}.
+      Læs vores {privacyPolicy} for at få mere at vide.
     url: 'internal:/privacy-policy'
 consentNotice:
-  title: 'Use of personal data and cookies'
-  changeDescription: 'There were changes since your last visit, please update your consent.'
+  title: 'Brug af persondata og cookies'
+  changeDescription: 'Der er sket ændringer siden dit sidste besøg — opdatér venligst dit samtykke.'
   description: |
-    We use cookies and process personal data for the following purposes: {purposes}.
+    Vi bruger cookies og behandler persondata til følgende formål: {purposes}.
   learnMore: Tilpas
-ok: Accept
+ok: Acceptér
 save: Gem
 decline: Afslå
 close: Luk
-acceptAll: 'Accept all'
-acceptSelected: 'Accept selected'
+acceptAll: 'Acceptér alle'
+acceptSelected: 'Acceptér valgte'
 service:
   disableAll:
-    title: 'Toggle all services'
-    description: 'Use this switch to enable/disable all services.'
+    title: 'Slå alle tjenester til/fra'
+    description: 'Brug denne kontakt til at slå alle tjenester til eller fra.'
   optOut:
-    title: (opt-out)
-    description: 'This service is loaded by default (opt-out possible).'
+    title: (fravalg)
+    description: 'Denne tjeneste indlæses som standard (fravalg muligt).'
   required:
-    title: '(always required)'
-    description: 'This service is always required.'
-  purposes: Purposes
-  purpose: Purpose
+    title: '(altid påkrævet)'
+    description: 'Denne tjeneste er altid påkrævet.'
+  purposes: Formål
+  purpose: Formål
 contextualConsent:
   acceptAlways: Altid
-  acceptOnce: 'Yes (this time)'
-  description: 'Load external content supplied by {title}?'
+  acceptOnce: 'Ja (denne gang)'
+  description: 'Indlæs eksternt indhold leveret af {title}?'
 poweredBy: 'Powered by Klaro!'
