@@ -7,7 +7,7 @@ site: vdg, kbg, shh
 project:
 created: 2026-08-27
 updated: 2026-08-27
-progress: vdg Phases 1+4 (f997e9b), 2 (0e053c7), 6 (qs 0cb9f7e), 5 (fb1b126), 7 (4861e83), 8 (verification pass — no change) done; next is Phase 9 (rollout)
+progress: vdg DONE — all phases through rollout; live bilingual on verdigris.nu (2026-08-27). kbg + shh not started.
 branch: feature/0069-danish-english-multilingual
 ---
 # Task: Add Danish + English translation to all three sites
@@ -391,9 +391,50 @@ change.**
   still English until the `easy_email` / webform templates are
   translated (editorial hand-off list).
 
-**Not yet done for vdg:** Phase 9 (rollout — `make vdg-pull` to
-testing then production). `quick_silver` commit `0cb9f7e` pushed
-2026-08-27.
+### vdg — 2026-08-27, Phase 9 (rollout to production)
+
+**verdigris.nu is live bilingual.** Deployed straight to production
+(no separate testing instance in play for vdg).
+
+**What went wrong first:** the initial `make vdg-pull` was a no-op —
+all 8 task-0069 cms2 commits were still local on the dev machine,
+never pushed, so production's `git pull` had nothing and
+`config:import` reported no changes. `quick_silver` had been pushed
+(separate repo); cms2 had not. After `git push origin main` on the dev
+box, the redeploy worked.
+
+**Post-deploy state on production (`verdigris.nu`, DB
+`xvxvpiiverdigris` on OVH):**
+- `language`, `locale`, `content_translation`, `config_translation`,
+  `vdg_multilingual` all Enabled (core 11.4.5).
+- `{locales_target}` holds **8594** `da` rows — the `.po` imported
+  via `vdg_multilingual_configurable_language_insert()` firing when
+  `language.entity.da` was created during `cim`. This is the
+  fresh-install path added in `ec926cd`; it worked first time on a
+  real fresh target, confirming the fix.
+- `/` → `<html lang="en">`, unchanged English site.
+- `/da/user/login` → renders "Log ind" (Danish chrome live).
+- `config:status`: `views.view.scheduler_scheduled_content` showed
+  "Different" immediately after the deploy — a second `drush
+  config:import -y` finished it (the deploy's own `cim` step had not
+  fully completed); now clean. Not i18n-related.
+
+**Deferred / for the backlog:**
+- Editorial Danish hand-off (klaro app descriptions, `easy_email`
+  bodies, form confirmation copy, metatag patterns, slogan) — list
+  in the Phase 5 section.
+- Danish content itself (9 canvas_page rebuilds, legal + blog nodes,
+  menu/term labels) — inventory in the Phase 7 section.
+- Language switcher placement (Phase 6 commit `0cb9f7e` in
+  `quick_silver`, styled but not placed) — drop the
+  `language_block:language_interface` component into the header/footer
+  Canvas page region once the minimum Danish content exists.
+- Untracked cruft on the production checkout: `config/vdg-orig/`,
+  `config/kbg-orig/`, `web/sites/verdigris.nu/`, `web/sites/shh/`.
+
+**vdg: task 0069 done.** Remaining task scope is **kbg** and **shh**
+— both take Danish as the *default* language, so their Phase 7
+(existing-content langcode handling) is real work, unlike vdg's.
 
 ## Acceptance criteria
 Per site (`vdg`, then `kbg`, then `shh`):
