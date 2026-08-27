@@ -36,7 +36,7 @@ display:
           entity_type: bat_event
           entity_field: id
           plugin_id: field
-          label: ID
+          label: Id
           exclude: false
           alter:
             alter_text: false

@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: stutteri-hestehoj.dk\n"
-"POT-Creation-Date: 2026-08-27 21:11+0200\n"
-"PO-Revision-Date: 2026-08-27 21:11+0200\n"
+"POT-Creation-Date: 2026-08-27 21:47+0200\n"
+"PO-Revision-Date: 2026-08-27 21:47+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: da\n"
@@ -208,7 +208,7 @@ msgid "Event"
 msgstr "Begivenhed"
 
 msgid "ID"
-msgstr "ID"
+msgstr "Id"
 
 msgid "States"
 msgstr "Tilstande"
@@ -298,7 +298,7 @@ msgid "Are you sure you want to delete %name?"
 msgstr "Er du sikker på, at du ønsker at slette %name?"
 
 msgid "Change"
-msgstr "Skift"
+msgstr "Ændring"
 
 msgid "Granularity"
 msgstr "Granularitet"
@@ -585,7 +585,7 @@ msgid "Node"
 msgstr "Indholdselement"
 
 msgid "Items"
-msgstr "Overskrifter"
+msgstr "Linjer"
 
 msgid "Price"
 msgstr "Pris"
@@ -1872,7 +1872,7 @@ msgid "Operator"
 msgstr "Operand"
 
 msgid "Order"
-msgstr "Rækkefølge"
+msgstr "Ordre"
 
 msgid "Equals"
 msgstr "Lig med"
@@ -2145,7 +2145,7 @@ msgid "Decimal marker"
 msgstr "Decimalmarkør"
 
 msgid "Order ID"
-msgstr "Ordre ID"
+msgstr "Ordre-id"
 
 msgid "URL path settings"
 msgstr "Alternativ URL"
@@ -4968,7 +4968,7 @@ msgid "Add state"
 msgstr "Tilføj tilstand"
 
 msgid "Transition"
-msgstr "Overgang"
+msgstr "Ændring"
 
 msgid "workflow"
 msgstr "arbejdsgang"
@@ -25035,8 +25035,8 @@ msgstr ""
 "\n"
 "[user:one-time-login-url]\n"
 "\n"
-"Linket kan kun "
-"bruges én gang, og det fører dig til en side, hvor du kan vælge din "
+"Linket kan kun bruges én "
+"gang, og det fører dig til en side, hvor du kan vælge din "
 "adgangskode.\n"
 "\n"
 "Når du har valgt en adgangskode kan du fremover "
@@ -25046,8 +25046,8 @@ msgstr ""
 "[user:account-name]\n"
 "Adgangskode: Din adgangskode\n"
 "\n"
-"--  "
-"Holdet bag [site:name]"
+"--  Holdet bag "
+"[site:name]"
 
 msgid "Account details for [user:display-name] at [site:name] (approved)"
 msgstr "Kontoinformationer for [user:display-name] på [site:name] (godkendt)"
@@ -30808,7 +30808,7 @@ msgid "Handler"
 msgstr "Håndtering"
 
 msgid "Remaining"
-msgstr "Resterende"
+msgstr "Tilbage"
 
 msgid "Latest"
 msgstr "Seneste"
@@ -32144,3 +32144,1461 @@ msgstr "Billedetekst (@value)"
 
 msgid "Image src (@value)"
 msgstr "Billede src (@value)"
+
+msgid "Functional"
+msgstr "Funktionel"
+
+msgid "Advertising and Marketing"
+msgstr "Annoncering og markedsføring"
+
+msgid "Analytics"
+msgstr "Analyse"
+
+msgid "Embedded external content"
+msgstr "Indlejret eksternt indhold"
+
+msgid "Use of personal data and cookies"
+msgstr "Brug af persondata og cookies"
+
+msgid ""
+"Please choose the services and 3rd party applications we would like to "
+"use.\n"
+""
+msgstr ""
+"Vælg de tjenester og tredjepartsapplikationer, vi må bruge.\n"
+""
+
+msgid "privacy policy"
+msgstr "privatlivspolitik"
+
+msgid ""
+"To learn more, please read our {privacyPolicy}.\n"
+""
+msgstr ""
+"Læs vores {privacyPolicy} for at få mere at vide.\n"
+""
+
+msgid "internal:/<front>"
+msgstr "internal:/privacy-policy"
+
+msgid "There were changes since your last visit, please update your consent."
+msgstr ""
+"Der er sket ændringer siden dit sidste besøg — opdatér venligst "
+"dit samtykke."
+
+msgid ""
+"We use cookies and process personal data for the following purposes: "
+"{purposes}.\n"
+""
+msgstr ""
+"Vi bruger cookies og behandler persondata til følgende formål: "
+"{purposes}.\n"
+""
+
+msgid "Accept"
+msgstr "Acceptér"
+
+msgid "Accept all"
+msgstr "Acceptér alle"
+
+msgid "Accept selected"
+msgstr "Acceptér valgte"
+
+msgid "Toggle all services"
+msgstr "Slå alle tjenester til/fra"
+
+msgid "Use this switch to enable/disable all services."
+msgstr "Brug denne kontakt til at slå alle tjenester til eller fra."
+
+msgid "(opt-out)"
+msgstr "(fravalg)"
+
+msgid "This service is loaded by default (opt-out possible)."
+msgstr "Denne tjeneste indlæses som standard (fravalg muligt)."
+
+msgid "(always required)"
+msgstr "(altid påkrævet)"
+
+msgid "This service is always required."
+msgstr "Denne tjeneste er altid påkrævet."
+
+msgid "Purposes"
+msgstr "Formål"
+
+msgid "Purpose"
+msgstr "Formål"
+
+msgid "Yes (this time)"
+msgstr "Ja (denne gang)"
+
+msgid "Load external content supplied by {title}?"
+msgstr "Indlæs eksternt indhold leveret af {title}?"
+
+msgid "Order item type"
+msgstr "Ordrelinjetype"
+
+msgid "SHH facilities"
+msgstr "SHH-faciliteter"
+
+msgid "SHH feed & bedding"
+msgstr "SHH foder og strøelse"
+
+msgid "SHH featured horses"
+msgstr "SHH fremhævede heste"
+
+msgid "SHH navbar (hestehoj:navbar)"
+msgstr "SHH navbar (hestehoj:navbar)"
+
+msgid "SHH news"
+msgstr "SHH nyheder"
+
+msgid "SHH pricing at a glance"
+msgstr "SHH priser i overblik"
+
+msgid "SHH footer (hestehoj:footer)"
+msgstr "SHH footer (hestehoj:footer)"
+
+msgid "Outdoor"
+msgstr "Udendørs"
+
+msgid "1 rider"
+msgid_plural "@count riders"
+msgstr[0] "1 rytter"
+msgstr[1] "@count ryttere"
+
+msgid "@price / @minutes min"
+msgstr "@price / @minutes min."
+
+msgid "Indoor"
+msgstr "Indendørs"
+
+msgid "@price per bale"
+msgstr "@price pr. balle"
+
+msgid "From @price per bale"
+msgstr "Fra @price pr. balle"
+
+msgid "One slot at a time"
+msgstr "Ét tidsrum ad gangen"
+
+msgid "From, per @minutes-minute slot. Pay as you ride, no commitment."
+msgstr ""
+"Fra, pr. @minutes-minutters tidsrum. Betal når du rider, ingen "
+"binding."
+
+msgid "@count-session credit pack"
+msgstr "Klippekort med @count gange"
+
+msgid ""
+"@discount% off, for one facility. Credits never expire — redeem them "
+"whenever you ride."
+msgstr ""
+"@discount % rabat, for én facilitet. Klip udløber aldrig — brug "
+"dem, når du rider."
+
+msgid "All three, same slot"
+msgstr "Alle tre, samme tidsrum"
+
+msgid ""
+"Book all three for the same time and the discount comes off "
+"automatically at checkout."
+msgstr ""
+"Book alle tre til samme tidspunkt, og rabatten trækkes fra automatisk "
+"ved betaling."
+
+msgid "See all horses for sale"
+msgstr "Se alle heste til salg"
+
+msgid ""
+"Book by the half hour, from 08:00 to 20:00. Ride one, or book several "
+"for the same slot and pay less."
+msgstr ""
+"Book pr. halve time, fra kl. 08:00 til 20:00. Rid på én, eller book "
+"flere til samme tidsrum og betal mindre."
+
+msgid "See facilities and prices"
+msgstr "Se faciliteter og priser"
+
+msgid ""
+"Straw and wrapped haylage from our own fields, sold by the bale and "
+"collected at the stable. We confirm availability when we contact you "
+"about your order."
+msgstr ""
+"Halm og wraphø fra vores egne marker, solgt pr. balle og afhentet ved "
+"stalden. Vi bekræfter tilgængelighed, når vi kontakter dig om din "
+"ordre."
+
+msgid "See feed & bedding"
+msgstr "Se foder og strøelse"
+
+msgid "Compare pricing side by side"
+msgstr "Sammenlign priser side om side"
+
+msgid "See all news"
+msgstr "Se alle nyheder"
+
+msgid "Stutteri Hestehøj — Icelandic horses, riding facilities & feed"
+msgstr "Stutteri Hestehøj — islandsheste, ridefaciliteter og foder"
+
+msgid ""
+"Icelandic horses for sale, hourly riding facility bookings, and feed & "
+"bedding at Stutteri Hestehøj in Holbæk — five-gaited and "
+"four-gaited horses, bred in-house."
+msgstr ""
+"Islandsheste til salg, timebooking af ridefaciliteter samt foder og "
+"strøelse hos Stutteri Hestehøj i Holbæk — femgængere og "
+"firgængere, opdrættet på stedet."
+
+msgid "Stats"
+msgstr "Statistik"
+
+msgid "Strings"
+msgstr "Tekststrenge"
+
+msgid "Language independent template"
+msgstr "Sproguafhængig skabelon"
+
+msgid "Template language"
+msgstr "Skabelonsprog"
+
+msgid ""
+"Export a language independent or language dependent (plural forms, "
+"language team name, etc.) template."
+msgstr ""
+"Eksporter en sproguafhængig eller sprogafhængig skabelon "
+"(flertalsformer, sprogholdets navn, osv.)."
+
+msgid "Include translations"
+msgstr "Medtag oversættelser"
+
+msgid ""
+"Include translations of strings in the file generated. Not applicable "
+"for language independent templates."
+msgstr ""
+"Medtag oversættelser af strenge i den genererede fil. Gælder ikke "
+"for sproguafhængige skabeloner."
+
+msgid "Extract"
+msgstr "Udtræk"
+
+msgid "Generates output from all files found in this directory."
+msgstr "Genererer output fra alle filer, der findes i denne mappe."
+
+msgid "Translation template extractor"
+msgstr "Udpakning af oversættelsesskabeloner"
+
+msgid ""
+"Provides a web interface and an API to extract translatable text from "
+"the sources of installed components."
+msgstr ""
+"Tilbyder webgrænseflade og en API til udpakning af tekst, der kan "
+"oversættes, fra kilderne til installerede komponenter."
+
+msgid ""
+"This page allows you to generate translation templates for module and "
+"theme files. Select the module or theme you wish to generate a "
+"template file for. A single Gettext Portable Object (Template) file is "
+"generated, so you can easily save it and start translation."
+msgstr ""
+"På denne side kan du generere oversættelsesskabeloner til moduler og "
+"themes. Vælg det modul eller theme, du vil oprette en skabelonfil "
+"til. Der oprettes en enkelt Gettext Portable Object-fil (Template), "
+"så du nemt kan gemme den og starte oversættelsen."
+
+msgid "You should select a component to export."
+msgstr "Du skal vælge mindst ét projekt til eksport."
+
+msgid "Extract from %name in the %directory directory"
+msgstr "Udtræk fra %name i mappen %directory"
+
+msgid "Extract from all in directory \"@directory\""
+msgstr "Find i alle filer i mappen \"@directory\""
+
+msgid ""
+"To extract from a single component in this directory, choose the "
+"desired entry in the fieldset below."
+msgstr ""
+"Hvis du vil udtrække fra en enkelt komponent i denne mappe, skal du "
+"vælge det ønskede element nedenfor."
+
+msgid "Directory \"@directory\""
+msgstr "Mappen \"@directory\""
+
+msgid "Extract from %name"
+msgstr "Find i %name"
+
+msgid "Extract from files named %pattern in the %directory directory."
+msgstr "Find i filer navngivet %pattern i mappen %directory."
+
+msgid "PHP tokenizer for Translation template extractor"
+msgstr "PHP-tokenizer til udpakning af oversættelser"
+
+msgid "The <a href=\"@tokenizer\">PHP tokenizer functions</a> are required."
+msgstr "<a href=\"@tokenizer\">PHP-tokenizer-funktionerne</a> er påkrævet."
+
+msgid "At %excerpt in %file on line %line."
+msgstr "Ved %excerpt i %file på linje %line."
+
+msgid "In %file on line %line."
+msgstr "I %file på linje %line."
+
+msgid "At %excerpt in %file."
+msgstr "Ved %excerpt i %file."
+
+msgid "In %file."
+msgstr "I %file."
+
+msgid "Read more at @url"
+msgstr "Læs mere på @url"
+
+msgid "Read more at <a href=\"@url\">@url</a>"
+msgstr "Læs mere på <a href=\"@url\">@url</a>"
+
+msgid "YAML parseing error on file @path: @error"
+msgstr "Yaml-parserfejl i filen @path: @error"
+
+msgid "Possible potx modes are:"
+msgstr "Mulige potx-tilstande er:"
+
+msgid ""
+" single    Single file output mode, every file folded into the single "
+"output file (default)."
+msgstr ""
+" enkelt enkelt fil output mode, hver fil samlet i en enkelt output-fil "
+"(standard)."
+
+msgid ""
+" multiple  Multiple file output mode, .info files folded into module "
+".pot files."
+msgstr " flere filer output mode, .info filer samlet i modulets .pot filer."
+
+msgid ""
+" core      Drupal core output mode, .info files folded into "
+"general.pot."
+msgstr " kerne Drupal kerne output mode, .info filer samlet i general.pot."
+
+msgid ""
+"If no files are specified, potx will autodiscover files from the "
+"current working directory. You can specify concrete files to look at "
+"to limit the scope of the operation."
+msgstr ""
+"Hvis der ikke er angivet nogen filer, gendannes potx automatisk fra "
+"den aktuelle arbejdsmappe. Du kan angive konkrete filer, der skal "
+"undersøges for at begrænse handlingens omfang."
+
+msgid "Template file for @langname translations"
+msgstr "Skabelon for oversættelse til @language"
+
+msgid ""
+"Account deletion (task 0044): purged and anonymised all PII for uid "
+"@uid (@name)."
+msgstr ""
+"Kontosletning (opgave 0044): udrensede og anonymiserede alle "
+"personoplysninger for uid @uid (@name)."
+
+msgid "Your booking is confirmed: @facility, @slot"
+msgstr "Din booking er bekræftet: @facility, @slot"
+
+msgid ""
+"Your booking is confirmed.\n"
+"\n"
+"Facility: @facility\n"
+"Time: "
+"@slot\n"
+"Order number: @order\n"
+"\n"
+"You can see all your bookings, or "
+"cancel this one, on your dashboard on our website (My account)."
+msgstr ""
+"Din booking er bekræftet.\n"
+"\n"
+"Facilitet: @facility\n"
+"Tidspunkt: "
+"@slot\n"
+"Ordrenummer: @order\n"
+"\n"
+"Du kan se alle dine bookinger eller "
+"aflyse denne på din oversigt på vores website (Min konto)."
+
+msgid "Your booking has been cancelled: @facility, @slot"
+msgstr "Din booking er blevet aflyst: @facility, @slot"
+
+msgid ""
+"Your booking of @facility for @slot (order @order) has been cancelled "
+"and the slot released. If a refund was authorized, it will be "
+"processed to you by bank transfer.\n"
+"\n"
+"If you did not expect this "
+"cancellation, please contact us."
+msgstr ""
+"Din booking af @facility den @slot (ordre @order) er blevet aflyst, og "
+"tidsrummet er frigivet. Hvis der er godkendt en refundering, bliver "
+"den overført til dig via bankoverførsel.\n"
+"\n"
+"Hvis du ikke "
+"forventede denne aflysning, så kontakt os venligst."
+
+msgid "Your reserved slot has been released: @facility, @slot"
+msgstr "Dit reserverede tidsrum er frigivet: @facility, @slot"
+
+msgid ""
+"The slot you had in your cart — @facility, @slot — was held for "
+"you while you completed checkout, but the hold has now expired and the "
+"slot has been released for other riders.\n"
+"\n"
+"If you still want it, "
+"please book it again on our website."
+msgstr ""
+"Det tidsrum, du havde i kurven — @facility, @slot — blev holdt for "
+"dig, mens du gennemførte betalingen, men reservationen er nu "
+"udløbet, og tidsrummet er frigivet til andre ryttere.\n"
+"\n"
+"Hvis du "
+"stadig vil have det, så book det igen på vores website."
+
+msgid "Access the booking lifecycle log"
+msgstr "Se bookingforløbsloggen"
+
+msgid ""
+"View the audit trail of booking state transitions at "
+"/admin/reports/booking-log."
+msgstr ""
+"Se revisionssporet for bookingtilstandsændringer på "
+"/admin/reports/booking-log."
+
+msgid "Failed to log booking transition for event @id: @message"
+msgstr "Kunne ikke logge bookingændring for hændelse @id: @message"
+
+msgid "Logged"
+msgstr "Logget"
+
+msgid "BAT event ID"
+msgstr "BAT-hændelses-id"
+
+msgid "Slot start"
+msgstr "Tidsrum start"
+
+msgid "Slot end"
+msgstr "Tidsrum slut"
+
+msgid "From state"
+msgstr "Fra tilstand"
+
+msgid "Empty for newly created events."
+msgstr "Tom for nyoprettede hændelser."
+
+msgid "To state"
+msgstr "Til tilstand"
+
+msgid "Actor"
+msgstr "Aktør"
+
+msgid "Actor kind"
+msgstr "Aktørtype"
+
+msgid ""
+"Empty for events with no associated order, e.g. staff-created "
+"availability blocks."
+msgstr ""
+"Tom for hændelser uden tilknyttet ordre, f.eks. personale-oprettede "
+"spærringer."
+
+msgid "Notification sent"
+msgstr "Notifikation sendt"
+
+msgid "The mail key sent to the rider for this transition, if any."
+msgstr ""
+"Den mail-nøgle, der blev sendt til rytteren for denne ændring, hvis "
+"nogen."
+
+msgid "Booking log entry"
+msgstr "Bookinglogpost"
+
+msgid "Booking log"
+msgstr "Bookinglog"
+
+msgid "Slot"
+msgstr "Tidsrum"
+
+msgid "Email sent"
+msgstr "E-mail sendt"
+
+msgid "Deleted user"
+msgstr "Slettet bruger"
+
+msgid "Cancel booking"
+msgstr "Aflys booking"
+
+msgid "Administer cancellation policies"
+msgstr "Administrér afbestillingsregler"
+
+msgid "Create, edit, and delete cancellation policies."
+msgstr "Opret, rediger og slet afbestillingsregler."
+
+msgid "Cancellation policies"
+msgstr "Afbestillingsregler"
+
+msgid "Add cancellation policy"
+msgstr "Tilføj afbestillingsregel"
+
+msgid "Edit cancellation policy"
+msgstr "Rediger afbestillingsregel"
+
+msgid "Delete cancellation policy"
+msgstr "Slet afbestillingsregel"
+
+msgid "Cancellation policy"
+msgstr "Afbestillingsregel"
+
+msgid "Refund window (hours before booking start)"
+msgstr "Refunderingsvindue (timer før bookingstart)"
+
+msgid ""
+"Cancellation denied for order item @item: @hours hours until start, "
+"inside the @window-hour window."
+msgstr ""
+"Aflysning afvist for ordrelinje @item: @hours timer til start, inden "
+"for vinduet på @window timer."
+
+msgid ""
+"Cancellation authorized for order item @item: refunded and released "
+"event(s) [@ids]."
+msgstr ""
+"Aflysning godkendt for ordrelinje @item: refunderet og frigivne "
+"hændelser [@ids]."
+
+msgid ""
+"Payment @id's gateway does not support refunds; cannot refund order "
+"item @item automatically."
+msgstr ""
+"Betaling @id's gateway understøtter ikke refundering; kan ikke "
+"refundere ordrelinje @item automatisk."
+
+msgid ""
+"No refundable payment found for order @order (order item @item) — "
+"refund not issued automatically."
+msgstr ""
+"Ingen refunderbar betaling fundet for ordre @order (ordrelinje @item) "
+"— refundering ikke udført automatisk."
+
+msgid "Refund window (hours)"
+msgstr "Refunderingsvindue (timer)"
+
+msgid "cancellation policy"
+msgstr "afbestillingsregel"
+
+msgid "cancellation policies"
+msgstr "afbestillingsregler"
+
+msgid "Cancel this booking?"
+msgstr "Aflys denne booking?"
+
+msgid ""
+"This facility has no cancellation policy configured. Please contact "
+"staff directly to cancel this booking."
+msgstr ""
+"Denne facilitet har ingen afbestillingsregel opsat. Kontakt personalet "
+"direkte for at aflyse denne booking."
+
+msgid "This booking has no active (booked) time slots to cancel."
+msgstr "Denne booking har ingen aktive (bookede) tidsrum at aflyse."
+
+msgid ""
+"This booking starts in @hours hours, outside the %policy policy's "
+"@window-hour window — cancelling now will release the slot and "
+"authorize a full refund."
+msgstr ""
+"Denne booking starter om @hours timer, uden for %policy-reglens vindue "
+"på @window timer — aflyser du nu, frigives tidsrummet, og der "
+"godkendes fuld refundering."
+
+msgid ""
+"This booking starts in @hours hours, inside the %policy policy's "
+"@window-hour window — cancelling now will <strong>not</strong> be "
+"refunded, and the slot will remain booked."
+msgstr ""
+"Denne booking starter om @hours timer, inden for %policy-reglens "
+"vindue på @window timer — aflyser du nu, refunderes det "
+"<strong>ikke</strong>, og tidsrummet forbliver booket."
+
+msgid ""
+"Your booking has been cancelled and refunded. The slot has been "
+"released."
+msgstr "Din booking er blevet aflyst og refunderet. Tidsrummet er frigivet."
+
+msgid ""
+"This booking is inside the cancellation policy's no-refund window, so "
+"it cannot be self-service cancelled. Contact staff directly if you "
+"still need to cancel."
+msgstr ""
+"Denne booking er inden for afbestillingsreglens vindue uden "
+"refundering, så den kan ikke aflyses via selvbetjening. Kontakt "
+"personalet direkte, hvis du stadig har brug for at aflyse."
+
+msgid ""
+"Outside this window: cancellation gets a full refund and the slot is "
+"released. Inside this window: cancellation is denied a refund, and the "
+"slot is <strong>not</strong> released (worth confirming this specific "
+"\"no release either\" rule matches business intent before relying on "
+"it)."
+msgstr ""
+"Uden for dette vindue: aflysning giver fuld refundering, og tidsrummet "
+"frigives. Inden for dette vindue: aflysning nægtes refundering, og "
+"tidsrummet frigives <strong>ikke</strong> (bekræft, at netop denne "
+"\"heller ikke frigivelse\"-regel svarer til forretningens hensigt, "
+"før du forlader dig på den)."
+
+msgid "Saved the %label cancellation policy."
+msgstr "Gemte afbestillingsreglen %label."
+
+msgid "Data retention"
+msgstr "Dataopbevaring"
+
+msgid "Per-category GDPR retention windows and purge status."
+msgstr "GDPR-opbevaringsvinduer og udrensningsstatus pr. kategori."
+
+msgid "SHH data retention settings"
+msgstr "Indstillinger for SHH-dataopbevaring"
+
+msgid ""
+"Retention windows in days per category (null = not confirmed, purge "
+"disabled)"
+msgstr ""
+"Opbevaringsvinduer i dage pr. kategori (null = ikke bekræftet, "
+"udrensning deaktiveret)"
+
+msgid "Days after submission"
+msgstr "Dage efter indsendelse"
+
+msgid "Days after applying (unapproved, never-logged-in registrations)"
+msgstr ""
+"Dage efter ansøgning (ikke-godkendte registreringer, aldrig logget "
+"ind)"
+
+msgid "Contact-form messages"
+msgstr "Beskeder fra kontaktformular"
+
+msgid "days after the message was sent"
+msgstr "dage efter beskeden blev sendt"
+
+msgid "Unapproved registration applications"
+msgstr "Ikke-godkendte registreringsansøgninger"
+
+msgid ""
+"days after applying, for accounts still awaiting approval that have "
+"never been used to log in (staff accounts, and any rider who has ever "
+"logged in — including suspended ones — are never purged)"
+msgstr ""
+"dage efter ansøgning, for konti der stadig afventer godkendelse og "
+"aldrig er brugt til at logge ind (personalekonti, og enhver rytter der "
+"har logget ind — også suspenderede — udrenses aldrig)"
+
+msgid "Booking audit log entries"
+msgstr "Poster i bookingrevisionsloggen"
+
+msgid ""
+"Kept indefinitely as an operational audit trail. When a rider account "
+"is deleted, its log entries are anonymised in place by "
+"shh_account_deletion (task 0044) — the actor is nulled and the entry "
+"renders as \"Deleted user\" — so surviving entries hold no personal "
+"data and a time-based purge would only destroy audit value."
+msgstr ""
+"Opbevares på ubestemt tid som et driftsmæssigt revisionsspor. Når "
+"en rytterkonto slettes, anonymiseres dens logposter på stedet af "
+"shh_account_deletion (opgave 0044) — aktøren nulstilles, og posten "
+"vises som \"Slettet bruger\" — så tilbageværende poster indeholder "
+"ingen personoplysninger, og en tidsbaseret udrensning ville kun "
+"ødelægge revisionsværdi."
+
+msgid "Commerce orders"
+msgstr "Commerce-ordrer"
+
+msgid ""
+"Kept as workflow records; anonymised (uid 0, e-mail blanked, billing "
+"profile deleted) when the account is deleted (task 0044). Invoicing "
+"and the Danish Bookkeeping Act’s 5-year retention are handled in the "
+"external accounting system, not here."
+msgstr ""
+"Opbevares som arbejdsgangsposter; anonymiseres (uid 0, e-mail tømt, "
+"faktureringsprofil slettet), når kontoen slettes (opgave 0044). "
+"Fakturering og bogføringslovens 5-årige opbevaringspligt håndteres "
+"i det eksterne regnskabssystem, ikke her."
+
+msgid "Active rider accounts and their records"
+msgstr "Aktive rytterkonti og deres data"
+
+msgid ""
+"Kept for as long as the rider has an account. Deletion is immediate "
+"and complete when it happens (task 0044), so there is no “closed "
+"account” state to age out — which is why no grace-period purge "
+"exists."
+msgstr ""
+"Opbevares, så længe rytteren har en konto. Sletning sker straks og "
+"fuldstændigt, når den udføres (opgave 0044), så der er ingen "
+"“lukket konto”-tilstand at forælde — derfor findes der ingen "
+"udrensning med frist."
+
+msgid ""
+"Retention purge: removed @count @category item(s) older than @days "
+"days."
+msgstr ""
+"Opbevaringsudrensning: fjernede @count @category-post(er) ældre end "
+"@days dage."
+
+msgid ""
+"Retention: deleting unapproved registration @name (uid @uid, applied "
+"@date, never logged in)."
+msgstr ""
+"Opbevaring: sletter ikke-godkendt registrering @name (uid @uid, "
+"ansøgt @date, aldrig logget ind)."
+
+msgid "No window set — purge disabled"
+msgstr "Intet vindue angivet — udrensning deaktiveret"
+
+msgid "@time (@count deleted)"
+msgstr "@time (@count slettet)"
+
+msgid ""
+"Retention windows come from <code>shh_data_retention.settings</code>; "
+"a category with no window is not purged and says so. The published "
+"privacy policy and this configuration must always match (task 0006)."
+msgstr ""
+"Opbevaringsvinduer kommer fra "
+"<code>shh_data_retention.settings</code>; en kategori uden vindue "
+"udrenses ikke og angiver det. Den offentliggjorte privatlivspolitik og "
+"denne konfiguration skal altid stemme overens (opgave 0006)."
+
+msgid "Window"
+msgstr "Vindue"
+
+msgid "Anchored to"
+msgstr "Forankret til"
+
+msgid "Eligible now"
+msgstr "Berettiget nu"
+
+msgid "Last purge run"
+msgstr "Seneste udrensning"
+
+msgid "No categories defined."
+msgstr "Ingen kategorier defineret."
+
+msgid "Purged automatically (daily cron)"
+msgstr "Udrenses automatisk (dagligt cron)"
+
+msgid "Why it is kept"
+msgstr "Hvorfor det opbevares"
+
+msgid ""
+"Kept with no automatic purge — deliberate decisions (task 0047), not "
+"pending items"
+msgstr ""
+"Opbevares uden automatisk udrensning — bevidste beslutninger (opgave "
+"0047), ikke uafklarede punkter"
+
+msgid "indoor"
+msgstr "indendørs"
+
+msgid "outdoor"
+msgstr "udendørs"
+
+msgid "@price per @minutes-minute slot"
+msgstr "@price pr. @minutes-minutters tidsrum"
+
+msgid ""
+"Book the @name at Stutteri Hestehøj — @facts. Book online, pay as "
+"you ride."
+msgstr ""
+"Book @name hos Stutteri Hestehøj — @facts. Book online, betal når "
+"du rider."
+
+msgid "capacity 1 rider"
+msgid_plural "capacity @count riders"
+msgstr[0] "plads til 1 rytter"
+msgstr[1] "plads til @count ryttere"
+
+msgid "Book a facility"
+msgstr "Book en facilitet"
+
+msgid "Book a riding facility"
+msgstr "Book en ridefacilitet"
+
+msgid ""
+"Book the oval track, manège or lunge ring by the half hour at "
+"Stutteri Hestehøj — 08:00 to 20:00, book several facilities for the "
+"same slot and save."
+msgstr ""
+"Book ovalbanen, ridehuset eller longeringsbanen pr. halve time hos "
+"Stutteri Hestehøj — kl. 08:00 til 20:00. Book flere faciliteter til "
+"samme tidsrum og spar."
+
+msgid "No facilities are available to book right now."
+msgstr "Der er ingen faciliteter, der kan bookes lige nu."
+
+msgid "Book all three facilities together and save"
+msgstr "Book alle tre faciliteter samlet og spar"
+
+msgid ""
+"Book the Oval Track, Manège, and Lunge Ring all for the exact same "
+"time slot, and @amount is taken off the combined total automatically "
+"at checkout — no code needed."
+msgstr ""
+"Book ovalbanen, ridehuset og longeringsbanen til præcis samme "
+"tidsrum, og @amount trækkes automatisk fra den samlede pris ved "
+"betaling — ingen kode nødvendig."
+
+msgid "Save with a credit pack"
+msgstr "Spar med et klippekort"
+
+msgid ""
+"Buy @count reservations for one facility at once, at @discount% off, "
+"and redeem them one at a time whenever you like — they never expire."
+msgstr ""
+"Køb @count reservationer til én facilitet på én gang med @discount "
+"% rabat, og brug dem ét ad gangen, når du vil — de udløber "
+"aldrig."
+
+msgid "Book now"
+msgstr "Book nu"
+
+msgid "SHH Facility Bundle Discount settings"
+msgstr "Indstillinger for SHH-facilitetspakkerabat"
+
+msgid "Bundle product IDs"
+msgstr "Produkt-id'er for pakke"
+
+msgid "Discount amount (per complete bundle)"
+msgstr "Rabatbeløb (pr. komplet pakke)"
+
+msgid "Facility bundle discount"
+msgstr "Facilitetspakkerabat"
+
+msgid "Use 1 credit instead of paying (@balance remaining)"
+msgstr "Brug 1 klip i stedet for at betale (@balance tilbage)"
+
+msgid "1 credit redeemed for this booking — no charge."
+msgstr "1 klip brugt til denne booking — ingen betaling."
+
+msgid ""
+"Your credit balance changed and could not be redeemed for this booking "
+"— the normal price applies."
+msgstr ""
+"Din klipsaldo ændrede sig og kunne ikke bruges til denne booking — "
+"normalprisen gælder."
+
+msgid "Buy a 10-session credit pack"
+msgstr "Køb et klippekort med 10 gange"
+
+msgid "Created order item type: facility_credit_pack"
+msgstr "Oprettede ordrelinjetype: facility_credit_pack"
+
+msgid "Administer facility credits"
+msgstr "Administrér facilitetsklip"
+
+msgid "View and manually adjust rider facility credit balances."
+msgstr "Se og justér rytteres facilitetsklipsaldi manuelt."
+
+msgid "Buy a credit pack"
+msgstr "Køb et klippekort"
+
+msgid "Facility credits"
+msgstr "Facilitetsklip"
+
+msgid "Edit facility credit balance"
+msgstr "Rediger facilitetsklipsaldo"
+
+msgid "Delete facility credit balance"
+msgstr "Slet facilitetsklipsaldo"
+
+msgid "Facility credit transactions"
+msgstr "Facilitetsklip-transaktioner"
+
+msgid "SHH Facility Credits settings"
+msgstr "Indstillinger for SHH-facilitetsklip"
+
+msgid "Credit pack size (number of reservations per pack)"
+msgstr "Klippekortstørrelse (antal reservationer pr. kort)"
+
+msgid "Credit pack discount percentage, off the full per-slot price"
+msgstr "Klippekortets rabatprocent, af den fulde pris pr. tidsrum"
+
+msgid ""
+"Granted @amount credit(s) to uid @uid for facility @nid (order item "
+"@item)."
+msgstr ""
+"Tildelte @amount klip til uid @uid for facilitet @nid (ordrelinje "
+"@item)."
+
+msgid ""
+"Redeemed 1 credit for uid @uid, facility @nid (order item @item). "
+"@remaining remaining."
+msgstr ""
+"Brugte 1 klip for uid @uid, facilitet @nid (ordrelinje @item). "
+"@remaining tilbage."
+
+msgid "Rider"
+msgstr "Rytter"
+
+msgid "Total credits ever granted"
+msgstr "Klip tildelt i alt"
+
+msgid ""
+"Lifetime total across all credit pack purchases for this "
+"rider+facility — audit/history only, not the spendable balance."
+msgstr ""
+"Samlet total på tværs af alle klippekortkøb for denne "
+"rytter+facilitet — kun revision/historik, ikke den saldo, der kan "
+"bruges."
+
+msgid "Credits remaining"
+msgstr "Klip tilbage"
+
+msgid ""
+"The spendable balance. No expiry — valid indefinitely once "
+"purchased."
+msgstr ""
+"Den saldo, der kan bruges. Ingen udløbsdato — gyldig på ubestemt "
+"tid efter køb."
+
+msgid "Facility Credit"
+msgstr "Facilitetsklip"
+
+msgid "Facility Credits"
+msgstr "Facilitetsklip"
+
+msgid "Facility credit balance"
+msgstr "Facilitetsklipsaldo"
+
+msgid ""
+"Positive for a grant (pack purchase), negative for a redemption "
+"(booking)."
+msgstr "Positiv ved tildeling (klippekortkøb), negativ ved brug (booking)."
+
+msgid "Related order item ID"
+msgstr "Tilknyttet ordrelinje-id"
+
+msgid ""
+"The commerce_order_item that caused this transaction (the pack "
+"purchase for a grant, or the booking for a redemption)."
+msgstr ""
+"Den commerce_order_item, der udløste denne transaktion "
+"(klippekortkøbet ved en tildeling, eller bookingen ved en brug)."
+
+msgid "Note"
+msgstr "Note"
+
+msgid "Facility Credit Transaction"
+msgstr "Facilitetsklip-transaktion"
+
+msgid "Facility Credit Transactions"
+msgstr "Facilitetsklip-transaktioner"
+
+msgid "Buy a %count-session credit pack for %title?"
+msgstr "Køb et klippekort med %count gange til %title?"
+
+msgid "Please log in to buy a credit pack."
+msgstr "Log ind for at købe et klippekort."
+
+msgid "Credit packs are not available for this facility."
+msgstr "Klippekort er ikke tilgængelige for denne facilitet."
+
+msgid ""
+"@count reservations for %title, normally @full, now @pack (@discount%% "
+"off). No expiry — use them anytime this season."
+msgstr ""
+"@count reservationer til %title, normalt @full, nu @pack (@discount %% "
+"rabat). Ingen udløbsdato — brug dem når som helst i denne sæson."
+
+msgid "@count-session credit pack — @title"
+msgstr "Klippekort med @count gange — @title"
+
+msgid "Saved credit balance for %rider / %facility."
+msgstr "Gemte klipsaldo for %rider / %facility."
+
+msgid "(unknown rider)"
+msgstr "(ukendt rytter)"
+
+msgid "(unknown facility)"
+msgstr "(ukendt facilitet)"
+
+msgid "Total ever granted"
+msgstr "Tildelt i alt"
+
+msgid "(deleted user)"
+msgstr "(slettet bruger)"
+
+msgid "(deleted facility)"
+msgstr "(slettet facilitet)"
+
+msgid "Facility credit"
+msgstr "Facilitetsklip"
+
+msgid "Order item"
+msgstr "Ordrelinje"
+
+msgid "(deleted)"
+msgstr "(slettet)"
+
+msgid ""
+"@label only takes bookings on the hour or half hour (e.g. 08:00, "
+"08:30, 09:00...)."
+msgstr ""
+"@label tager kun bookinger på hele og halve timer (f.eks. 08:00, "
+"08:30, 09:00 ...)."
+
+msgid ""
+"@label can only be booked in fixed @minutes-minute slots. Please set "
+"the end time to exactly @minutes minutes after the start time."
+msgstr ""
+"@label kan kun bookes i faste tidsrum på @minutes minutter. Sæt "
+"sluttidspunktet til præcis @minutes minutter efter starttidspunktet."
+
+msgid "Photos"
+msgstr "Fotos"
+
+msgid "@name at Stutteri Hestehøj — @facts. Pickup only."
+msgstr "@name hos Stutteri Hestehøj — @facts. Kun afhentning."
+
+msgid "Feed & bedding"
+msgstr "Foder og strøelse"
+
+msgid ""
+"Straw and wrap for sale at Stutteri Hestehøj, priced per bale — "
+"pickup only."
+msgstr ""
+"Halm og wrap til salg hos Stutteri Hestehøj, pris pr. balle — kun "
+"afhentning."
+
+msgid ""
+"There are no feed or bedding products for sale right now — please "
+"check back soon."
+msgstr ""
+"Der er ingen foder- eller strøelsesprodukter til salg lige nu — kig "
+"forbi igen snart."
+
+msgid "Horses for sale"
+msgstr "Heste til salg"
+
+msgid "Our horses"
+msgstr "Vores heste"
+
+msgid "Icelandic horses for sale"
+msgstr "Islandsheste til salg"
+
+msgid ""
+"Browse Icelandic horses for sale at Stutteri Hestehøj — five-gaited "
+"and four-gaited horses, bred in Holbæk."
+msgstr ""
+"Se islandsheste til salg hos Stutteri Hestehøj — femgængere og "
+"firgængere, opdrættet i Holbæk."
+
+msgid "There are no horses for sale right now — please check back soon."
+msgstr "Der er ingen heste til salg lige nu — kig forbi igen snart."
+
+msgid ""
+"Meet the Icelandic horses bred at Stutteri Hestehøj — the whole "
+"herd, not just the few currently for sale."
+msgstr ""
+"Mød islandshestene, der er opdrættet hos Stutteri Hestehøj — hele "
+"flokken, ikke kun de få, der er til salg lige nu."
+
+msgid "There are no horses to show right now — please check back soon."
+msgstr "Der er ingen heste at vise lige nu — kig forbi igen snart."
+
+msgid "See horses for sale"
+msgstr "Se heste til salg"
+
+msgid "Meet the whole herd"
+msgstr "Mød hele flokken"
+
+msgid "More photos"
+msgstr "Flere fotos"
+
+msgid "Pedigree"
+msgstr "Stamtavle"
+
+msgid "Health & vetting"
+msgstr "Sundhed og handelsundersøgelse"
+
+msgid "Breed"
+msgstr "Race"
+
+msgid "Discipline"
+msgstr "Disciplin"
+
+msgid "Vetting"
+msgstr "Handelsundersøgelse"
+
+msgid "Born"
+msgstr "Født"
+
+msgid "@name, part of the herd at Stutteri Hestehøj — @facts."
+msgstr "@name, en del af flokken hos Stutteri Hestehøj — @facts."
+
+msgid "@name for sale at Stutteri Hestehøj — @facts."
+msgstr "@name til salg hos Stutteri Hestehøj — @facts."
+
+msgid "This horse is no longer available for purchase."
+msgstr "Denne hest kan ikke længere købes."
+
+msgid "Relist for sale (staff)"
+msgstr "Sæt til salg igen (personale)"
+
+msgid "Relist sold horses"
+msgstr "Sæt solgte heste til salg igen"
+
+msgid ""
+"Return a sold horse to available. Deliberately does not touch the "
+"originating order or its payments — refunds stay a manual decision "
+"in Commerce."
+msgstr ""
+"Sæt en solgt hest tilbage til tilgængelig. Rører bevidst ikke ved "
+"den oprindelige ordre eller dens betalinger — refunderinger "
+"forbliver en manuel beslutning i Commerce."
+
+msgid "Relist horse"
+msgstr "Sæt hest til salg igen"
+
+msgid ""
+"Horse variation @id relisted (sold → for_sale) by user @uid; "
+"originating sale order @order and its payments left untouched — any "
+"refund is a manual staff decision through Commerce."
+msgstr ""
+"Hestevariation @id sat til salg igen (solgt → for_sale) af bruger "
+"@uid; den oprindelige salgsordre @order og dens betalinger er urørte "
+"— enhver refundering er en manuel personalebeslutning via Commerce."
+
+msgid ""
+"Horse variation @id relisted (sold → for_sale) by user @uid with no "
+"placed sale order found — the sold state had no valid backing order."
+msgstr ""
+"Hestevariation @id sat til salg igen (solgt → for_sale) af bruger "
+"@uid uden en afgivet salgsordre — den solgte tilstand havde ingen "
+"gyldig bagvedliggende ordre."
+
+msgid "This horse is @state and cannot be purchased."
+msgstr "Denne hest er @state og kan ikke købes."
+
+msgid "Variation @id marked sold (order @order placed)."
+msgstr "Variation @id markeret som solgt (ordre @order afgivet)."
+
+msgid "Relist %title for sale?"
+msgstr "Sæt %title til salg igen?"
+
+msgid ""
+"This horse is not currently sold (state: %state), so there is nothing "
+"to relist."
+msgstr ""
+"Denne hest er ikke solgt lige nu (tilstand: %state), så der er intet "
+"at sætte til salg igen."
+
+msgid "unknown"
+msgstr "ukendt"
+
+msgid ""
+"The horse will be returned to <strong>available</strong> and can be "
+"sold or reserved again. <strong>No refund is attempted</strong>: the "
+"sale order and its payments are left exactly as they are — whether "
+"and how much to refund is a manual decision, made through the "
+"order’s own payment administration."
+msgstr ""
+"Hesten sættes tilbage til <strong>tilgængelig</strong> og kan "
+"sælges eller reserveres igen. <strong>Der forsøges ingen "
+"refundering</strong>: salgsordren og dens betalinger efterlades "
+"præcis som de er — om og hvor meget der skal refunderes, er en "
+"manuel beslutning, der træffes via ordrens egen "
+"betalingsadministration."
+
+msgid "Order <a href=\":url\">#@number</a>, placed @date, total @total"
+msgstr "Ordre <a href=\":url\">#@number</a>, afgivet @date, total @total"
+
+msgid "Payment @amount — state: @state"
+msgstr "Betaling @amount — tilstand: @state"
+
+msgid "The sale being undone"
+msgstr "Salget, der fortrydes"
+
+msgid ""
+"No placed sale order was found for this horse — the sold state "
+"appears to have been set out-of-band. Relisting will be logged as "
+"such."
+msgstr ""
+"Der blev ikke fundet nogen afgivet salgsordre for denne hest — den "
+"solgte tilstand ser ud til at være sat uden for det normale flow. At "
+"sætte den til salg igen bliver logget som sådan."
+
+msgid "%title could not be relisted (it is not currently sold)."
+msgstr "%title kunne ikke sættes til salg igen (den er ikke solgt lige nu)."
+
+msgid ""
+"%title is available for sale again. Sale order <a "
+"href=\":url\">#@order</a> and its payments were not changed — handle "
+"any refund there."
+msgstr ""
+"%title er til salg igen. Salgsordre <a href=\":url\">#@order</a> og "
+"dens betalinger blev ikke ændret — håndtér en eventuel "
+"refundering der."
+
+msgid ""
+"%title is available for sale again. No placed sale order was found; "
+"the out-of-band state has been logged."
+msgstr ""
+"%title er til salg igen. Der blev ikke fundet nogen afgivet "
+"salgsordre; tilstanden uden for det normale flow er blevet logget."
+
+msgid "News"
+msgstr "Nyheder"
+
+msgid ""
+"News from Stutteri Hestehøj — updates on the herd, the facilities, "
+"and the stable."
+msgstr ""
+"Nyheder fra Stutteri Hestehøj — opdateringer om flokken, "
+"faciliteterne og stalden."
+
+msgid "There is no news to show right now — please check back soon."
+msgstr "Der er ingen nyheder at vise lige nu — kig forbi igen snart."
+
+msgid "Pricing comparison"
+msgstr "Prissammenligning"
+
+msgid "No facilities are available to compare right now."
+msgstr "Der er ingen faciliteter at sammenligne lige nu."
+
+msgid ""
+"Compare facility booking prices at Stutteri Hestehøj — single slot, "
+"10-session credit pack, or the same-slot multi-facility bundle, side "
+"by side."
+msgstr ""
+"Sammenlign priser for facilitetsbooking hos Stutteri Hestehøj — "
+"enkelt tidsrum, klippekort med 10 gange eller flerfacilitetspakke til "
+"samme tidsrum, side om side."
+
+msgid "Single slot"
+msgstr "Enkelt tidsrum"
+
+msgid "@count-session pack"
+msgstr "Klippekort med @count gange"
+
+msgid "Effective price/slot in a pack"
+msgstr "Effektiv pris pr. tidsrum i et klippekort"
+
+msgid "Not set up for fixed-length slots"
+msgstr "Ikke opsat til faste tidsrum"
+
+msgid "(@discount% off)"
+msgstr "(@discount % rabat)"
+
+msgid "Book them all in the same slot and save"
+msgstr "Book dem alle til samme tidsrum og spar"
+
+msgid ""
+"Booking @names all for the exact same time slot: normally @full, now "
+"@discounted (@amount off automatically at checkout)."
+msgstr ""
+"Book @names alle til præcis samme tidsrum: normalt @full, nu "
+"@discounted (@amount trukket fra automatisk ved betaling)."
+
+msgid "Bypass availability calendar rate limiting"
+msgstr "Omgå hastighedsbegrænsning på tilgængelighedskalender"
+
+msgid ""
+"Exempts requests to the public BAT calendar-events endpoint from flood "
+"control. For staff tooling that legitimately polls availability."
+msgstr ""
+"Undtager forespørgsler til det offentlige "
+"BAT-kalenderhændelses-endpoint fra flood-kontrol. Til "
+"personaleværktøjer, der legitimt henter tilgængelighed."
+
+msgid "Facility utilization"
+msgstr "Facilitetsudnyttelse"
+
+msgid "Revenue by order item type"
+msgstr "Omsætning pr. ordrelinjetype"
+
+msgid "Booked and blocked time per facility, per week or month."
+msgstr "Booket og spærret tid pr. facilitet, pr. uge eller måned."
+
+msgid ""
+"Horse sales, deposits, bookings, feed and credit packs over a date "
+"range."
+msgstr ""
+"Hestesalg, deposita, bookinger, foder og klippekort over et "
+"datointerval."
+
+msgid "Last 8 weeks (weekly)"
+msgstr "Seneste 8 uger (ugentligt)"
+
+msgid "Last 6 months (monthly)"
+msgstr "Seneste 6 måneder (månedligt)"
+
+msgid "Year to date (monthly)"
+msgstr "År til dato (månedligt)"
+
+msgid "Open hours"
+msgstr "Åbningstimer"
+
+msgid "Booked hours"
+msgstr "Bookede timer"
+
+msgid "Blocked hours (staff)"
+msgstr "Spærrede timer (personale)"
+
+msgid "Utilization"
+msgstr "Udnyttelse"
+
+msgid "No facilities or no data in this range."
+msgstr "Ingen faciliteter eller ingen data i dette interval."
+
+msgid ""
+"@from – @to · utilization = booked ÷ open (08:00–20:00 per day, "
+"per unit); staff blocks reported separately"
+msgstr ""
+"@from – @to · udnyttelse = booket ÷ åben (08:00–20:00 pr. dag, "
+"pr. enhed); personalespærringer opgøres separat"
+
+msgid "Order adjustment: @label"
+msgstr "Ordrejustering: @label"
+
+msgid "Order totals (@count orders)"
+msgstr "Ordretotaler (@count ordrer)"
+
+msgid "Last 30 days"
+msgstr "Seneste 30 dage"
+
+msgid "Last month"
+msgstr "Sidste måned"
+
+msgid "Year to date"
+msgstr "År til dato"
+
+msgid "Gross (VAT incl.)"
+msgstr "Brutto (inkl. moms)"
+
+msgid "No placed orders in this range."
+msgstr "Ingen afgivne ordrer i dette interval."
+
+msgid ""
+"@from – @to · placed, non-canceled orders; item lines are gross "
+"before order-level adjustments, which are listed separately so the "
+"total reconciles"
+msgstr ""
+"@from – @to · afgivne, ikke-annullerede ordrer; linjer er brutto "
+"før justeringer på ordreniveau, som opgøres separat, så totalen "
+"stemmer"
+
+msgid "Download CSV"
+msgstr "Download CSV"
+
+msgid ""
+"Your account has been created but needs to be approved by staff before "
+"you can log in. You will receive an email once it has been approved."
+msgstr ""
+"Din konto er oprettet, men skal godkendes af personalet, før du kan "
+"logge ind. Du modtager en e-mail, når den er godkendt."
+
+msgid ""
+"Blocked new account %name (created via %route, not the registration "
+"form) to match the admin-approval registration policy."
+msgstr ""
+"Spærrede ny konto %name (oprettet via %route, ikke "
+"registreringsformularen) for at følge registreringspolitikken med "
+"administratorgodkendelse."
+
+msgid ""
+"Ended a just-created session for blocked account %name (a checkout "
+"pane logs new accounts in unconditionally)."
+msgstr ""
+"Afsluttede en netop oprettet session for den spærrede konto %name (et "
+"betalingspanel logger nye konti ind uden betingelser)."
+
+msgid "Not the shh site; leaving registration settings untouched."
+msgstr "Ikke shh-sitet; lader registreringsindstillingerne være urørte."
+
+msgid "Booking calendar"
+msgstr "Bookingkalender"
+
+msgid "Combined staff view of facility bookings, cart holds and staff blocks."
+msgstr ""
+"Samlet personalevisning af facilitetsbookinger, kurvreservationer og "
+"personalespærringer."
+
+msgid "Block facility time"
+msgstr "Spær facilitetstid"
+
+msgid "Remove staff block"
+msgstr "Fjern personalespærring"
+
+msgid "Customer booking"
+msgstr "Kundebooking"
+
+msgid "Cart hold (unpaid, expires)"
+msgstr "Kurvreservation (ubetalt, udløber)"
+
+msgid "Staff block — click to remove"
+msgstr "Personalespærring — klik for at fjerne"
+
+msgid "Unknown facility"
+msgstr "Ukendt facilitet"
+
+msgid "@facility — booked (@number)"
+msgstr "@facility — booket (@number)"
+
+msgid "@facility — booked (no order)"
+msgstr "@facility — booket (ingen ordre)"
+
+msgid "@facility — cart hold"
+msgstr "@facility — kurvreservation"
+
+msgid "@facility — staff block"
+msgstr "@facility — personalespærring"
+
+msgid "Until"
+msgstr "Til"
+
+msgid "Block this time"
+msgstr "Spær dette tidspunkt"
+
+msgid "The end time must be after the start time."
+msgstr "Sluttidspunktet skal være efter starttidspunktet."
+
+msgid "Unknown facility."
+msgstr "Ukendt facilitet."
+
+msgid "an existing staff block"
+msgstr "en eksisterende personalespærring"
+
+msgid "a cart hold"
+msgstr "en kurvreservation"
+
+msgid "a customer booking"
+msgstr "en kundebooking"
+
+msgid ""
+"@facility already has @kind between @from and @until — resolve that "
+"first."
+msgstr ""
+"@facility har allerede @kind mellem @from og @until — afklar det "
+"først."
+
+msgid "%facility is now blocked from @from until @until."
+msgstr "%facility er nu spærret fra @from til @until."
+
+msgid ""
+"Staff block created on %facility (@from – @until), event(s) [@ids], "
+"by uid @uid."
+msgstr ""
+"Personalespærring oprettet på %facility (@from – @until), "
+"hændelse(r) [@ids], af uid @uid."
+
+msgid "Remove the staff block on %facility, @from – @until?"
+msgstr "Fjern personalespærringen på %facility, @from – @until?"
+
+msgid "The time becomes bookable by riders again immediately."
+msgstr "Tidspunktet kan straks bookes af ryttere igen."
+
+msgid "The staff block on %facility (@window) has been removed."
+msgstr "Personalespærringen på %facility (@window) er blevet fjernet."
+
+msgid "Staff block removed on %facility (@window) by uid @uid."
+msgstr "Personalespærring fjernet på %facility (@window) af uid @uid."

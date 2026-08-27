@@ -7,7 +7,7 @@ site: vdg, kbg, shh
 project:
 created: 2026-08-27
 updated: 2026-08-27
-progress: vdg DONE (live). kbg DONE — all phases through rollout (make kbg-pull succeeded after fix 138cd63); Danish content + editorial hand-off outstanding. shh not started.
+progress: vdg + kbg DONE (live). shh Phases 1,4,2,5,6,7 done incl. 310 shh_* module strings translated + hestehoj switcher (deburca/hestehoj); shh Phases 8–9 (verify + rollout) pending. Editorial hand-off + native review outstanding on all three.
 branch: feature/0069-danish-english-multilingual
 ---
 # Task: Add Danish + English translation to all three sites
@@ -672,14 +672,14 @@ strings that also appear as plural pairs — `"Display"` / `"Display" +
 8,739 messages, `msgfmt -c` clean. Verified on shh: enable imports
 8,771 `da` rows; deploy hook re-imports; `config:status` clean.
 
-**Not yet done for shh:** Phase 5 (config strings — big: 34 webforms,
-32 views, 29 klaro apps, 10 easy_email, commerce), Phase 6 (switcher
-in `hestehoj` — now its own repo `deburca/hestehoj`, master at
-`/Users/paddy/Development/hestehoj`, cloned into
-`web/themes/custom/hestehoj/` with its own `.git`; mind the theme
-build rules — [[shh-task-workflow]]), Phase 7 (existing content — 5
-nodes, 1 canvas_page, 7 products, 17 menu links, all `en`), Phases
-8–9 (rollout uses `make shh-pull`; run `cim` twice; config_split).
+**Not yet done for shh:** Phase 6 done — switcher shipped in
+`deburca/hestehoj` (`f0522e1` + `27be12f` dropping a dead
+`font-body` class; theme build rules respected — no `main.min.css`
+rebuild). Remaining: Phase 8 (verification), Phase 9 (rollout —
+`make shh-pull`; run `cim` twice; config_split `local` stays
+inactive on import). Editorial hand-off: `easy_email` bodies,
+`klaro.klaro_app` descriptions, slogan, + the native review pass on
+the 310 `shh_*` translations.
 
 ### shh — 2026-08-27, Phase 5 (config strings, mechanical) + Phase 7
 
@@ -706,20 +706,52 @@ unlike vdg/kbg's draft privacy pages), 1 `canvas_page` (homepage), 7
 17 menu links, 12 media. Danish content work: the homepage, the 3
 facility pages, the horse/product descriptions, menu labels.
 
-### shh — 2026-08-27, `shh_*` module UI strings (decision pending)
+### shh — 2026-08-27, `shh_*` module UI strings (best-effort translated)
 
-The 22 enabled `shh_*` modules carry **356 translatable strings**
-(via `drush potx`, potx installed then removed): rider notification
-emails ("Your booking is confirmed: @facility, @slot" + full bodies),
-booking-log / audit entity field labels (admin), facility-booking
-CTAs, pricing-comparison copy, horse/feed catalog, footer, main nav.
-Not on localize.drupal.org — needs authoring, same as hivelog was for
-kbg. Unlike hivelog these modules live *inside* cms2, so their `.po`
-can just be folded into `shh_multilingual/translations/da.po` (re-snap
-after translating in the DB). **Scope decision needed:** best-effort
-translate all 356 now (as with hivelog), or hand off. The disabled
-modules (`shh_booking_hold` / `shh_horse_deposit` /
-`shh_rider_dashboard`) were excluded from the extraction.
+The 22 enabled `shh_*` modules carry 356 translatable strings
+(`drush potx`, potx installed then removed; the disabled
+`shh_booking_hold` / `shh_horse_deposit` / `shh_rider_dashboard`
+excluded). Paddy chose **best-effort translate all now** (as with
+hivelog).
+
+**310 / 355 translated** into a Danish `.po`
+(`scratchpad/shh_i18n/translate.py` → glossary + explicit map),
+imported to the shh DB as `customized`, then folded into
+`shh_multilingual/translations/da.po` by re-running `locale:export`
+(9,082 messages, `msgfmt -c` clean). Glossary: facilitet / tidsrum /
+rytter / ovalbanen / ridehuset / longeringsbanen / klippekort / klip
+/ islandshest / femgænger / firgænger / stamtavle /
+handelsundersøgelse / afbestillingsregler / personalespærring.
+Verified: "Book a riding facility" → "Book en ridefacilitet",
+"Feed & bedding" → "Foder og strøelse", "Vetting" →
+"Handelsundersøgelse", …
+
+**The 45 left untranslated:** ~39 are module `name:` / `description:`
+strings ("Implements docs/project-management/…") — dev metadata shown
+only on `/admin/modules`, deliberately skipped; the rest are proper
+nouns ("Stutteri Hestehøj") or near-empty.
+
+**Needs a native review pass before the Danish site is
+launch-ready** — a big share of the 310 is marketing / SEO / catalog
+copy and the rider notification emails, translated competently but
+not brand-polished.
+
+**Config side effects, handled:**
+- Importing the `.po` (with `da` default) rewrote 5
+  `canvas.component.block.shh_featured_*` base `label`s to Danish and
+  re-versioned them (Canvas). Reverted — these are editor-only
+  admin-labels and the Danish still renders via `t()`/locale in `da`
+  context; `cim` reconciled the DB.
+- `klaro.klaro_app.cms` label kept getting rewritten "Drupal CMS" →
+  "Funktionel": klaro syncs the `cms` app label from the `cms`
+  purpose label on a purpose save, and the config-translation sync
+  keeps re-applying "Functional" → "Funktionel". Reverted in config;
+  on a deploy target `cim` won't trigger a purpose save so the
+  committed "Drupal CMS" holds. (vdg/kbg unaffected — their revert
+  stuck because no later sync ran.)
+- 3 admin views (`units`, `event_series`, `commerce_user_orders`)
+  got trivial base casing changes ("ID" → "Id") from the community
+  `da` — kept.
 
 ## Acceptance criteria
 Per site (`vdg`, then `kbg`, then `shh`):
