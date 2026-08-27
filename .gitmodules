@@ -1,0 +1,9 @@
+[submodule "web/themes/custom/quick_silver"]
+	path = web/themes/custom/quick_silver
+	url = git@github.com:deburca/quick_silver
+[submodule "web/themes/custom/zwarte_piet"]
+	path = web/themes/custom/zwarte_piet
+	url = git@github.com:deburca/zwarte_piet
+[submodule "web/themes/custom/hestehoj"]
+	path = web/themes/custom/hestehoj
+	url = git@github.com:deburca/hestehoj
