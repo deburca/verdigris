@@ -7,7 +7,7 @@ site: vdg, kbg, shh
 project:
 created: 2026-08-27
 updated: 2026-08-27
-progress: vdg + kbg DONE (live). shh Phases 1,4,2,5,6,7 done incl. 310 shh_* module strings translated + hestehoj switcher (deburca/hestehoj); shh Phases 8–9 (verify + rollout) pending. Editorial hand-off + native review outstanding on all three.
+progress: vdg + kbg DONE (live). shh Phases 1–8 done (incl. 310 shh_* module strings + hestehoj switcher); only Phase 9 rollout (make shh-pull) left. Editorial hand-off + native review outstanding on all three.
 branch: feature/0069-danish-english-multilingual
 ---
 # Task: Add Danish + English translation to all three sites
@@ -672,14 +672,34 @@ strings that also appear as plural pairs — `"Display"` / `"Display" +
 8,739 messages, `msgfmt -c` clean. Verified on shh: enable imports
 8,771 `da` rows; deploy hook re-imports; `config:status` clean.
 
-**Not yet done for shh:** Phase 6 done — switcher shipped in
-`deburca/hestehoj` (`f0522e1` + `27be12f` dropping a dead
-`font-body` class; theme build rules respected — no `main.min.css`
-rebuild). Remaining: Phase 8 (verification), Phase 9 (rollout —
-`make shh-pull`; run `cim` twice; config_split `local` stays
-inactive on import). Editorial hand-off: `easy_email` bodies,
-`klaro.klaro_app` descriptions, slogan, + the native review pass on
-the 310 `shh_*` translations.
+Phase 6 done — switcher shipped in `deburca/hestehoj` (`f0522e1` +
+`27be12f` dropping a dead `font-body` class; theme build rules
+respected — no `main.min.css` rebuild).
+
+### shh — 2026-08-27, Phase 8 (verification)
+
+Run on the shh DDEV, anon unless noted. **No config/code change.**
+- `/`, `/facilities`, `/horses`, `/feed`, `/pricing`, `/news` → 200
+  `<html lang="da">` `content-language: da`, page-cache HIT; each
+  `/en/…` → 200 English. No cross-language cache bleed (3×).
+- `shh_*` Danish renders on real pages — `/facilities` shows "Book en
+  ridefacilitet".
+- `/admin` → 403; `/nonexist-xyz` → 404 (Danish 404 page).
+- **Logged-in user gets Danish on every unprefixed page** (`/`,
+  `/facilities`, `/admin/content` all `lang="da"`) — shh used the
+  two-method `language-url → language-selected` order from Phase 1,
+  so it never had the vdg/kbg logged-in-English bug.
+- `config:status` clean after committing the 5 `shh_featured_*`
+  Danish block labels (`c054630`).
+- Commerce checkout / cart / booking-hold stay disabled
+  ([[shh-phased-launch-disabled-modules]]) — untouched.
+
+**shh: task 0069 done bar Phase 9 (rollout — `make shh-pull`; run
+`cim` twice; the `config_split` `local` split stays inactive on
+import so field_ui/views_ui are uninstalled on the target by
+construction).** Editorial hand-off: `easy_email` bodies,
+`klaro.klaro_app` descriptions, slogan, the Danish page content, and
+the native review pass on the 310 `shh_*` translations.
 
 ### shh — 2026-08-27, Phase 5 (config strings, mechanical) + Phase 7
 
