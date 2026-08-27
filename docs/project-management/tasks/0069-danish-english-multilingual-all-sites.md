@@ -586,6 +586,33 @@ it. A second `drush config:import -y` picked both up and
 `config:status` went clean — Danish then served from the bare path as
 intended. Fold a second `cim` into the shh rollout.
 
+### Both sites — 2026-08-27, fix: drop `language-user` from interface negotiation
+
+**Symptom:** on kbg, a logged-in admin visiting `/hivelog` (and any
+non-root unprefixed page) got **English** chrome, though anonymous
+visitors got Danish everywhere.
+
+**Cause:** `LanguageNegotiationUrl` (`path_prefix`) only resolves the
+default language — the one with an empty prefix — for the **root
+path `/`**. `getLangcode()` shifts the first path segment and looks
+for a language whose prefix equals it; for `/hivelog` the segment is
+`"hivelog"`, matches nothing, and it returns NULL. Negotiation then
+falls to `language-user`, which returns the account's
+`preferred_langcode` — `en` on every account that predates the
+language add. So the Phase-1 order `language-url → language-user →
+language-selected` leaks English to logged-in users on unprefixed
+pages.
+
+**Fix:** interface negotiation is now `language-url → language-selected`
+only (`language-user` removed) on **both vdg and kbg** —
+`config/{vdg,kbg}/sync/language.types.yml`. Purely URL-driven:
+`/en/…` (or `/da/…`) → that language, everything else → site default.
+Per-account UI language is given up, which these near-monolingual
+sites do not need. Verified: logged-in `uid1` (`preferred_langcode:
+en`) now gets `da` on `/`, `/hivelog`, `/privacy-policy` and still
+`en` on `/en/…`; anonymous unchanged. **shh will use this two-method
+order from Phase 1.** vdg is live — needs a `make vdg-pull` to apply.
+
 **kbg: task 0069 done bar editorial content.** Remaining is the
 Danish content itself and the editorial hand-off (`easy_email`
 bodies, `klaro.klaro_app` descriptions, slogan; the homepage

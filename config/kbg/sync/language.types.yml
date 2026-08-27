@@ -17,5 +17,4 @@ negotiation:
   language_interface:
     enabled:
       language-url: -10
-      language-user: -9
-      language-selected: -8
+      language-selected: -9
