@@ -5,7 +5,25 @@
  * Interface-translation deploy plumbing for verdigris.nu (task 0069).
  */
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\locale\Gettext;
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for configurable_language.
+ *
+ * On a first deploy the four multilingual modules and this one are installed
+ * during the config import's `processExtensions` step, which runs to
+ * completion *before* `processConfigurations` creates `language.entity.da`.
+ * So hook_install() below runs while `da` still does not exist and skips.
+ * This catches the language the moment it is created — during that same cim,
+ * or later via `drush language:add da` / the UI — and pulls the committed
+ * .po in then. Idempotent; only acts on `da`.
+ */
+function vdg_multilingual_configurable_language_insert(EntityInterface $language): void {
+  if ($language->id() === 'da') {
+    \Drupal::messenger()->addStatus(vdg_multilingual_import_interface_translations());
+  }
+}
 
 /**
  * Imports the committed Danish .po into {locales_target}.
