@@ -13,8 +13,12 @@
 #
 # <site>-pull — run ON the target environment (testing or production),
 # the same steps in reverse: fetch what push published, then apply it:
-#   git pull -> composer install --no-dev -> <site>-deploy
-#   (update-database -> import-config -> clear-cache -> deploy hooks;
+#   git pull -> git submodule update --init --recursive ->
+#   composer install --no-dev -> <site>-deploy
+#   (the submodule step is required: quick_silver, zwarte_piet, and
+#   hestehoj are git submodules — see .gitmodules — and plain `git
+#   pull` never populates or updates submodule content on its own;
+#   update-database -> import-config -> clear-cache -> deploy hooks;
 #   the `drush deploy` order: updb before config:import so imports
 #   never run against a stale schema). config:import is skipped while
 #   the site's sync store (config/<site>/sync) has no *.yml yet, so a
@@ -81,6 +85,7 @@ vdg-deploy:
 
 vdg-pull:
 	git pull
+	git submodule update --init --recursive
 	composer install --no-dev
 	$(MAKE) vdg-deploy
 
@@ -112,6 +117,7 @@ kbg-deploy:
 
 kbg-pull:
 	git pull
+	git submodule update --init --recursive
 	composer install --no-dev
 	$(MAKE) kbg-deploy
 
@@ -143,6 +149,7 @@ shh-deploy:
 
 shh-pull:
 	git pull
+	git submodule update --init --recursive
 	composer install --no-dev
 	$(MAKE) shh-deploy
 
@@ -155,6 +162,7 @@ all-push: vdg-refresh vdg-export kbg-refresh kbg-export shh-refresh shh-export
 
 all-pull:
 	git pull
+	git submodule update --init --recursive
 	composer install --no-dev
 	$(MAKE) vdg-deploy kbg-deploy shh-deploy
 
