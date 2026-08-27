@@ -7,7 +7,7 @@ site: vdg, kbg, shh
 project:
 created: 2026-08-27
 updated: 2026-08-27
-progress: vdg Phases 1+4 (f997e9b), 2 (0e053c7), 6 (qs 0cb9f7e), 5 (fb1b126), 7 (inventory only, no change) done; next is Phase 8 (verification) + Phase 9 (rollout)
+progress: vdg Phases 1+4 (f997e9b), 2 (0e053c7), 6 (qs 0cb9f7e), 5 (fb1b126), 7 (4861e83), 8 (verification pass — no change) done; next is Phase 9 (rollout)
 branch: feature/0069-danish-english-multilingual
 ---
 # Task: Add Danish + English translation to all three sites
@@ -122,6 +122,12 @@ Phases 1 and 4 done on the DDEV instance
   the source, (b) what `translation_sync.inputs: inputs` does to
   per-language component text editing (if inputs are synced across
   translations, that setting likely needs flipping).
+- **Refined by the Phase 8 pass:** the empty shell only happens when a
+  `da` translation *exists* with an empty tree. A `canvas_page` with
+  **no** `da` translation at all falls back to the English tree
+  cleanly (`/da` front page renders 73 KB of real English content,
+  HTTP 200). So the workflow rule is: never save a `da` `canvas_page`
+  translation until its component tree is actually built.
 
 **Export diff shape — commit `f997e9b`** (234 files, +2316 / −56): 15
 genuine language config files; 104 auto-imported `language/da/*`
@@ -314,9 +320,63 @@ decisions below.
    translation — they're privacy/tech editorial, not core
    marketing pages.
 
-**Not yet done for vdg:** Phase 8 (verification pass), Phase 9
-(rollout — `make vdg-pull` to testing then production). `quick_silver`
-commit `0cb9f7e` pushed 2026-08-27.
+### vdg — 2026-08-27, Phase 8 (verification pass)
+
+Run on the DDEV instance, anonymous unless noted. **No config/code
+change.**
+
+**Pass:**
+- `drush config:status`: only `canvas.content_template.node.blog.full`
+  shows "Different" — a **pre-existing** Canvas serialisation quirk
+  (byte-identical on `cex`, predates task 0069). Active config ==
+  committed, 0 real diffs.
+- `<html lang>` = `en` on every bare path, `da` on every `/da`
+  response including 404 / 403; `content-language` header matches.
+- **No cross-language cache bleed** — 3× rapid `/` ↔ `/da`
+  alternation, each URL holds its language. URL-keyed page cache
+  (`vary: Cookie,Accept-Encoding`, `X-Drupal-Cache: HIT` per URL)
+  makes bleed structurally impossible.
+- Untranslated **front page** under `/da` → clean English fallback
+  (HTTP 200, ~73 KB, real navbar/hero/footer components).
+- `/admin` + `/da/admin` → 403; `/nonexistent` + `/da/nonexistent` →
+  404; the `/da` variants render the Danish 403/404 page.
+- Webform: submissions created in both `en` and `da` contexts store
+  the right `langcode` and fire the email handler (test submissions
+  removed, Mailpit cleared afterwards).
+- EN regression: no Danish string leakage; the only new `<head>`
+  tags on English pages are `og:locale: en_US` and a self-referential
+  `hreflang="en"` — both standard multilingual output, benign.
+- `user.preferred_langcode` + `user.preferred_admin_langcode` base
+  fields present; `language-user` is in the interface detection
+  chain, so editor language preference is wired.
+- gin admin: Danish community strings imported with the language;
+  admin routes negotiate to `da` under `/da` (403 page was
+  `lang="da"`). Full logged-in admin walkthrough deferred to a real
+  browser session (scripted `uli` sessions are unreliable here).
+
+**Findings — documented, not blockers:**
+- **A. `/da/<aliased-path>` 404s** for any page without a Danish
+  translation (`/da/features`, `/da/pricing`, …). Path aliases are
+  per-language: `/features` exists only for `en`, so `/da/features`
+  matches no route. The front page is exempt (not alias-routed).
+  Aliased pages begin resolving under `/da` once they get a Danish
+  translation (which creates a `da` alias). Acceptable pre-launch;
+  it also means the language switcher, when placed, must use core's
+  "drop the link if no translation" behaviour — another reason it's
+  gated (Phase 6).
+- **B.** Canvas fallback refinement — see the Phase 3 spike note:
+  missing `da` translation → clean English fallback; only an
+  *empty-tree* `da` translation renders the broken shell.
+- **C.** `/privacy-policy` 404s in **both** languages — **pre-existing**,
+  node 1 is unpublished (draft), and the footer menu links to it.
+  Not an i18n issue; flag for the vdg content backlog.
+- **D.** Notification / confirmation emails for `da` submissions are
+  still English until the `easy_email` / webform templates are
+  translated (editorial hand-off list).
+
+**Not yet done for vdg:** Phase 9 (rollout — `make vdg-pull` to
+testing then production). `quick_silver` commit `0cb9f7e` pushed
+2026-08-27.
 
 ## Acceptance criteria
 Per site (`vdg`, then `kbg`, then `shh`):
