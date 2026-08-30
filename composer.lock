@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c66a8f3b4501960a16118fd03d7e8f36",
+    "content-hash": "93f9f61e57d99222281ac7970a6270b0",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8234,39 +8234,6 @@
                 "source": "https://git.drupalcode.org/project/rat/-/tree/1.0.1"
             },
             "time": "2025-12-29T15:30:47+00:00"
-        },
-        {
-            "name": "drupal/recipe_installer_kit",
-            "version": "1.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/recipe_installer_kit.git",
-                "reference": "ab24f2fd8d376c1fedf644fa8e94be21001b769b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://git.drupalcode.org/api/v4/projects/project%2Frecipe_installer_kit/repository/archive.zip?sha=ab24f2fd8d376c1fedf644fa8e94be21001b769b",
-                "reference": "ab24f2fd8d376c1fedf644fa8e94be21001b769b",
-                "shasum": ""
-            },
-            "require": {
-                "drupal/core": ">=10.4",
-                "drush/drush": "^13"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Drupal\\RecipeKit\\Installer\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "support": {
-                "source": "https://git.drupalcode.org/project/recipe_installer_kit/-/tree/1.0.4"
-            },
-            "time": "2026-01-23T21:47:55+00:00"
         },
         {
             "name": "drupal/redirect",
