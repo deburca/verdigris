@@ -171,7 +171,31 @@ vdg: vdg-pull
 kbg: kbg-pull
 shh: shh-pull
 
+# ------------------------------------------ upstream drupal/cms template
+#
+# This project's composer.json / .gitignore forked from drupal/cms at the
+# version in upstream/BASELINE, then diverged. `composer update` never
+# shows changes the Drupal CMS maintainers make to the template itself.
+#
+#   make upstream-diff                 — diff against the latest release
+#   make upstream-diff CMS_VERSION=2.1.3
+#     [1] baseline -> target = what upstream changed (act on this)
+#     [2] yours    -> target = your divergence + anything unadopted
+#
+#   make upstream-promote CMS_VERSION=2.1.3
+#     — after you've hand-applied wanted changes: re-vendors the
+#       upstream/ baseline copies and bumps upstream/BASELINE so the
+#       next diff starts clean. Review & commit upstream/ afterwards.
+
+upstream-diff:
+	scripts/upstream-diff/upstream-diff.sh $(CMS_VERSION)
+
+upstream-promote:
+	@test -n "$(CMS_VERSION)" || { echo "set CMS_VERSION, e.g. make upstream-promote CMS_VERSION=2.1.3"; exit 1; }
+	scripts/upstream-diff/upstream-diff.sh --promote $(CMS_VERSION)
+
 .PHONY: vdg kbg shh all-push all-pull \
 	vdg-refresh vdg-export vdg-commit vdg-push vdg-deploy vdg-pull \
 	kbg-refresh kbg-export kbg-commit kbg-push kbg-deploy kbg-pull \
-	shh-refresh shh-export shh-commit shh-push shh-deploy shh-pull
+	shh-refresh shh-export shh-commit shh-push shh-deploy shh-pull \
+	upstream-diff upstream-promote
