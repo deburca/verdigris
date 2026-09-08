@@ -3393,12 +3393,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/deburca/beeswax.git",
-                "reference": "56317b2688829bdc0ec3aef55bdf73dd71cee21f"
+                "reference": "c449356542181f35fd9d1a1205b047e3cd7e9929"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deburca/beeswax/zipball/56317b2688829bdc0ec3aef55bdf73dd71cee21f",
-                "reference": "56317b2688829bdc0ec3aef55bdf73dd71cee21f",
+                "url": "https://api.github.com/repos/deburca/beeswax/zipball/c449356542181f35fd9d1a1205b047e3cd7e9929",
+                "reference": "c449356542181f35fd9d1a1205b047e3cd7e9929",
                 "shasum": ""
             },
             "require": {
@@ -3420,7 +3420,7 @@
                 "source": "https://github.com/deburca/beeswax/tree/main",
                 "issues": "https://github.com/deburca/beeswax/issues"
             },
-            "time": "2026-09-08T15:16:09+00:00"
+            "time": "2026-09-08T17:12:19+00:00"
         },
         {
             "name": "drupal/better_exposed_filters",
