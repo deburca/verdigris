@@ -484,10 +484,9 @@ docroot/modules/custom/*/.git
 # HiveLog — independent repo, managed via Composer
 web/modules/hivelog/
 
-# Beeswax theme — its own git repo, git init'd locally and not yet on a
-# remote. Will be pulled in via Composer (or a submodule) once it's
-# ready; until then it lives here untracked by this repo.
-web/themes/custom/beeswax/
+# Beeswax theme — independent repo (git@github.com:deburca/beeswax.git),
+# pulled in via the "beeswax" VCS repository as drupal/beeswax:dev-main.
+# It installs to web/themes/contrib/ (already ignored above).
 
 # quick_silver / zwarte_piet contrib-path leftovers (the custom/ paths
 # are git submodules — see .gitmodules — and no longer ignored here)
