@@ -3392,13 +3392,13 @@
             "version": "dev-main",
             "source": {
                 "type": "git",
-                "url": "git@github.com:deburca/beeswax.git",
-                "reference": "9ce072624b4140283c88ef698a0e7934e026cb2a"
+                "url": "https://github.com/deburca/beeswax.git",
+                "reference": "e2a2210c9db71933cd097c820d431a22b96894d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deburca/beeswax/zipball/9ce072624b4140283c88ef698a0e7934e026cb2a",
-                "reference": "9ce072624b4140283c88ef698a0e7934e026cb2a",
+                "url": "https://api.github.com/repos/deburca/beeswax/zipball/e2a2210c9db71933cd097c820d431a22b96894d1",
+                "reference": "e2a2210c9db71933cd097c820d431a22b96894d1",
                 "shasum": ""
             },
             "require": {
@@ -3416,7 +3416,11 @@
                 "GPL-2.0-or-later"
             ],
             "description": "A scalable, modern Drupal CMS prototype theme, integrating cutting-edge front-end tools and a flexible, component-based design system.",
-            "time": "2026-09-08T17:23:31+00:00"
+            "support": {
+                "source": "https://github.com/deburca/beeswax/tree/main",
+                "issues": "https://github.com/deburca/beeswax/issues"
+            },
+            "time": "2026-09-08T18:39:08+00:00"
         },
         {
             "name": "drupal/better_exposed_filters",
