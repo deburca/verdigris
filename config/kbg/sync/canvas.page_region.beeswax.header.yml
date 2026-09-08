@@ -1,0 +1,10 @@
+uuid: 1caead41-42c4-4db1-8ae4-f9e4412288c3
+langcode: da
+status: true
+dependencies:
+  theme:
+    - beeswax
+id: beeswax.header
+region: header
+theme: beeswax
+component_tree: {  }

@@ -3,6 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
+    - canvas.component.sdc.beeswax.accordion
+    - canvas.component.sdc.beeswax.accordion-container
+    - canvas.component.sdc.beeswax.footer
+    - canvas.component.sdc.beeswax.grid
+    - canvas.component.sdc.beeswax.group
+    - canvas.component.sdc.beeswax.navbar
+    - canvas.component.sdc.beeswax.section
     - canvas.component.sdc.byte_theme.accordion
     - canvas.component.sdc.byte_theme.accordion-container
     - canvas.component.sdc.byte_theme.footer
@@ -26,6 +33,13 @@ name: Layout
 configEntityTypeId: component
 weight: 0
 items:
+  - sdc.beeswax.accordion
+  - sdc.beeswax.accordion-container
+  - sdc.beeswax.footer
+  - sdc.beeswax.grid
+  - sdc.beeswax.group
+  - sdc.beeswax.navbar
+  - sdc.beeswax.section
   - sdc.byte_theme.accordion
   - sdc.byte_theme.accordion-container
   - sdc.byte_theme.footer

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.user.user.tmgmt_translation_skills
     - field.field.user.user.user_picture
     - image.style.thumbnail
   module:
@@ -45,3 +46,4 @@ content:
 hidden:
   langcode: true
   search_api_excerpt: true
+  tmgmt_translation_skills: true

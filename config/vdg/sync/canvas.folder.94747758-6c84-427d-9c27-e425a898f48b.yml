@@ -3,6 +3,9 @@ langcode: en
 status: true
 dependencies:
   config:
+    - canvas.component.sdc.beeswax.cta
+    - canvas.component.sdc.beeswax.hero-billboard
+    - canvas.component.sdc.beeswax.hero-side-by-side
     - canvas.component.sdc.byte_theme.cta
     - canvas.component.sdc.byte_theme.hero-billboard
     - canvas.component.sdc.byte_theme.hero-blog
@@ -19,6 +22,9 @@ name: Hero
 configEntityTypeId: component
 weight: 0
 items:
+  - sdc.beeswax.cta
+  - sdc.beeswax.hero-billboard
+  - sdc.beeswax.hero-side-by-side
   - sdc.byte_theme.cta
   - sdc.byte_theme.hero-billboard
   - sdc.byte_theme.hero-blog

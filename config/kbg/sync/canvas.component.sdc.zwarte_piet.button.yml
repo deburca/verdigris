@@ -1,14 +1,13 @@
 uuid: 9db1742d-8565-4227-aac5-f904fcc68bf6
 langcode: en
-status: true
-dependencies:
-  module:
-    - options
-  theme:
-    - zwarte_piet
-active_version: 8c253a9827f0ca84
+status: false
+dependencies: {  }
+active_version: fallback
 versioned_properties:
   active:
+    settings:
+      last_active_version: 8c253a9827f0ca84
+  8c253a9827f0ca84:
     settings:
       prop_field_definitions:
         variant:

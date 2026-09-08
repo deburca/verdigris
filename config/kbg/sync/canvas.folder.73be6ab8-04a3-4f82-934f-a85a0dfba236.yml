@@ -3,6 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
+    - canvas.component.sdc.beeswax.accordion
+    - canvas.component.sdc.beeswax.accordion-container
+    - canvas.component.sdc.beeswax.footer
+    - canvas.component.sdc.beeswax.grid
+    - canvas.component.sdc.beeswax.group
+    - canvas.component.sdc.beeswax.navbar
+    - canvas.component.sdc.beeswax.section
     - canvas.component.sdc.mercury.accordion
     - canvas.component.sdc.mercury.accordion-container
     - canvas.component.sdc.mercury.footer
@@ -10,16 +17,20 @@ dependencies:
     - canvas.component.sdc.mercury.group
     - canvas.component.sdc.mercury.navbar
     - canvas.component.sdc.mercury.section
-    - canvas.component.sdc.zwarte_piet.accordion
-    - canvas.component.sdc.zwarte_piet.accordion-container
     - canvas.component.sdc.zwarte_piet.footer
-    - canvas.component.sdc.zwarte_piet.group
     - canvas.component.sdc.zwarte_piet.navbar
     - canvas.component.sdc.zwarte_piet.section
 name: Layout
 configEntityTypeId: component
 weight: 0
 items:
+  - sdc.beeswax.accordion
+  - sdc.beeswax.accordion-container
+  - sdc.beeswax.footer
+  - sdc.beeswax.grid
+  - sdc.beeswax.group
+  - sdc.beeswax.navbar
+  - sdc.beeswax.section
   - sdc.mercury.accordion
   - sdc.mercury.accordion-container
   - sdc.mercury.footer
@@ -27,9 +38,6 @@ items:
   - sdc.mercury.group
   - sdc.mercury.navbar
   - sdc.mercury.section
-  - sdc.zwarte_piet.accordion
-  - sdc.zwarte_piet.accordion-container
   - sdc.zwarte_piet.footer
-  - sdc.zwarte_piet.group
   - sdc.zwarte_piet.navbar
   - sdc.zwarte_piet.section

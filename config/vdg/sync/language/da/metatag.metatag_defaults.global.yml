@@ -1,3 +1,4 @@
-label: Global
 tags:
   og_locale: da_DK
+  canonical_url: '[current-page:url:absolute]'
+label: Global

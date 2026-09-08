@@ -3,6 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
+    - canvas.component.sdc.beeswax.anchor
+    - canvas.component.sdc.beeswax.badge
+    - canvas.component.sdc.beeswax.blockquote
+    - canvas.component.sdc.beeswax.button
+    - canvas.component.sdc.beeswax.heading
+    - canvas.component.sdc.beeswax.icon
+    - canvas.component.sdc.beeswax.image
+    - canvas.component.sdc.beeswax.text
+    - canvas.component.sdc.beeswax.video
     - canvas.component.sdc.byte_theme.anchor
     - canvas.component.sdc.byte_theme.badge
     - canvas.component.sdc.byte_theme.blockquote
@@ -33,6 +42,15 @@ name: Base
 configEntityTypeId: component
 weight: 0
 items:
+  - sdc.beeswax.anchor
+  - sdc.beeswax.badge
+  - sdc.beeswax.blockquote
+  - sdc.beeswax.button
+  - sdc.beeswax.heading
+  - sdc.beeswax.icon
+  - sdc.beeswax.image
+  - sdc.beeswax.text
+  - sdc.beeswax.video
   - sdc.byte_theme.anchor
   - sdc.byte_theme.badge
   - sdc.byte_theme.blockquote

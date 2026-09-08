@@ -8,6 +8,7 @@ dependencies:
     - canvas.component.block.views_block.blog-related
     - canvas.component.block.views_block.recent_pages-block_recent_pages
     - canvas.component.block.views_block.related_tags-tags
+    - canvas.component.block.views_block.tmgmt_local_task_items-block_1
 name: 'Lists (Views)'
 configEntityTypeId: component
 weight: 0
@@ -17,3 +18,4 @@ items:
   - block.views_block.blog-related
   - block.views_block.recent_pages-block_recent_pages
   - block.views_block.related_tags-tags
+  - block.views_block.tmgmt_local_task_items-block_1

@@ -3,6 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
+    - canvas.component.sdc.beeswax.anchor
+    - canvas.component.sdc.beeswax.badge
+    - canvas.component.sdc.beeswax.blockquote
+    - canvas.component.sdc.beeswax.button
+    - canvas.component.sdc.beeswax.heading
+    - canvas.component.sdc.beeswax.icon
+    - canvas.component.sdc.beeswax.image
+    - canvas.component.sdc.beeswax.text
+    - canvas.component.sdc.beeswax.video
     - canvas.component.sdc.mercury.anchor
     - canvas.component.sdc.mercury.badge
     - canvas.component.sdc.mercury.blockquote
@@ -12,18 +21,22 @@ dependencies:
     - canvas.component.sdc.mercury.image
     - canvas.component.sdc.mercury.text
     - canvas.component.sdc.mercury.video
-    - canvas.component.sdc.zwarte_piet.anchor
-    - canvas.component.sdc.zwarte_piet.badge
-    - canvas.component.sdc.zwarte_piet.blockquote
     - canvas.component.sdc.zwarte_piet.button
     - canvas.component.sdc.zwarte_piet.heading
-    - canvas.component.sdc.zwarte_piet.icon
-    - canvas.component.sdc.zwarte_piet.image
     - canvas.component.sdc.zwarte_piet.text
 name: Base
 configEntityTypeId: component
 weight: 0
 items:
+  - sdc.beeswax.anchor
+  - sdc.beeswax.badge
+  - sdc.beeswax.blockquote
+  - sdc.beeswax.button
+  - sdc.beeswax.heading
+  - sdc.beeswax.icon
+  - sdc.beeswax.image
+  - sdc.beeswax.text
+  - sdc.beeswax.video
   - sdc.mercury.anchor
   - sdc.mercury.badge
   - sdc.mercury.blockquote
@@ -33,11 +46,6 @@ items:
   - sdc.mercury.image
   - sdc.mercury.text
   - sdc.mercury.video
-  - sdc.zwarte_piet.anchor
-  - sdc.zwarte_piet.badge
-  - sdc.zwarte_piet.blockquote
   - sdc.zwarte_piet.button
   - sdc.zwarte_piet.heading
-  - sdc.zwarte_piet.icon
-  - sdc.zwarte_piet.image
   - sdc.zwarte_piet.text

@@ -1,12 +1,13 @@
 uuid: e250a374-35dc-4c97-89b7-ab10b9366731
 langcode: en
-status: true
-dependencies:
-  theme:
-    - zwarte_piet
-active_version: d696cea1796b650e
+status: false
+dependencies: {  }
+active_version: fallback
 versioned_properties:
   active:
+    settings:
+      last_active_version: d696cea1796b650e
+  d696cea1796b650e:
     settings:
       prop_field_definitions:
         align:

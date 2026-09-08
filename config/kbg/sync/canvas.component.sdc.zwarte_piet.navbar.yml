@@ -1,14 +1,13 @@
 uuid: f23ff44b-ad5d-4dc6-884e-617c7e777d1c
 langcode: en
-status: true
-dependencies:
-  module:
-    - options
-  theme:
-    - zwarte_piet
-active_version: 3149f199d66bbc29
+status: false
+dependencies: {  }
+active_version: fallback
 versioned_properties:
   active:
+    settings:
+      last_active_version: 3149f199d66bbc29
+  3149f199d66bbc29:
     settings:
       prop_field_definitions:
         menu_align:

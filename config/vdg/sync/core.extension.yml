@@ -103,6 +103,11 @@ module:
   tagify_user_list: 0
   taxonomy: 0
   text: 0
+  tmgmt: 0
+  tmgmt_config: 0
+  tmgmt_content: 0
+  tmgmt_language_combination: 0
+  tmgmt_local: 0
   token: 0
   token_or: 0
   trash: 0
@@ -132,3 +137,4 @@ theme:
   byte_theme: 0
   quick_silver: 0
   hestehoj: 0
+  beeswax: 0

@@ -1,0 +1,58 @@
+uuid: 84d7499a-fda3-48d6-809a-8f1e3992a066
+langcode: da
+status: true
+dependencies:
+  module:
+    - options
+  theme:
+    - beeswax
+active_version: d3e0565623935449
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        width:
+          required: true
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: 100%
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+        columns:
+          required: true
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: '2 columns'
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+        mobile_columns:
+          required: true
+          field_type: list_string
+          field_storage_settings:
+            allowed_values_function: canvas_load_allowed_values_for_component_prop
+          field_instance_settings: {  }
+          field_widget: options_select
+          default_value:
+            -
+              value: '1'
+          expression: ℹ︎list_string␟value
+          derived_schema_metadata: {  }
+    fallback_metadata:
+      slot_definitions:
+        main_slot:
+          title: Grid
+label: Grid
+id: sdc.beeswax.grid
+provider: beeswax
+source: sdc
+source_local_id: 'beeswax:grid'

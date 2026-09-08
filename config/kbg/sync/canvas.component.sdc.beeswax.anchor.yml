@@ -1,0 +1,30 @@
+uuid: d2ce6a54-1912-47f9-ac70-b5683f65a65f
+langcode: da
+status: true
+dependencies:
+  theme:
+    - beeswax
+active_version: '5524813695409257'
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        id:
+          required: true
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: anchor-id
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions: {  }
+label: Anchor
+id: sdc.beeswax.anchor
+provider: beeswax
+source: sdc
+source_local_id: 'beeswax:anchor'

@@ -3,6 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - canvas.component.sdc.beeswax.card
+    - canvas.component.sdc.beeswax.card-icon
+    - canvas.component.sdc.beeswax.card-logo
+    - canvas.component.sdc.beeswax.card-pricing
+    - canvas.component.sdc.beeswax.card-testimonial
     - canvas.component.sdc.byte_theme.card
     - canvas.component.sdc.byte_theme.card-icon
     - canvas.component.sdc.byte_theme.card-logo
@@ -22,6 +27,11 @@ name: Card
 configEntityTypeId: component
 weight: 0
 items:
+  - sdc.beeswax.card
+  - sdc.beeswax.card-icon
+  - sdc.beeswax.card-logo
+  - sdc.beeswax.card-pricing
+  - sdc.beeswax.card-testimonial
   - sdc.byte_theme.card
   - sdc.byte_theme.card-icon
   - sdc.byte_theme.card-logo

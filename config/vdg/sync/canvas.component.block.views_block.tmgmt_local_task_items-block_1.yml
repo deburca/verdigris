@@ -1,0 +1,26 @@
+uuid: bd3c9ccb-904d-4b99-9c88-0aab04a01e90
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.tmgmt_local_task_items
+  module:
+    - views
+active_version: ba6830b653c28080
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'views_block:tmgmt_local_task_items-block_1'
+        label: 'Translation Task Items Block'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
+label: 'Translation Task Items Block'
+id: block.views_block.tmgmt_local_task_items-block_1
+provider: views
+source: block
+source_local_id: 'views_block:tmgmt_local_task_items-block_1'

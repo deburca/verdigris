@@ -1,17 +1,13 @@
 uuid: 0c5a24d3-b7de-4ae7-9a0c-39368c031441
 langcode: en
-status: true
-dependencies:
-  config:
-    - filter.format.canvas_html_block
-  module:
-    - options
-    - text
-  theme:
-    - zwarte_piet
-active_version: 16c79c28a4108f9b
+status: false
+dependencies: {  }
+active_version: fallback
 versioned_properties:
   active:
+    settings:
+      last_active_version: 16c79c28a4108f9b
+  16c79c28a4108f9b:
     settings:
       prop_field_definitions:
         text:
