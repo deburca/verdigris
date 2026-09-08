@@ -263,7 +263,7 @@
         "drupal/bat_api": "^11.1@RC",
         "drupal/bat_roomify": "^11.1@RC",
         "drupal/bee": "^11.1@RC",
-        "drupal/beeswax": "dev-main",
+        "drupal/beeswax": "^1.0",
         "drupal/bpmn_io": "^3",
         "drupal/byte_theme": "^1.0",
         "drupal/canvas": "^1",
