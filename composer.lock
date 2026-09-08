@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "13821b9270c1965a118dfbdc2ee741f2",
+    "content-hash": "448465a01c397d67f32760ae612c5aa1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -10701,16 +10701,16 @@
         },
         {
             "name": "hivelog/hivelog",
-            "version": "1.8.3",
+            "version": "1.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deburca/hivelog.git",
-                "reference": "1996f7a86708d5c83121a2d3e494ddae918f109d"
+                "reference": "4c9adf95d6e92aeb0609c6b1170d4811e3cc6aca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deburca/hivelog/zipball/1996f7a86708d5c83121a2d3e494ddae918f109d",
-                "reference": "1996f7a86708d5c83121a2d3e494ddae918f109d",
+                "url": "https://api.github.com/repos/deburca/hivelog/zipball/4c9adf95d6e92aeb0609c6b1170d4811e3cc6aca",
+                "reference": "4c9adf95d6e92aeb0609c6b1170d4811e3cc6aca",
                 "shasum": ""
             },
             "require": {
@@ -10753,9 +10753,9 @@
             "homepage": "https://github.com/deburca/hivelog",
             "support": {
                 "issues": "https://github.com/deburca/hivelog/issues",
-                "source": "https://github.com/deburca/hivelog/tree/1.8.3"
+                "source": "https://github.com/deburca/hivelog/tree/1.8.4"
             },
-            "time": "2026-09-08T19:18:32+00:00"
+            "time": "2026-09-08T21:07:44+00:00"
         },
         {
             "name": "html2text/html2text",
