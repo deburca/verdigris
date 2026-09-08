@@ -10726,9 +10726,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-main": "1.x-dev"
-                },
                 "drupal": {
                     "module-name": "hivelog"
                 },
@@ -10737,16 +10734,12 @@
                         "Convert geofield plugins to PHP attributes for Drupal 11": "web/modules/contrib/hivelog/patches/geofield-drupal11-attribute-discovery.patch",
                         "Update geofield validation constraint metadata for Drupal 11": "web/modules/contrib/hivelog/patches/geofield-validator-compatibility.patch"
                     }
+                },
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
                 }
             },
-            "scripts": {
-                "lint": [
-                    "phpcs --standard=Drupal,DrupalPractice --extensions=php,module,install src/ tests/ hivelog.module hivelog.install"
-                ],
-                "stan": [
-                    "phpstan analyse src/ tests/ --level=2 --configuration=phpstan.neon"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-2.0-or-later"
             ],
@@ -10759,8 +10752,8 @@
             "description": "Drupal 11 module – beekeeping activity logger for managing apiaries, hives, inspections, queens, and queen observations.",
             "homepage": "https://github.com/deburca/hivelog",
             "support": {
-                "source": "https://github.com/deburca/hivelog/tree/1.8.3",
-                "issues": "https://github.com/deburca/hivelog/issues"
+                "issues": "https://github.com/deburca/hivelog/issues",
+                "source": "https://github.com/deburca/hivelog/tree/1.8.3"
             },
             "time": "2026-09-08T19:18:32+00:00"
         },
