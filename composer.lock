@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4a362b3b8fd1620c3d4150822bd25622",
+    "content-hash": "74f6b9e9096cbce1bb5e1e847ddf52da",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -10689,16 +10689,16 @@
         },
         {
             "name": "hivelog/hivelog",
-            "version": "1.8.0",
+            "version": "1.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deburca/hivelog.git",
-                "reference": "558a857e9499332c941a4219ba7baf75de56b114"
+                "reference": "392d021b6369245253e3f4d777324b47eeb37411"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deburca/hivelog/zipball/558a857e9499332c941a4219ba7baf75de56b114",
-                "reference": "558a857e9499332c941a4219ba7baf75de56b114",
+                "url": "https://api.github.com/repos/deburca/hivelog/zipball/392d021b6369245253e3f4d777324b47eeb37411",
+                "reference": "392d021b6369245253e3f4d777324b47eeb37411",
                 "shasum": ""
             },
             "require": {
@@ -10747,10 +10747,10 @@
             "description": "Drupal 11 module – beekeeping activity logger for managing apiaries, hives, inspections, queens, and queen observations.",
             "homepage": "https://github.com/deburca/hivelog",
             "support": {
-                "source": "https://github.com/deburca/hivelog/tree/1.8.0",
+                "source": "https://github.com/deburca/hivelog/tree/1.8.1",
                 "issues": "https://github.com/deburca/hivelog/issues"
             },
-            "time": "2026-09-08T15:29:46+00:00"
+            "time": "2026-09-08T17:56:29+00:00"
         },
         {
             "name": "html2text/html2text",
