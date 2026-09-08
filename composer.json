@@ -31,14 +31,6 @@
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
-        "hivelog": {
-            "type": "vcs",
-            "url": "git@github.com:deburca/hivelog.git"
-        },
-        "beeswax": {
-            "type": "vcs",
-            "url": "git@github.com:deburca/beeswax.git"
-        },
         "jquery.inputmask": {
             "_webform": true,
             "type": "package",
@@ -263,7 +255,7 @@
         "drupal/bat_api": "^11.1@RC",
         "drupal/bat_roomify": "^11.1@RC",
         "drupal/bee": "^11.1@RC",
-        "drupal/beeswax": "^1.0",
+        "deburca/beeswax": "^1.0",
         "drupal/bpmn_io": "^3",
         "drupal/byte_theme": "^1.0",
         "drupal/canvas": "^1",
