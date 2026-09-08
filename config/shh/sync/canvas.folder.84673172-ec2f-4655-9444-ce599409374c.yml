@@ -3,13 +3,17 @@ langcode: en
 status: true
 dependencies:
   config:
+    - canvas.component.marker.page_content
     - canvas.component.sdc.commerce.commerce-status-badge
     - canvas.component.sdc.navigation.message
     - canvas.component.sdc.navigation.title
+    - canvas.component.theme_page_template.hestehoj
 name: Other
 configEntityTypeId: component
 weight: 0
 items:
+  - marker.page_content
   - sdc.commerce.commerce-status-badge
   - sdc.navigation.message
   - sdc.navigation.title
+  - theme_page_template.hestehoj

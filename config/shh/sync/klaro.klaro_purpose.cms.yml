@@ -5,6 +5,6 @@ dependencies: {  }
 _core:
   default_config_hash: 3j5wXqDkwDxjQzmBncu4QboNV0z9hzVwJug3j5IpigQ
 id: cms
-label: Funktionel
+label: 'Drupal CMS'
 description: ''
 weight: -1

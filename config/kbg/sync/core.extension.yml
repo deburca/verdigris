@@ -9,6 +9,7 @@ module:
   bpmn_io: 0
   breakpoint: 0
   canvas: 0
+  canvas_page_template_component: 0
   captcha: 0
   ckeditor5: 0
   coffee: 0

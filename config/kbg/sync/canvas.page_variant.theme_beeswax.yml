@@ -1,0 +1,23 @@
+uuid: 385c4ccb-fb40-4bbd-996e-0020994e58a2
+langcode: da
+status: true
+dependencies:
+  config:
+    - canvas.component.marker.page_content
+    - canvas.component.theme_page_template.beeswax
+id: theme_beeswax
+label: 'Beeswax theme'
+description: null
+component_tree:
+  8f2dd82e-20d7-4399-9c66-bc2ad3846a86:
+    uuid: 8f2dd82e-20d7-4399-9c66-bc2ad3846a86
+    component_id: theme_page_template.beeswax
+    component_version: 15fe1e06320b1035
+    inputs: {  }
+  79bd47fd-81e2-43c6-bef4-9cdb0fadaa73:
+    parent_uuid: 8f2dd82e-20d7-4399-9c66-bc2ad3846a86
+    slot: content
+    uuid: 79bd47fd-81e2-43c6-bef4-9cdb0fadaa73
+    component_id: marker.page_content
+    component_version: 3b12c0b99a6caecc
+    inputs: {  }
