@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "448465a01c397d67f32760ae612c5aa1",
+    "content-hash": "6d8091b4f46ad6255d59fa2177683105",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2514,8 +2514,8 @@
                     "homepage": "https://www.drupal.org/user/2437398"
                 },
                 {
-                    "name": "justanothermark",
-                    "homepage": "https://www.drupal.org/user/1369624"
+                    "name": "dspachos",
+                    "homepage": "https://www.drupal.org/user/538678"
                 },
                 {
                     "name": "kellyknight",
@@ -2540,10 +2540,6 @@
                 {
                     "name": "vasi1186",
                     "homepage": "https://www.drupal.org/user/342104"
-                },
-                {
-                    "name": "yanniboi",
-                    "homepage": "https://www.drupal.org/user/1837556"
                 }
             ],
             "description": "amazee.ai AI provider integration.",
@@ -10701,16 +10697,16 @@
         },
         {
             "name": "hivelog/hivelog",
-            "version": "1.8.4",
+            "version": "1.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deburca/hivelog.git",
-                "reference": "4c9adf95d6e92aeb0609c6b1170d4811e3cc6aca"
+                "reference": "5e4d7308476cde44c13c885b12a056e01c5fc2ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deburca/hivelog/zipball/4c9adf95d6e92aeb0609c6b1170d4811e3cc6aca",
-                "reference": "4c9adf95d6e92aeb0609c6b1170d4811e3cc6aca",
+                "url": "https://api.github.com/repos/deburca/hivelog/zipball/5e4d7308476cde44c13c885b12a056e01c5fc2ec",
+                "reference": "5e4d7308476cde44c13c885b12a056e01c5fc2ec",
                 "shasum": ""
             },
             "require": {
@@ -10753,9 +10749,9 @@
             "homepage": "https://github.com/deburca/hivelog",
             "support": {
                 "issues": "https://github.com/deburca/hivelog/issues",
-                "source": "https://github.com/deburca/hivelog/tree/1.8.4"
+                "source": "https://github.com/deburca/hivelog/tree/1.8.5"
             },
-            "time": "2026-09-08T21:07:44+00:00"
+            "time": "2026-09-09T09:40:57+00:00"
         },
         {
             "name": "html2text/html2text",
