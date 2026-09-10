@@ -24,8 +24,6 @@ content_entity_type_bundle: blog
 content_entity_type_view_mode: card
 component_tree:
   '0:c8e8a6d9-6b30-4cf0-a8df-299f290da17d':
-    parent_uuid: null
-    slot: null
     uuid: c8e8a6d9-6b30-4cf0-a8df-299f290da17d
     component_id: sdc.quick_silver.card
     component_version: c313844ff80fde7d
@@ -46,6 +44,5 @@ component_tree:
       text:
         sourceType: entity-field
         expression: 'ℹ︎␜entity:node:blog␝field_description␞␟value'
-    label: null
-    inputs_resolved: null
 exposed_slots: {  }
+page_variant: null

@@ -23,19 +23,13 @@ content_entity_type_bundle: page
 content_entity_type_view_mode: full
 component_tree:
   '0:92e68054-9f78-4420-8752-96ec693d2fa9':
-    parent_uuid: null
-    slot: null
     uuid: 92e68054-9f78-4420-8752-96ec693d2fa9
     component_id: block.system_breadcrumb_block
     component_version: ad6359c331fc7c45
     inputs:
       label: Breadcrumbs
       label_display: '0'
-    label: null
-    inputs_resolved: {  }
   '1:b436211b-95ef-40ea-987a-e7b0f5782e33':
-    parent_uuid: null
-    slot: null
     uuid: b436211b-95ef-40ea-987a-e7b0f5782e33
     component_id: sdc.quick_silver.section
     component_version: a917d5c9be8f2830
@@ -45,17 +39,6 @@ component_tree:
       mobile_columns: 1
       margin_block_start: '48'
       margin_block_end: '48'
-      padding_block_start: '0'
-      padding_block_end: '0'
-      section_header: true
-      section_footer: true
-    label: null
-    inputs_resolved:
-      columns: '100'
-      width: 75%
-      margin_block_start: '48'
-      margin_block_end: '48'
-      mobile_columns: '1'
       padding_block_start: '0'
       padding_block_end: '0'
       section_header: true
@@ -75,8 +58,6 @@ component_tree:
       text_color: default
       align: left
       url: 'No URL'
-    label: null
-    inputs_resolved: null
   '1:main_slot:0:caa1e4b2-d58b-4140-b99b-ab3e1ce55ad5':
     parent_uuid: b436211b-95ef-40ea-987a-e7b0f5782e33
     slot: main_slot
@@ -89,6 +70,5 @@ component_tree:
         expression: 'ℹ︎␜entity:node:page␝field_content␞␟processed'
       text_size: normal
       text_color: default
-    label: null
-    inputs_resolved: null
 exposed_slots: {  }
+page_variant: null
