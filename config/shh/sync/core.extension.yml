@@ -111,6 +111,7 @@ module:
   sam: 0
   scheduler: 0
   scheduler_content_moderation_integration: 0
+  seckit: 0
   serialization: 0
   shh_account_deletion: 0
   shh_booking_log: 0
