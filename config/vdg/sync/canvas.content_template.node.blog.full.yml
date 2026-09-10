@@ -34,19 +34,13 @@ content_entity_type_bundle: blog
 content_entity_type_view_mode: full
 component_tree:
   '0:92e68054-9f78-4420-8752-96ec693d2fa9':
-    parent_uuid: null
-    slot: null
     uuid: 92e68054-9f78-4420-8752-96ec693d2fa9
     component_id: block.system_breadcrumb_block
     component_version: ad6359c331fc7c45
     inputs:
       label: Breadcrumbs
       label_display: '0'
-    label: null
-    inputs_resolved: {  }
   '1:14f8bf3e-e882-48fb-ba4e-83e932f0748b':
-    parent_uuid: null
-    slot: null
     uuid: 14f8bf3e-e882-48fb-ba4e-83e932f0748b
     component_id: sdc.quick_silver.hero-blog
     component_version: af16cffe0dc9f59c
@@ -64,11 +58,7 @@ component_tree:
       media:
         sourceType: entity-field
         expression: 'ℹ︎␜entity:node:blog␝field_featured_image␞␟entity␜␜entity:media:image␝field_media_image␞␟{src↠src_with_alternate_widths,alt↠alt,width↠width,height↠height}'
-    label: null
-    inputs_resolved: null
   '2:ea40592d-2c03-45e8-9c19-a66a96a59ec9':
-    parent_uuid: null
-    slot: null
     uuid: ea40592d-2c03-45e8-9c19-a66a96a59ec9
     component_id: sdc.quick_silver.section
     component_version: a917d5c9be8f2830
@@ -83,18 +73,6 @@ component_tree:
       background_color: accent
       section_header: true
       section_footer: true
-    label: null
-    inputs_resolved:
-      columns: '100'
-      section_header: true
-      section_footer: true
-      margin_block_start: '0'
-      margin_block_end: '0'
-      mobile_columns: '1'
-      width: 75%
-      padding_block_start: '0'
-      padding_block_end: '64'
-      background_color: accent
   '2:footer_slot:0:53ca937b-82dc-4b92-9440-7c4db38d5959':
     parent_uuid: ea40592d-2c03-45e8-9c19-a66a96a59ec9
     slot: footer_slot
@@ -102,12 +80,6 @@ component_tree:
     component_id: block.views_block.related_tags-tags
     component_version: 4615de48dbc05936
     inputs:
-      label: 'Related tags'
-      label_display: '0'
-      views_label: ''
-      items_per_page: null
-    label: null
-    inputs_resolved:
       label: 'Related tags'
       label_display: '0'
       views_label: ''
@@ -124,8 +96,6 @@ component_tree:
         expression: 'ℹ︎␜entity:node:blog␝field_content␞␟processed'
       text_size: normal
       text_color: inverted
-    label: null
-    inputs_resolved: null
   '2:main_slot:1:024a2bc3-6bd9-4998-a9a7-1c91058e5cf0':
     parent_uuid: ea40592d-2c03-45e8-9c19-a66a96a59ec9
     slot: main_slot
@@ -133,12 +103,6 @@ component_tree:
     component_id: block.views_block.related_tags-tags
     component_version: 4615de48dbc05936
     inputs:
-      label: 'Related tags'
-      label_display: '0'
-      views_label: ''
-      items_per_page: null
-    label: null
-    inputs_resolved:
       label: 'Related tags'
       label_display: '0'
       views_label: ''
@@ -154,12 +118,6 @@ component_tree:
       label_display: '0'
       views_label: 'Related tags'
       items_per_page: null
-    label: null
-    inputs_resolved:
-      label: 'Related tags'
-      label_display: '0'
-      views_label: 'Related tags'
-      items_per_page: null
   '2:main_slot:3:4ef60703-3e43-4896-9081-a8a6dec3eb30':
     parent_uuid: ea40592d-2c03-45e8-9c19-a66a96a59ec9
     slot: main_slot
@@ -167,12 +125,6 @@ component_tree:
     component_id: block.views_block.related_tags-tags
     component_version: 4615de48dbc05936
     inputs:
-      label: 'Related tags'
-      label_display: '0'
-      views_label: ''
-      items_per_page: null
-    label: null
-    inputs_resolved:
       label: 'Related tags'
       label_display: '0'
       views_label: ''
@@ -188,32 +140,11 @@ component_tree:
       label_display: '0'
       views_label: ''
       items_per_page: null
-    label: null
-    inputs_resolved:
-      label: 'Related tags'
-      label_display: '0'
-      views_label: ''
-      items_per_page: null
   '3:2062b041-7d35-4651-b367-961082b8e6be':
-    parent_uuid: null
-    slot: null
     uuid: 2062b041-7d35-4651-b367-961082b8e6be
     component_id: sdc.quick_silver.section
     component_version: a917d5c9be8f2830
     inputs:
-      width: 100%
-      columns: '100'
-      views_columns: 33-33-33
-      mobile_columns: '1'
-      margin_block_start: '0'
-      margin_block_end: '0'
-      padding_block_start: '32'
-      padding_block_end: '32'
-      background_color: muted
-      section_header: true
-      section_footer: true
-    label: null
-    inputs_resolved:
       width: 100%
       columns: '100'
       views_columns: 33-33-33
@@ -237,13 +168,6 @@ component_tree:
       text_size: heading-responsive-4xl
       text_color: default
       align: center
-    label: null
-    inputs_resolved:
-      heading_text: 'More insights'
-      level: 2.0
-      text_size: heading-responsive-4xl
-      text_color: default
-      align: center
   '3:main_slot:0:4748d14a-127a-49d8-9165-b7c7144041c0':
     parent_uuid: 2062b041-7d35-4651-b367-961082b8e6be
     slot: main_slot
@@ -255,15 +179,7 @@ component_tree:
       label_display: '0'
       views_label: ''
       items_per_page: null
-    label: null
-    inputs_resolved:
-      label: 'Blog: Related blog posts'
-      label_display: '0'
-      views_label: ''
-      items_per_page: null
   '4:eab0563f-eaa7-4025-9211-37801693f8a7':
-    parent_uuid: null
-    slot: null
     uuid: eab0563f-eaa7-4025-9211-37801693f8a7
     component_id: block.views_block.related_tags-tags
     component_version: 4615de48dbc05936
@@ -272,15 +188,7 @@ component_tree:
       label_display: '0'
       views_label: 'Related tags'
       items_per_page: null
-    label: null
-    inputs_resolved:
-      label: 'Related tags'
-      label_display: '0'
-      views_label: 'Related tags'
-      items_per_page: null
   '5:9d4437b3-f01b-42c1-98cf-af583b4e4bfc':
-    parent_uuid: null
-    slot: null
     uuid: 9d4437b3-f01b-42c1-98cf-af583b4e4bfc
     component_id: block.views_block.related_tags-tags
     component_version: 4615de48dbc05936
@@ -289,15 +197,7 @@ component_tree:
       label_display: '0'
       views_label: ''
       items_per_page: null
-    label: null
-    inputs_resolved:
-      label: 'Related tags'
-      label_display: '0'
-      views_label: ''
-      items_per_page: null
   '6:4305752c-db60-48dc-837b-c7a12dd656fe':
-    parent_uuid: null
-    slot: null
     uuid: 4305752c-db60-48dc-837b-c7a12dd656fe
     component_id: sdc.quick_silver.cta
     component_version: 7f6c40ea90b84edc
@@ -306,12 +206,7 @@ component_tree:
       level: 2
       text: 'Sign up for a free trial and discover a world of possibilities to elevate your outreach and engagement strategies'
       text_align: center
-    label: null
-    inputs_resolved:
-      heading_text: 'Get ready to transform your operations'
-      level: 2.0
-      text: 'Sign up for a free trial and discover a world of possibilities to elevate your outreach and engagement strategies'
-      text_align: center
+      overlay_opacity: 20%
   '6:actions:0:766d0781-cae3-471f-8d43-0f5f27659fbb':
     parent_uuid: 4305752c-db60-48dc-837b-c7a12dd656fe
     slot: actions
@@ -325,14 +220,6 @@ component_tree:
       icon: arrow-right
       icon_first: false
       disabled: false
-    label: null
-    inputs_resolved:
-      variant: primary
-      size: medium
-      disabled: false
-      label: 'Get started'
-      icon: arrow-right
-      icon_first: false
   '6:actions:1:f61ffe08-6016-458e-b19f-7bef09f26382':
     parent_uuid: 4305752c-db60-48dc-837b-c7a12dd656fe
     slot: actions
@@ -346,12 +233,5 @@ component_tree:
       icon: arrow-right
       icon_first: false
       disabled: false
-    label: null
-    inputs_resolved:
-      variant: secondary
-      size: medium
-      disabled: false
-      label: 'Learn more'
-      icon: arrow-right
-      icon_first: false
 exposed_slots: {  }
+page_variant: null
