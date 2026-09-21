@@ -5,6 +5,25 @@ work on the **CMS2** Drupal multisite platform. Everything here is plain
 Markdown, so it version-controls cleanly alongside the code and configuration it
 documents.
 
+## Claude Code skill
+
+This vault follows the `project-management-vault` Claude Code skill — a shared
+convention kept as a personal skill (`~/.claude/skills/project-management-vault/`)
+and reused across hivelog, llamanator, and cms2. The skill is the canonical
+reference for the full frontmatter schema, per-type ID assignment (sequential and
+contiguous within each type, independent across types, IDs never reused or
+renumbered once assigned), and status vocabularies. CMS2-specific extensions on
+top of the base schema (see the skill's Common extensions section):
+
+- A **scoping field**, `site:` (`vdg` | `kbg` | `shh` | `shared`), on tasks,
+  decisions, and infrastructure notes — this repo is a Drupal multisite, so most
+  work is scoped to one site.
+- `infrastructure/` is the home for long-lived reference/runbook docs (DDEV,
+  hosting, deployment) that aren't a task, decision, project, or release.
+- Releases are dated per-site deployments
+  (`releases/YYYY-MM-DD-site-deployment.md`) rather than semver-tagged, since
+  this repo deploys continuously per site instead of cutting versioned releases.
+
 ## Project Overview
 
 **CMS2** is a Drupal 11-based multisite platform hosting independent websites
