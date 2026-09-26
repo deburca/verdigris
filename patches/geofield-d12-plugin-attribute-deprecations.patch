@@ -508,6 +508,30 @@ index 5588816..ec9ce40 100644
  
      $this->alterInfo('geofield_geofield_proximity_source_info');
      $this->setCacheBackend($cache_backend, 'geofield_geofield_proximity_source_plugins');
+diff --git a/src/Plugin/Validation/Constraint/GeoConstraint.php b/src/Plugin/Validation/Constraint/GeoConstraint.php
+index df679fc..ecfc054 100644
+--- a/src/Plugin/Validation/Constraint/GeoConstraint.php
++++ b/src/Plugin/Validation/Constraint/GeoConstraint.php
+@@ -2,6 +2,8 @@
+ 
+ namespace Drupal\geofield\Plugin\Validation\Constraint;
+ 
++use Drupal\Core\StringTranslation\TranslatableMarkup;
++use Drupal\Core\Validation\Attribute\Constraint as ConstraintAttribute;
+ use Symfony\Component\Validator\Constraint;
+ 
+ /**
+@@ -12,6 +14,10 @@ use Symfony\Component\Validator\Constraint;
+  *   label = @Translation("Geo data valid for geofield type.", context = "Validation"),
+  * )
+  */
++#[ConstraintAttribute(
++  id: 'GeoType',
++  label: new TranslatableMarkup('Geo data valid for geofield type.', [], ['context' => 'Validation']),
++)]
+ class GeoConstraint extends Constraint {
+ 
+   /**
 diff --git a/src/Plugin/Validation/Constraint/GeoConstraintValidator.php b/src/Plugin/Validation/Constraint/GeoConstraintValidator.php
 index 697d490..b5a9f7b 100644
 --- a/src/Plugin/Validation/Constraint/GeoConstraintValidator.php
@@ -521,3 +545,133 @@ index 697d490..b5a9f7b 100644
      if (isset($value)) {
        $valid_geometry = TRUE;
  
+diff --git a/tests/src/Kernel/ConstraintsTest.php b/tests/src/Kernel/ConstraintsTest.php
+index a1ac0e9..e7547ca 100644
+--- a/tests/src/Kernel/ConstraintsTest.php
++++ b/tests/src/Kernel/ConstraintsTest.php
+@@ -7,6 +7,8 @@ use Drupal\geofield\GeoPHP\GeoPHPWrapper;
+ use Drupal\geofield\Plugin\Validation\Constraint\GeoConstraint;
+ use Drupal\geofield\Plugin\Validation\Constraint\GeoConstraintValidator;
+ use Drupal\KernelTests\KernelTestBase;
++use PHPUnit\Framework\Attributes\DataProvider;
++use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+ 
+ if (!class_exists('\Drupal\Core\TypedData\Validation\ExecutionContext')) {
+   class_alias('\Drupal\Core\Validation\ExecutionContext', '\Drupal\Core\TypedData\Validation\ExecutionContext');
+@@ -17,6 +19,7 @@ if (!class_exists('\Drupal\Core\TypedData\Validation\ExecutionContext')) {
+  *
+  * @group geofield
+  */
++#[RunTestsInSeparateProcesses]
+ class ConstraintsTest extends KernelTestBase {
+ 
+   /**
+@@ -31,9 +34,8 @@ class ConstraintsTest extends KernelTestBase {
+    *
+    * @covers \Drupal\geofield\Plugin\Validation\Constraint\GeoConstraintValidator
+    * @covers \Drupal\geofield\Plugin\Validation\Constraint\GeoConstraint
+-   *
+-   * @dataProvider geoProvider
+    */
++  #[DataProvider('geoProvider')]
+   public function testGeoConstraint($coordinates, $expected_violation_count) {
+     // Check message in constraint.
+     $constraint = new GeoConstraint();
+diff --git a/tests/src/Kernel/GeofieldFormatterTest.php b/tests/src/Kernel/GeofieldFormatterTest.php
+index 8079a76..d34b32c 100644
+--- a/tests/src/Kernel/GeofieldFormatterTest.php
++++ b/tests/src/Kernel/GeofieldFormatterTest.php
+@@ -6,12 +6,15 @@ use Drupal\entity_test\Entity\EntityTest;
+ use Drupal\field\Entity\FieldConfig;
+ use Drupal\field\Entity\FieldStorageConfig;
+ use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
++use PHPUnit\Framework\Attributes\DataProvider;
++use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+ 
+ /**
+  * Tests the geofield formatters functionality.
+  *
+  * @group geofield
+  */
++#[RunTestsInSeparateProcesses]
+ class GeofieldFormatterTest extends EntityKernelTestBase {
+ 
+   /**
+@@ -82,9 +85,8 @@ class GeofieldFormatterTest extends EntityKernelTestBase {
+ 
+   /**
+    * Tests geofield field LatLon formatter.
+-   *
+-   * @dataProvider latLonFormatterProvider
+    */
++  #[DataProvider('latLonFormatterProvider')]
+   public function testLatLonFormatter($point, $format, $expected_value) {
+     // Create the entity to be referenced.
+     $entity = EntityTest::create(['name' => $this->randomMachineName()]);
+diff --git a/tests/src/Kernel/GeofieldItemTest.php b/tests/src/Kernel/GeofieldItemTest.php
+index e51ea46..17cd468 100644
+--- a/tests/src/Kernel/GeofieldItemTest.php
++++ b/tests/src/Kernel/GeofieldItemTest.php
+@@ -8,12 +8,14 @@ use Drupal\entity_test\Entity\EntityTest;
+ use Drupal\field\Entity\FieldConfig;
+ use Drupal\field\Entity\FieldStorageConfig;
+ use Drupal\Tests\field\Kernel\FieldKernelTestBase;
++use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+ 
+ /**
+  * Tests using entity fields of the geofield field type.
+  *
+  * @group geofield
+  */
++#[RunTestsInSeparateProcesses]
+ class GeofieldItemTest extends FieldKernelTestBase {
+ 
+   /**
+diff --git a/tests/src/Kernel/WktGeneratorTest.php b/tests/src/Kernel/WktGeneratorTest.php
+index cdd668f..9523dbb 100644
+--- a/tests/src/Kernel/WktGeneratorTest.php
++++ b/tests/src/Kernel/WktGeneratorTest.php
+@@ -3,12 +3,14 @@
+ namespace Drupal\Tests\geofield\Kernel;
+ 
+ use Drupal\KernelTests\KernelTestBase;
++use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
+ 
+ /**
+  * Tests WktGenerator.
+  *
+  * @group geofield
+  */
++#[RunTestsInSeparateProcesses]
+ class WktGeneratorTest extends KernelTestBase {
+ 
+   /**
+diff --git a/tests/src/Unit/DmsConverterTest.php b/tests/src/Unit/DmsConverterTest.php
+index 34817e0..f750673 100644
+--- a/tests/src/Unit/DmsConverterTest.php
++++ b/tests/src/Unit/DmsConverterTest.php
+@@ -5,19 +5,17 @@ namespace Drupal\Tests\geofield\Unit;
+ use Drupal\geofield\DmsConverter;
+ use Drupal\geofield\DmsPoint;
+ use Drupal\Tests\UnitTestCase;
++use PHPUnit\Framework\Attributes\CoversMethod;
++use PHPUnit\Framework\Attributes\DataProvider;
+ 
+ /**
+- * @coversDefaultClass \Drupal\geofield\DmsConverter
+  * @group geofield
+  */
++#[CoversMethod(DmsConverter::class, 'dmsToDecimal')]
++#[CoversMethod(DmsConverter::class, 'decimalToDms')]
+ class DmsConverterTest extends UnitTestCase {
+ 
+-  /**
+-   * @covers ::dmsToDecimal
+-   * @covers ::decimalToDms
+-   *
+-   * @dataProvider dataProvider
+-   */
++  #[DataProvider('dataProvider')]
+   public function testConverter(DmsPoint $dms, $decimal) {
+     $result = DmsConverter::dmsToDecimal($dms);
+     $this->assertEquals($decimal, $result);
