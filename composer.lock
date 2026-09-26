@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7fc71974b4b84394f45f3322f83ccaa0",
+    "content-hash": "a60ef68922f5eb6a34fe10682888ecd7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -9930,21 +9930,22 @@
         },
         {
             "name": "hivelog/hivelog",
-            "version": "1.8.7",
+            "version": "1.8.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deburca/hivelog.git",
-                "reference": "3d1d63c2b0a1a40d1408ec95f01b93ba8703282f"
+                "reference": "a486b54534e7d0a974c4795292f16dca0af82922"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deburca/hivelog/zipball/3d1d63c2b0a1a40d1408ec95f01b93ba8703282f",
-                "reference": "3d1d63c2b0a1a40d1408ec95f01b93ba8703282f",
+                "url": "https://api.github.com/repos/deburca/hivelog/zipball/a486b54534e7d0a974c4795292f16dca0af82922",
+                "reference": "a486b54534e7d0a974c4795292f16dca0af82922",
                 "shasum": ""
             },
             "require": {
                 "drupal/core": "^11",
                 "drupal/geofield": "^10.3",
+                "drupal/key": "^1.18",
                 "drupal/leaflet": "^10",
                 "php": ">=8.3"
             },
@@ -9982,9 +9983,9 @@
             "homepage": "https://github.com/deburca/hivelog",
             "support": {
                 "issues": "https://github.com/deburca/hivelog/issues",
-                "source": "https://github.com/deburca/hivelog/tree/1.8.7"
+                "source": "https://github.com/deburca/hivelog/tree/1.8.9"
             },
-            "time": "2026-09-20T10:22:57+00:00"
+            "time": "2026-09-24T06:05:47+00:00"
         },
         {
             "name": "html2text/html2text",
@@ -16961,6 +16962,114 @@
                 "source": "https://github.com/drupal/core-dev/tree/11.4.7"
             },
             "time": "2026-09-16T14:39:21+00:00"
+        },
+        {
+            "name": "drupal/jsonapi_extras",
+            "version": "3.28.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/jsonapi_extras.git",
+                "reference": "8.x-3.28"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/jsonapi_extras-8.x-3.28.zip",
+                "reference": "8.x-3.28",
+                "shasum": "e46e47c2b0ef268f2080aabf89df3f71f22fc902"
+            },
+            "require": {
+                "drupal/core": "^9.5 || ^10 || ^11",
+                "e0ipso/shaper": "^1",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "drupal/schemata": "dev-1.x"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-3.28",
+                    "datestamp": "1766134430",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Mateu Aguiló Bosch",
+                    "homepage": "https://www.drupal.org/user/3366066",
+                    "email": "mateu.aguilo.bosch@gmail.com"
+                },
+                {
+                    "name": "Martin Kolar",
+                    "homepage": "https://www.drupal.org/u/mkolar"
+                },
+                {
+                    "name": "Karel Majzlik",
+                    "homepage": "https://www.drupal.org/u/karlos007"
+                },
+                {
+                    "name": "Björn Brala",
+                    "homepage": "https://www.drupal.org/u/bbrala"
+                }
+            ],
+            "description": "JSON:API Extras provides a means to override and provide limited configurations to the default zero-configuration implementation provided by the JSON:API module.",
+            "homepage": "https://www.drupal.org/project/jsonapi_extras",
+            "support": {
+                "source": "https://git.drupalcode.org/project/jsonapi_extras"
+            }
+        },
+        {
+            "name": "e0ipso/shaper",
+            "version": "1.2.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/e0ipso/shaper.git",
+                "reference": "1d9e726c98d3168d30c1180cd836d13267744fb7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/e0ipso/shaper/zipball/1d9e726c98d3168d30c1180cd836d13267744fb7",
+                "reference": "1d9e726c98d3168d30c1180cd836d13267744fb7",
+                "shasum": ""
+            },
+            "require": {
+                "justinrainbow/json-schema": "^5.2 || ^6.3"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpunit/phpcov": "^8.2",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Shaper\\": "src",
+                    "Shaper\\Tests\\": "tests/src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Mateu Aguiló Bosch",
+                    "email": "mateu.aguilo.bosch@gmail.com"
+                }
+            ],
+            "description": "Lightweight library to handle in and out transformations in PHP.",
+            "support": {
+                "issues": "https://github.com/e0ipso/shaper/issues",
+                "source": "https://github.com/e0ipso/shaper/tree/1.2.7"
+            },
+            "time": "2025-04-04T08:14:01+00:00"
         },
         {
             "name": "google/protobuf",
