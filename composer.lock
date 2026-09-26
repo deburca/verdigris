@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a60ef68922f5eb6a34fe10682888ecd7",
+    "content-hash": "852c2229e4eec1705c87cb65c912f023",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1601,16 +1601,16 @@
         },
         {
             "name": "deburca/beeswax",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deburca/beeswax.git",
-                "reference": "429e959dbf32b91b8b3b3b255bfc31772315960f"
+                "reference": "d3b1ec256c04bb7dfb03094e0686400acdd7af4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deburca/beeswax/zipball/429e959dbf32b91b8b3b3b255bfc31772315960f",
-                "reference": "429e959dbf32b91b8b3b3b255bfc31772315960f",
+                "url": "https://api.github.com/repos/deburca/beeswax/zipball/d3b1ec256c04bb7dfb03094e0686400acdd7af4e",
+                "reference": "d3b1ec256c04bb7dfb03094e0686400acdd7af4e",
                 "shasum": ""
             },
             "require": {
@@ -1630,9 +1630,9 @@
             "description": "A scalable, modern Drupal CMS prototype theme, integrating cutting-edge front-end tools and a flexible, component-based design system.",
             "support": {
                 "issues": "https://github.com/deburca/beeswax/issues",
-                "source": "https://github.com/deburca/beeswax/tree/1.0.2"
+                "source": "https://github.com/deburca/beeswax/tree/1.0.3"
             },
-            "time": "2026-09-08T21:11:26+00:00"
+            "time": "2026-09-26T19:28:51+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -9930,22 +9930,21 @@
         },
         {
             "name": "hivelog/hivelog",
-            "version": "1.8.9",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deburca/hivelog.git",
-                "reference": "a486b54534e7d0a974c4795292f16dca0af82922"
+                "reference": "08b40c2a440fdd4a1bed35186fca877e26e12c7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deburca/hivelog/zipball/a486b54534e7d0a974c4795292f16dca0af82922",
-                "reference": "a486b54534e7d0a974c4795292f16dca0af82922",
+                "url": "https://api.github.com/repos/deburca/hivelog/zipball/08b40c2a440fdd4a1bed35186fca877e26e12c7e",
+                "reference": "08b40c2a440fdd4a1bed35186fca877e26e12c7e",
                 "shasum": ""
             },
             "require": {
                 "drupal/core": "^11",
                 "drupal/geofield": "^10.3",
-                "drupal/key": "^1.18",
                 "drupal/leaflet": "^10",
                 "php": ">=8.3"
             },
@@ -9953,6 +9952,9 @@
                 "drupal/coder": "^8.3",
                 "mglaman/phpstan-drupal": "^1.3",
                 "phpstan/phpstan-deprecation-rules": "^1.0"
+            },
+            "suggest": {
+                "drupal/key": "^1.18 — required only if you enable the optional nexus submodule (AI provider credentials); run `composer require drupal/key` first, then `drush en nexus -y`."
             },
             "type": "drupal-module",
             "extra": {
@@ -9983,9 +9985,9 @@
             "homepage": "https://github.com/deburca/hivelog",
             "support": {
                 "issues": "https://github.com/deburca/hivelog/issues",
-                "source": "https://github.com/deburca/hivelog/tree/1.8.9"
+                "source": "https://github.com/deburca/hivelog/tree/2.0.0"
             },
-            "time": "2026-09-24T06:05:47+00:00"
+            "time": "2026-09-26T18:55:04+00:00"
         },
         {
             "name": "html2text/html2text",
