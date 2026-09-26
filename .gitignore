@@ -370,6 +370,7 @@ auth.json
 secrets.json
 api_keys.txt
 *.secret
+key.*.yml
 
 # Configuration management secrets
 !files/sync
