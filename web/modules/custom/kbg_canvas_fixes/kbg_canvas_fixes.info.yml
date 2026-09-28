@@ -1,0 +1,7 @@
+name: 'KBG Canvas Fixes'
+type: module
+description: 'One-off deploy-hook home for repairing kragebaekgaard.dk Canvas content after config-level component migrations (e.g. the zwarte_piet → beeswax repoint). Enabled on kbg only; no config or schema of its own.'
+core_version_requirement: ^10.2 || ^11
+package: Custom
+dependencies:
+  - canvas:canvas
