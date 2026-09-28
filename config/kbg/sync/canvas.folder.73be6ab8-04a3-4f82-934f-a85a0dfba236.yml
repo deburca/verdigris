@@ -17,9 +17,6 @@ dependencies:
     - canvas.component.sdc.mercury.group
     - canvas.component.sdc.mercury.navbar
     - canvas.component.sdc.mercury.section
-    - canvas.component.sdc.zwarte_piet.footer
-    - canvas.component.sdc.zwarte_piet.navbar
-    - canvas.component.sdc.zwarte_piet.section
 name: Layout
 configEntityTypeId: component
 weight: 0
@@ -38,6 +35,3 @@ items:
   - sdc.mercury.group
   - sdc.mercury.navbar
   - sdc.mercury.section
-  - sdc.zwarte_piet.footer
-  - sdc.zwarte_piet.navbar
-  - sdc.zwarte_piet.section

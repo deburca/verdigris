@@ -10,7 +10,6 @@ dependencies:
     - canvas.component.sdc.mercury.hero-billboard
     - canvas.component.sdc.mercury.hero-blog
     - canvas.component.sdc.mercury.hero-side-by-side
-    - canvas.component.sdc.zwarte_piet.cta
 name: Hero
 configEntityTypeId: component
 weight: 0
@@ -22,4 +21,3 @@ items:
   - sdc.mercury.hero-billboard
   - sdc.mercury.hero-blog
   - sdc.mercury.hero-side-by-side
-  - sdc.zwarte_piet.cta

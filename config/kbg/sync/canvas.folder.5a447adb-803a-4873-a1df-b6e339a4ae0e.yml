@@ -21,9 +21,6 @@ dependencies:
     - canvas.component.sdc.mercury.image
     - canvas.component.sdc.mercury.text
     - canvas.component.sdc.mercury.video
-    - canvas.component.sdc.zwarte_piet.button
-    - canvas.component.sdc.zwarte_piet.heading
-    - canvas.component.sdc.zwarte_piet.text
 name: Base
 configEntityTypeId: component
 weight: 0
@@ -46,6 +43,3 @@ items:
   - sdc.mercury.image
   - sdc.mercury.text
   - sdc.mercury.video
-  - sdc.zwarte_piet.button
-  - sdc.zwarte_piet.heading
-  - sdc.zwarte_piet.text
