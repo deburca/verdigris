@@ -29,4 +29,5 @@ live_h3: ''
 live_h4: ''
 hide_edit_links: ''
 ck5_table_headers: row
+tests_off: 'CONTRAST_WARNING_GRAPHIC,LINK_CLICK_HERE,LINK_IMAGE_ALT'
 ignore_tests: {  }

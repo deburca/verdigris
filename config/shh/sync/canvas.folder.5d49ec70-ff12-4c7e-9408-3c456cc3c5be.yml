@@ -1,0 +1,11 @@
+uuid: 5d49ec70-ff12-4c7e-9408-3c456cc3c5be
+langcode: da
+status: true
+dependencies:
+  config:
+    - canvas.component.block.views_block.ed11y_result-block_most_issues
+name: 'Lister (Views)'
+configEntityTypeId: component
+weight: 0
+items:
+  - block.views_block.ed11y_result-block_most_issues
