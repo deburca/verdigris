@@ -370,7 +370,11 @@ auth.json
 secrets.json
 api_keys.txt
 *.secret
-key.*.yml
+# DDEV web-container environment (holds real secrets, e.g. ANTHROPIC_API_KEY
+# for the Key module's "Environment" provider). The exported Key config now
+# holds only the variable NAME, so key.key.*.yml is safe to commit and must
+# not be ignored: ignoring it makes `drush cim` try to delete the key.
+.ddev/.env.web
 
 # Configuration management secrets
 !files/sync
