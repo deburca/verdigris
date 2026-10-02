@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "852c2229e4eec1705c87cb65c912f023",
+    "content-hash": "7380240c020c5f441e1e3f189c0ace36",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1600,6 +1600,66 @@
             "time": "2025-10-30T23:44:22+00:00"
         },
         {
+            "name": "davereid/drupal-environment",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/davereid/drupal-environment.git",
+                "reference": "51a3213823b9b3c6147b2165e759aa4a4fabf6f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/davereid/drupal-environment/zipball/51a3213823b9b3c6147b2165e759aa4a4fabf6f5",
+                "reference": "51a3213823b9b3c6147b2165e759aa4a4fabf6f5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "phpstan/extension-installer": "^1",
+                "phpstan/phpstan": "^2",
+                "phpstan/phpstan-deprecation-rules": "^2",
+                "phpunit/phpunit": "^10 || ^11 || ^12",
+                "roave/security-advisories": "dev-master",
+                "squizlabs/php_codesniffer": "^3.7 || ^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DrupalEnvironment\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Reid",
+                    "email": "dave@davereid.net"
+                }
+            ],
+            "description": "Provides a helper for working with environment variables and Drupal hosting providers.",
+            "keywords": [
+                "acquia",
+                "drupal",
+                "environment",
+                "pantheon",
+                "tugboat"
+            ],
+            "support": {
+                "issues": "https://github.com/davereid/drupal-environment/issues",
+                "source": "https://github.com/davereid/drupal-environment/tree/1.2.0"
+            },
+            "time": "2026-09-03T03:15:17+00:00"
+        },
+        {
             "name": "deburca/beeswax",
             "version": "1.0.3",
             "source": {
@@ -1845,16 +1905,16 @@
         },
         {
             "name": "doctrine/lexer",
-            "version": "3.0.2",
+            "version": "3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/lexer.git",
-                "reference": "e96fe45e92a54233726014a7cc7340abf29bb14c"
+                "reference": "71d305eaa6480d3d3460c7d053d1da7749fa9cca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/lexer/zipball/e96fe45e92a54233726014a7cc7340abf29bb14c",
-                "reference": "e96fe45e92a54233726014a7cc7340abf29bb14c",
+                "url": "https://api.github.com/repos/doctrine/lexer/zipball/71d305eaa6480d3d3460c7d053d1da7749fa9cca",
+                "reference": "71d305eaa6480d3d3460c7d053d1da7749fa9cca",
                 "shasum": ""
             },
             "require": {
@@ -1900,7 +1960,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/lexer/issues",
-                "source": "https://github.com/doctrine/lexer/tree/3.0.2"
+                "source": "https://github.com/doctrine/lexer/tree/3.0.3"
             },
             "funding": [
                 {
@@ -1916,7 +1976,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-06-14T20:44:06+00:00"
+            "time": "2026-10-01T06:59:29+00:00"
         },
         {
             "name": "dragonmantank/cron-expression",
@@ -2524,8 +2584,8 @@
                     "version": "1.3.0",
                     "datestamp": "1782915000",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -5210,26 +5270,27 @@
         },
         {
             "name": "drupal/drupal_cms_helper",
-            "version": "2.2.0",
+            "version": "2.2.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/drupal_cms_helper.git",
-                "reference": "2.2.0"
+                "reference": "2.2.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/drupal_cms_helper-2.2.0.zip",
-                "reference": "2.2.0",
-                "shasum": "d223dd8f42b1cfca479bb9379d539d66f5e445e1"
+                "url": "https://ftp.drupal.org/files/projects/drupal_cms_helper-2.2.2.zip",
+                "reference": "2.2.2",
+                "shasum": "a4e747f2307732ec9ae1cf3b062fdf61c94910ff"
             },
             "require": {
+                "davereid/drupal-environment": "^1.2",
                 "drupal/core": "^11.4"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.2.0",
-                    "datestamp": "1790374896",
+                    "version": "2.2.2",
+                    "datestamp": "1790784970",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5589,29 +5650,37 @@
         },
         {
             "name": "drupal/editoria11y",
-            "version": "2.2.23",
+            "version": "3.0.9",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/editoria11y.git",
-                "reference": "2.2.23"
+                "reference": "3.0.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/editoria11y-2.2.23.zip",
-                "reference": "2.2.23",
-                "shasum": "8d02c8c9df720b8831c1323a3a6d418343507a6c"
+                "url": "https://ftp.drupal.org/files/projects/editoria11y-3.0.9.zip",
+                "reference": "3.0.9",
+                "shasum": "fee3bcb2deea71233b72000262becefda2dc8b28"
             },
             "require": {
-                "drupal/core": "^9 || ^10 || ^11"
+                "drupal/core": "^10.3 || ^11"
             },
             "conflict": {
                 "drupal/csp": "<1.24"
             },
+            "require-dev": {
+                "drupal/key": "^1.18",
+                "drupal/views_data_export": "^1.9"
+            },
+            "suggest": {
+                "drupal/key": "Required by the editoria11y_csa submodule for secure license key storage.",
+                "drupal/views_data_export": "Required by the editoria11y_export submodule for filterable bulk CSV exports; pulls in csv_serialization and the league/csv library."
+            },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.2.23",
-                    "datestamp": "1790185734",
+                    "version": "3.0.9",
+                    "datestamp": "1790186068",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5868,17 +5937,17 @@
         },
         {
             "name": "drupal/field_validation",
-            "version": "3.0.0-rc2",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/field_validation.git",
-                "reference": "3.0.0-rc2"
+                "reference": "3.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/field_validation-3.0.0-rc2.zip",
-                "reference": "3.0.0-rc2",
-                "shasum": "1441538325ce38268dfb09e981217e8274256b8f"
+                "url": "https://ftp.drupal.org/files/projects/field_validation-3.0.0.zip",
+                "reference": "3.0.0",
+                "shasum": "01cc1a1221bef003e2709e2ed455a4714d0805c0"
             },
             "require": {
                 "drupal/core": "^10.2 || ^11",
@@ -5889,11 +5958,11 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "3.0.0-rc2",
-                    "datestamp": "1789574788",
+                    "version": "3.0.0",
+                    "datestamp": "1790848976",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "RC releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -5913,6 +5982,10 @@
                 {
                     "name": "manuel.adan",
                     "homepage": "https://www.drupal.org/user/516420"
+                },
+                {
+                    "name": "marcus_johansson",
+                    "homepage": "https://www.drupal.org/user/385947"
                 }
             ],
             "description": "Field validation allow you add constraint to field by UI.",
@@ -8903,23 +8976,23 @@
         },
         {
             "name": "drupal/tagify",
-            "version": "1.2.54",
+            "version": "2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/tagify.git",
-                "reference": "1.2.54"
+                "reference": "2.0.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/tagify-1.2.54.zip",
-                "reference": "1.2.54",
-                "shasum": "106203b6afe4a73c71da9e57d6e7855a56c6d1ec"
+                "url": "https://ftp.drupal.org/files/projects/tagify-2.0.3.zip",
+                "reference": "2.0.3",
+                "shasum": "8320ccb50f4ac89f8fcea7d804ab8ba351a18c4c"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9 || ^10 || ^11"
+                "drupal/core": "^10.3 || ^11 || ^12"
             },
             "require-dev": {
-                "drupal/better_exposed_filters": "^7.0",
+                "drupal/better_exposed_filters": "^7.1",
                 "drupal/facets": "^2.0",
                 "drupal/iconify_icons": "*",
                 "drupal/search_api": "^1.31",
@@ -8929,8 +9002,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.2.54",
-                    "datestamp": "1789394526",
+                    "version": "2.0.3",
+                    "datestamp": "1789394637",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -9203,37 +9276,39 @@
         },
         {
             "name": "drupal/ui_icons",
-            "version": "1.1.2",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ui_icons.git",
-                "reference": "1.1.2"
+                "reference": "2.0.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ui_icons-1.1.2.zip",
-                "reference": "1.1.2",
-                "shasum": "ddc7fc09405c64888782d817d8fc395d98bff4c1"
+                "url": "https://ftp.drupal.org/files/projects/ui_icons-2.0.1.zip",
+                "reference": "2.0.1",
+                "shasum": "09ae86396086da26630663336e900e907543f284"
             },
             "require": {
-                "drupal/core": "^11"
+                "drupal/core": "^11.3 || ^12.0"
             },
             "require-dev": {
+                "drupal/canvas": "*",
                 "drupal/link_attributes": "^2.0",
                 "drupal/linkit": "^7.0",
                 "drupal/linkit_attributes": "*",
                 "drupal/ui_icons_field": "*",
                 "drupal/ui_icons_field-ui_icons_field": "*",
                 "drupal/ui_icons_field_linkit": "*",
-                "drupal/ui_icons_picker": "*",
                 "drupal/ui_icons_text": "*",
-                "drupal/ui_patterns": "^2"
+                "drupal/ui_patterns": "^2",
+                "drupal/ui_patterns_settings": "^3.0.0-alpha1",
+                "weitzman/drupal-test-traits": "^2.6"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "1.1.2",
-                    "datestamp": "1776334468",
+                    "version": "2.0.1",
+                    "datestamp": "1790680705",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -10306,16 +10381,16 @@
         },
         {
             "name": "hivelog/hivelog",
-            "version": "2.2.1",
+            "version": "2.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deburca/hivelog.git",
-                "reference": "5feac7a8ebf4c17cd84b790780be27a670e15187"
+                "reference": "355e168a1a26086a2118f387d98b9400fe8b6096"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deburca/hivelog/zipball/5feac7a8ebf4c17cd84b790780be27a670e15187",
-                "reference": "5feac7a8ebf4c17cd84b790780be27a670e15187",
+                "url": "https://api.github.com/repos/deburca/hivelog/zipball/355e168a1a26086a2118f387d98b9400fe8b6096",
+                "reference": "355e168a1a26086a2118f387d98b9400fe8b6096",
                 "shasum": ""
             },
             "require": {
@@ -10361,9 +10436,9 @@
             "homepage": "https://github.com/deburca/hivelog",
             "support": {
                 "issues": "https://github.com/deburca/hivelog/issues",
-                "source": "https://github.com/deburca/hivelog/tree/2.2.1"
+                "source": "https://github.com/deburca/hivelog/tree/2.3.2"
             },
-            "time": "2026-09-29T11:42:28+00:00"
+            "time": "2026-10-02T16:26:45+00:00"
         },
         {
             "name": "html2text/html2text",
@@ -13248,16 +13323,16 @@
         },
         {
             "name": "seld/phar-utils",
-            "version": "1.2.2",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/phar-utils.git",
-                "reference": "990bbd0e92caa216d52eca0935f6e35e589bfaa5"
+                "reference": "65fb381613fd31745d39a740a112a233f978d2d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/phar-utils/zipball/990bbd0e92caa216d52eca0935f6e35e589bfaa5",
-                "reference": "990bbd0e92caa216d52eca0935f6e35e589bfaa5",
+                "url": "https://api.github.com/repos/Seldaek/phar-utils/zipball/65fb381613fd31745d39a740a112a233f978d2d9",
+                "reference": "65fb381613fd31745d39a740a112a233f978d2d9",
                 "shasum": ""
             },
             "require": {
@@ -13290,9 +13365,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/phar-utils/issues",
-                "source": "https://github.com/Seldaek/phar-utils/tree/1.2.2"
+                "source": "https://github.com/Seldaek/phar-utils/tree/1.2.3"
             },
-            "time": "2026-08-01T12:48:55+00:00"
+            "time": "2026-10-01T08:16:23+00:00"
         },
         {
             "name": "seld/signal-handler",
@@ -19551,16 +19626,16 @@
         },
         {
             "name": "phpstan/phpstan-phpunit",
-            "version": "2.0.19",
+            "version": "2.0.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-phpunit.git",
-                "reference": "33a190a5e8e69fd18308443a80d4f43f42d43604"
+                "reference": "8dbdc3a3e2d7c5dfea655d20ecca5bc9b1b1e441"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-phpunit/zipball/33a190a5e8e69fd18308443a80d4f43f42d43604",
-                "reference": "33a190a5e8e69fd18308443a80d4f43f42d43604",
+                "url": "https://api.github.com/repos/phpstan/phpstan-phpunit/zipball/8dbdc3a3e2d7c5dfea655d20ecca5bc9b1b1e441",
+                "reference": "8dbdc3a3e2d7c5dfea655d20ecca5bc9b1b1e441",
                 "shasum": ""
             },
             "require": {
@@ -19603,9 +19678,9 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-phpunit/issues",
-                "source": "https://github.com/phpstan/phpstan-phpunit/tree/2.0.19"
+                "source": "https://github.com/phpstan/phpstan-phpunit/tree/2.0.21"
             },
-            "time": "2026-09-26T17:07:06+00:00"
+            "time": "2026-10-01T11:59:29+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
