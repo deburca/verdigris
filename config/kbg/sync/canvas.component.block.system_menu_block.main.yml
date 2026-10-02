@@ -32,6 +32,18 @@ versioned_properties:
         expand_all_items: false
     fallback_metadata:
       slot_definitions: null
+  ed092df229091287:
+    settings:
+      default_settings:
+        id: 'system_menu_block:main'
+        label: 'Primær navigation'
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
   322535c0078cf59c:
     settings:
       default_settings:

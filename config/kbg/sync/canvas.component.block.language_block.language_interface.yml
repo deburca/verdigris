@@ -24,6 +24,15 @@ versioned_properties:
         provider: language
     fallback_metadata:
       slot_definitions: null
+  0b9b8e72c8a0f8e3:
+    settings:
+      default_settings:
+        id: 'language_block:language_interface'
+        label: Sprogvælger
+        label_display: '0'
+        provider: language
+    fallback_metadata:
+      slot_definitions: null
 label: Sprogvælger
 id: block.language_block.language_interface
 provider: language

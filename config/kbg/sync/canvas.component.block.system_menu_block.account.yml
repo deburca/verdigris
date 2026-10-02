@@ -32,6 +32,18 @@ versioned_properties:
         expand_all_items: false
     fallback_metadata:
       slot_definitions: null
+  3fdf10a28f08d824:
+    settings:
+      default_settings:
+        id: 'system_menu_block:account'
+        label: Brugerkontomenu
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
   bc0ea0dab4832c55:
     settings:
       default_settings:

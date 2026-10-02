@@ -24,6 +24,15 @@ versioned_properties:
         provider: system
     fallback_metadata:
       slot_definitions: null
+  7eca9ef13a06b959:
+    settings:
+      default_settings:
+        id: system_messages_block
+        label: Beskeder
+        label_display: '0'
+        provider: system
+    fallback_metadata:
+      slot_definitions: null
   1609d44df6c8b26a:
     settings:
       default_settings:

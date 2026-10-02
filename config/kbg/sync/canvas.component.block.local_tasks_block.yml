@@ -26,6 +26,17 @@ versioned_properties:
         secondary: true
     fallback_metadata:
       slot_definitions: null
+  0d0394eb23f8851c:
+    settings:
+      default_settings:
+        id: local_tasks_block
+        label: Faner
+        label_display: '0'
+        provider: core
+        primary: true
+        secondary: true
+    fallback_metadata:
+      slot_definitions: null
   fbd9367ece78bba5:
     settings:
       default_settings:

@@ -24,6 +24,15 @@ versioned_properties:
         provider: user
     fallback_metadata:
       slot_definitions: null
+  b5820c0348dc7c4a:
+    settings:
+      default_settings:
+        id: user_login_block
+        label: 'Log ind'
+        label_display: '0'
+        provider: user
+    fallback_metadata:
+      slot_definitions: null
   888aba0d384b6b7c:
     settings:
       default_settings:

@@ -32,6 +32,18 @@ versioned_properties:
         expand_all_items: false
     fallback_metadata:
       slot_definitions: null
+  b5696530adeb8646:
+    settings:
+      default_settings:
+        id: 'system_menu_block:footer'
+        label: Sidefod
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
   075503dbc228a45c:
     settings:
       default_settings:

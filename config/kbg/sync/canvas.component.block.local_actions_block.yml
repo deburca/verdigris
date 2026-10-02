@@ -22,6 +22,15 @@ versioned_properties:
         provider: core
     fallback_metadata:
       slot_definitions: null
+  0f4eb879010f006a:
+    settings:
+      default_settings:
+        id: local_actions_block
+        label: 'Primære administratorhandlinger'
+        label_display: '0'
+        provider: core
+    fallback_metadata:
+      slot_definitions: null
   8e3ae21ee61ff56d:
     settings:
       default_settings:

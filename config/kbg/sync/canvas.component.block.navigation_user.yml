@@ -24,6 +24,15 @@ versioned_properties:
         provider: navigation
     fallback_metadata:
       slot_definitions: null
+  e80be7018715f195:
+    settings:
+      default_settings:
+        id: navigation_user
+        label: Bruger
+        label_display: '0'
+        provider: navigation
+    fallback_metadata:
+      slot_definitions: null
   a359c146ca796d35:
     settings:
       default_settings:

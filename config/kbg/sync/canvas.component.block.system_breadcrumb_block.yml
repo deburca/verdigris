@@ -24,6 +24,15 @@ versioned_properties:
         provider: system
     fallback_metadata:
       slot_definitions: null
+  735c831c351a8a16:
+    settings:
+      default_settings:
+        id: system_breadcrumb_block
+        label: Brødkrummer
+        label_display: '0'
+        provider: system
+    fallback_metadata:
+      slot_definitions: null
   0d7e961dd03aa710:
     settings:
       default_settings:

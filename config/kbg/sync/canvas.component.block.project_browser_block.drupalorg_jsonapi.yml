@@ -34,6 +34,20 @@ versioned_properties:
         filters: null
     fallback_metadata:
       slot_definitions: null
+  c01461641eea4d61:
+    settings:
+      default_settings:
+        id: 'project_browser_block:drupalorg_jsonapi'
+        label: Contrib-moduler
+        label_display: '0'
+        provider: project_browser
+        paginate: true
+        page_sizes: '12, 24, 36, 48'
+        sort_options: null
+        default_sort: null
+        filters: null
+    fallback_metadata:
+      slot_definitions: null
   9b8e8aa404b93168:
     settings:
       default_settings:

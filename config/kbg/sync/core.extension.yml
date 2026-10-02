@@ -13,6 +13,7 @@ module:
   captcha: 0
   ckeditor5: 0
   coffee: 0
+  collective: 0
   config: 0
   config_translation: 0
   content_moderation: 0
@@ -54,6 +55,7 @@ module:
   jquery_ui_resizable: 0
   kbg_canvas_fixes: 0
   kbg_multilingual: 0
+  key: 0
   klaro: 0
   language: 0
   layout_builder: 0
@@ -75,6 +77,7 @@ module:
   mysql: 0
   navigation: 0
   navigation_extra_tools: 0
+  nexus: 0
   node: 0
   options: 0
   page_cache: 0

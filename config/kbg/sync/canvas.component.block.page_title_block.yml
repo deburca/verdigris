@@ -22,6 +22,15 @@ versioned_properties:
         provider: core
     fallback_metadata:
       slot_definitions: null
+  d4f096ecae476d6e:
+    settings:
+      default_settings:
+        id: page_title_block
+        label: Sidetitel
+        label_display: '0'
+        provider: core
+    fallback_metadata:
+      slot_definitions: null
   9eea215a62e33427:
     settings:
       default_settings:

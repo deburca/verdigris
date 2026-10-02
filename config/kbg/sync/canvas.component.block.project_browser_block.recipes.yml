@@ -34,6 +34,20 @@ versioned_properties:
         filters: null
     fallback_metadata:
       slot_definitions: null
+  357ee444708ecede:
+    settings:
+      default_settings:
+        id: 'project_browser_block:recipes'
+        label: Opskrifter
+        label_display: '0'
+        provider: project_browser
+        paginate: true
+        page_sizes: '12, 24, 36, 48'
+        sort_options: null
+        default_sort: null
+        filters: null
+    fallback_metadata:
+      slot_definitions: null
   f7ae68d8b945a397:
     settings:
       default_settings:

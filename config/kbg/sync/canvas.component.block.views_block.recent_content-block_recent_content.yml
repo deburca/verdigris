@@ -30,6 +30,17 @@ versioned_properties:
         items_per_page: null
     fallback_metadata:
       slot_definitions: null
+  e4033457545c5321:
+    settings:
+      default_settings:
+        id: 'views_block:recent_content-block_recent_content'
+        label: 'Recent content: Block'
+        label_display: '0'
+        provider: views
+        views_label: ''
+        items_per_page: null
+    fallback_metadata:
+      slot_definitions: null
   a620043a9562c243:
     settings:
       default_settings:

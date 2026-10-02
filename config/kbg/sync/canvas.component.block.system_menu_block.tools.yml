@@ -32,6 +32,18 @@ versioned_properties:
         expand_all_items: false
     fallback_metadata:
       slot_definitions: null
+  32756b0b37a9322b:
+    settings:
+      default_settings:
+        id: 'system_menu_block:tools'
+        label: Værktøjer
+        label_display: '0'
+        provider: system
+        level: 1
+        depth: null
+        expand_all_items: false
+    fallback_metadata:
+      slot_definitions: null
   9236b9ed688a599e:
     settings:
       default_settings:
