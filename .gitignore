@@ -370,11 +370,12 @@ auth.json
 secrets.json
 api_keys.txt
 *.secret
-# Secret files read by the Key module's "File" provider (e.g. the Claude API
-# key: /var/www/html/secrets/claude_api_key on DDEV). The exported Key config
-# holds only the file PATH, so key.key.*.yml is safe to commit and must not
-# be ignored: ignoring it makes `drush cim` try to delete the key.
-/secrets/
+# Secret files read by the Key module's "File" provider live in
+# private://secrets/ (e.g. private://secrets/claude_api_key), which resolves
+# per site from $settings['file_private_path'] to the repo-root private*/
+# directories ignored by the rules above. The exported Key config holds only
+# that path, so key.key.*.yml is safe to commit and must not be ignored:
+# ignoring it makes `drush cim` try to delete the key.
 # DDEV web-container environment (may hold real secrets).
 .ddev/.env.web
 
