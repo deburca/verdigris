@@ -370,10 +370,12 @@ auth.json
 secrets.json
 api_keys.txt
 *.secret
-# DDEV web-container environment (holds real secrets, e.g. ANTHROPIC_API_KEY
-# for the Key module's "Environment" provider). The exported Key config now
-# holds only the variable NAME, so key.key.*.yml is safe to commit and must
-# not be ignored: ignoring it makes `drush cim` try to delete the key.
+# Secret files read by the Key module's "File" provider (e.g. the Claude API
+# key: /var/www/html/secrets/claude_api_key on DDEV). The exported Key config
+# holds only the file PATH, so key.key.*.yml is safe to commit and must not
+# be ignored: ignoring it makes `drush cim` try to delete the key.
+/secrets/
+# DDEV web-container environment (may hold real secrets).
 .ddev/.env.web
 
 # Configuration management secrets
