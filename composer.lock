@@ -10381,16 +10381,16 @@
         },
         {
             "name": "hivelog/hivelog",
-            "version": "2.3.2",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deburca/hivelog.git",
-                "reference": "355e168a1a26086a2118f387d98b9400fe8b6096"
+                "reference": "a4011e13800bd300b8e5f6aabb560b82db4a9ef7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deburca/hivelog/zipball/355e168a1a26086a2118f387d98b9400fe8b6096",
-                "reference": "355e168a1a26086a2118f387d98b9400fe8b6096",
+                "url": "https://api.github.com/repos/deburca/hivelog/zipball/a4011e13800bd300b8e5f6aabb560b82db4a9ef7",
+                "reference": "a4011e13800bd300b8e5f6aabb560b82db4a9ef7",
                 "shasum": ""
             },
             "require": {
@@ -10436,9 +10436,9 @@
             "homepage": "https://github.com/deburca/hivelog",
             "support": {
                 "issues": "https://github.com/deburca/hivelog/issues",
-                "source": "https://github.com/deburca/hivelog/tree/2.3.2"
+                "source": "https://github.com/deburca/hivelog/tree/2.5.0"
             },
-            "time": "2026-10-02T16:26:45+00:00"
+            "time": "2026-10-04T08:28:04+00:00"
         },
         {
             "name": "html2text/html2text",
