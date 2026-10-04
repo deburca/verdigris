@@ -10381,16 +10381,16 @@
         },
         {
             "name": "hivelog/hivelog",
-            "version": "2.5.0",
+            "version": "2.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deburca/hivelog.git",
-                "reference": "a4011e13800bd300b8e5f6aabb560b82db4a9ef7"
+                "reference": "930024204c133ed96b053247e78a395d9c7231fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deburca/hivelog/zipball/a4011e13800bd300b8e5f6aabb560b82db4a9ef7",
-                "reference": "a4011e13800bd300b8e5f6aabb560b82db4a9ef7",
+                "url": "https://api.github.com/repos/deburca/hivelog/zipball/930024204c133ed96b053247e78a395d9c7231fe",
+                "reference": "930024204c133ed96b053247e78a395d9c7231fe",
                 "shasum": ""
             },
             "require": {
@@ -10405,7 +10405,8 @@
                 "phpstan/phpstan-deprecation-rules": "^1.0"
             },
             "suggest": {
-                "drupal/key": "^1.18 — required only if you enable the optional nexus submodule (AI provider credentials); run `composer require drupal/key` first, then `drush en nexus -y`."
+                "drupal/key": "^1.18 — required only if you enable the optional nexus submodule (AI provider credentials); run `composer require drupal/key` first, then `drush en nexus -y`.",
+                "drupal/simple_oauth": "^6.1 — required only if you enable the optional hivelog_api submodule (OAuth for the field app); run `composer require drupal/simple_oauth` first, then `drush en hivelog_api -y`."
             },
             "type": "drupal-module",
             "extra": {
@@ -10436,9 +10437,9 @@
             "homepage": "https://github.com/deburca/hivelog",
             "support": {
                 "issues": "https://github.com/deburca/hivelog/issues",
-                "source": "https://github.com/deburca/hivelog/tree/2.5.0"
+                "source": "https://github.com/deburca/hivelog/tree/2.8.1"
             },
-            "time": "2026-10-04T08:28:04+00:00"
+            "time": "2026-10-04T18:46:47+00:00"
         },
         {
             "name": "html2text/html2text",
