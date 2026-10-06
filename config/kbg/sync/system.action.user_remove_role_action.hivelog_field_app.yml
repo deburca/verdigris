@@ -1,0 +1,14 @@
+uuid: 38ca8976-735a-43f4-912d-fece4249d180
+langcode: da
+status: true
+dependencies:
+  config:
+    - user.role.hivelog_field_app
+  module:
+    - user
+id: user_remove_role_action.hivelog_field_app
+label: 'Remove the HiveLog field app role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: hivelog_field_app

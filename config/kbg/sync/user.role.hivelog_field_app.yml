@@ -1,0 +1,34 @@
+uuid: cf00b87a-7d56-4197-951b-0917e5731e73
+langcode: da
+status: true
+dependencies:
+  module:
+    - hivelog
+    - simple_oauth
+    - system
+id: hivelog_field_app
+label: 'HiveLog field app'
+weight: 4
+is_admin: false
+permissions:
+  - 'access content'
+  - 'add apiary action log'
+  - 'add hive action log'
+  - 'add hive inspection'
+  - 'add queen observation'
+  - 'edit own apiary'
+  - 'edit own apiary action log'
+  - 'edit own hive'
+  - 'edit own hive action log'
+  - 'edit own hive inspection'
+  - 'edit own queen'
+  - 'edit own queen observation'
+  - 'grant simple_oauth codes'
+  - 'view own apiary'
+  - 'view own apiary action log'
+  - 'view own calendar action'
+  - 'view own hive'
+  - 'view own hive action log'
+  - 'view own hive inspection'
+  - 'view own queen'
+  - 'view own queen observation'

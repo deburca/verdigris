@@ -16,6 +16,7 @@ module:
   collective: 0
   config: 0
   config_translation: 0
+  consumers: 0
   content_moderation: 0
   contextual: 0
   crop: 0
@@ -48,11 +49,13 @@ module:
   gin_login: 0
   gin_toolbar: 0
   hivelog: 0
+  hivelog_api: 0
   honeypot: 0
   image: 0
   inline_form_errors: 0
   jquery_ui: 0
   jquery_ui_resizable: 0
+  jsonapi: 0
   kbg_canvas_fixes: 0
   kbg_multilingual: 0
   key: 0
@@ -91,6 +94,8 @@ module:
   scheduler: 0
   scheduler_content_moderation_integration: 0
   seckit: 0
+  serialization: 0
+  simple_oauth: 0
   svg_image: 0
   symfony_mailer_lite: 0
   system: 0
