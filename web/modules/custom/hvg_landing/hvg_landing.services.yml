@@ -1,6 +1,13 @@
 services:
   hvg_landing.import_subscriber:
     class: Drupal\hvg_landing\EventSubscriber\ImportSubscriber
-    arguments: ['@state', '@entity_type.manager']
+    arguments:
+      - '@state'
+      - '@entity_type.manager'
+      - '@account_switcher'
+      - '@logger.channel.hvg_landing'
     tags:
       - { name: event_subscriber }
+  logger.channel.hvg_landing:
+    parent: logger.channel_base
+    arguments: ['hvg_landing']
