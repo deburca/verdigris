@@ -8,6 +8,7 @@ additional_hostnames:
     - verdigris
     - kragebaekgaard
     - hestehoj
+    - hivelog
 additional_fqdns: []
 database:
     type: mariadb

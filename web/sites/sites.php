@@ -73,4 +73,7 @@
           'www.verdigris.nu' => 'vdg',
        'verdigris.ddev.site' => 'vdg',
      'drupal-cms2.ddev.site' => 'vdg',
+                'hivelog.eu' => 'hvg',
+            'www.hivelog.eu' => 'hvg',
+         'hivelog.ddev.site' => 'hvg',
  ];
