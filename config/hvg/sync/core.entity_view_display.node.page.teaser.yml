@@ -36,6 +36,7 @@ content:
     region: content
 hidden:
   content_moderation_control: true
+  field_component_tree: true
   field_content: true
   field_tags: true
   links: true

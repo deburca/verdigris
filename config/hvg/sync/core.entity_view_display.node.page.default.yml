@@ -40,6 +40,7 @@ content:
     weight: 1
     region: content
 hidden:
+  field_component_tree: true
   field_description: true
   field_tags: true
   links: true
