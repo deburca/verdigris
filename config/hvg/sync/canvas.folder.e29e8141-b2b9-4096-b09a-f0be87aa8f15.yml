@@ -1,0 +1,27 @@
+uuid: e29e8141-b2b9-4096-b09a-f0be87aa8f15
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.beeswax.anchor
+    - canvas.component.sdc.beeswax.badge
+    - canvas.component.sdc.beeswax.blockquote
+    - canvas.component.sdc.beeswax.button
+    - canvas.component.sdc.beeswax.heading
+    - canvas.component.sdc.beeswax.icon
+    - canvas.component.sdc.beeswax.image
+    - canvas.component.sdc.beeswax.text
+    - canvas.component.sdc.beeswax.video
+name: Base
+configEntityTypeId: component
+weight: 0
+items:
+  - sdc.beeswax.anchor
+  - sdc.beeswax.badge
+  - sdc.beeswax.blockquote
+  - sdc.beeswax.button
+  - sdc.beeswax.heading
+  - sdc.beeswax.icon
+  - sdc.beeswax.image
+  - sdc.beeswax.text
+  - sdc.beeswax.video

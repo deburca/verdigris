@@ -1,0 +1,44 @@
+uuid: 3af6ae4d-5eb5-4597-adca-5fdb89484ba2
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.system_branding_block
+    - canvas.component.block.system_menu_block.footer
+    - canvas.component.sdc.beeswax.footer
+  theme:
+    - beeswax
+id: beeswax.footer
+region: footer
+theme: beeswax
+component_tree:
+  '0:a3bbaff8-da29-414b-b0c2-050ccc3e9446':
+    uuid: a3bbaff8-da29-414b-b0c2-050ccc3e9446
+    component_id: sdc.beeswax.footer
+    component_version: d696cea1796b650e
+    inputs:
+      align: true
+  '0:footer_first:0:fd810ca7-25d7-4d9e-af15-b61ebda444aa':
+    parent_uuid: a3bbaff8-da29-414b-b0c2-050ccc3e9446
+    slot: footer_first
+    uuid: fd810ca7-25d7-4d9e-af15-b61ebda444aa
+    component_id: block.system_branding_block
+    component_version: 7d528e00f56b3abf
+    inputs:
+      label: 'Site branding'
+      label_display: '0'
+      use_site_logo: true
+      use_site_name: true
+      use_site_slogan: false
+  '0:footer_last:0:e9eaacca-87a0-4bcf-9ce2-bd58228605e6':
+    parent_uuid: a3bbaff8-da29-414b-b0c2-050ccc3e9446
+    slot: footer_last
+    uuid: e9eaacca-87a0-4bcf-9ce2-bd58228605e6
+    component_id: block.system_menu_block.footer
+    component_version: 075503dbc228a45c
+    inputs:
+      label: Footer
+      label_display: '0'
+      level: 1
+      depth: null
+      expand_all_items: false

@@ -1,0 +1,5 @@
+_core:
+  default_config_hash: '-9-V13faM42yunbaxhmcH0N4oMG1gbhM3zv2fvLXrRQ'
+additional_trusted_composer_plugins:
+  - tbachert/spi
+include_unknown_files_in_project_root: false

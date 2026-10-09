@@ -1,0 +1,6 @@
+_core:
+  default_config_hash: _Hm47pFZlsOb89kEcdLFMJ6TqsUezQWYZeNmYOkcqHI
+site_key: 611d663b-f8ce-4bbc-a59a-8eee5af5de0f
+api_key: 611d663b-f8ce-4bbc-a59a-8eee5af5de0f
+api_endpoint: local
+enable_validation_logging: false

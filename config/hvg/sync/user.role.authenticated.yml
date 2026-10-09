@@ -1,0 +1,26 @@
+uuid: 58c30869-ccb5-4161-a67e-20b65b564bfb
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.basic_html
+    - filter.format.webform_default
+  module:
+    - file
+    - filter
+    - klaro
+    - media
+    - system
+_core:
+  default_config_hash: wkW7P5A53YhGmsgamrmTbfwpZrqdnPYiJdoAZQtdmJg
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access content'
+  - 'delete own files'
+  - 'use klaro'
+  - 'use text format basic_html'
+  - 'use text format webform_default'
+  - 'view media'

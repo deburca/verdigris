@@ -1,0 +1,14 @@
+uuid: b5b5d649-cc92-4643-ab7c-6e44b721c334
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.hivelog_user
+  module:
+    - user
+id: user_add_role_action.hivelog_user
+label: 'Add the HiveLog user role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: hivelog_user

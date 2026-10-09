@@ -1,0 +1,14 @@
+uuid: 66ad27e7-9a48-4cce-82df-25d008977e6f
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.demo
+  module:
+    - user
+id: user_add_role_action.demo
+label: 'Add the Demo role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: demo

@@ -1,0 +1,14 @@
+uuid: 22331388-26ca-4930-b284-d3a82c57f766
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.hivelog_user
+  module:
+    - user
+id: user_remove_role_action.hivelog_user
+label: 'Remove the HiveLog user role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: hivelog_user

@@ -1,0 +1,15 @@
+uuid: 4cb3b5dd-ffbc-458c-8367-b7b65d9f4a1c
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.beeswax.cta
+    - canvas.component.sdc.beeswax.hero-billboard
+    - canvas.component.sdc.beeswax.hero-side-by-side
+name: Hero
+configEntityTypeId: component
+weight: 0
+items:
+  - sdc.beeswax.cta
+  - sdc.beeswax.hero-billboard
+  - sdc.beeswax.hero-side-by-side
