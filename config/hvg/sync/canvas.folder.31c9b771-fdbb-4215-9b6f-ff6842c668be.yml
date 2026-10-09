@@ -1,0 +1,25 @@
+uuid: 31c9b771-fdbb-4215-9b6f-ff6842c668be
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.beeswax.accordion
+    - canvas.component.sdc.beeswax.accordion-container
+    - canvas.component.sdc.beeswax.footer
+    - canvas.component.sdc.beeswax.grid
+    - canvas.component.sdc.beeswax.group
+    - canvas.component.sdc.beeswax.navbar
+    - canvas.component.sdc.beeswax.section
+    - canvas.component.sdc.hvg_landing.carousel
+name: Layout
+configEntityTypeId: component
+weight: 0
+items:
+  - sdc.beeswax.accordion
+  - sdc.beeswax.accordion-container
+  - sdc.beeswax.footer
+  - sdc.beeswax.grid
+  - sdc.beeswax.group
+  - sdc.beeswax.navbar
+  - sdc.beeswax.section
+  - sdc.hvg_landing.carousel

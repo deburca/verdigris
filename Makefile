@@ -1,6 +1,8 @@
 # =====================================================================
 # Multisite push/pull workflow — vdg (verdigris.nu), kbg
-# (kragebaekgaard.dk), shh (stutteri-hestehoj.dk / hestehoj.dk).
+# (kragebaekgaard.dk), shh (stutteri-hestehoj.dk / hestehoj.dk), hvg
+# (hivelog.eu, public HiveLog/Viculum demo; NOT part of all-push/all-pull
+# until it exists on the servers).
 #
 # <site>-push — run LOCALLY (dev, via ddev), in this order:
 #   <site>-refresh (update-database -> clear-cache) ->
@@ -46,10 +48,12 @@
 VDG_URI ?= verdigris.nu
 KBG_URI ?= kragebaekgaard.dk
 SHH_URI ?= hestehoj.dk
+HVG_URI ?= hivelog.eu
 
 VDG_DDEV = https://verdigris.ddev.site
 KBG_DDEV = https://kragebaekgaard.ddev.site
 SHH_DDEV = https://hestehoj.ddev.site
+HVG_DDEV = https://hivelog.ddev.site
 
 DRUSH = vendor/bin/drush
 
@@ -153,6 +157,38 @@ shh-pull:
 	composer install --no-dev
 	$(MAKE) shh-deploy
 
+# ------------------------------------------------------------------ hvg
+
+hvg-refresh:
+	ddev drush -l $(HVG_DDEV) updb -y
+	ddev drush -l $(HVG_DDEV) cache:rebuild
+
+hvg-export:
+	ddev drush -l $(HVG_DDEV) config:export -y
+
+hvg-commit: hvg-export
+	git add config/hvg
+	git commit
+
+hvg-push: hvg-refresh hvg-commit
+	git push
+
+hvg-deploy:
+	$(DRUSH) --uri=$(HVG_URI) updb -y
+	@if ls config/hvg/sync/*.yml >/dev/null 2>&1; then \
+		$(DRUSH) --uri=$(HVG_URI) config:import -y; \
+	else \
+		echo "config/hvg/sync has no exported config yet — skipping config:import"; \
+	fi
+	$(DRUSH) --uri=$(HVG_URI) cache:rebuild
+	$(DRUSH) --uri=$(HVG_URI) deploy:hook -y
+
+hvg-pull:
+	git pull
+	git submodule update --init --recursive
+	composer install --no-dev
+	$(MAKE) hvg-deploy
+
 # ------------------------------------------------- all sites at once
 
 all-push: vdg-refresh vdg-export kbg-refresh kbg-export shh-refresh shh-export
@@ -170,6 +206,7 @@ all-pull:
 vdg: vdg-pull
 kbg: kbg-pull
 shh: shh-pull
+hvg: hvg-pull
 
 # ------------------------------------------ upstream drupal/cms template
 #
@@ -194,8 +231,9 @@ upstream-promote:
 	@test -n "$(CMS_VERSION)" || { echo "set CMS_VERSION, e.g. make upstream-promote CMS_VERSION=2.1.3"; exit 1; }
 	scripts/upstream-diff/upstream-diff.sh --promote $(CMS_VERSION)
 
-.PHONY: vdg kbg shh all-push all-pull \
+.PHONY: vdg kbg shh hvg all-push all-pull \
 	vdg-refresh vdg-export vdg-commit vdg-push vdg-deploy vdg-pull \
 	kbg-refresh kbg-export kbg-commit kbg-push kbg-deploy kbg-pull \
 	shh-refresh shh-export shh-commit shh-push shh-deploy shh-pull \
+	hvg-refresh hvg-export hvg-commit hvg-push hvg-deploy hvg-pull \
 	upstream-diff upstream-promote

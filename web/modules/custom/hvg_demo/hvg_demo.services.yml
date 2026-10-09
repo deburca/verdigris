@@ -1,0 +1,11 @@
+services:
+  hvg_demo.cleaner:
+    class: Drupal\hvg_demo\Service\DemoCleaner
+    arguments:
+      - '@entity_type.manager'
+      - '@config.factory'
+      - '@datetime.time'
+      - '@logger.channel.hvg_demo'
+  logger.channel.hvg_demo:
+    parent: logger.channel_base
+    arguments: ['hvg_demo']

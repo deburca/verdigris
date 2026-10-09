@@ -1,0 +1,11 @@
+uuid: 614b1cd3-9ac3-4c83-a5c1-14912ad7bcae
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.dashboard_placeholder
+name: Block
+configEntityTypeId: component
+weight: 0
+items:
+  - block.dashboard_placeholder

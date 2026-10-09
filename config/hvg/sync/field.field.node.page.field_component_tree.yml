@@ -1,0 +1,21 @@
+uuid: c070a877-965c-40e9-83b5-95b38b8a810a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_component_tree
+    - node.type.page
+  module:
+    - canvas
+id: node.page.field_component_tree
+field_name: field_component_tree
+entity_type: node
+bundle: page
+label: Components
+description: 'Stores a component tree for Canvas.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: component_tree

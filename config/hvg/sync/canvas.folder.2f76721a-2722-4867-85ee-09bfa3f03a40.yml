@@ -1,0 +1,19 @@
+uuid: 2f76721a-2722-4867-85ee-09bfa3f03a40
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.beeswax.card
+    - canvas.component.sdc.beeswax.card-icon
+    - canvas.component.sdc.beeswax.card-logo
+    - canvas.component.sdc.beeswax.card-pricing
+    - canvas.component.sdc.beeswax.card-testimonial
+name: Card
+configEntityTypeId: component
+weight: 0
+items:
+  - sdc.beeswax.card
+  - sdc.beeswax.card-icon
+  - sdc.beeswax.card-logo
+  - sdc.beeswax.card-pricing
+  - sdc.beeswax.card-testimonial

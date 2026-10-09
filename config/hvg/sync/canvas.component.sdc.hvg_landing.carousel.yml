@@ -1,0 +1,33 @@
+uuid: 5223e78f-d6fa-4c86-9444-f95e6978e9cf
+langcode: en
+status: true
+dependencies:
+  module:
+    - hvg_landing
+active_version: 899fa713665c912a
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        label:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value:
+            -
+              value: 'Screenshots of the app'
+          expression: ℹ︎string␟value
+          derived_schema_metadata:
+            string_shape: {  }
+    fallback_metadata:
+      slot_definitions:
+        slides:
+          title: Slides
+          description: 'Each component placed here is one slide.'
+label: Carousel
+id: sdc.hvg_landing.carousel
+provider: hvg_landing
+source: sdc
+source_local_id: 'hvg_landing:carousel'

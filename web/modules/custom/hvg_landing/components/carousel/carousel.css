@@ -1,0 +1,89 @@
+.hvg-carousel {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.hvg-carousel__track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.hvg-carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.hvg-carousel__track:focus-visible {
+  outline: 2px solid currentcolor;
+  outline-offset: 4px;
+}
+
+/* Each direct child is one slide. */
+.hvg-carousel__track > * {
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: center;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hvg-carousel__track {
+    scroll-behavior: smooth;
+  }
+}
+
+.hvg-carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-block-start: 1rem;
+}
+
+.hvg-carousel__button {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid currentcolor;
+  border-radius: 9999px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.hvg-carousel__button:hover:not(:disabled) {
+  background: color-mix(in srgb, currentcolor 10%, transparent);
+}
+
+.hvg-carousel__button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.hvg-carousel__dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.hvg-carousel__dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  padding: 0;
+  border: 1px solid currentcolor;
+  border-radius: 9999px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.hvg-carousel__dot[aria-current="true"] {
+  background: currentcolor;
+}

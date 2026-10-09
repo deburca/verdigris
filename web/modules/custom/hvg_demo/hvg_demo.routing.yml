@@ -1,0 +1,7 @@
+hvg_demo.start:
+  path: '/demo/start'
+  defaults:
+    _form: '\Drupal\hvg_demo\Form\DemoSignupForm'
+    _title: 'Start your demo'
+  requirements:
+    _user_is_logged_in: 'FALSE'

@@ -1,0 +1,9 @@
+name: 'HVG Landing'
+type: module
+description: 'Seeds the Canvas landing page (/home) for hivelog.eu, the public HiveLog and Viculum demo site. canvas_page entities are content, not config, so cex/cim never carry them; the deploy hook creates the page once per environment. Enabled on hvg only (per-site core.extension); no config or schema of its own.'
+core_version_requirement: ^11
+package: Custom
+dependencies:
+  - canvas:canvas
+  - drupal:media
+  - drupal:path

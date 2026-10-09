@@ -1,0 +1,9 @@
+_core:
+  default_config_hash: Ccm_9FhbmFTBDLZfm7YBrCDTC5mhvXeqNcYSZAeIJJE
+favicon:
+  path: modules/custom/hvg_landing/logo.svg
+  use_default: false
+logo:
+  path: modules/custom/hvg_landing/logo.svg
+  use_default: false
+scheme: light
