@@ -3,7 +3,7 @@ _core:
 langcode: en
 uuid: 611d663b-f8ce-4bbc-a59a-8eee5af5de0f
 name: HiveLog
-mail: admin@example.com
+mail: info@hivelog.eu
 slogan: ''
 page:
   403: /user/login
