@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Self-service, self-expiring demo accounts for hivelog.eu.
+ */
+
+/**
+ * Implements hook_cron().
+ */
+function hvg_demo_cron(): void {
+  \Drupal::service('hvg_demo.cleaner')->deleteExpired();
+}

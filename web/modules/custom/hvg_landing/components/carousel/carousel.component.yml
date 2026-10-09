@@ -1,0 +1,23 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
+name: Carousel
+description: A swipeable, keyboard-accessible slideshow. Drop any components (for example images with captions) into the slot; each becomes one slide.
+group: Layout
+status: stable
+props:
+  type: object
+  properties:
+    label:
+      type: string
+      title: Accessible label
+      description: Announced by screen readers to describe what the carousel contains.
+      default: Slideshow
+      examples:
+        - Screenshots of the app
+slots:
+  slides:
+    title: Slides
+    description: Each component placed here is one slide.
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once

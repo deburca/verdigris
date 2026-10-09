@@ -1,0 +1,6 @@
+services:
+  hvg_landing.import_subscriber:
+    class: Drupal\hvg_landing\EventSubscriber\ImportSubscriber
+    arguments: ['@state', '@entity_type.manager']
+    tags:
+      - { name: event_subscriber }

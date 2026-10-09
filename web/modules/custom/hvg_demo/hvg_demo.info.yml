@@ -1,0 +1,8 @@
+name: 'HVG Demo accounts'
+type: module
+description: 'Self-service demo accounts for hivelog.eu: a visitor picks a username and password, gets a Demo + HiveLog-user role, and the account and all its HiveLog data are deleted on cron once older than the configured lifetime. Enabled on hvg only (per-site core.extension).'
+core_version_requirement: ^11
+package: Custom
+dependencies:
+  - hivelog:hivelog
+  - drupal:user
