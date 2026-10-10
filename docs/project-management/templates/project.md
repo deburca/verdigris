@@ -2,7 +2,7 @@
 type: project
 tags: [cms2/project]
 status: planning       # planning | active | paused | done | dropped
-site: shared           # vdg | kbg | shh | shared
+site: shared           # vdg | kbg | shh | hvg | shared
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
 target:                # target release/date, optional

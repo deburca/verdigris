@@ -15,7 +15,7 @@ contiguous within each type, independent across types, IDs never reused or
 renumbered once assigned), and status vocabularies. CMS2-specific extensions on
 top of the base schema (see the skill's Common extensions section):
 
-- A **scoping field**, `site:` (`vdg` | `kbg` | `shh` | `shared`), on tasks,
+- A **scoping field**, `site:` (`vdg` | `kbg` | `shh` | `hvg` | `shared`), on tasks,
   decisions, and infrastructure notes — this repo is a Drupal multisite, so most
   work is scoped to one site.
 - `infrastructure/` is the home for long-lived reference/runbook docs (DDEV,
@@ -38,6 +38,7 @@ shared Drupal core, contributed modules, and architectural patterns.
 | verdigris.nu | `vdg` | zwarte_piet | Active | Default site |
 | kragebaekgaard.dk | `kbg` | quick_silver | Active | |
 | stutteri-hestehoj.dk | `shh` | hestehoj | In Development | Previously falconi.net |
+| hivelog.eu | `hvg` | beeswax | Active | Public HiveLog / Viculum demo; theme is a Composer package, not under `web/themes/custom` |
 
 ### Technical Architecture
 
@@ -118,7 +119,7 @@ docs/                          ← vault root (recommended)
   independent of the vault root, so the queries work whether you open `docs/`
   or `docs/project-management/`.
 - **Site Tagging**: tasks and decisions related to specific sites should include
-  a `site` field in frontmatter: `site: vdg`, `site: kbg`, or `site: shh`. Use
+  a `site` field in frontmatter: `site: vdg`, `site: kbg`, `site: shh`, or `site: hvg`. Use
   `site: shared` for work affecting all sites.
 - **Wikilinks**: cross-reference with real note links like
   `[[0001-multisite-architecture]]` and `[[verdigris-homepage-redesign]]`. Avoid
