@@ -14,8 +14,9 @@ deciders:
 
 ## Status
 
-accepted — implemented and live in production since 2026-10-09. One part,
-the iCloud SMTP mail transport, is merged but not yet proven in production
+accepted — implemented and live in production since 2026-10-09. The mail
+transport (decision 8) was added on 2026-10-10 and verified in production
+the same day: notifications reach the inbox with DKIM and DMARC passing
 (see [[0071-hvg-site-mail-delivery]]).
 
 ## Context
@@ -108,7 +109,10 @@ deployable to the shared OVH host without special handling.
    DKIM and the domain has no DMARC record, so iCloud (which hosts
    `info@hivelog.eu`) filed notifications as Junk. iCloud already publishes
    a DKIM key for hivelog.eu, so mail submitted through it is signed with an
-   aligned signature.
+   aligned signature. A `_dmarc` TXT record (`v=DMARC1; p=none;`) is also
+   required: without it iCloud reports `dmarc=none` and still filed the
+   signed mail as Junk; with it DMARC passes and the mail reaches the
+   inbox.
 
 9. **Deployment is config-first.** A new environment is created with
    `drush site:install --existing-config` on an **empty** database from
@@ -202,7 +206,8 @@ SPF and DKIM are already in place.
 
 Not enough on its own: the relay's envelope sender is its own bounce domain,
 so SPF cannot align with `hivelog.eu`, and OVH signing for a custom domain
-was not confirmed. A DMARC record is still worth adding (task 0071).
+was not confirmed. (A DMARC record turned out to be needed as well, on top
+of the iCloud transport.)
 
 ### Alternative 8: Copy a development database to production
 
@@ -234,8 +239,12 @@ $config['symfony_mailer_lite.symfony_mailer_lite_transport.icloud']['configurati
 Verification done: rehearsal install onto an empty database (site UUID,
 theme, seeded page, roles, signup, cleanup, second import a no-op, clean
 re-export); browser checks at desktop and mobile width; interest-form email
-through DDEV Mailpit, including through the SMTP transport. Not verified:
-real delivery to the iCloud inbox from production.
+through DDEV Mailpit, including through the SMTP transport; and, in
+production on 2026-10-10, delivery of the interest-form notification to the
+iCloud inbox with `dkim=pass` and `dmarc=pass` (iCloud spam score 4.43 to
+2.43 once the DMARC record was published). SPF reports a softfail because
+iCloud evaluates it on its own internal relay address; that is expected for
+an iCloud-hosted domain and does not affect the result.
 
 Incidents met in production and what they taught:
 - Geofield's `GeofieldBackend/` directory was empty, so HiveLog's tables
@@ -246,6 +255,8 @@ Incidents met in production and what they taught:
   (Decision 7).
 - Command-line `sendmail` is refused for the shell user on the host, so mail
   must be tested through the web or, now, the SMTP transport.
+- Signed mail was still junked until a DMARC record existed: DKIM alone was
+  not credited without a published policy.
 
 ## Follow-up tasks
 
