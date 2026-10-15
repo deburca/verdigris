@@ -17,6 +17,8 @@ permissions:
   - 'add hive action log'
   - 'add hive inspection'
   - 'add queen observation'
+  - 'delete own hive inspection'
+  - 'delete own queen observation'
   - 'edit own apiary'
   - 'edit own apiary action log'
   - 'edit own hive'
