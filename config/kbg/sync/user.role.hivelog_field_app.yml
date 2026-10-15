@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - hivelog
+    - nexus
     - simple_oauth
     - system
 id: hivelog_field_app
@@ -29,6 +30,7 @@ permissions:
   - 'view own calendar action'
   - 'view own hive'
   - 'view own hive action log'
+  - 'view own hive insight'
   - 'view own hive inspection'
   - 'view own queen'
   - 'view own queen observation'
