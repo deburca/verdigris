@@ -23,7 +23,7 @@ use_dns_when_possible: false
 composer_version: "2"
 web_environment:
     - STORYBOOK_SERVER_RENDER_URL='https://${DDEV_PROJECT}.${DDEV_TLD}/storybook/stories/render'
-nodejs_version: "20"
+    - PHP_OPCACHE_DISABLE=1
 corepack_enable: true
 web_extra_exposed_ports:
     - name: storybook
