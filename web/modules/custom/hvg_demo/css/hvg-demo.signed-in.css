@@ -1,0 +1,5 @@
+/* Signed-in people cannot use /demo/start (it is for signed-out visitors only),
+   so hide every call to action that points there. */
+a[href="/demo/start"] {
+  display: none;
+}

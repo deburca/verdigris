@@ -1,0 +1,4 @@
+signed_in:
+  css:
+    theme:
+      css/hvg-demo.signed-in.css: {}
