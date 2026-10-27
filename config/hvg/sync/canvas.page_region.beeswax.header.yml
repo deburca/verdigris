@@ -21,7 +21,7 @@ component_tree:
     component_id: sdc.beeswax.navbar
     component_version: 3149f199d66bbc29
     inputs:
-      menu_align: center
+      menu_align: right
   '0:links:0:565f1a20-7d83-4536-99d5-2e60352d6587':
     parent_uuid: 00748ed3-029f-419e-b38e-620c1d5e6d1d
     slot: links
