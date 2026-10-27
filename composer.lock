@@ -1663,16 +1663,16 @@
         },
         {
             "name": "deburca/beeswax",
-            "version": "1.0.4",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deburca/beeswax.git",
-                "reference": "caab02fac3054a00e548bed12e3ab6bb3c5c64e6"
+                "reference": "e6cf45e10ffdc076d2b2001b168a7fe6a94321ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deburca/beeswax/zipball/caab02fac3054a00e548bed12e3ab6bb3c5c64e6",
-                "reference": "caab02fac3054a00e548bed12e3ab6bb3c5c64e6",
+                "url": "https://api.github.com/repos/deburca/beeswax/zipball/e6cf45e10ffdc076d2b2001b168a7fe6a94321ac",
+                "reference": "e6cf45e10ffdc076d2b2001b168a7fe6a94321ac",
                 "shasum": ""
             },
             "require": {
@@ -1692,9 +1692,9 @@
             "description": "A scalable, modern Drupal CMS prototype theme, integrating cutting-edge front-end tools and a flexible, component-based design system.",
             "support": {
                 "issues": "https://github.com/deburca/beeswax/issues",
-                "source": "https://github.com/deburca/beeswax/tree/1.0.4"
+                "source": "https://github.com/deburca/beeswax/tree/1.1.0"
             },
-            "time": "2026-10-09T17:42:38+00:00"
+            "time": "2026-10-27T19:27:15+00:00"
         },
         {
             "name": "defuse/php-encryption",
