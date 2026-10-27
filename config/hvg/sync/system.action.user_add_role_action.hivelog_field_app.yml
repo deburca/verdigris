@@ -1,0 +1,14 @@
+uuid: c1c1b768-547a-4acb-83d7-b3e85f490bc3
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.hivelog_field_app
+  module:
+    - user
+id: user_add_role_action.hivelog_field_app
+label: 'Add the HiveLog mobile app user role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: hivelog_field_app

@@ -1,0 +1,14 @@
+uuid: c53085e2-06d1-4423-b803-078ebb0c3acd
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.hivelog_field_app
+  module:
+    - user
+id: user_remove_role_action.hivelog_field_app
+label: 'Remove the HiveLog mobile app user role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: hivelog_field_app

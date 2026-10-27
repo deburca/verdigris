@@ -1,0 +1,36 @@
+uuid: 2424b8df-7564-4765-9e28-fc42f95cdc35
+langcode: en
+status: true
+dependencies:
+  module:
+    - hivelog
+    - simple_oauth
+    - system
+id: hivelog_field_app
+label: 'HiveLog mobile app user'
+weight: 7
+is_admin: false
+permissions:
+  - 'access content'
+  - 'add apiary action log'
+  - 'add hive action log'
+  - 'add hive inspection'
+  - 'add queen observation'
+  - 'delete own hive inspection'
+  - 'delete own queen observation'
+  - 'edit own apiary'
+  - 'edit own apiary action log'
+  - 'edit own hive'
+  - 'edit own hive action log'
+  - 'edit own hive inspection'
+  - 'edit own queen'
+  - 'edit own queen observation'
+  - 'grant simple_oauth codes'
+  - 'view own apiary'
+  - 'view own apiary action log'
+  - 'view own calendar action'
+  - 'view own hive'
+  - 'view own hive action log'
+  - 'view own hive inspection'
+  - 'view own queen'
+  - 'view own queen observation'

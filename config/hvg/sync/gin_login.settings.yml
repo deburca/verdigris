@@ -5,4 +5,4 @@ logo:
   path: modules/custom/hvg_landing/logo.svg
 brand_image:
   use_default: false
-  path: 'modules/custom/hvg_landing/images/login-wallpaper.svg'
+  path: modules/custom/hvg_landing/images/login-wallpaper.svg

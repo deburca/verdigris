@@ -1,0 +1,19 @@
+uuid: a60d9b4a-572c-4ae5-89a4-4aa8d2215b88
+langcode: en
+status: true
+dependencies: {  }
+id: hivelog_field_app
+name: hivelog_field_app
+description: 'Log inspections, queen observations and calendar action reports from the Vinculum app.'
+grant_types:
+  authorization_code:
+    status: true
+    description: 'Sign in to the Vinculum app.'
+  refresh_token:
+    status: true
+    description: 'Stay signed in to the Vinculum app.'
+umbrella: false
+parent: null
+granularity_id: role
+granularity_configuration:
+  role: hivelog_field_app
