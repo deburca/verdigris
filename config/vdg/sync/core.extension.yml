@@ -4,7 +4,6 @@ module:
   ai: 0
   ai_provider_anthropic: 0
   announcements_feed: 0
-  assimilate: 0
   automated_cron: 0
   autosave_form: 0
   better_exposed_filters: 0
@@ -17,7 +16,6 @@ module:
   checklistapi: 0
   ckeditor5: 0
   coffee: 0
-  collective: 0
   config_translation: 0
   content_moderation: 0
   contextual: 0
@@ -51,7 +49,6 @@ module:
   geofield: 0
   gin_login: 0
   gin_toolbar: 0
-  hivelog: 0
   honeypot: 0
   image: 0
   jquery_ui: 0
@@ -79,10 +76,8 @@ module:
   metatag_twitter_cards: 0
   modeler_api: 0
   mysql: 0
-  nanoprobe: 0
   navigation: 0
   navigation_extra_tools: 0
-  nexus: 0
   node: 0
   options: 0
   page_cache: 0

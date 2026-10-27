@@ -8,7 +8,7 @@ dependencies:
     - simple_oauth
     - system
 id: hivelog_field_app
-label: 'HiveLog field app'
+label: 'HiveLog mobile app user'
 weight: 4
 is_admin: false
 permissions:
