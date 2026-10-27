@@ -1,8 +1,8 @@
 # =====================================================================
 # Multisite push/pull workflow — vdg (verdigris.nu), kbg
 # (kragebaekgaard.dk), shh (stutteri-hestehoj.dk / hestehoj.dk), hvg
-# (hivelog.eu, public HiveLog/Viculum demo; NOT part of all-push/all-pull
-# until it exists on the servers).
+# (hivelog.eu, the HiveLog site and the server for the Vinculum app; NOT part
+# of all-push/all-pull until it exists on the servers).
 #
 # <site>-push — run LOCALLY (dev, via ddev), in this order:
 #   <site>-refresh (update-database -> clear-cache) ->
