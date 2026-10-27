@@ -1663,16 +1663,16 @@
         },
         {
             "name": "deburca/beeswax",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deburca/beeswax.git",
-                "reference": "e6cf45e10ffdc076d2b2001b168a7fe6a94321ac"
+                "reference": "0638cb3d1698fe4c52955be08aaa90751187be67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deburca/beeswax/zipball/e6cf45e10ffdc076d2b2001b168a7fe6a94321ac",
-                "reference": "e6cf45e10ffdc076d2b2001b168a7fe6a94321ac",
+                "url": "https://api.github.com/repos/deburca/beeswax/zipball/0638cb3d1698fe4c52955be08aaa90751187be67",
+                "reference": "0638cb3d1698fe4c52955be08aaa90751187be67",
                 "shasum": ""
             },
             "require": {
@@ -1692,9 +1692,9 @@
             "description": "A scalable, modern Drupal CMS prototype theme, integrating cutting-edge front-end tools and a flexible, component-based design system.",
             "support": {
                 "issues": "https://github.com/deburca/beeswax/issues",
-                "source": "https://github.com/deburca/beeswax/tree/1.1.0"
+                "source": "https://github.com/deburca/beeswax/tree/1.1.1"
             },
-            "time": "2026-10-27T19:27:15+00:00"
+            "time": "2026-10-27T20:16:16+00:00"
         },
         {
             "name": "defuse/php-encryption",
@@ -10605,16 +10605,16 @@
         },
         {
             "name": "hivelog/hivelog",
-            "version": "3.0.2",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deburca/hivelog.git",
-                "reference": "1dca77ab3c778b0f5d2e9248e7a9f54ab08c1a2b"
+                "reference": "7c78fa5a32374dec916b6d709d2fb3ec205f3ec2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deburca/hivelog/zipball/1dca77ab3c778b0f5d2e9248e7a9f54ab08c1a2b",
-                "reference": "1dca77ab3c778b0f5d2e9248e7a9f54ab08c1a2b",
+                "url": "https://api.github.com/repos/deburca/hivelog/zipball/7c78fa5a32374dec916b6d709d2fb3ec205f3ec2",
+                "reference": "7c78fa5a32374dec916b6d709d2fb3ec205f3ec2",
                 "shasum": ""
             },
             "require": {
@@ -10661,9 +10661,9 @@
             "homepage": "https://github.com/deburca/hivelog",
             "support": {
                 "issues": "https://github.com/deburca/hivelog/issues",
-                "source": "https://github.com/deburca/hivelog/tree/3.0.2"
+                "source": "https://github.com/deburca/hivelog/tree/3.1.0"
             },
-            "time": "2026-10-26T21:32:11+00:00"
+            "time": "2026-10-27T20:28:15+00:00"
         },
         {
             "name": "html2text/html2text",
