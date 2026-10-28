@@ -6,4 +6,4 @@ favicon:
 logo:
   path: modules/custom/hvg_landing/logo.svg
   use_default: false
-scheme: light
+scheme: auto
