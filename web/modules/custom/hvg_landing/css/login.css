@@ -65,6 +65,12 @@ html.gin--dark-mode body.gin-login[data-gin-accent] {
   --gin-border-color-form-element: #4a4237;
 }
 
+/* The view_password eye is a black SVG background: invert it on the dark input. */
+html.gin--dark-mode body.gin-login .shwpd {
+  filter: invert(1);
+  opacity: 0.85;
+}
+
 body.gin-login .user-form-page__page-title {
   font-family: "Fraunces", Georgia, Cambria, "Times New Roman", serif;
   font-weight: 500;
