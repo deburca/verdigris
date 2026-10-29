@@ -11,6 +11,7 @@ dependencies:
     - klaro
     - media
     - system
+    - tfa
 _core:
   default_config_hash: wkW7P5A53YhGmsgamrmTbfwpZrqdnPYiJdoAZQtdmJg
 id: authenticated
@@ -20,6 +21,7 @@ is_admin: false
 permissions:
   - 'access content'
   - 'delete own files'
+  - 'setup own tfa'
   - 'use klaro'
   - 'use text format basic_html'
   - 'use text format webform_default'

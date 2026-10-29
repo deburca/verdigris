@@ -3,9 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - canvas.component.block.tfa_user_login_block
     - canvas.component.block.user_login_block
 name: Forms
 configEntityTypeId: component
 weight: 0
 items:
+  - block.tfa_user_login_block
   - block.user_login_block

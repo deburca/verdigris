@@ -36,6 +36,7 @@ module:
   eca_ui: 0
   eca_user: 0
   editor: 0
+  encrypt: 0
   field: 0
   field_ui: 0
   file: 0
@@ -52,6 +53,7 @@ module:
   hvg_landing: 0
   image: 0
   jsonapi: 0
+  key: 0
   klaro: 0
   layout_builder: 0
   layout_discovery: 0
@@ -78,6 +80,7 @@ module:
   path: 0
   path_alias: 0
   project_browser: 0
+  real_aes: 0
   redirect: 0
   redirect_404: 0
   responsive_image: 0
@@ -93,6 +96,7 @@ module:
   tagify_user_list: 0
   taxonomy: 0
   text: 0
+  tfa: 0
   token: 0
   trash: 0
   update: 0

@@ -1,0 +1,13 @@
+uuid: a96f7450-7ebd-4f87-8125-f81495af9ba0
+langcode: en
+status: true
+dependencies:
+  config:
+    - key.key.tfa
+  module:
+    - real_aes
+id: tfa_profile
+label: 'TFA Profile'
+encryption_method: real_aes
+encryption_method_configuration: {  }
+encryption_key: tfa
