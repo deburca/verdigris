@@ -21,6 +21,12 @@ final class UserPagesRouteSubscriber extends RouteSubscriberBase {
   private const ROUTES = [
     'entity.user.edit_form',
     'entity.user.cancel_form',
+    // Two-factor setup (tfa marks its pages as admin routes too, which also
+    // keeps the site header and footer off them).
+    'tfa.overview',
+    'tfa.disable',
+    'tfa.plugin.reset',
+    'tfa.validation.setup',
   ];
 
   /**
@@ -36,6 +42,14 @@ final class UserPagesRouteSubscriber extends RouteSubscriberBase {
       $defaults = $route->getDefaults();
       unset($defaults['_title_callback']);
       $defaults['_title'] = 'Edit account';
+      $route->setDefaults($defaults);
+    }
+    // A person's form submissions are titled with their name by webform, which
+    // the breadcrumb then repeats ("admin > Submissions" over an "admin" title).
+    if ($route = $collection->get('entity.webform_submission.user')) {
+      $defaults = $route->getDefaults();
+      unset($defaults['_title_callback']);
+      $defaults['_title'] = 'Submissions';
       $route->setDefaults($defaults);
     }
     // The log-out confirmation has no route title, so the breadcrumb named it

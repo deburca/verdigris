@@ -12,6 +12,12 @@ services:
     class: Drupal\hvg_landing\EventSubscriber\UserPagesRouteSubscriber
     tags:
       - { name: event_subscriber }
+  hvg_landing.user_pages_theme_negotiator:
+    class: Drupal\hvg_landing\Theme\UserPagesThemeNegotiator
+    arguments: ['@config.factory', '@module_handler']
+    tags:
+      # Above scheduler's (10) and the admin theme's, so it decides first.
+      - { name: theme_negotiator, priority: 100 }
   logger.channel.hvg_landing:
     parent: logger.channel_base
     arguments: ['hvg_landing']
