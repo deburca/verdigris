@@ -6,6 +6,9 @@ services:
       - '@config.factory'
       - '@datetime.time'
       - '@logger.channel.hvg_demo'
+      - '@database'
+      - '@file.usage'
+      - '@session_manager'
   logger.channel.hvg_demo:
     parent: logger.channel_base
     arguments: ['hvg_demo']
