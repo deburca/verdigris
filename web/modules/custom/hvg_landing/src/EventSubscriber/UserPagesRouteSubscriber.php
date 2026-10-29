@@ -38,6 +38,12 @@ final class UserPagesRouteSubscriber extends RouteSubscriberBase {
       $defaults['_title'] = 'Edit account';
       $route->setDefaults($defaults);
     }
+    // The log-out confirmation has no route title, so the breadcrumb named it
+    // after the last path segment ("confirm"). The page's own heading, the
+    // form's question, still wins as the H1.
+    if ($route = $collection->get('user.logout.confirm')) {
+      $route->setDefault('_title', 'Log out');
+    }
   }
 
   /**

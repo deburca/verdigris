@@ -54,6 +54,8 @@ final class DemoSignupForm extends FormBase implements ContainerInjectionInterfa
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
+    // Drawn as the theme's sign-in card (beeswax >= 1.5.0).
+    $form['#attributes']['class'][] = 'beeswax-auth-form';
     $days = (int) $this->config('hvg_demo.settings')->get('lifetime_days');
     $form['intro'] = [
       '#markup' => '<p>' . $this->t('Pick a username and password to try HiveLog with your own private apiaries. Demo accounts and everything you enter are deleted automatically after @days days. No email address is collected, so a forgotten password cannot be recovered; just create a new demo account.', ['@days' => $days]) . '</p>',
