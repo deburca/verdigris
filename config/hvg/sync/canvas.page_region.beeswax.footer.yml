@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - canvas.component.block.system_branding_block
-    - canvas.component.block.system_menu_block.footer
     - canvas.component.sdc.beeswax.footer
   theme:
     - beeswax
@@ -30,15 +29,3 @@ component_tree:
       use_site_logo: true
       use_site_name: true
       use_site_slogan: false
-  '0:footer_last:0:e9eaacca-87a0-4bcf-9ce2-bd58228605e6':
-    parent_uuid: a3bbaff8-da29-414b-b0c2-050ccc3e9446
-    slot: footer_last
-    uuid: e9eaacca-87a0-4bcf-9ce2-bd58228605e6
-    component_id: block.system_menu_block.footer
-    component_version: 075503dbc228a45c
-    inputs:
-      label: Footer
-      label_display: '0'
-      level: 1
-      depth: null
-      expand_all_items: false

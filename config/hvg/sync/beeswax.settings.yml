@@ -7,3 +7,7 @@ logo:
   path: modules/custom/hvg_landing/logo.svg
   use_default: false
 scheme: auto
+footer_menu: footer
+footer_copyright: true
+footer_credit_name: verdigris.nu
+footer_credit_url: https://verdigris.nu/
