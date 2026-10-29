@@ -111,3 +111,50 @@ function hvg_landing_deploy_privacy_policy_draft(): string {
   $node->save();
   return 'Privacy policy drafted (state: ' . $node->get('moderation_state')->value . ').';
 }
+
+/**
+ * Make sure a privacy policy page and its footer link exist (draft only).
+ *
+ * The earlier hook only fills a placeholder page and leaves a site without one
+ * untouched, and a page and a menu link are content, not config, so a site
+ * built from config (hivelog.eu) may have neither. Creates the page from
+ * content/privacy-policy.html when none is titled "Privacy policy", always as
+ * an unpublished draft, and adds a footer-menu link to it when the footer menu
+ * has none. Never changes a page or a link that exists.
+ */
+function hvg_landing_deploy_privacy_policy_page(): string {
+  $storage = \Drupal::entityTypeManager()->getStorage('node');
+  $nodes = $storage->loadByProperties(['type' => 'page', 'title' => 'Privacy policy']);
+  $node = reset($nodes);
+  $messages = [];
+  if (!$node) {
+    $path = \Drupal::service('extension.list.module')->getPath('hvg_landing') . '/content/privacy-policy.html';
+    $values = [
+      'type' => 'page',
+      'title' => 'Privacy policy',
+      'uid' => 1,
+      'status' => 0,
+      'field_content' => ['value' => file_get_contents($path), 'format' => 'content_format'],
+      'field_description' => 'How hivelog.eu and the Vinculum app handle your personal information.',
+      'path' => ['alias' => '/privacy-policy'],
+    ];
+    $node = $storage->create($values);
+    if ($node->hasField('moderation_state')) {
+      $node->set('moderation_state', 'draft');
+    }
+    $node->save();
+    $messages[] = 'Created the privacy policy page (draft)';
+  }
+  $uri = 'entity:node/' . $node->id();
+  $links = \Drupal::entityTypeManager()->getStorage('menu_link_content')->loadByProperties(['menu_name' => 'footer', 'link__uri' => $uri]);
+  if (!$links) {
+    \Drupal::entityTypeManager()->getStorage('menu_link_content')->create([
+      'title' => 'Privacy policy',
+      'menu_name' => 'footer',
+      'link' => ['uri' => $uri],
+      'weight' => 0,
+    ])->save();
+    $messages[] = 'added the footer link';
+  }
+  return $messages ? implode('; ', $messages) . '.' : 'The privacy policy page and its footer link exist; nothing changed.';
+}
