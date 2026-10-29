@@ -48,3 +48,41 @@ function hvg_landing_deploy_bee_default_avatar(): string {
   \Drupal::service('cache_tags.invalidator')->invalidateTags($file->getCacheTags());
   return 'Default avatar replaced with the bee headshot.';
 }
+
+/**
+ * Create the default avatar's file where the site has none.
+ *
+ * The field's config names the default image by UUID, but the file itself is
+ * content, not config: a site built from the config alone (hivelog.eu) has the
+ * reference and no file, so the previous hook found nothing to replace and no
+ * avatar was drawn at all. Creates the file entity under that UUID, with the
+ * bee headshot, when it is missing, and refreshes the picture when it exists.
+ */
+function hvg_landing_deploy_bee_default_avatar_create(): string {
+  $uuid = \Drupal::config('field.field.user.user.user_picture')->get('settings.default_image.uuid');
+  if (!$uuid) {
+    return 'The picture field has no default image; nothing changed.';
+  }
+  $source = \Drupal::service('extension.list.module')->getPath('hvg_landing') . '/images/bee-avatar.svg';
+  $file = \Drupal::service('entity.repository')->loadEntityByUuid('file', $uuid);
+  if (!$file) {
+    $uri = 'public://avatars/default-avatar.svg';
+    $file_system = \Drupal::service('file_system');
+    $directory = dirname($uri);
+    $file_system->prepareDirectory($directory, \Drupal\Core\File\FileSystemInterface::CREATE_DIRECTORY);
+    $file_system->copy($source, $uri, \Drupal\Core\File\FileExists::Replace);
+    $file = \Drupal\file\Entity\File::create([
+      'uuid' => $uuid,
+      'uri' => $uri,
+      'filename' => 'default-avatar.svg',
+      'filemime' => 'image/svg+xml',
+      'status' => 1,
+    ]);
+    $file->save();
+    return 'Created the default avatar file.';
+  }
+  \Drupal::service('file_system')->copy($source, $file->getFileUri(), \Drupal\Core\File\FileExists::Replace);
+  $file->setSize(filesize($source));
+  $file->save();
+  return 'Refreshed the default avatar file.';
+}
