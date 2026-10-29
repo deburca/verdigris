@@ -86,3 +86,28 @@ function hvg_landing_deploy_bee_default_avatar_create(): string {
   $file->save();
   return 'Refreshed the default avatar file.';
 }
+
+/**
+ * Write the privacy policy into the placeholder page, as a draft.
+ *
+ * Drupal CMS ships a "Privacy policy" page whose body says it needs editing
+ * before publishing. This fills it from content/privacy-policy.html, but only
+ * while it still holds that placeholder, so a page someone has already edited
+ * is never overwritten, and it never publishes: the moderation state stays
+ * "draft" until the site owner has read it and publishes it.
+ */
+function hvg_landing_deploy_privacy_policy_draft(): string {
+  $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties(['type' => 'page', 'title' => 'Privacy policy']);
+  $node = reset($nodes);
+  if (!$node) {
+    return 'No "Privacy policy" page found; nothing changed.';
+  }
+  if (!str_contains((string) $node->get('field_content')->value, 'needs to be edited before publishing')) {
+    return 'The privacy policy page has been edited already; left as it is.';
+  }
+  $path = \Drupal::service('extension.list.module')->getPath('hvg_landing') . '/content/privacy-policy.html';
+  $node->set('field_content', ['value' => file_get_contents($path), 'format' => $node->get('field_content')->format]);
+  $node->set('field_description', 'How hivelog.eu and the Vinculum app handle your personal information.');
+  $node->save();
+  return 'Privacy policy drafted (state: ' . $node->get('moderation_state')->value . ').';
+}
