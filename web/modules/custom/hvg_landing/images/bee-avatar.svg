@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 256 256" role="img" aria-label="Bee">
+  <defs>
+    <clipPath id="bee-avatar-clip"><circle cx="128" cy="128" r="124"/></clipPath>
+  </defs>
+  <circle cx="128" cy="128" r="124" fill="#e9b949"/>
+  <g clip-path="url(#bee-avatar-clip)">
+    <ellipse cx="60" cy="112" rx="26" ry="44" transform="rotate(-28 60 112)" fill="#fffaf0" opacity=".85"/>
+    <ellipse cx="196" cy="112" rx="26" ry="44" transform="rotate(28 196 112)" fill="#fffaf0" opacity=".85"/>
+    <ellipse cx="128" cy="268" rx="92" ry="64" fill="#f6c94f"/>
+    <path d="M30 226h196M26 246h204" stroke="#2b2116" stroke-width="12"/>
+    <path d="M106 66C100 42 88 30 72 26M150 66c6-24 18-36 34-40" fill="none" stroke="#2b2116" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="72" cy="26" r="8" fill="#2b2116"/>
+    <circle cx="184" cy="26" r="8" fill="#2b2116"/>
+    <ellipse cx="128" cy="138" rx="72" ry="64" fill="#2b2116"/>
+    <ellipse cx="98" cy="128" rx="21" ry="27" fill="#fffaf0"/>
+    <ellipse cx="158" cy="128" rx="21" ry="27" fill="#fffaf0"/>
+    <circle cx="103" cy="131" r="11" fill="#2b2116"/>
+    <circle cx="153" cy="131" r="11" fill="#2b2116"/>
+    <circle cx="107" cy="126" r="4" fill="#fffaf0"/>
+    <circle cx="157" cy="126" r="4" fill="#fffaf0"/>
+    <path d="M104 172q24 20 48 0" fill="none" stroke="#e9b949" stroke-width="7" stroke-linecap="round"/>
+  </g>
+</svg>

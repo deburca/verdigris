@@ -25,3 +25,26 @@ use Drupal\hvg_landing\LandingPage;
 function hvg_landing_deploy_create_home_page(): string {
   return LandingPage::create();
 }
+
+/**
+ * Give accounts without a picture a bee's headshot as the default avatar.
+ *
+ * The user picture field's default image is a managed file (config holds only
+ * its UUID), so the picture is changed by replacing that file's contents; the
+ * field, the file entity and every page that shows it keep working as they are.
+ */
+function hvg_landing_deploy_bee_default_avatar(): string {
+  $field = \Drupal::config('field.field.user.user.user_picture');
+  $uuid = $field->get('settings.default_image.uuid');
+  $files = \Drupal::entityTypeManager()->getStorage('file')->loadByProperties(['uuid' => $uuid]);
+  $file = reset($files);
+  if (!$file) {
+    return 'No default avatar file found; nothing changed.';
+  }
+  $source = \Drupal::service('extension.list.module')->getPath('hvg_landing') . '/images/bee-avatar.svg';
+  \Drupal::service('file_system')->copy($source, $file->getFileUri(), \Drupal\Core\File\FileExists::Replace);
+  $file->setSize(filesize($source));
+  $file->save();
+  \Drupal::service('cache_tags.invalidator')->invalidateTags($file->getCacheTags());
+  return 'Default avatar replaced with the bee headshot.';
+}
