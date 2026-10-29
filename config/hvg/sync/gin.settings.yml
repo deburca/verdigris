@@ -5,8 +5,10 @@ logo:
 third_party_settings:
   shortcut:
     module_link: true
-preset_accent_color: blue
-preset_focus_color: gin
+preset_accent_color: custom
+accent_color: '#2f6b4f'
+preset_focus_color: custom
+focus_color: '#2f6b4f'
 enable_darkmode: auto
 classic_toolbar: new
 secondary_toolbar_frontend: true
