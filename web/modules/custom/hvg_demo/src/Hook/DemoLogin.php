@@ -5,6 +5,7 @@ namespace Drupal\hvg_demo\Hook;
 use Drupal\Core\Hook\Attribute\Hook;
 use Drupal\Core\Hook\Order\Order;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
@@ -26,7 +27,7 @@ final class DemoLogin {
   #[Hook('user_login', order: Order::Last)]
   public function userLogin(AccountInterface $account): void {
     if (in_array('demo', $account->getRoles(), TRUE)) {
-      $this->requestStack->getCurrentRequest()->query->set('destination', '/hivelog');
+      $this->requestStack->getCurrentRequest()->query->set('destination', '/' . Url::fromRoute('hivelog.dashboard')->getInternalPath());
     }
   }
 

@@ -6,8 +6,8 @@ name: HiveLog
 mail: info@hivelog.eu
 slogan: ''
 page:
-  403: /hivelog/access-denied
-  404: /hivelog/page-not-found
+  403: /app/access-denied
+  404: /app/page-not-found
   front: /home
 admin_compact_mode: false
 weight_select_max: 100

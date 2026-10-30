@@ -126,7 +126,7 @@ final class DemoSignupForm extends FormBase implements ContainerInjectionInterfa
     $account->save();
     $this->flood->register(self::FLOOD_EVENT, 3600);
     user_login_finalize($account);
-    $form_state->setRedirectUrl(Url::fromUserInput('/hivelog'));
+    $form_state->setRedirectUrl(Url::fromRoute('hivelog.dashboard'));
   }
 
 }
