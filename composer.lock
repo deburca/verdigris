@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f52adaf1df4f4fc5300864cc388f786e",
+    "content-hash": "a07f226b9b39cf040a29f48ad9244ff3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -664,21 +664,21 @@
         },
         {
             "name": "composer/composer",
-            "version": "2.10.3",
+            "version": "2.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "f0de0bf90226853b841672f086d8b58b02332504"
+                "reference": "472b418967419c6124edd91dc6310a3bec091dae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/f0de0bf90226853b841672f086d8b58b02332504",
-                "reference": "f0de0bf90226853b841672f086d8b58b02332504",
+                "url": "https://api.github.com/repos/composer/composer/zipball/472b418967419c6124edd91dc6310a3bec091dae",
+                "reference": "472b418967419c6124edd91dc6310a3bec091dae",
                 "shasum": ""
             },
             "require": {
-                "composer/ca-bundle": "^1.5",
-                "composer/class-map-generator": "^1.4.0",
+                "composer/ca-bundle": "^1.6",
+                "composer/class-map-generator": "^1.8.0",
                 "composer/metadata-minifier": "^1.0",
                 "composer/pcre": "^2.3 || ^3.3",
                 "composer/semver": "^3.3",
@@ -687,7 +687,7 @@
                 "ext-filter": "*",
                 "ext-hash": "*",
                 "ext-json": "*",
-                "justinrainbow/json-schema": "^6.5.1",
+                "justinrainbow/json-schema": "^6.6.3",
                 "php": "^7.2.5 || ^8.0",
                 "psr/log": "^1.0 || ^2.0 || ^3.0",
                 "react/promise": "^3.3",
@@ -704,7 +704,7 @@
                 "symfony/process": "^5.4.47 || ^6.4.25 || ^7.1.10 || ^8.0"
             },
             "require-dev": {
-                "phpstan/phpstan": "^1.11.8",
+                "phpstan/phpstan": "1.12.33",
                 "phpstan/phpstan-deprecation-rules": "^1.2.0",
                 "phpstan/phpstan-phpunit": "^1.4.0",
                 "phpstan/phpstan-strict-rules": "^1.6.0",
@@ -728,7 +728,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "2.10-dev"
+                    "dev-main": "2.11-dev"
                 }
             },
             "autoload": {
@@ -763,7 +763,7 @@
                 "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/composer/issues",
                 "security": "https://github.com/composer/composer/security/policy",
-                "source": "https://github.com/composer/composer/tree/2.10.3"
+                "source": "https://github.com/composer/composer/tree/2.11.1"
             },
             "funding": [
                 {
@@ -775,7 +775,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-27T11:34:23+00:00"
+            "time": "2026-10-30T13:52:10+00:00"
         },
         {
             "name": "composer/installers",
@@ -3121,17 +3121,17 @@
         },
         {
             "name": "drupal/bat",
-            "version": "11.1.0-rc11",
+            "version": "11.1.0-rc12",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/bat.git",
-                "reference": "11.1.0-rc11"
+                "reference": "11.1.0-rc12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/bat-11.1.0-rc11.zip",
-                "reference": "11.1.0-rc11",
-                "shasum": "1b8ffe79031c81e57a5194e3c6b3500d040b91aa"
+                "url": "https://ftp.drupal.org/files/projects/bat-11.1.0-rc12.zip",
+                "reference": "11.1.0-rc12",
+                "shasum": "21142260ffd62a8f0d364077fbf7f71bdec9e5f6"
             },
             "require": {
                 "drupal/bat_roomify": "*",
@@ -3152,8 +3152,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "11.1.0-rc11",
-                    "datestamp": "1780770072",
+                    "version": "11.1.0-rc12",
+                    "datestamp": "1793372606",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -3521,7 +3521,7 @@
         },
         {
             "name": "drupal/bat_roomify",
-            "version": "11.1.0-rc11",
+            "version": "11.1.0-rc12",
             "require": {
                 "drupal/bat": "^11",
                 "drupal/core": "^10.2 || ^11"
@@ -3529,8 +3529,8 @@
             "type": "metapackage",
             "extra": {
                 "drupal": {
-                    "version": "11.1.0-rc11",
-                    "datestamp": "1780770072",
+                    "version": "11.1.0-rc12",
+                    "datestamp": "1793372606",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -4445,7 +4445,7 @@
         },
         {
             "name": "drupal/commerce_cart",
-            "version": "3.3.12",
+            "version": "3.3.13",
             "require": {
                 "drupal/commerce": "*",
                 "drupal/commerce_order": "*",
@@ -4454,8 +4454,8 @@
             "type": "metapackage",
             "extra": {
                 "drupal": {
-                    "version": "3.3.12",
-                    "datestamp": "1792155590",
+                    "version": "3.3.13",
+                    "datestamp": "1793214825",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4478,6 +4478,14 @@
                 {
                     "name": "rszrama",
                     "homepage": "https://www.drupal.org/user/49344"
+                },
+                {
+                    "name": "tomtech",
+                    "homepage": "https://www.drupal.org/user/254986"
+                },
+                {
+                    "name": "zaporylie",
+                    "homepage": "https://www.drupal.org/user/1532844"
                 }
             ],
             "description": "Implements the shopping cart system and add to cart features.",
@@ -4488,7 +4496,7 @@
         },
         {
             "name": "drupal/commerce_checkout",
-            "version": "3.3.12",
+            "version": "3.3.13",
             "require": {
                 "drupal/commerce": "*",
                 "drupal/commerce_cart": "*",
@@ -4498,8 +4506,8 @@
             "type": "metapackage",
             "extra": {
                 "drupal": {
-                    "version": "3.3.12",
-                    "datestamp": "1792155590",
+                    "version": "3.3.13",
+                    "datestamp": "1793214825",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4522,6 +4530,14 @@
                 {
                     "name": "rszrama",
                     "homepage": "https://www.drupal.org/user/49344"
+                },
+                {
+                    "name": "tomtech",
+                    "homepage": "https://www.drupal.org/user/254986"
+                },
+                {
+                    "name": "zaporylie",
+                    "homepage": "https://www.drupal.org/user/1532844"
                 }
             ],
             "description": "Provides configurable checkout flows.",
@@ -4575,7 +4591,7 @@
         },
         {
             "name": "drupal/commerce_order",
-            "version": "3.3.12",
+            "version": "3.3.13",
             "require": {
                 "drupal/commerce": "*",
                 "drupal/commerce_number_pattern": "*",
@@ -4589,8 +4605,8 @@
             "type": "metapackage",
             "extra": {
                 "drupal": {
-                    "version": "3.3.12",
-                    "datestamp": "1792155590",
+                    "version": "3.3.13",
+                    "datestamp": "1793214825",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4613,6 +4629,14 @@
                 {
                     "name": "rszrama",
                     "homepage": "https://www.drupal.org/user/49344"
+                },
+                {
+                    "name": "tomtech",
+                    "homepage": "https://www.drupal.org/user/254986"
+                },
+                {
+                    "name": "zaporylie",
+                    "homepage": "https://www.drupal.org/user/1532844"
                 }
             ],
             "description": "Defines the Order entity and associated features.",
@@ -4665,7 +4689,7 @@
         },
         {
             "name": "drupal/commerce_product",
-            "version": "3.3.12",
+            "version": "3.3.13",
             "require": {
                 "drupal/commerce": "*",
                 "drupal/commerce_price": "*",
@@ -4675,8 +4699,8 @@
             "type": "metapackage",
             "extra": {
                 "drupal": {
-                    "version": "3.3.12",
-                    "datestamp": "1792155590",
+                    "version": "3.3.13",
+                    "datestamp": "1793214825",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4699,6 +4723,14 @@
                 {
                     "name": "rszrama",
                     "homepage": "https://www.drupal.org/user/49344"
+                },
+                {
+                    "name": "tomtech",
+                    "homepage": "https://www.drupal.org/user/254986"
+                },
+                {
+                    "name": "zaporylie",
+                    "homepage": "https://www.drupal.org/user/1532844"
                 }
             ],
             "description": "Defines the Product entity and associated features.",
@@ -4752,7 +4784,7 @@
         },
         {
             "name": "drupal/commerce_tax",
-            "version": "3.3.12",
+            "version": "3.3.13",
             "require": {
                 "drupal/commerce": "*",
                 "drupal/commerce_order": "*",
@@ -4762,8 +4794,8 @@
             "type": "metapackage",
             "extra": {
                 "drupal": {
-                    "version": "3.3.12",
-                    "datestamp": "1792155590",
+                    "version": "3.3.13",
+                    "datestamp": "1793214825",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4786,6 +4818,14 @@
                 {
                     "name": "rszrama",
                     "homepage": "https://www.drupal.org/user/49344"
+                },
+                {
+                    "name": "tomtech",
+                    "homepage": "https://www.drupal.org/user/254986"
+                },
+                {
+                    "name": "zaporylie",
+                    "homepage": "https://www.drupal.org/user/1532844"
                 }
             ],
             "description": "Provides tax functionality.",
@@ -6066,17 +6106,17 @@
         },
         {
             "name": "drupal/editoria11y",
-            "version": "3.0.11",
+            "version": "3.0.12",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/editoria11y.git",
-                "reference": "3.0.11"
+                "reference": "3.0.12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/editoria11y-3.0.11.zip",
-                "reference": "3.0.11",
-                "shasum": "8d882e96cbe7fd7441b8d685e680aeb9d4c295c4"
+                "url": "https://ftp.drupal.org/files/projects/editoria11y-3.0.12.zip",
+                "reference": "3.0.12",
+                "shasum": "513138f7a82b4ca6d14d4ef8274a86e59e82b64b"
             },
             "require": {
                 "drupal/core": "^10.3 || ^11 || ^12"
@@ -6095,8 +6135,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "3.0.11",
-                    "datestamp": "1791552741",
+                    "version": "3.0.12",
+                    "datestamp": "1793355163",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6737,17 +6777,17 @@
         },
         {
             "name": "drupal/geofield",
-            "version": "10.3.4",
+            "version": "10.3.5",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/geofield.git",
-                "reference": "10.3.4"
+                "reference": "10.3.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/geofield-10.3.4.zip",
-                "reference": "10.3.4",
-                "shasum": "bd68709c400780504c01e126c21aabb88ddfcd57"
+                "url": "https://ftp.drupal.org/files/projects/geofield-10.3.5.zip",
+                "reference": "10.3.5",
+                "shasum": "c485759b412f511527f746f3fda9a2f9e6368942"
             },
             "require": {
                 "drupal/core": "^10.3 || ^11 || ^12",
@@ -6761,8 +6801,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "10.3.4",
-                    "datestamp": "1773079821",
+                    "version": "10.3.5",
+                    "datestamp": "1793285504",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8021,22 +8061,21 @@
         },
         {
             "name": "drupal/metatag",
-            "version": "2.2.1",
+            "version": "2.2.4",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/metatag.git",
-                "reference": "2.2.1"
+                "reference": "2.2.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/metatag-2.2.1.zip",
-                "reference": "2.2.1",
-                "shasum": "ee75572be28017b7b5a9c4ecf7b643e6ce806e16"
+                "url": "https://ftp.drupal.org/files/projects/metatag-2.2.4.zip",
+                "reference": "2.2.4",
+                "shasum": "08ca0e9c22acf47cb8312220c12c8229f43c304d"
             },
             "require": {
                 "drupal/core": "^10.3 || ^11",
-                "drupal/token": "^1.0",
-                "php": ">=8.0"
+                "drupal/token": "^1.17"
             },
             "require-dev": {
                 "drupal/diff": "*",
@@ -8053,8 +8092,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.2.1",
-                    "datestamp": "1792864792",
+                    "version": "2.2.4",
+                    "datestamp": "1793239109",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8945,17 +8984,17 @@
         },
         {
             "name": "drupal/search_api",
-            "version": "1.42.0",
+            "version": "1.43.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/search_api.git",
-                "reference": "8.x-1.42"
+                "reference": "8.x-1.43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.42.zip",
-                "reference": "8.x-1.42",
-                "shasum": "a8f18e5873f50551eadfe03c4454bcb8e85eacce"
+                "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.43.zip",
+                "reference": "8.x-1.43",
+                "shasum": "2176deccfe21141e357c9002ea8e6a7560e91a23"
             },
             "require": {
                 "drupal/core": "^10.3 || ^11 || ^12"
@@ -8977,8 +9016,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.42",
-                    "datestamp": "1791743454",
+                    "version": "8.x-1.43",
+                    "datestamp": "1793194856",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -9809,29 +9848,26 @@
         },
         {
             "name": "drupal/token",
-            "version": "1.17.0",
+            "version": "1.18.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/token.git",
-                "reference": "8.x-1.17"
+                "reference": "8.x-1.18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/token-8.x-1.17.zip",
-                "reference": "8.x-1.17",
-                "shasum": "21d11adf0be16f1aa95b6348b4ceadbe9a625824"
+                "url": "https://ftp.drupal.org/files/projects/token-8.x-1.18.zip",
+                "reference": "8.x-1.18",
+                "shasum": "7db67f644c83136cac78c7c5dbaef29599e7a7d7"
             },
             "require": {
-                "drupal/core": "^10.3 || ^11"
-            },
-            "require-dev": {
-                "drupal/book": "^1 || ^2"
+                "drupal/core": "^10.3 || ^11 || ^12"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.17",
-                    "datestamp": "1767942434",
+                    "version": "8.x-1.18",
+                    "datestamp": "1793355985",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -9881,17 +9917,17 @@
         },
         {
             "name": "drupal/token_or",
-            "version": "2.3.3",
+            "version": "2.3.4",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/token_or.git",
-                "reference": "2.3.3"
+                "reference": "2.3.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/token_or-2.3.3.zip",
-                "reference": "2.3.3",
-                "shasum": "cc8d35b2c2d07b8cddccd944afea9c601027c180"
+                "url": "https://ftp.drupal.org/files/projects/token_or-2.3.4.zip",
+                "reference": "2.3.4",
+                "shasum": "5fe02b635d6935522a237e75523fe4d93bb1fc64"
             },
             "require": {
                 "drupal/core": "^9.2 || ^10 || ^11",
@@ -9903,8 +9939,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.3.3",
-                    "datestamp": "1793037027",
+                    "version": "2.3.4",
+                    "datestamp": "1793105851",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -11100,16 +11136,16 @@
         },
         {
             "name": "hivelog/hivelog",
-            "version": "3.6.0",
+            "version": "4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deburca/hivelog.git",
-                "reference": "85fb4ea0acf2de2b90f0285eca459f315bc2d798"
+                "reference": "b454f689350574b7f9988b55b7f0ead028da924a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deburca/hivelog/zipball/85fb4ea0acf2de2b90f0285eca459f315bc2d798",
-                "reference": "85fb4ea0acf2de2b90f0285eca459f315bc2d798",
+                "url": "https://api.github.com/repos/deburca/hivelog/zipball/b454f689350574b7f9988b55b7f0ead028da924a",
+                "reference": "b454f689350574b7f9988b55b7f0ead028da924a",
                 "shasum": ""
             },
             "require": {
@@ -11156,9 +11192,9 @@
             "homepage": "https://github.com/deburca/hivelog",
             "support": {
                 "issues": "https://github.com/deburca/hivelog/issues",
-                "source": "https://github.com/deburca/hivelog/tree/3.6.0"
+                "source": "https://github.com/deburca/hivelog/tree/4.1.0"
             },
-            "time": "2026-10-29T20:03:22+00:00"
+            "time": "2026-10-30T19:59:24+00:00"
         },
         {
             "name": "html2text/html2text",
@@ -11543,16 +11579,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "2.10.4",
+            "version": "2.10.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "40821b7606d8d946bac57dbd2290076c722e3a65"
+                "reference": "cb3d6a523587751db4b8e1d0c3945d2d68535bd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/40821b7606d8d946bac57dbd2290076c722e3a65",
-                "reference": "40821b7606d8d946bac57dbd2290076c722e3a65",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/cb3d6a523587751db4b8e1d0c3945d2d68535bd3",
+                "reference": "cb3d6a523587751db4b8e1d0c3945d2d68535bd3",
                 "shasum": ""
             },
             "require": {
@@ -11646,7 +11682,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-17T19:59:50+00:00"
+            "time": "2026-10-30T12:21:38+00:00"
         },
         {
             "name": "league/config",
