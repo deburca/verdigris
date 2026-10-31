@@ -3,10 +3,13 @@ langcode: en
 status: open
 dependencies:
   module:
+    - antibot
     - honeypot
 third_party_settings:
   honeypot:
     honeypot: true
+  antibot:
+    antibot: true
 _core:
   default_config_hash: drkX5bwRj9RMCATLa-dDDx7ZRTPuRLrY2AVd-y6M1Qo
 weight: 0
@@ -32,8 +35,6 @@ elements: |-
     '#type': textarea
     '#title': Message
     '#required': true
-  captcha:
-    '#type': captcha
 css: ''
 javascript: ''
 settings:

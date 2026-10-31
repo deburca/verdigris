@@ -1,18 +1,26 @@
 uuid: dc782b52-6c76-49d8-b872-d410d97e9a0c
 langcode: en
 status: open
-dependencies: {  }
+dependencies:
+  module:
+    - antibot
+    - honeypot
+third_party_settings:
+  antibot:
+    antibot: true
+  honeypot:
+    honeypot: true
 weight: 0
 open: null
 close: null
-uid: 0
+uid: 1
 template: false
 archive: false
 id: interest
 title: 'Register your interest'
-description: 'Interest in hosted HiveLog / Viculum and hive sensors on hivelog.eu.'
+description: '<p>Interest in hosted HiveLog / Viculum and hive sensors on hivelog.eu.</p>'
 categories: {  }
-elements: |
+elements: |-
   name:
     '#type': textfield
     '#title': Name
@@ -61,7 +69,7 @@ settings:
   page_submit_path: ''
   page_confirm_path: ''
   page_theme_name: ''
-  form_title: both
+  form_title: source_entity_webform
   form_submit_once: false
   form_open_message: ''
   form_close_message: ''
