@@ -8,4 +8,5 @@ form_ids:
   - 'webform_submission_webform_*'
   - 'webform_submission_contact_form_*'
   - 'webform_submission_interest_*'
+  - user_login_form
 show_form_ids: false
