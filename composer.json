@@ -245,6 +245,7 @@
         "drops/drops": "^1.2",
         "drupal/ai": "^1.2.6",
         "drupal/ai_provider_anthropic": "^1.2",
+        "drupal/antibot": "^2.0",
         "drupal/automatic_updates": "^4.1",
         "drupal/autosave_form": "^1.10",
         "drupal/bat": "^11.1@RC",
