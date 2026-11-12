@@ -13,8 +13,10 @@ is_admin: false
 permissions:
   - 'access content'
   - 'add apiary action log'
+  - 'add hive'
   - 'add hive action log'
   - 'add hive inspection'
+  - 'add queen'
   - 'add queen observation'
   - 'delete own hive inspection'
   - 'delete own queen observation'
