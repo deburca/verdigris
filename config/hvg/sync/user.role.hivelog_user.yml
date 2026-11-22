@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - captcha
     - hivelog
 _core:
   default_config_hash: 8n9vm_51jsqRpJ7dmCjtSkt8Z5P7kELp6OyvUEvEDKw
@@ -59,6 +60,7 @@ permissions:
   - 'edit own product'
   - 'edit own queen'
   - 'edit own queen observation'
+  - 'skip CAPTCHA'
   - 'view own apiary'
   - 'view own apiary action log'
   - 'view own calendar action'

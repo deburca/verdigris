@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - canvas.component.marker.page_content
+    - canvas.component.sdc.hivelog.stat-tile
     - canvas.component.sdc.navigation.message
     - canvas.component.sdc.navigation.title
 name: Other
@@ -11,5 +12,6 @@ configEntityTypeId: component
 weight: 0
 items:
   - marker.page_content
+  - sdc.hivelog.stat-tile
   - sdc.navigation.message
   - sdc.navigation.title
