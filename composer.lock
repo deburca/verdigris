@@ -1883,16 +1883,16 @@
         },
         {
             "name": "deburca/beeswax",
-            "version": "1.9.4",
+            "version": "1.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/deburca/beeswax.git",
-                "reference": "113aaecf57742fdadcdfd4c7786c0dd0c8fcb276"
+                "reference": "7c650cfec6d4bda4d4c0035401a7a8020f55ed8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/deburca/beeswax/zipball/113aaecf57742fdadcdfd4c7786c0dd0c8fcb276",
-                "reference": "113aaecf57742fdadcdfd4c7786c0dd0c8fcb276",
+                "url": "https://api.github.com/repos/deburca/beeswax/zipball/7c650cfec6d4bda4d4c0035401a7a8020f55ed8f",
+                "reference": "7c650cfec6d4bda4d4c0035401a7a8020f55ed8f",
                 "shasum": ""
             },
             "require": {
@@ -1912,9 +1912,9 @@
             "description": "A Drupal theme with a bee and honey identity: a skin for HiveLog pages and account pages, a component-based design system (Tailwind CSS, SDC) and a faint honeycomb background.",
             "support": {
                 "issues": "https://github.com/deburca/beeswax/issues",
-                "source": "https://github.com/deburca/beeswax/tree/1.9.4"
+                "source": "https://github.com/deburca/beeswax/tree/1.9.5"
             },
-            "time": "2026-11-23T18:51:07+00:00"
+            "time": "2026-11-25T20:17:25+00:00"
         },
         {
             "name": "defuse/php-encryption",
