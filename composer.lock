@@ -1175,16 +1175,16 @@
         },
         {
             "name": "composer/xdebug-handler",
-            "version": "3.0.5",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/xdebug-handler.git",
-                "reference": "6c1925561632e83d60a44492e0b344cf48ab85ef"
+                "reference": "9ade436e94b5a869a88b8306d993c25538d3b478"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/6c1925561632e83d60a44492e0b344cf48ab85ef",
-                "reference": "6c1925561632e83d60a44492e0b344cf48ab85ef",
+                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/9ade436e94b5a869a88b8306d993c25538d3b478",
+                "reference": "9ade436e94b5a869a88b8306d993c25538d3b478",
                 "shasum": ""
             },
             "require": {
@@ -1193,8 +1193,8 @@
                 "psr/log": "^1 || ^2 || ^3"
             },
             "require-dev": {
-                "phpstan/phpstan": "^1.0",
-                "phpstan/phpstan-strict-rules": "^1.1",
+                "phpstan/phpstan": "^1.11 || ^2.0",
+                "phpstan/phpstan-strict-rules": "^1.1 || ^2.0",
                 "phpunit/phpunit": "^8.5 || ^9.6 || ^10.5"
             },
             "type": "library",
@@ -1221,7 +1221,7 @@
             "support": {
                 "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/xdebug-handler/issues",
-                "source": "https://github.com/composer/xdebug-handler/tree/3.0.5"
+                "source": "https://github.com/composer/xdebug-handler/tree/3.1.0"
             },
             "funding": [
                 {
@@ -1231,13 +1231,9 @@
                 {
                     "url": "https://github.com/composer",
                     "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
-                    "type": "tidelift"
                 }
             ],
-            "time": "2024-05-06T16:37:16+00:00"
+            "time": "2026-11-25T19:20:28+00:00"
         },
         {
             "name": "consolidation/annotated-command",
@@ -3093,6 +3089,14 @@
                     "homepage": "https://www.drupal.org/user/205645"
                 },
                 {
+                    "name": "spiderman",
+                    "homepage": "https://www.drupal.org/user/1631"
+                },
+                {
+                    "name": "star-szr",
+                    "homepage": "https://www.drupal.org/user/1167326"
+                },
+                {
                     "name": "tedbow",
                     "homepage": "https://www.drupal.org/user/240860"
                 },
@@ -3104,6 +3108,7 @@
             "description": "Drupal Automatic Updates",
             "homepage": "https://www.drupal.org/project/automatic_updates",
             "keywords": [
+                "Administration tools",
                 "Drupal"
             ],
             "support": {
@@ -5591,26 +5596,26 @@
         },
         {
             "name": "drupal/ctools",
-            "version": "4.1.1",
+            "version": "4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ctools.git",
-                "reference": "4.1.1"
+                "reference": "4.1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ctools-4.1.1.zip",
-                "reference": "4.1.1",
-                "shasum": "a04db6a0b6a22ddcfb9fe8f16955d55297b5da1c"
+                "url": "https://ftp.drupal.org/files/projects/ctools-4.1.2.zip",
+                "reference": "4.1.2",
+                "shasum": "d83e1f79258305ce72ad1e206c1395d0923b78eb"
             },
             "require": {
-                "drupal/core": "^9.5 || ^10 || ^11"
+                "drupal/core": "^10.3 || ^11 || ^12"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.1.1",
-                    "datestamp": "1784926417",
+                    "version": "4.1.2",
+                    "datestamp": "1795482101",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6223,6 +6228,10 @@
             ],
             "description": "Event, Conditions, Actions - powerful, versatile, and user-friendly rules engine for Drupal",
             "homepage": "https://www.drupal.org/project/eca",
+            "keywords": [
+                "Access control",
+                "Actively maintained"
+            ],
             "support": {
                 "source": "https://drupal.org/project/eca",
                 "issues": "https://drupal.org/project/issues/eca"
@@ -7823,6 +7832,10 @@
             ],
             "description": "Login with Email or Username.",
             "homepage": "https://drupal.org/project/login_emailusername",
+            "keywords": [
+                "Access control",
+                "Actively maintained"
+            ],
             "support": {
                 "source": "https://git.drupalcode.org/project/login_emailusername",
                 "issues": "https://drupal.org/project/issues/login_emailusername"
@@ -8064,6 +8077,7 @@
             "description": "Allows you to add attributes to menu links.",
             "homepage": "http://drupal.org/project/menu_link_attributes",
             "keywords": [
+                "Administration tools",
                 "Drupal"
             ],
             "support": {
@@ -8150,6 +8164,9 @@
             ],
             "description": "A scalable, modern Drupal CMS prototype theme, integrating cutting-edge front-end tools and a flexible, component-based design system.",
             "homepage": "https://www.drupal.org/project/mercury",
+            "keywords": [
+                "Actively maintained"
+            ],
             "support": {
                 "source": "https://git.drupalcode.org/project/mercury"
             }
@@ -9429,17 +9446,17 @@
         },
         {
             "name": "drupal/simple_oauth",
-            "version": "6.1.4",
+            "version": "6.1.5",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/simple_oauth.git",
-                "reference": "6.1.4"
+                "reference": "6.1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/simple_oauth-6.1.4.zip",
-                "reference": "6.1.4",
-                "shasum": "f210f853ad3445e5b81ce96ceebd7e438eccc1d7"
+                "url": "https://ftp.drupal.org/files/projects/simple_oauth-6.1.5.zip",
+                "reference": "6.1.5",
+                "shasum": "c2a413313c7e454e7b3083a7d5e727db2ffc999d"
             },
             "require": {
                 "drupal/consumers": "^1.24",
@@ -9455,8 +9472,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "6.1.4",
-                    "datestamp": "1793813022",
+                    "version": "6.1.5",
+                    "datestamp": "1795615409",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -9553,6 +9570,10 @@
             ],
             "description": "Creates a standard conform hreflang XML sitemap of the site content and provides a framework for developing other sitemap types.",
             "homepage": "https://drupal.org/project/simple_sitemap",
+            "keywords": [
+                "Actively maintained",
+                "Multilingual"
+            ],
             "support": {
                 "source": "https://cgit.drupalcode.org/simple_sitemap",
                 "issues": "https://drupal.org/project/issues/simple_sitemap"
@@ -9778,17 +9799,17 @@
         },
         {
             "name": "drupal/tagify",
-            "version": "2.0.5",
+            "version": "2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/tagify.git",
-                "reference": "2.0.5"
+                "reference": "2.0.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/tagify-2.0.5.zip",
-                "reference": "2.0.5",
-                "shasum": "5dd3553190e29c21848435903452785ae8600b83"
+                "url": "https://ftp.drupal.org/files/projects/tagify-2.0.6.zip",
+                "reference": "2.0.6",
+                "shasum": "1afb01750229369357f2de736e3713dbb21ca0e4"
             },
             "require": {
                 "drupal/core": "^10.3 || ^11 || ^12"
@@ -9799,17 +9820,26 @@
                 "drupal/facets": "^2.0",
                 "drupal/iconify_icons": "*",
                 "drupal/search_api": "^1.31",
+                "drupal/token": "^1.15",
                 "drupal/ui_icons": "*",
-                "drupal/ui_icons_field": "*"
+                "drupal/ui_icons_field": "*",
+                "drupal/webform": "^6.3",
+                "drush/drush": "^13 || ^14"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.5",
-                    "datestamp": "1791555707",
+                    "version": "2.0.6",
+                    "datestamp": "1795628376",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drupal-scaffold": {
+                    "file-mapping": {
+                        "[project-root]/.editorconfig": false,
+                        "[project-root]/.gitattributes": false
                     }
                 }
             },
@@ -10291,6 +10321,10 @@
             ],
             "description": "Allows the users to see the contents of the password fields on selected forms before submission.",
             "homepage": "https://www.drupal.org/project/view_password",
+            "keywords": [
+                "Accessibility",
+                "Actively maintained"
+            ],
             "support": {
                 "source": "https://git.drupalcode.org/project/view_password"
             }
@@ -10468,6 +10502,10 @@
             ],
             "description": "Enables the creation of webforms and questionnaires.",
             "homepage": "https://drupal.org/project/webform",
+            "keywords": [
+                "Actively maintained",
+                "Integrations"
+            ],
             "support": {
                 "source": "https://git.drupalcode.org/project/webform",
                 "issues": "https://www.drupal.org/project/issues/webform?version=8.x",
@@ -11687,16 +11725,16 @@
         },
         {
             "name": "laravel/prompts",
-            "version": "v0.3.27",
+            "version": "v0.3.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/prompts.git",
-                "reference": "abdfc75a1ae6c6f21522daed50da7124cbff09d2"
+                "reference": "72247703c4d4ac1d6122955c90433aa9429bd236"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/prompts/zipball/abdfc75a1ae6c6f21522daed50da7124cbff09d2",
-                "reference": "abdfc75a1ae6c6f21522daed50da7124cbff09d2",
+                "url": "https://api.github.com/repos/laravel/prompts/zipball/72247703c4d4ac1d6122955c90433aa9429bd236",
+                "reference": "72247703c4d4ac1d6122955c90433aa9429bd236",
                 "shasum": ""
             },
             "require": {
@@ -11739,9 +11777,9 @@
             ],
             "description": "Add beautiful and user-friendly forms to your command-line applications.",
             "support": {
-                "source": "https://github.com/laravel/prompts/tree/v0.3.27"
+                "source": "https://github.com/laravel/prompts/tree/v0.3.28"
             },
-            "time": "2026-11-09T16:07:10+00:00"
+            "time": "2026-11-23T14:41:10+00:00"
         },
         {
             "name": "lcobucci/jwt",
@@ -11818,16 +11856,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "2.10.7",
+            "version": "2.10.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "8eb53e906fd60c67038d22f1f1cab420ed58b8be"
+                "reference": "3e956235b26ea34ea721a302e27eae9a32cb9ef0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/8eb53e906fd60c67038d22f1f1cab420ed58b8be",
-                "reference": "8eb53e906fd60c67038d22f1f1cab420ed58b8be",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/3e956235b26ea34ea721a302e27eae9a32cb9ef0",
+                "reference": "3e956235b26ea34ea721a302e27eae9a32cb9ef0",
                 "shasum": ""
             },
             "require": {
@@ -11921,7 +11959,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-31T13:35:37+00:00"
+            "time": "2026-11-26T14:08:53+00:00"
         },
         {
             "name": "league/config",
@@ -15808,16 +15846,16 @@
         },
         {
             "name": "symfony/expression-language",
-            "version": "v7.4.21",
+            "version": "v7.4.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/expression-language.git",
-                "reference": "51c52817a02119ecd46a3369a2b38fc7f24dbf5e"
+                "reference": "c9da27c4954ad88742d36c7ffbc18a3fdbe32e26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/expression-language/zipball/51c52817a02119ecd46a3369a2b38fc7f24dbf5e",
-                "reference": "51c52817a02119ecd46a3369a2b38fc7f24dbf5e",
+                "url": "https://api.github.com/repos/symfony/expression-language/zipball/c9da27c4954ad88742d36c7ffbc18a3fdbe32e26",
+                "reference": "c9da27c4954ad88742d36c7ffbc18a3fdbe32e26",
                 "shasum": ""
             },
             "require": {
@@ -15852,7 +15890,7 @@
             "description": "Provides an engine that can compile and evaluate expressions",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/expression-language/tree/v7.4.21"
+                "source": "https://github.com/symfony/expression-language/tree/v7.4.24"
             },
             "funding": [
                 {
@@ -15872,7 +15910,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-09T13:57:53+00:00"
+            "time": "2026-11-24T18:01:43+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -16215,16 +16253,16 @@
         },
         {
             "name": "symfony/intl",
-            "version": "v7.4.22",
+            "version": "v7.4.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/intl.git",
-                "reference": "cbd18d56041c88d76b86fd22c2a88af974aba20f"
+                "reference": "d3f16dfda360e7b972f5d0f4bd88b32194000d6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/intl/zipball/cbd18d56041c88d76b86fd22c2a88af974aba20f",
-                "reference": "cbd18d56041c88d76b86fd22c2a88af974aba20f",
+                "url": "https://api.github.com/repos/symfony/intl/zipball/d3f16dfda360e7b972f5d0f4bd88b32194000d6d",
+                "reference": "d3f16dfda360e7b972f5d0f4bd88b32194000d6d",
                 "shasum": ""
             },
             "require": {
@@ -16281,7 +16319,7 @@
                 "localization"
             ],
             "support": {
-                "source": "https://github.com/symfony/intl/tree/v7.4.22"
+                "source": "https://github.com/symfony/intl/tree/v7.4.24"
             },
             "funding": [
                 {
@@ -16301,7 +16339,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-27T13:52:57+00:00"
+            "time": "2026-11-19T16:20:01+00:00"
         },
         {
             "name": "symfony/mailer",
@@ -20092,16 +20130,16 @@
         },
         {
             "name": "open-telemetry/api",
-            "version": "1.12.0",
+            "version": "1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opentelemetry-php/api.git",
-                "reference": "b0884741f3f9d5dc60477784c8671bd2acef4ceb"
+                "reference": "2dace793114f43ce879c15cbbd34411add11272d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opentelemetry-php/api/zipball/b0884741f3f9d5dc60477784c8671bd2acef4ceb",
-                "reference": "b0884741f3f9d5dc60477784c8671bd2acef4ceb",
+                "url": "https://api.github.com/repos/opentelemetry-php/api/zipball/2dace793114f43ce879c15cbbd34411add11272d",
+                "reference": "2dace793114f43ce879c15cbbd34411add11272d",
                 "shasum": ""
             },
             "require": {
@@ -20128,7 +20166,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "1.12.x-dev"
+                    "dev-main": "1.13.x-dev"
                 }
             },
             "autoload": {
@@ -20165,7 +20203,7 @@
                 "issues": "https://github.com/open-telemetry/opentelemetry-php/issues",
                 "source": "https://github.com/open-telemetry/opentelemetry-php"
             },
-            "time": "2026-11-19T08:10:15+00:00"
+            "time": "2026-11-26T01:07:02+00:00"
         },
         {
             "name": "open-telemetry/context",
@@ -20363,16 +20401,16 @@
         },
         {
             "name": "open-telemetry/sdk",
-            "version": "1.17.0",
+            "version": "1.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opentelemetry-php/sdk.git",
-                "reference": "5b823e465b0fabdf5019aef6aa2e430285949e7b"
+                "reference": "d6a4c614f217f8492ab2e15f6ec00021c9b026ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opentelemetry-php/sdk/zipball/5b823e465b0fabdf5019aef6aa2e430285949e7b",
-                "reference": "5b823e465b0fabdf5019aef6aa2e430285949e7b",
+                "url": "https://api.github.com/repos/opentelemetry-php/sdk/zipball/d6a4c614f217f8492ab2e15f6ec00021c9b026ea",
+                "reference": "d6a4c614f217f8492ab2e15f6ec00021c9b026ea",
                 "shasum": ""
             },
             "require": {
@@ -20420,7 +20458,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "1.17.x-dev"
+                    "dev-main": "1.18.x-dev"
                 }
             },
             "autoload": {
@@ -20460,20 +20498,20 @@
                 "issues": "https://github.com/open-telemetry/opentelemetry-php/issues",
                 "source": "https://github.com/open-telemetry/opentelemetry-php"
             },
-            "time": "2026-11-19T08:10:15+00:00"
+            "time": "2026-11-26T01:07:02+00:00"
         },
         {
             "name": "open-telemetry/sem-conv",
-            "version": "1.45.0",
+            "version": "1.45.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opentelemetry-php/sem-conv.git",
-                "reference": "7a42562cf5891f56f6f8ea2ecc945f31108c8806"
+                "reference": "3d11ab7259c04b3622be7b3d17b15f6ce8f8956d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opentelemetry-php/sem-conv/zipball/7a42562cf5891f56f6f8ea2ecc945f31108c8806",
-                "reference": "7a42562cf5891f56f6f8ea2ecc945f31108c8806",
+                "url": "https://api.github.com/repos/opentelemetry-php/sem-conv/zipball/3d11ab7259c04b3622be7b3d17b15f6ce8f8956d",
+                "reference": "3d11ab7259c04b3622be7b3d17b15f6ce8f8956d",
                 "shasum": ""
             },
             "require": {
@@ -20517,7 +20555,7 @@
                 "issues": "https://github.com/open-telemetry/opentelemetry-php/issues",
                 "source": "https://github.com/open-telemetry/opentelemetry-php"
             },
-            "time": "2026-11-03T22:37:22+00:00"
+            "time": "2026-11-26T01:07:02+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -21324,22 +21362,22 @@
         },
         {
             "name": "phpstan/phpstan-phpunit",
-            "version": "2.1.3",
+            "version": "2.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-phpunit.git",
-                "reference": "3912977f00552c85adcf7ca0960e49bdce95b36f"
+                "reference": "df82e59a70346e281fd18d43d74d62b8898bfc6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-phpunit/zipball/3912977f00552c85adcf7ca0960e49bdce95b36f",
-                "reference": "3912977f00552c85adcf7ca0960e49bdce95b36f",
+                "url": "https://api.github.com/repos/phpstan/phpstan-phpunit/zipball/df82e59a70346e281fd18d43d74d62b8898bfc6f",
+                "reference": "df82e59a70346e281fd18d43d74d62b8898bfc6f",
                 "shasum": ""
             },
             "require": {
                 "phar-io/version": "^3.2",
                 "php": "^7.4 || ^8.0",
-                "phpstan/phpstan": "^2.3.0"
+                "phpstan/phpstan": "^2.3.6"
             },
             "conflict": {
                 "phpunit/phpunit": "<7.0"
@@ -21376,9 +21414,9 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-phpunit/issues",
-                "source": "https://github.com/phpstan/phpstan-phpunit/tree/2.1.3"
+                "source": "https://github.com/phpstan/phpstan-phpunit/tree/2.1.4"
             },
-            "time": "2026-11-24T08:18:33+00:00"
+            "time": "2026-11-26T06:29:21+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
