@@ -1,0 +1,11 @@
+uuid: ec6b5454-0c8d-4171-977b-efb12160a7bb
+langcode: da
+status: true
+dependencies:
+  config:
+    - canvas.component.sdc.hivelog.stat-tile
+name: Anden
+configEntityTypeId: component
+weight: 0
+items:
+  - sdc.hivelog.stat-tile
